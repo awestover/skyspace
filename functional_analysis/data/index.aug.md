@@ -1,15 +1,23 @@
 ------
 
-# Motivation: optimization in $\mathbb{R}^n$
-
 > The shortest distance from a point to a line is the perpendicular to the line. Right?...
 
-In $\mathbb{R}^n$ with the standard Euclidean norm (e.g. $||(x,y)|| = \sqrt{x^2 + y^2}$ in $\mathbb{R}^2$) the simple geometric rule that the error of the best approximator to a point within a subspace is perpendicular to the subspace holds.
+## Plan: 
+- Motivating Pictures
+- Background
+  * Linear Algebra: _vector space_, _span_, _subspace_
+  * Analysis: _norm_, _distance_, _convergence_, _open_ / _closed_
+- Definitions: _Banach Space_, _inner product_, _Hilbert Space_
+- Projection Theorem
+
+## Motivating Pictures
+
+In $\mathbb{R}^n$ with the standard Euclidean norm (e.g. $||(x,y)|| = \sqrt{x^2 + y^2}$ in $\mathbb{R}^2$) the error of the best approximator to a point within a subspace is perpendicular to the subspace.
 Here is a depiction of this for $\mathbb{R}^2$ and $\mathbb{R}^3$:
 
 <div class="ex envbox">**Example.**
-![data/ptinR2.png](data/ptinR2.png)
-![data/ptinR3.png](data/ptinR3.png)
+![ProjectionTheoremInR2](data/projthmInR2.png)
+![ProjectionTheoremInR3](data/projthmInR3.png)
 </div>
 
 # Background
@@ -79,7 +87,6 @@ $$||(\xi_1,\xi_2,\ldots)||_p = \left(\sum_{i\geq 1} |\xi_i|^p \right) ^ {1/p}.$$
 <!-- } -->
 <!-- ``` -->
 
-<!-- * well that was boring  -->
 
 
 <!-- ----- -->

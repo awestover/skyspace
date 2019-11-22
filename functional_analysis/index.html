@@ -26,13 +26,24 @@
 <p class="author">Alek Westover</p>
 </header>
 <hr />
-<h1 id="motivation-optimization-in-mathbbrn">Motivation: optimization in <span class="math inline">\(\mathbb{R}^n\)</span></h1>
 <blockquote>
 <p>The shortest distance from a point to a line is the perpendicular to the line. Right?…</p>
 </blockquote>
-<p>In <span class="math inline">\(\mathbb{R}^n\)</span> with the standard Euclidean norm (e.g. <span class="math inline">\(||(x,y)|| = \sqrt{x^2 + y^2}\)</span> in <span class="math inline">\(\mathbb{R}^2\)</span>) the simple geometric rule that the error of the best approximator to a point within a subspace is perpendicular to the subspace holds. Here is a depiction of this for <span class="math inline">\(\mathbb{R}^2\)</span> and <span class="math inline">\(\mathbb{R}^3\)</span>:</p>
+<h2 id="plan">Plan:</h2>
+<ul>
+<li>Motivating Pictures</li>
+<li>Background
+<ul>
+<li>Linear Algebra: <em>vector space</em>, <em>span</em>, <em>subspace</em></li>
+<li>Analysis: <em>norm</em>, <em>distance</em>, <em>convergence</em>, <em>open</em> / <em>closed</em></li>
+</ul></li>
+<li>Definitions: <em>Banach Space</em>, <em>inner product</em>, <em>Hilbert Space</em></li>
+<li>Projection Theorem</li>
+</ul>
+<h2 id="motivating-pictures">Motivating Pictures</h2>
+<p>In <span class="math inline">\(\mathbb{R}^n\)</span> with the standard Euclidean norm (e.g. <span class="math inline">\(||(x,y)|| = \sqrt{x^2 + y^2}\)</span> in <span class="math inline">\(\mathbb{R}^2\)</span>) the error of the best approximator to a point within a subspace is perpendicular to the subspace. Here is a depiction of this for <span class="math inline">\(\mathbb{R}^2\)</span> and <span class="math inline">\(\mathbb{R}^3\)</span>:</p>
 <div class="ex envbox">
-<p><strong>Example.</strong> <img src="data/ptinR2.png" alt="data/ptinR2.png" /> <img src="data/ptinR3.png" alt="data/ptinR3.png" /></p>
+<p><strong>Example.</strong> <img src="data/projthmInR2.png" alt="ProjectionTheoremInR2" /> <img src="data/projthmInR3.png" alt="ProjectionTheoremInR3" /></p>
 </div>
 <h1 id="background">Background</h1>
 <ul>
@@ -79,7 +90,6 @@
 <!--   } -->
 <!-- } -->
 <!-- ``` -->
-<!-- * well that was boring  -->
 <!-- ----- -->
 </body>
 </html>
