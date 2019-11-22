@@ -1,0 +1,187 @@
+
+\documentclass{article}[11pt]
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\polylog}{\text{polylog}}
+\DeclareMathOperator{\st}{\text{ such that }}
+
+\newcommand{\contr}[0]{\[ \Rightarrow\!\Leftarrow \]}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+
+\newtheorem{fact}{Fact}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{tcolorbox}
+\newenvironment{lem}[1][Lemma] { \begin{tcolorbox}[colback=green!10,coltitle=green!20!black,colframe=green!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{cor}[1][Corollary] { \begin{tcolorbox}[colback=green!10,coltitle=green!20!black,colframe=green!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{prop}[1][Proposition] { \begin{tcolorbox}[colback=green!10,coltitle=green!20!black,colframe=green!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{defn}[1][Definition] { \begin{tcolorbox}[colback=orange!10,coltitle=orange!20!black,colframe=orange!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{fct}[1][Fact] { \begin{tcolorbox}[colback=orange!10,coltitle=orange!20!black,colframe=orange!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{rmk}[1][Remark] { \begin{tcolorbox}[colback=orange!10,coltitle=orange!20!black,colframe=orange!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{thm}[1][Theorem] { \begin{tcolorbox}[colback=blue!10,coltitle=blue!20!black,colframe=blue!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{pf}[1][Proof] { \begin{tcolorbox}[colback=red!10,coltitle=red!20!black,colframe=red!25,title=#1] } { \end{tcolorbox} }
+
+\author{Alek Westover}
+\title{Digital Signal Processing}
+
+\begin{document}
+\maketitle
+\tableofcontents
+% \begin{center}
+% \begin{Large}
+%   Alek Westover \\
+%   \vspace{2mm}
+%   Digital Signal Processing
+% \end{Large}
+% \end{center}
+
+% \setcounter{section}{-1}
+% \section{Outline}
+% \begin{itemize}
+%   \item What is a signal?
+%   \item Linear algebra excursion - develop the concept of a basis for $\mathbb{R}^N$ (focussing on orthogonal bases)
+%   \item What is the Fourier transform?
+%   \item What is a Linear Time Invariant Opperator?
+%   \item Convolution Theorem, Modulation Theorem
+%   \item Filters - Ideal Filters, realizable filters, useful filters
+% \end{itemize}
+
+\section{What is a Signal?}
+There are $4$ major classes of signals that I will be talking about. 
+First however I shall note that I only consider discrete time signals.
+This may seem like an unnaccpetable simplification because "we live in a continuous world".
+This however is not so.
+While some analog devices give the illusion of continuous signals, like a thermometer's reading over time, in reality we can only take measurements at discrete time intervals. 
+
+\paragraph{Finite Length Signals}
+In practice computers have finite memory, and we have finite time to perform signal processing. 
+Thus, Finite Length Signals are very important to the real world.
+
+Finite  are can be thought of in 2 different ways. 
+You can think of a length $N$ finite length signal as a function from $\{0,1,\ldots, N-1\}$ to $\mathbb{C}$ or as a vector in $\mathbb{C}^N$.
+
+Here are some useful examples of finite length signals.
+
+The delta function:
+$$
+\delta[n] = 
+\begin{cases}
+	1 & n=0 \\
+	0 & \text{else.}
+\end{cases}
+$$
+
+The complex exponential:
+$$x_k[n] = \exp\Big(i\frac{2\pi}{N}nk\Big)$$
+This is a class of periodic signals where $k\in\{0,1,\ldots, N-1\}$. 
+Note that not all sinosoids are periodic in discrete time. 
+For instance the signal $$x[n] = \sin\Big(\frac{2\pi}{N}n\sqrt{2}\Big)$$ is not periodic.
+
+\paragraph{Periodic Signals}
+If a (discrete-time) signal is periodic with period $M$, then $x[n + k\cdot M] = x[n]$ for all $k$. Note that such a signal has exactly as much information as $1$ period of the signal. 
+This is a very natural way of embedding a finite lenght signal in an infinite length signal.
+Given a finite length signal $x[n]$ of length $N$ we can construct the periodic extension as 
+$$\tilde{x}[n] = x[n\mod N].$$
+
+% Note that the following is periodic
+% $$\tilde{x}[n] \defeq \sum_{k\in \mathbb{Z}} x[n+k\cdot M].$$
+
+\paragraph{Finite Support Signals}
+Another way to embed a finite length signal in an infinite length signal is to simply pad the signal with an infinite number of $0$s.
+This is denoted
+$$
+\bar{x}[n] = 
+\begin{cases}
+	x[n] & n \in \{0,1,\ldots N-1\}\\
+	0 & \text{else.}
+\end{cases}
+$$
+
+\paragraph{Infinite Length Signals}
+Infinite Lenght signals are useful mostly as a theoretical tool, and an ideal that we can approximate with finite length signals.
+
+
+\section{Linear Algebra Excursion - Developing the concept of a basis for $\mathbb{R}^N$}
+Example: expressing points coordinates relative to rotated standard bases vectors in the plane.
+If the basis is orthogonal it is easy to get the coordinate transformation, and Parseval's theorem applies.
+
+\section{The Fourier Transform}
+The Fourier Transform is a very special change of basis. It takes a signal in the time domain, and expresses it in the frequency domain.
+This means that we are expressing the signal as an infinite sum of weighted sinosoids of differing freqeuncies.
+
+The DFT is defined as 
+$$X[k] = \sum_{n=0}^{N-1} x[n] e^{-i\frac{2\pi}{N}nk}.$$
+This is invertible. The IDFT is 
+$$x[n] = \frac{1}{N}\sum_{k=0}^{N-1} X[k] e^{i\frac{2\pi}{N}nk}.$$
+Note that $$e^{-i\frac{2\pi}{N}nk} = e^{i\frac{2\pi}{N} (N-nk)}$$
+by the $2\pi$ periodicity of the complex exponential $e^{i\omega}$.
+This means that it we could have used either direction of listing coefficients for the basis.
+It is standard to use the one that I chose.
+
+The DFS is just the periodic extension of this and is the version of the fourier transform for periodic sequences.
+
+The DTFT is defined as 
+$$X(e^{j\omega}) = \sum_{n\in\mathbb{Z}} x[n] e^{-j\omega n}.$$
+And the IDTFT is 
+$$x[n] = \frac{1}{2\pi}\int_{-\pi}^\pi X(e^{j\omega}) e^{j\omega n} d\omega.$$
+
+The intervability of these transforms highlights the fact that a signal can be represented in either the time or frequency domain.
+
+There are lots of important properties of the Fourier Transform.
+
+Here are a few:
+\begin{itemize}
+	\item Linearity (DTFT is linear opperator)
+	\item Time shift: $$x[n-n_0] \implies e^{-j\omega n_0} X(e^{j\omega})$$
+	\item Modulation $$e^{j \omega_0 n}x[n] \implies X(e^{j(w-w_0)})$$
+	\item Time reversal: $$x[-n] \implies X(e^{-j\omega})$$
+	\item Conjugation: $$x^*[n] \implies X^*(e^{-j\omega})$$
+\end{itemize}
+
+
+\section{FFT}
+DFT can be computed in $O(N\log N)$ time (much better than the naive $O(N^2)$ algorithm).
+This is because of the following remarkable fact:
+
+Let $x[n]$ be a signal of length $2N$. 
+
+Let $$x_e[n] = x[2n]\,\, n=0,1,\ldots, N-1.$$
+
+Let $$x_o[n] = x[2n+1]\,\, n=0,1,\ldots, N-1.$$
+
+Observe the following about the DFT of $x[n]$.
+
+$$X[k] = \sum_{n=0}^{2N-1} x[n]e^{-i\frac{2\pi}{2N}nk}.$$
+$$X[k] = \sum_{n=0}^{N-1} x_e[n] e^{-i\frac{2\pi}{2N}2nk} + x_o[n]e^{-i\frac{2\pi}{2N}(2n+1)k} .$$
+$$X[k] = \sum_{n=0}^{N-1} x_e[n] e^{-i\frac{2\pi}{N}nk} + e^{-i\frac{\pi}{N}k} \sum_{n=0}^{N-1} x_o[n]e^{-i\frac{2\pi}{N}nk} .$$
+
+This is great, because we reduced the problem of finding the DFT of a length $N$ signal to computing the DFT of $2$ length $N/2$ signals (and then adding them with a weight on the odd DFT).
+There are more optimizations that go into the FFT that I haven't discussed here, but this is the gist of it.
+
+\section{LTIs}
+A linear time invariant opperator is an opperator that is linear and time invariant.
+This means that they are described entirely by their impulse response, because we can shift, scale, and add deltas to get any signal, i.e. for all signals $x[n]$,
+$$x[n] = \sum_{k\in\mathbb{Z}}x[k]\delta[n-k].$$
+
+We define convolution 
+$$(x[n]*h[n])[n] = \sum_{k\in\mathbb{Z}}x[k]\cdot h[n-k].$$
+If $h[n]$ is the impulse response of an LTI convolving $h[n]$ with the input signal evaluates the LTI.
+
+Intuitively we are time reversing $h$ and then repeatedly centering $h$ at different values and taking inner products.
+
+\section{Filters}
+Low pass filter is cool. But its impulse response is sinc, which is no good.
+
+\end{document}
+

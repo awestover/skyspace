@@ -1,0 +1,170 @@
+\documentclass{article}[11pt]
+\usepackage[subtle]{savetrees}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Alek Westover}
+\rhead{}
+
+\usepackage{hyperref}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\text{Var}}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\polylog}{\text{polylog}}
+\DeclareMathOperator{\st}{\text{ such that }}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+
+%** VECTOR NOTATION
+\newcommand{\mb}{\mathbf}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\z}{\mathbf{z}}
+\newcommand{\f}{\mathbf{f}}
+\newcommand{\n}{\mathbf{n}}
+\newcommand{\p}{\mathbf{p}}
+\renewcommand{\k}{\mathbf{k}}
+\renewcommand{\d}{\mathrm{d}} %straight d for integrals
+\newcommand{\De}{\Delta}
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+\newcommand{\ran}{\mathrm{ran}}
+
+%** SETS
+\newcommand{\set}[1]{\mathbb{#1}}
+\newcommand{\curly}[1]{\mathcal{#1}}
+\newcommand{\goth}[1]{\mathfrak{#1}}
+\newcommand{\setof}[2]{\left\{ #1\; : \;#2 \right\}}
+\newcommand{\cc}{\subseteq\subseteq}
+\newcommand{\R}{\set{R}}
+\newcommand{\C}{\set{C}}
+\newcommand{\Z}{\set{Z}}
+\newcommand{\D}{\curly{D}}
+\renewcommand{\S}{\set{S}}
+\newcommand{\T}{\set{T}}
+
+\newcommand{\contr}[0]{\[ \Rightarrow\!\Leftarrow \]}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+
+\newtheorem{fact}{Fact}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{framed}
+\theoremstyle{plain}% default
+
+
+\newtheorem{prototheorem}{Theorem}[section]
+\newenvironment{thm}
+   {\colorlet{shadecolor}{blue!20}\begin{shaded}\begin{prototheorem}}
+   {\end{prototheorem}\end{shaded}}
+
+\newtheorem{protodefinition}[prototheorem]{Definition}
+\newenvironment{defn}
+   {\colorlet{shadecolor}{black!=5}\begin{shaded}\begin{protodefinition}}
+   {\end{protodefinition}\end{shaded}}
+
+\newtheorem{protolemma}[prototheorem]{Lemma}
+\newenvironment{lem}
+   {\colorlet{shadecolor}{green!15}\begin{shaded}\begin{protolemma}}
+   {\end{protolemma}\end{shaded}}
+
+\newtheorem{protocorollary}[prototheorem]{Corollary}
+\newenvironment{cor}
+   {\colorlet{shadecolor}{green!15}\begin{shaded}\begin{protocorollary}}
+   {\end{protocorollary}\end{shaded}}
+
+\newtheorem{protoproposition}[prototheorem]{Proposition}
+\newenvironment{prop}
+   {\colorlet{shadecolor}{green!15}\begin{shaded}\begin{protoproposition}}
+   {\end{protoproposition}\end{shaded}}
+
+ \newtheorem{protoexample}[prototheorem]{Example}
+\newenvironment{ex}
+   {\colorlet{shadecolor}{red!15}\begin{shaded}\begin{protoexample}}
+   {\end{protoexample}\end{shaded}}
+
+\newtheorem{protoremark}[prototheorem]{Remark}
+\newenvironment{rmk}
+   {\colorlet{shadecolor}{red!15}\begin{shaded}\begin{protoremark}}
+   {\end{protoremark}\end{shaded}}
+
+
+\author{Alek Westover}
+\title{Notes}
+\date{someYear}
+
+\begin{document}
+\maketitle
+Functional analysis is a really cool branch of mathematics. Imagine analysis, and then add linear algebra. And then make it all {\color{red}\textbf{INFINTITE DIMENSIONAL}}. It's super geometrical and stuff.
+
+\tableofcontents
+
+\section{the first part}
+\subsection{a cool proof}
+\begin{rmk}
+  asdlfasdf
+\end{rmk}
+
+\begin{thm}
+  (The projection theorem). Let $H$ be a Hilbert space, let $M\subset H$ be a closed subspace of $H$. Let $x \in H$. Then,
+  $$\exists! m_0 \in M \text{ such that } \norm{x-m_0} = \inf_{m\in M} \norm{x-m}$$
+  and $m_0$ is characterized by 
+  $$x-m_0 \in M^\perp \text{ i.e. } x-m_0 \perp m \quad \forall m \in M$$
+\end{thm}
+
+\begin{proof}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+\end{proof}
+
+
+\begin{ex}
+  (The projection theorem). Let H be a asdfklasdflkasd
+  $$\norm{x-m}$$
+  bro bro
+  $$\text{guass}$$
+  
+\end{ex}
+\begin{lem}
+  (The projection theorem). Let H be a asdfklasdflkasd
+  $$\norm{x-m}$$
+  bro bro
+  $$\text{guass}$$
+  
+\end{lem}
+
+\begin{cor}
+  (The projection theorem). Let H be a asdfklasdflkasd
+  $$\norm{x-m}$$
+  bro bro
+  $$\text{guass}$$
+  
+\end{cor}
+
+\begin{defn}
+ asdfasdf 
+\end{defn}
+\end{document}
+

@@ -1,0 +1,106 @@
+\documentclass{article}[11pt]
+\usepackage[subtle]{savetrees}
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Alek Westover}
+\rhead{}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\text{Var}}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\polylog}{\text{polylog}}
+\DeclareMathOperator{\st}{\text{ such that }}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+}
+
+\newcommand{\contr}[0]{\[ \Rightarrow\!\Leftarrow \]}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+
+\newtheorem{fact}{Fact}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{tcolorbox}
+\newenvironment{lem}[1][Lemma] { \begin{tcolorbox}[colback=green!10,coltitle=green!20!black,colframe=green!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{cor}[1][Corollary] { \begin{tcolorbox}[colback=green!10,coltitle=green!20!black,colframe=green!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{prop}[1][Proposition] { \begin{tcolorbox}[colback=green!10,coltitle=green!20!black,colframe=green!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{defn}[1][Definition] { \begin{tcolorbox}[colback=orange!10,coltitle=orange!20!black,colframe=orange!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{fct}[1][Fact] { \begin{tcolorbox}[colback=orange!10,coltitle=orange!20!black,colframe=orange!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{rmk}[1][Remark] { \begin{tcolorbox}[colback=orange!10,coltitle=orange!20!black,colframe=orange!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{thm}[1][Theorem] { \begin{tcolorbox}[colback=blue!10,coltitle=blue!20!black,colframe=blue!25,title=#1] } { \end{tcolorbox} }
+\newenvironment{pf}[1][Proof] { \begin{tcolorbox}[colback=red!10,coltitle=red!20!black,colframe=red!25,title=#1] } { \end{tcolorbox} }
+
+\usepackage{hyperref}
+\author{Alek Westover}
+\title{Cool Math Questions}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Fun Walking Questions}
+\subsection{Hats}
+
+\textbf{Binary:}
+You have 100 ppl with black or white hats on. Line them up by height. Each will
+in turn say their number. How many people can definietly say their number if
+they decide on a strategy before hand?\\
+\textbf{A more colorful question:}
+Now there are 3 colors. Same question, (each person will say a color in turn from tallest to shortest, what's the most people that can survive?)
+
+
+\section{Analysis}
+\subsection{Function not equal to its Taylor Series, even though it's Taylor series doesn't blow up}
+Let $$f(x) = \begin{cases}
+	0 & x=0 \\
+	e^{-1/x} & x>0
+\end{cases}$$
+
+Note that by L'Hospital's rule: $$\lim_{x\to 0} x^{-n} e^{-1/x} = 0$$
+So the Taylor Series of $f$ around $0$ is $0$.
+The taylor series has an infinite radius of convergence, but converges only at a single point to the function.
+
+\subsection{Vitali Set Is not measurable}
+Consider
+$$\mathbb{R} / \mathbb{Q}$$
+Take a point from each equivalnce class that lies in the interval $[0,1]$.
+Combining these points form the set $V$.
+
+Define $V_q$ for all $q\in \mathbb{Q} \cap [-1,1]$ as 
+$$V_q \defeq \{v+q : v \in V\}.$$
+
+Now consider $$U \defeq \bigcup_{q \in \mathbb{Q}\cap [-1,1]} V_q$$
+
+Assume for contradiction that $U$ is measurable.
+
+Because $[0,1] \subset U \subset [-1,2]$, we have $$ 1 \le \mu(U) \le 3.$$
+However, it is also true that the $V_q$ are disjoint (imagine $x \in V_q \cap
+V_p$, then $x = p+v_1 = q+v_2$ for some $v_1,v_2 \in V$, but then $v_1 - v_2
+\in \mathbb{Q}$ so $v_1 = v_2$ because we chose a sinlge representative from
+each equivalence class. Thus $p=q$, i.e. no $x$ can belong to multiple
+$V_q$'s.)
+But then, the killer blow is countable additivity of measure,
+$$ \mu(U) = \sum_{q\in \mathbb{Q}} \mu(V_q).$$
+$$\mu(V_q) = \mu(V) \;\;\;\forall q \in \mathbb{Q}$$
+But this is really sus, because either we are adding up countably many zeros
+and getting $0$ or the terms are nonzero in which case the sum in infinite.
+But this contradicts our bound on $\mu(U)$.\\
+Thus $U$ is not measurable.
+
+
+\end{document}
+
