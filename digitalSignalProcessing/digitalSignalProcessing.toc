@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}What is a Signal?}{1}% 
+\contentsline {paragraph}{Finite Length Signals}{1}% 
+\contentsline {paragraph}{Periodic Signals}{2}% 
+\contentsline {paragraph}{Finite Support Signals}{2}% 
+\contentsline {paragraph}{Infinite Length Signals}{2}% 
+\contentsline {section}{\numberline {2}Linear Algebra Excursion - Developing the concept of a basis for $\mathbb {R}^N$}{2}% 
+\contentsline {section}{\numberline {3}The Fourier Transform}{2}% 
+\contentsline {section}{\numberline {4}FFT}{4}% 
+\contentsline {section}{\numberline {5}LTIs}{4}% 
+\contentsline {section}{\numberline {6}Filters}{4}% 
