@@ -1,5 +1,0 @@
-\contentsline {section}{\numberline {1}Fun Walking Questions}{1}{section.1}% 
-\contentsline {subsection}{\numberline {1.1}Hats}{1}{subsection.1.1}% 
-\contentsline {section}{\numberline {2}Analysis}{1}{section.2}% 
-\contentsline {subsection}{\numberline {2.1}Function not equal to its Taylor Series, even though it's Taylor series doesn't blow up}{1}{subsection.2.1}% 
-\contentsline {subsection}{\numberline {2.2}Vitali Set Is not measurable}{1}{subsection.2.2}% 
