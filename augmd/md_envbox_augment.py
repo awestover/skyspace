@@ -1,4 +1,5 @@
 import sys
+import os
 
 try:
     file = sys.argv[1]
@@ -44,7 +45,11 @@ with open(file, "r") as f:
 if looking_for_closure:
     sys.exit("ERROR: no closure!")
 
-with open(file.replace(".md", ".aug.md"), "w") as f:
+
+path_start, path_end = os.path.split(file.replace(".md", ".aug.md"))
+out_path = os.path.join(path_start, "data", path_end)
+
+with open(out_path, 'w') as f:
     f.write(out_text)
 
 

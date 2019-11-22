@@ -1,11 +1,7 @@
 ---
-title:  'This is the title: it contains a colon'
-author:
-- Author One
-- Author Two
-keywords: [nothing, nothingness]
+title:  Functional Analysis
+author: Alek Westover
+keywords: [math, analysis]
 abstract: |
-  This is the abstract.
-
-  It consists of two paragraphs.
+  Functional analysis is really great.
 ...

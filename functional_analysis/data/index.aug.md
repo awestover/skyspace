@@ -7,10 +7,10 @@
 In $\mathbb{R}^n$ with the standard Euclidean norm (e.g. $||(x,y)|| = \sqrt{x^2 + y^2}$ in $\mathbb{R}^2$) the simple geometric rule that the error of the best approximator to a point within a subspace is perpendicular to the subspace holds.
 Here is a depiction of this for $\mathbb{R}^2$ and $\mathbb{R}^3$:
 
-begin ex
+<div class="ex envbox">**Example.**
 ![data/ptinR2.png](data/ptinR2.png)
 ![data/ptinR3.png](data/ptinR3.png)
-end ex
+</div>
 
 # Background
   - Some linear algebra
@@ -20,19 +20,19 @@ end ex
 
 # Proof of Projection Theorem
 
-begin thm
+<div class="thm envbox">**Theorem.**
   Let $H$ be a Hilbert space, Let $M\subset H$ be a closed subspace, let $x \in H$. Then, there exists a unique $m_0$ satisfying
   $$|| x - m_0 || = \inf_{m \in M} || x - m ||$$
   and $m_0$ is characterized by 
   $$x-m_0 \perp m \quad \forall m \in M.$$
-end thm
+</div>
 
 # The $p$-norms.
 
-begin defn
+<div class="defn envbox">**Definition.**
 The $p$-norm of a sequence is defined to be:
 $$||(\xi_1,\xi_2,\ldots)||_p = \left(\sum_{i\geq 1} |\xi_i|^p \right) ^ {1/p}.$$
-end defn
+</div>
 
 # Make a remark about how you can still solve the problem by blowing up a unit ball
 
