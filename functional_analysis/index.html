@@ -250,8 +250,12 @@ Before proving this I need a small Lemma:
 <figure>
 <img src="data/contradictionPic.png" alt="" /><figcaption>Proof Idea</figcaption>
 </figure>
-<p>Assume for contradiction that <span class="math inline">\(x - m_0 \not \perp \tilde{m}\)</span> for some <span class="math inline">\(\tilde{m} \in M\)</span>.</p>
+<p>Assume for contradiction that <span class="math inline">\(x - m_0 \not \perp \tilde{m}\)</span> for some <span class="math inline">\(\tilde{m} \in M\)</span>. WLOG <span class="math inline">\(||\tilde{m}|| = 1\)</span> (because given any <span class="math inline">\(\tilde{m}\)</span> we could scale it to be a unit vector, and we are in a subspace, which is closed under this scaling.) Also WLOG <span class="math inline">\((x-m_0 | \tilde{m}) &gt; 0\)</span> (if it is negative we multiply <span class="math inline">\(\tilde{m}\)</span> by <span class="math inline">\(-1\)</span>).</p>
+<p>Then we construct a new candidate minimum that will contradict the assumed minimality of <span class="math inline">\(\tilde{m}\)</span> as follows: <span class="math display">\[m&#39; = m_0 + \tilde{m} (x-m_0 | \tilde{m}) \]</span> The picture suggests why this is a good new candidate minimizer, we essentially are projecting some of the error into the subspace, and then moving to remove the error, so it makes a lot of sense that <span class="math inline">\(||m&#39; - x|| &lt; ||m_0 - x||\)</span>. Here is the proof of this observation:</p>
+<p><span class="math display">\[|| x - m&#39; ||^2 = (x-m&#39; | x-m&#39;) \]</span> <span class="math display">\[ = (x - m_0 - \tilde{m} (x-m_0 | \tilde{m}) | x - m_0 - \tilde{m} (x-m_0 | \tilde{m})) \]</span> <span class="math display">\[ = ||x - m_0||^2 -2(x-m_0 | \tilde{m} (x-m_0 | \tilde{m})) + ||\tilde{m} (x-m_0 | \tilde{m})||^2 \]</span> <span class="math display">\[ = ||x - m_0||^2 -2 (x-m_0 | \tilde{m})^2 + (x-m_0 | \tilde{m})^2 \]</span> <span class="math display">\[ = ||x - m_0||^2 -(x-m_0 | \tilde{m})^2 \]</span> <span class="math display">\[ &lt; ||x - m_0||^2. \]</span></p>
+<p>This shows that if the error is not orthogonal, then the vector is not the optima (thus the contrapositive is true, for the optima, the error is orthogonal to <span class="math inline">\(M\)</span>).</p>
 </div>
+<h1 id="the-end">The End</h1>
 <!-- ```python -->
 <!-- def test(x): -->
 <!--   return x*2 -->

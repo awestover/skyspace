@@ -359,10 +359,26 @@ This is actually quite easy. Let $m'$ also be a minimizer. Then the sequence $y 
 
 ![Proof Idea](data/contradictionPic.png)
 
-Assume for contradiction that $x - m_0 \not \perp \tilde{m}$ for some $\tilde{m} \in M$.
+Assume for contradiction that $x - m_0 \not \perp \tilde{m}$ for some $\tilde{m} \in M$. WLOG $||\tilde{m}|| = 1$ (because given any $\tilde{m}$ we could scale it to be a unit vector, and we are in a subspace, which is closed under this scaling.) Also WLOG $(x-m_0 | \tilde{m}) > 0$ (if it is negative we multiply $\tilde{m}$ by $-1$).
+
+Then we construct a new candidate minimum that will contradict the assumed minimality of $\tilde{m}$ as follows:
+$$m' = m_0 + \tilde{m} (x-m_0 | \tilde{m}) $$
+The picture suggests why this is a good new candidate minimizer, we essentially are projecting some of the error into the subspace, and then moving to remove the error, so it makes a lot of sense that $||m' - x|| < ||m_0 - x||$. 
+Here is the proof of this observation:
+
+$$|| x - m' ||^2 = (x-m' | x-m') $$
+$$ = (x - m_0 - \tilde{m} (x-m_0 | \tilde{m}) | x - m_0 - \tilde{m} (x-m_0 | \tilde{m})) $$
+$$ = ||x - m_0||^2 -2(x-m_0 | \tilde{m} (x-m_0 | \tilde{m})) + ||\tilde{m} (x-m_0 | \tilde{m})||^2 $$
+$$ = ||x - m_0||^2 -2 (x-m_0 | \tilde{m})^2 + (x-m_0 | \tilde{m})^2 $$
+$$ = ||x - m_0||^2 -(x-m_0 | \tilde{m})^2 $$
+$$ < ||x - m_0||^2. $$
+
+This shows that if the error is not orthogonal, then the vector is not the optima (thus the contrapositive is true, for the optima, the error is orthogonal to $M$).
 
 
 </div>
+
+# The End
 
 
 <!-- ```python -->
