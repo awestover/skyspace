@@ -84,7 +84,7 @@ end defn
 begin ex
 The standard finite dimensional example of a vector space is $\mathbb{R}^n$.
 
-![Vector addition in $\mathbb{R}^2$](defnVectorSpace.png)
+![Vector addition in $\mathbb{R}^2$](data/defnVectorSpace.png)
 
 end ex
 
