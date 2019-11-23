@@ -83,12 +83,17 @@ end defn
 
 begin ex
 The standard finite dimensional example of a vector space is $\mathbb{R}^n$.
+
+![Vector addition in $\mathbb{R}^2$](defnVectorSpace.png)
+
 end ex
 
 Another important, related, concept in Linear Algebra is that of a _subspace_ of a vector space.
 begin defn
 $M \subset V$ is a subspace of $V$ if $M$ is closed under linear combinations, that is,
   $$\forall \alpha, \beta \in \mathbb{R}, x, y \in M, \quad \alpha x + \beta y \in M$$
+
+![Subspace](data/subspacePic.png)
 end defn
 
 begin rmk
@@ -123,6 +128,8 @@ begin defn
   - Positive definiteness: $||x|| \geq 0 \forall x \in V, \quad ||x|| = 0 \iff x = \theta$
   - Homogeniety: $||\alpha x || = |\alpha| ||x|| \forall \alpha \in \mathbb{R}, x \in V$
   - Triangle Inequality: $||x+y|| \le ||x|| + ||y||$
+
+![Triangle Inequality](data/triangleInequality.png)
 
 end defn
 
@@ -169,7 +176,7 @@ $\mathbb{R}$ is complete
 end ex
 
 begin rmk
-$\mathbb{Q}$ is not complete! For example, the sequence of decimal approximations of $\pi$ is Cauchy, but doesn't converge in $\mathbb{Q}$ i.e. doesnt' converge to a rational number.
+$\mathbb{Q}$ is not complete! For example, the sequence of decimal approximations of $\pi$ is Cauchy, but doesn't converge in $\mathbb{Q}$ i.e. doesn't converge to a rational number.
 end rmk
 
 begin defn
@@ -226,7 +233,10 @@ This is a tough one to prove. You need to prove Holder's inequality first to eve
 end prop
 
 begin rmk
-Drawing the unit balls for $\mathbb{R}^2$ with the different $p$-norms is a really good exercise.
+Drawing the unit balls for $\mathbb{R}^2$ with the different $p$-norms is really informative.
+
+![Unit balls in $\mathbb{R}^2$ with the $p$-norms](data/unitballs.png)
+
 end rmk
 
 OK, so far the dimension of our vector spaces has been countable. Lets get bigger!
@@ -311,6 +321,8 @@ By bilinearity and symmetry:
 $$||x - y||^2 + ||x+y||^2 $$
 $$= (x-y | x-y) + (x+y | x+y) = 2(x|x) + 2(y|y)  = 2||x||^2 + 2||y||^2$$
 This is actually a theorem from geometry, the "parallelogram law".
+
+![Parallelogram Law](data/parallelogramLaw.png)
 
 end lem
 

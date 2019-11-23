@@ -93,10 +93,16 @@
 </div>
 <div class="ex envbox">
 <p><strong>Example.</strong> The standard finite dimensional example of a vector space is <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<figure>
+<img src="defnVectorSpace.png" alt="" /><figcaption>Vector addition in <span class="math inline">\(\mathbb{R}^2\)</span></figcaption>
+</figure>
 </div>
 Another important, related, concept in Linear Algebra is that of a <em>subspace</em> of a vector space.
 <div class="defn envbox">
 <p><strong>Definition.</strong> <span class="math inline">\(M \subset V\)</span> is a subspace of <span class="math inline">\(V\)</span> if <span class="math inline">\(M\)</span> is closed under linear combinations, that is, <span class="math display">\[\forall \alpha, \beta \in \mathbb{R}, x, y \in M, \quad \alpha x + \beta y \in M\]</span></p>
+<figure>
+<img src="data/subspacePic.png" alt="" /><figcaption>Subspace</figcaption>
+</figure>
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Note that <span class="math inline">\(\theta \in M\)</span> if <span class="math inline">\(M\)</span> is a subspace. The smallest subspace is the set composed of just <span class="math inline">\(\theta\)</span>, it has dimension <span class="math inline">\(0\)</span>. Note that <span class="math inline">\(V\)</span> is always a subspace of itself (We say proper subspace if we want the subspace to not be the whole space).</p>
@@ -118,6 +124,9 @@ Another important, related, concept in Linear Algebra is that of a <em>subspace<
 <li>Homogeniety: <span class="math inline">\(||\alpha x || = |\alpha| ||x|| \forall \alpha \in \mathbb{R}, x \in V\)</span></li>
 <li>Triangle Inequality: <span class="math inline">\(||x+y|| \le ||x|| + ||y||\)</span></li>
 </ul>
+<figure>
+<img src="data/triangleInequality.png" alt="" /><figcaption>Triangle Inequality</figcaption>
+</figure>
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Recall that the Euclidean norm on <span class="math inline">\(\mathbb{R}^n\)</span> is defined to be <span class="math display">\[||(\xi_1, \ldots, \xi_n) || = \sqrt{\left(\sum_{i=1}^n \xi_i^2\right)}\]</span> Note that the euclidean norm on <span class="math inline">\(\mathbb{R}^n\)</span> satisfies the axioms for a norm (the triangle inequality is the only non-trivial one to verify, first prove Cauchy Shwarz).</p>
@@ -145,7 +154,7 @@ A related notion is that of a Cauchy sequence:
 <p><strong>Example.</strong> <span class="math inline">\(\mathbb{R}\)</span> is complete</p>
 </div>
 <div class="rmk envbox">
-<p><strong>Remark.</strong> <span class="math inline">\(\mathbb{Q}\)</span> is not complete! For example, the sequence of decimal approximations of <span class="math inline">\(\pi\)</span> is Cauchy, but doesn’t converge in <span class="math inline">\(\mathbb{Q}\)</span> i.e. doesnt’ converge to a rational number.</p>
+<p><strong>Remark.</strong> <span class="math inline">\(\mathbb{Q}\)</span> is not complete! For example, the sequence of decimal approximations of <span class="math inline">\(\pi\)</span> is Cauchy, but doesn’t converge in <span class="math inline">\(\mathbb{Q}\)</span> i.e. doesn’t converge to a rational number.</p>
 </div>
 <div class="defn envbox">
 <p><strong>Definition.</strong> Given a normed linear space <span class="math inline">\(X\)</span>, a set <span class="math inline">\(K \subset X\)</span> is said to be closed if all cauchy sequences in it converge. (the set is closed under limits).</p>
@@ -173,7 +182,10 @@ One more important notion in analysis is that of an <span class="math inline">\(
 <p>This is a tough one to prove. You need to prove Holder’s inequality first to even show that the functional I defined is a norm, and completeness is rather subtle. I might add this proof later.</p>
 </div>
 <div class="rmk envbox">
-<p><strong>Remark.</strong> Drawing the unit balls for <span class="math inline">\(\mathbb{R}^2\)</span> with the different <span class="math inline">\(p\)</span>-norms is a really good exercise.</p>
+<p><strong>Remark.</strong> Drawing the unit balls for <span class="math inline">\(\mathbb{R}^2\)</span> with the different <span class="math inline">\(p\)</span>-norms is really informative.</p>
+<figure>
+<img src="data/unitballs.png" alt="" /><figcaption>Unit balls in <span class="math inline">\(\mathbb{R}^2\)</span> with the <span class="math inline">\(p\)</span>-norms</figcaption>
+</figure>
 </div>
 <p>OK, so far the dimension of our vector spaces has been countable. Lets get bigger! Function vector spaces are really big.</p>
 An analogy to the <span class="math inline">\(p\)</span>-norm for lists is the following for functions:
@@ -225,6 +237,9 @@ and for functions this is defined as
 Before proving this I need a small Lemma:
 <div class="lem envbox">
 <p><strong>Lemma.</strong> By bilinearity and symmetry: <span class="math display">\[||x - y||^2 + ||x+y||^2 \]</span> <span class="math display">\[= (x-y | x-y) + (x+y | x+y) = 2(x|x) + 2(y|y)  = 2||x||^2 + 2||y||^2\]</span> This is actually a theorem from geometry, the “parallelogram law”.</p>
+<figure>
+<img src="data/parallelogramLaw.png" alt="" /><figcaption>Parallelogram Law</figcaption>
+</figure>
 </div>
 <p>Now, I’ll prove the projection theorem. The proof strategy is as follows:</p>
 <ul>
