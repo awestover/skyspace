@@ -6,7 +6,7 @@ try:
 except:
     sys.exit("ERROR: Please input a file to eat")
 
-environment_types = ["thm", "rmk", "prop", "ex", "cor", "lem", "defn"]
+environment_types = ["thm", "rmk", "prop", "ex", "cor", "lem", "defn", "pf"]
 long_name = {
     "thm": "Theorem",
     "rmk": "Remark",
@@ -14,7 +14,8 @@ long_name = {
     "ex": "Example",
     "cor": "Corollary",
     "lem": "Lemma",
-    "defn": "Definition"
+    "defn": "Definition",
+    "pf": "Proof"
 }
 
 looking_for_closure = False

@@ -30,7 +30,7 @@
 <p>The shortest distance from a point to a line is the perpendicular to the line. Right?</p>
 </blockquote>
 <blockquote>
-<p>Define shortest, distance, point, line and perpendicular</p>
+<p>Define shortest, distance, point, line and perpendicular.</p>
 </blockquote>
 <blockquote>
 <p>Fair engouh…</p>
@@ -41,7 +41,7 @@
 <li>Background
 <ul>
 <li>Linear Algebra: <em>vector space</em>, <em>sub-space</em>, <em>span</em></li>
-<li>Analysis: <em>norm</em>, <em>distance</em>, <em>convergence</em>, <em>open</em> / <em>closed</em></li>
+<li>Analysis: <em>norm</em>, <em>distance</em>, <em>convergence</em>, <em>open</em> / <em>closed</em>, <em>inf</em></li>
 </ul></li>
 <li>Functional Analysis Definitions: <em>Banach Space</em>, <em>inner product</em>, <em>Hilbert Space</em></li>
 <li>Projection Theorem</li>
@@ -58,10 +58,16 @@
 <p>just as basic geometric intuition tells us (“the shortest distance between a point and a line is perpendicular to the line”). It turns out that we can extend this to some much more general contexts.</p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> Here is a depiction of this optimization problem in <span class="math inline">\(\mathbb{R}^2\)</span>: <img src="data/projthmInR2.png" alt="ProjectionTheoremInR2" /></p>
+<p><strong>Example.</strong> Here is a depiction of this optimization problem in <span class="math inline">\(\mathbb{R}^2\)</span>:</p>
+<figure>
+<img src="data/projthmInR2.png" alt="" /><figcaption>Projectin Theorem in <span class="math inline">\(\mathbb{R}^2\)</span></figcaption>
+</figure>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> And the optimization problem in <span class="math inline">\(\mathbb{R}^3\)</span>: <img src="data/projthmInR3.png" alt="ProjectionTheoremInR3" /></p>
+<p><strong>Example.</strong> And the optimization problem in <span class="math inline">\(\mathbb{R}^3\)</span>:</p>
+<figure>
+<img src="data/projthmInR3.png" alt="" /><figcaption>Projection Theorem in <span class="math inline">\(\mathbb{R}^3\)</span></figcaption>
+</figure>
 </div>
 <h1 id="background">Background</h1>
 <p>Before getting into the functional analysis which will give us the mathematical tools to extend the above geometrical idea,</p>
@@ -148,11 +154,15 @@ A related notion is that of a Cauchy sequence:
 <p><strong>Example.</strong> For example, the set <span class="math display">\[\{ (x,y) : x^2 + y^2 \leq 1 \}\]</span> is a closed set in <span class="math inline">\(\mathbb{R}^2\)</span>.</p>
 <p>For non-example, the set <span class="math display">\[\{ (x,y) : x^2 + y^2 &lt; 1 \}\]</span> is not a closed set in <span class="math inline">\(\mathbb{R}^2\)</span> (in fact its complement is closed, so it is called an open set).</p>
 </div>
+One more important notion in analysis is that of an <span class="math inline">\(\inf\)</span>
+<div class="defn envbox">
+<p><strong>Definition.</strong> The infimum of a set of real numbers, denoted <span class="math inline">\(\inf S\)</span> is the greatest lower bound for <span class="math inline">\(S\)</span>. That is, all <span class="math inline">\(x\in S\)</span> satisfy <span class="math inline">\(x \geq \inf S\)</span>, and also, <span class="math inline">\(\forall \epsilon &gt; 0\)</span> <span class="math inline">\(\inf S + \epsilon\)</span> is not a lower bound, so <span class="math inline">\(\exists s \in S\)</span> such that <span class="math inline">\(\inf S \leq s &lt; \inf S + \epsilon\)</span>.</p>
+</div>
 <h1 id="functional-analysis-definitions">Functional Analysis Definitions</h1>
 <p>Now I’ll use the ideas from linear algebra and real analysis to develop discuss some examples of normed linear spaces.</p>
 <p>Just by varying the norm we get interesting different normed linear spaces. In <span class="math inline">\(\mathbb{R}^2\)</span> the standard norm is the map <span class="math inline">\((x,y) \to \sqrt{x^2 + y^2}\)</span>, but another reasonable norm is the “taxicab norm” <span class="math inline">\((x,y) \to |x| + |y|\)</span> (interpret this as: if you have to travel parallel to the axes, then the shortest distance between 2 points is the number of units along the x axis you must travel plus the number of units along the y axis you must travel). Another norm that could be interesting is the map <span class="math inline">\((x,y) \to (|x|^3 + |y|^3)^{1/3}\)</span> (motivation: volumes…). We can define the following general class of norms:</p>
 <div class="defn envbox">
-<p><strong>Definition.</strong> The <span class="math inline">\(p\)</span>-norm of a list is defined to be: <span class="math display">\[||(\xi_1,\xi_2,\ldots)||_p = \left(\sum_{i\geq 1} |\xi_i|^p \right) ^ {1/p}.\]</span> This definition works for <span class="math inline">\(p \in [1,\infty)\)</span>, there is an <span class="math inline">\(\infty\)</span>-norm too, which is in a sense the limit as <span class="math inline">\(p\to \infty\)</span> of the other <span class="math inline">\(p\)</span>-norms, but for <em>completeness</em> ( ;) ) it is defined separately as <span class="math display">\[||\(\xi_1, \xi_2, \ldots)||_\infty = \sup_{i\geq 1} |\xi_i|\]</span></p>
+<p><strong>Definition.</strong> The <span class="math inline">\(p\)</span>-norm of a list is defined to be: <span class="math display">\[||(\xi_1,\xi_2,\ldots)||_p = \left(\sum_{i\geq 1} |\xi_i|^p \right) ^ {1/p}.\]</span> This definition works for <span class="math inline">\(p \in [1,\infty)\)</span>, there is an <span class="math inline">\(\infty\)</span>-norm too, which is in a sense the limit as <span class="math inline">\(p\to \infty\)</span> of the other <span class="math inline">\(p\)</span>-norms, but for <em>completeness</em> ( ;) ) it is defined separately as <span class="math display">\[||(\xi_1, \xi_2, \ldots)||_\infty = \sup_{i\geq 1} |\xi_i|\]</span></p>
 </div>
 <p>Note that I don’t specify that this is a finite list. This is because the <span class="math inline">\(p\)</span>-norm can be applied to infinite lists just as it is applied to finite lists. This prompts the definition of a space of infinite sequences:</p>
 <div class="defn envbox">
@@ -188,6 +198,14 @@ and for functions this is defined as
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Note the similarity between the definitions, the idea is that we point-wise / component-wise multiply the functions / sequences and then “sum” this.</p>
 </div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> The inner product is</p>
+<ul>
+<li>Bilinear: <span class="math inline">\((\alpha x + \beta y | z) = \alpha(x | z) + \beta (y | z)\)</span></li>
+<li>Symetric: <span class="math inline">\((x|y) = (y|x)\)</span></li>
+<li>Positive definite: <span class="math inline">\((x|x) \geq 0\)</span>, <span class="math inline">\((x|x) = 0 \iff x = \theta\)</span></li>
+</ul>
+</div>
 <p>Why don’t we define this for any Banach space? Because it is nice when the inner product <em>induces the norm</em>, and this only happens in <span class="math inline">\(\ell^2\)</span> and <span class="math inline">\(L^2\)</span>.</p>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> The sense in which the inner product induces the norm is that <span class="math display">\[(x|x) = ||x||_2^2\]</span></p>
@@ -204,12 +222,36 @@ and for functions this is defined as
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Let <span class="math inline">\(H\)</span> be a Hilbert space, Let <span class="math inline">\(M\subset H\)</span> be a closed subspace, let <span class="math inline">\(x \in H\)</span>. Then, there exists a unique <span class="math inline">\(m_0\)</span> satisfying <span class="math display">\[|| x - m_0 || = \inf_{m \in M} || x - m ||\]</span> and <span class="math inline">\(m_0\)</span> is characterized by <span class="math display">\[x-m_0 \perp m \quad \forall m \in M.\]</span></p>
 </div>
+Before proving this I need a small Lemma:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> By bilinearity and symmetry: <span class="math display">\[||x - y||^2 + ||x+y||^2 \]</span> <span class="math display">\[= (x-y | x-y) + (x+y | x+y) = 2(x|x) + 2(y|y)  = 2||x||^2 + 2||y||^2\]</span> This is actually a theorem from geometry, the “parallelogram law”.</p>
+</div>
 <p>Now, I’ll prove the projection theorem. The proof strategy is as follows:</p>
 <ul>
 <li>Fisrt I will exhibit a sequence which converges to <span class="math inline">\(m_0\)</span></li>
 <li>Then I will show that <span class="math inline">\(m_0\)</span> is unique</li>
 <li>Finally I will show that orthogonality of error characterizes <span class="math inline">\(m_0\)</span></li>
 </ul>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p><em>Exhibit a sequence that converges to <span class="math inline">\(m_0\)</span></em>:</p>
+<p>The <span class="math inline">\(\inf\)</span> naturally gives rise to a sequence, namely the sequence induced by the fact that any number larger than the <span class="math inline">\(\inf\)</span> fails to be a lower bound, so there exists a term which violates any greater attempt at a lower bound.</p>
+<p>Let <span class="math inline">\(d = \inf_{m\in M} ||x-m|| &gt; 0\)</span> Then <span class="math inline">\(\forall \epsilon &gt; 0\)</span>, <span class="math inline">\(\exists m_\epsilon \in M\)</span> such that <span class="math inline">\(||x-m_\epsilon|| &lt; d + \epsilon\)</span>.</p>
+<p>Take <span class="math inline">\(\epsilon = 1/n\)</span> to generate a sequence <span class="math inline">\((y_n)_n\)</span> in <span class="math inline">\(M\)</span>.</p>
+<p>We now show that this sequence is cauchy:</p>
+<p>Note that by the Parallelogram Law (see above lemma) <span class="math display">\[||y_n - y_m||^2 = ||(y_n - x) - (y_m - x)||^2 \]</span> <span class="math display">\[\le 2||y_n - x||^2 + 2||y_m-x||^2 - ||(y_n-x) + (y_m -x)||^2\]</span> <span class="math display">\[= 2||y_n - x||^2 + 2||y_m-x||^2 - 4||\frac{1}{2}(y_n + y_m) - x||^2\]</span></p>
+<p>And, critically, <span class="math inline">\(\frac{1}{2}(y_n + y_m) \in M\)</span> (because <span class="math inline">\(M\)</span> is a subspace, and so closed under finite linear combinations), so we have, by definition of the <span class="math inline">\(\inf\)</span>, <span class="math display">\[||\frac{1}{2}(y_n + y_m) - x ||^2 \geq d^2.\]</span> Combining this with the above inequality we have, <span class="math display">\[||y_n - y_m||^2 \le 2 ||y_n-x||^2 + 2||y_m-x||^2 -4d^2. \]</span></p>
+<p>Now, because <span class="math inline">\(||y_k - x|| \to d\)</span>, for any <span class="math inline">\(\epsilon &gt; 0\)</span> <span class="math inline">\(\exists N\)</span> such that <span class="math inline">\(\forall n,m &gt; N\)</span>, <span class="math display">\[||y_n - y_m||^2 \le 2 d^2 + \epsilon/100 + 2d^2 + \epsilon /100 -4d^2 &lt; \epsilon.\]</span> Hence the sequence is convergent.</p>
+<hr />
+<p><em>Prove uniqueness of <span class="math inline">\(m_0\)</span></em>:</p>
+<p>This is actually quite easy. Let <span class="math inline">\(m&#39;\)</span> also be a minimizer. Then the sequence <span class="math inline">\(y = m_0, m&#39;, m_0, m&#39;, \ldots\)</span> is a sequence that has <span class="math inline">\(||y_n -x|| \to 0\)</span> (trivially, because <span class="math inline">\(||y_n - x|| = 0\)</span> <span class="math inline">\(\forall n\)</span>), and by the above proof this implies that <span class="math inline">\(y\)</span> is Cauchy. That is, <span class="math inline">\(||y_n - y_m||\)</span> gets arbitrarily small as <span class="math inline">\(m,n\to \infty\)</span>. This implies that <span class="math inline">\(||m&#39; - m_0 || = 0\)</span>, hence <span class="math inline">\(m_0 = m&#39;\)</span>.</p>
+<hr />
+<p><em>Orthogonality of error characterizes <span class="math inline">\(m_0\)</span></em>:</p>
+<figure>
+<img src="data/contradictionPic.png" alt="" /><figcaption>Proof Idea</figcaption>
+</figure>
+<p>Assume for contradiction that <span class="math inline">\(x - m_0 \not \perp \tilde{m}\)</span> for some <span class="math inline">\(\tilde{m} \in M\)</span>.</p>
+</div>
 <!-- ```python -->
 <!-- def test(x): -->
 <!--   return x*2 -->

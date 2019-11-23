@@ -2,7 +2,7 @@
 
 > The shortest distance from a point to a line is the perpendicular to the line. Right?
 
-> Define shortest, distance, point, line and perpendicular
+> Define shortest, distance, point, line and perpendicular.
 
 > Fair engouh...
 
@@ -10,7 +10,7 @@
 - Motivating Pictures
 - Background
   * Linear Algebra: _vector space_, _sub-space_, _span_
-  * Analysis: _norm_, _distance_, _convergence_, _open_ / _closed_
+  * Analysis: _norm_, _distance_, _convergence_, _open_ / _closed_, _inf_
 - Functional Analysis Definitions: _Banach Space_, _inner product_, _Hilbert Space_
 - Projection Theorem
 
@@ -34,12 +34,16 @@ It turns out that we can extend this to some much more general contexts.
 
 <div class="ex envbox">**Example.**
 Here is a depiction of this optimization problem in $\mathbb{R}^2$:
-![ProjectionTheoremInR2](data/projthmInR2.png)
+
+![Projectin Theorem in $\mathbb{R}^2$](data/projthmInR2.png)
+
 </div>
 
 <div class="ex envbox">**Example.**
 And the optimization problem in $\mathbb{R}^3$:
-![ProjectionTheoremInR3](data/projthmInR3.png)
+
+![Projection Theorem in $\mathbb{R}^3$](data/projthmInR3.png)
+
 </div>
 
 
@@ -183,6 +187,11 @@ is not a closed set in $\mathbb{R}^2$ (in fact its complement is closed, so it i
 </div>
 
 
+One more important notion in analysis is that of an $\inf$
+<div class="defn envbox">**Definition.**
+The infimum of a set of real numbers, denoted $\inf S$ is the greatest lower bound for $S$. That is, all $x\in S$ satisfy $x \geq \inf S$, and also, $\forall \epsilon > 0$ $\inf S + \epsilon$ is not a lower bound, so $\exists s \in S$ such that $\inf S \leq s < \inf S + \epsilon$.
+</div>
+
 
 # Functional Analysis Definitions
 
@@ -195,7 +204,7 @@ The $p$-norm of a list is defined to be:
 $$||(\xi_1,\xi_2,\ldots)||_p = \left(\sum_{i\geq 1} |\xi_i|^p \right) ^ {1/p}.$$
 This definition works for $p \in [1,\infty)$,
 there is an $\infty$-norm too, which is in a sense the limit as $p\to \infty$ of the other $p$-norms, but for _completeness_ ( ;) ) it is defined separately as 
-$$||\(\xi_1, \xi_2, \ldots)||_\infty = \sup_{i\geq 1} |\xi_i|$$
+$$||(\xi_1, \xi_2, \ldots)||_\infty = \sup_{i\geq 1} |\xi_i|$$
 </div>
 
 Note that I don't specify that this is a finite list. 
@@ -257,6 +266,15 @@ $$(x|y) = \int_0^1 x(t) y(t) dt$$
 Note the similarity between the definitions, the idea is that we point-wise / component-wise multiply the functions / sequences and then "sum" this. 
 </div>
 
+<div class="prop envbox">**Proposition.**
+The inner product is 
+
+* Bilinear: $(\alpha x + \beta y | z) = \alpha(x | z) + \beta (y | z)$
+* Symetric: $(x|y) = (y|x)$
+* Positive definite: $(x|x) \geq 0$, $(x|x) = 0 \iff x = \theta$
+</div>
+
+
 Why don't we define this for any Banach space? Because it is nice when the inner product _induces the norm_, and this only happens in $\ell^2$ and $L^2$.
 
 <div class="rmk envbox">**Remark.**
@@ -287,12 +305,64 @@ Orthogonality makes possible the notion of projection.
   $$x-m_0 \perp m \quad \forall m \in M.$$
 </div>
 
+Before proving this I need a small Lemma:
+<div class="lem envbox">**Lemma.**
+By bilinearity and symmetry:
+$$||x - y||^2 + ||x+y||^2 $$
+$$= (x-y | x-y) + (x+y | x+y) = 2(x|x) + 2(y|y)  = 2||x||^2 + 2||y||^2$$
+This is actually a theorem from geometry, the "parallelogram law".
+
+</div>
+
 Now, I'll prove the projection theorem. The proof strategy is as follows:
 
   * Fisrt I will exhibit a sequence which converges to $m_0$
   * Then I will show that $m_0$ is unique
   * Finally I will show that orthogonality of error characterizes $m_0$
 
+<div class="pf envbox">**Proof.**
+
+*Exhibit a sequence that converges to $m_0$*:
+
+The $\inf$ naturally gives rise to a sequence, namely the sequence induced by the fact that any number larger than the $\inf$ fails to be a lower bound, so there exists a term which violates any greater attempt at a lower bound.
+
+Let $d = \inf_{m\in M} ||x-m|| > 0$ 
+Then $\forall \epsilon > 0$, $\exists m_\epsilon \in M$ such that $||x-m_\epsilon|| < d + \epsilon$.
+
+Take $\epsilon = 1/n$ to generate a sequence $(y_n)_n$ in $M$.
+
+We now show that this sequence is cauchy:
+
+Note that by the Parallelogram Law (see above lemma) 
+$$||y_n - y_m||^2 = ||(y_n - x) - (y_m - x)||^2 $$
+$$\le 2||y_n - x||^2 + 2||y_m-x||^2 - ||(y_n-x) + (y_m -x)||^2$$
+$$= 2||y_n - x||^2 + 2||y_m-x||^2 - 4||\frac{1}{2}(y_n + y_m) - x||^2$$
+
+And, critically, $\frac{1}{2}(y_n + y_m) \in M$ (because $M$ is a subspace, and so closed under finite linear combinations), so we have, by definition of the $\inf$,
+$$||\frac{1}{2}(y_n + y_m) - x ||^2 \geq d^2.$$
+Combining this with the above inequality we have,
+$$||y_n - y_m||^2 \le 2 ||y_n-x||^2 + 2||y_m-x||^2 -4d^2. $$
+
+Now, because $||y_k - x|| \to d$, for any $\epsilon > 0$ $\exists N$ such that $\forall n,m > N$, 
+$$||y_n - y_m||^2 \le 2 d^2 + \epsilon/100 + 2d^2 + \epsilon /100 -4d^2 < \epsilon.$$
+Hence the sequence is convergent.
+
+-----
+
+*Prove uniqueness of $m_0$*:
+
+This is actually quite easy. Let $m'$ also be a minimizer. Then the sequence $y = m_0, m', m_0, m', \ldots$ is a sequence that has $||y_n -x|| \to 0$ (trivially, because $||y_n - x|| = 0$ $\forall n$), and by the above proof this implies that $y$ is Cauchy. That is, $||y_n - y_m||$ gets arbitrarily small as $m,n\to \infty$. This implies that $||m' - m_0 || = 0$, hence $m_0 = m'$.
+
+----
+
+*Orthogonality of error characterizes $m_0$*:
+
+![Proof Idea](data/contradictionPic.png)
+
+Assume for contradiction that $x - m_0 \not \perp \tilde{m}$ for some $\tilde{m} \in M$.
+
+
+</div>
 
 
 <!-- ```python -->

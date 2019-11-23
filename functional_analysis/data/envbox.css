@@ -1,19 +1,30 @@
 .thm {
-  background-color: #CEC7FF;
+  background-image: linear-gradient(#B7F8DB, #50A7C2)
 }
 
-.rmk, .ex {
-  background-color: #fec4ff;
-}
-
-.lem, .prop, .cor {
-  background-color: #CEFFD6;
+.pf {
+  background-image: linear-gradient(#ee9ca7,#ffdde1);
 }
 
 .defn {
-  background-color: #F2F2F2;
+  background-color: #CEFFD6;
+}
+
+.ex {
+  background-color: #FFDDE4;
+}
+
+.lem, .prop, .cor {
+  background-color: #CEC7FF;
+}
+
+.rmk {
+  background-color: #ADD8E6;
 }
 
 .envbox {
   padding: 3%;
+  margin-bottom: 3%;
+  margin-top: 3%;
 }
+
