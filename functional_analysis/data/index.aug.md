@@ -1,30 +1,282 @@
 ------
 
-> The shortest distance from a point to a line is the perpendicular to the line. Right?...
+> The shortest distance from a point to a line is the perpendicular to the line. Right?
 
-## Plan: 
+> Define shortest, distance, point, line and perpendicular
+
+> Fair engouh...
+
+# Plan: 
 - Motivating Pictures
 - Background
-  * Linear Algebra: _vector space_, _span_, _subspace_
+  * Linear Algebra: _vector space_, _sub-space_, _span_
   * Analysis: _norm_, _distance_, _convergence_, _open_ / _closed_
-- Definitions: _Banach Space_, _inner product_, _Hilbert Space_
+- Functional Analysis Definitions: _Banach Space_, _inner product_, _Hilbert Space_
 - Projection Theorem
 
-## Motivating Pictures
 
-In $\mathbb{R}^n$ with the standard Euclidean norm (e.g. $||(x,y)|| = \sqrt{x^2 + y^2}$ in $\mathbb{R}^2$) the error of the best approximator to a point within a subspace is perpendicular to the subspace.
-Here is a depiction of this for $\mathbb{R}^2$ and $\mathbb{R}^3$:
+# Motivating Pictures
+
+<div class="rmk envbox">**Remark.**
+*A natural question in geometry:*
+Given a (suitably nice) region $M$ and a point $x \not\in M$ what is the "best" approximation to $x$ in $M$?
+
+In $\mathbb{R}^2$ with the standard Euclidean norm (e.g. $||(x,y)|| = \sqrt{x^2 + y^2}$), if $M$ is a line (through the origin) then the best approximater 
+
+  * exists
+  * is unique
+  * and satisfies that the error of the best approximator is perpendicular to $M$
+
+
+just as basic geometric intuition tells us ("the shortest distance between a point and a line is perpendicular to the line").
+It turns out that we can extend this to some much more general contexts.
+</div>
 
 <div class="ex envbox">**Example.**
+Here is a depiction of this optimization problem in $\mathbb{R}^2$:
 ![ProjectionTheoremInR2](data/projthmInR2.png)
+</div>
+
+<div class="ex envbox">**Example.**
+And the optimization problem in $\mathbb{R}^3$:
 ![ProjectionTheoremInR3](data/projthmInR3.png)
 </div>
 
+
+
 # Background
-  - Some linear algebra
-  - Some Analysis
-  - definition of banach space and hilbert space
-  - give $l^2$ as an example of an infinite dimensional Hilbert Space
+
+Before getting into the functional analysis which will give us the mathematical tools to extend the above geometrical idea, 
+
+## Linear Algebra
+
+What's a vector? Some standard definitions:
+
+- "A magnitude and a direction" 
+  * _problem:_ What's a direction in $\mathbb{R}^4$? How about in the space of square summable sequences? The best definition of *direction* is a vector, so definition of a vector from direction seems circular.
+- "A list of n numbers"
+  * _problem:_ This doesn't work very well for infinite dimensional spaces.
+- "An element of a Vector Space"
+  * This is the definition that I'll use, so now I should define vector space (non-circularly).
+
+
+
+<div class="defn envbox">**Definition.**
+Vector Space:
+
+We say that a set $V$ is a vector space over $\mathbb{R}$ with zero-vector $\theta \in V$, if for arbitrary $v, w, x \in V, \alpha, \beta \in \mathbb{R}$
+$$\alpha v + \beta w \in V$$
+$$v+w = w+v$$
+$$(w+v)+x = w+(v+x)$$
+$$\alpha(v+w) = \alpha v + \alpha w$$
+$$(\alpha+\beta) v = \alpha v + \beta v$$
+$$\theta + x = x$$
+$$0x = \theta$$
+$$\exists -x \text{ such that } -x + x = \theta$$
+$$1x = x$$
+$$(\alpha\beta)x = \alpha(\beta x)$$
+</div>
+
+<div class="ex envbox">**Example.**
+The standard finite dimensional example of a vector space is $\mathbb{R}^n$.
+</div>
+
+Another important, related, concept in Linear Algebra is that of a _subspace_ of a vector space.
+<div class="defn envbox">**Definition.**
+$M \subset V$ is a subspace of $V$ if $M$ is closed under linear combinations, that is,
+  $$\forall \alpha, \beta \in \mathbb{R}, x, y \in M, \quad \alpha x + \beta y \in M$$
+</div>
+
+<div class="rmk envbox">**Remark.**
+Note that $\theta \in M$ if $M$ is a subspace. The smallest subspace is the set composed of just $\theta$, it has dimension $0$.
+ Note that $V$ is always a subspace of itself (We say proper subspace if we want the subspace to not be the whole space).
+</div>
+
+<div class="rmk envbox">**Remark.**
+In $\mathbb{R}^n$ all subspaces (including the whole space) are expressible as the set of all finite linear combinations of some set of _"basis vectors"_ of size $\leq n$.
+</div>
+
+<div class="defn envbox">**Definition.**
+The span of a set of vectors is the set of all finite linear combinations of
+these vectors. Equivalently, the span of a set of vectors is the smallest
+subspace containing all the vectors that it is supposed to span.
+</div>
+
+
+<div class="rmk envbox">**Remark.**
+_At this point we have the structures of addition of vectors and scalar multiplication.
+This gives us some geometry, but we are still missing one very important concept... that of **size**._
+</div>
+
+
+
+## Analysis
+
+<div class="defn envbox">**Definition.**
+(Norm)
+  A norm on a Vector space $V$ is a funciton $||\cdot|| : V \to \mathbb{R}$ satisfying
+
+  - Positive definiteness: $||x|| \geq 0 \forall x \in V, \quad ||x|| = 0 \iff x = \theta$
+  - Homogeniety: $||\alpha x || = |\alpha| ||x|| \forall \alpha \in \mathbb{R}, x \in V$
+  - Triangle Inequality: $||x+y|| \le ||x|| + ||y||$
+
+</div>
+
+<div class="rmk envbox">**Remark.**
+Recall that the Euclidean norm on $\mathbb{R}^n$ is defined to be
+$$||(\xi_1, \ldots, \xi_n) || = \sqrt{\left(\sum_{i=1}^n \xi_i^2\right)}$$
+Note that the euclidean norm on $\mathbb{R}^n$ satisfies the axioms for a norm (the triangle inequality is the only non-trivial one to verify, first prove Cauchy Shwarz).
+</div>
+
+<div class="defn envbox">**Definition.**
+We call a Vector space $X$ along with a norm $||\cdot ||$ a normled linear space.
+</div>
+
+Size naturally gives rise to a notion of distance:
+<div class="defn envbox">**Definition.**
+The distance between 2 vectors $x, y \in X$ is defined to be 
+$$|| x- y ||$$
+</div>
+
+Now that we have a notion of distance, we can talk about _limits_, in particular _convergence_ of sequences.
+<div class="defn envbox">**Definition.**
+A sequence $(x_n)_{n=1}^\infty \in V$ converges to a value $x \in V$ iff 
+$$\forall \epsilon > 0, \exists N \text{ such that } \forall n> N \quad ||x_N - x|| < \epsilon$$
+or more simply put, eventually the sequence values stay arbitrarily close to the limiting value.
+Also equivalently, for every ball around $x$, only finitely many terms of $x_n$ lie outside the ball.
+</div>
+
+A related notion is that of a Cauchy sequence:
+<div class="defn envbox">**Definition.**
+A sequence $(x_n)_{n=1}^\infty$ is Cauchy iff 
+$$\forall \epsilon > 0 \exists N \text{ such that } m, n > N, ||x_n - x_m|| < \epsilon$$
+Here the terms are getting arbitrarily close to one another.
+</div>
+
+You might guess that convergence and Cauchy are equivalent, but this isn't quite true in general... 
+The problem is that your space might have "holes" in it. If your space is complete then this is not an issue.
+
+<div class="defn envbox">**Definition.**
+A space is complete if all Cauchy sequences in it converge in it
+</div>
+
+<div class="ex envbox">**Example.**
+$\mathbb{R}$ is complete
+</div>
+
+<div class="rmk envbox">**Remark.**
+$\mathbb{Q}$ is not complete! For example, the sequence of decimal approximations of $\pi$ is Cauchy, but doesn't converge in $\mathbb{Q}$ i.e. doesnt' converge to a rational number.
+</div>
+
+<div class="defn envbox">**Definition.**
+Given a normed linear space $X$, a set $K \subset X$ is said to be closed if all cauchy sequences in it converge. (the set is closed under limits).
+</div>
+
+<div class="ex envbox">**Example.**
+For example, the set 
+$$\{ (x,y) : x^2 + y^2 \leq 1 \}$$
+is a closed set in $\mathbb{R}^2$.
+
+For non-example, the set 
+$$\{ (x,y) : x^2 + y^2 < 1 \}$$
+is not a closed set in $\mathbb{R}^2$ (in fact its complement is closed, so it is called an open set).
+</div>
+
+
+
+# Functional Analysis Definitions
+
+Now I'll use the ideas from linear algebra and real analysis to develop discuss some examples of normed linear spaces.
+
+Just by varying the norm we get interesting different normed linear spaces. In $\mathbb{R}^2$ the standard norm is the map $(x,y) \to \sqrt{x^2 + y^2}$, but another reasonable norm is the "taxicab norm" $(x,y) \to |x| + |y|$ (interpret this as: if you have to travel parallel to the axes, then the shortest distance between 2 points is the number of units along the x axis you must travel plus the number of units along the y axis you must travel). Another norm that could be interesting is the map $(x,y) \to (|x|^3 + |y|^3)^{1/3}$ (motivation: volumes...). We can define the following general class of norms:
+
+<div class="defn envbox">**Definition.**
+The $p$-norm of a list is defined to be:
+$$||(\xi_1,\xi_2,\ldots)||_p = \left(\sum_{i\geq 1} |\xi_i|^p \right) ^ {1/p}.$$
+This definition works for $p \in [1,\infty)$,
+there is an $\infty$-norm too, which is in a sense the limit as $p\to \infty$ of the other $p$-norms, but for _completeness_ ( ;) ) it is defined separately as 
+$$||\(\xi_1, \xi_2, \ldots)||_\infty = \sup_{i\geq 1} |\xi_i|$$
+</div>
+
+Note that I don't specify that this is a finite list. 
+This is because the $p$-norm can be applied to infinite lists just as it is
+applied to finite lists. This prompts the definition of a space of infinite
+sequences:
+
+<div class="defn envbox">**Definition.**
+$\ell^p$ is the space of infinite sequences $(\xi_1, \xi_2, \ldots)$ that satisfy
+$$||(\xi_1, \xi_2, \ldots)||_p < \infty$$
+So any element of $\ell^p$ has to have finite $p$-norm.
+If we endow $\ell^p$ with the $p$-norm we get a normed linear space.
+</div>
+
+<div class="prop envbox">**Proposition.**
+$\ell^p$ with the $p$-norm is a Banach space
+
+This is a tough one to prove. You need to prove Holder's inequality first to even show that the functional I defined is a norm, and completeness is rather subtle. I might add this proof later.
+</div>
+
+<div class="rmk envbox">**Remark.**
+Drawing the unit balls for $\mathbb{R}^2$ with the different $p$-norms is a really good exercise.
+</div>
+
+OK, so far the dimension of our vector spaces has been countable. Lets get bigger!
+Function vector spaces are really big.
+
+An analogy to the $p$-norm for lists is the following for functions: 
+<div class="defn envbox">**Definition.**
+The $p$-norm for functions is
+$$\left(\int_0^1 |x(t)|^p dt \right)^{1/p}$$
+and the $\infty$-norm is 
+$$\text{ess sup}_{t\in [0,1]} |x(t)|$$
+</div>
+
+<div class="defn envbox">**Definition.**
+$L^p([0,1])$ is the space of functions on $[0,1]$ that satisfy 
+$$||x||_p < \infty$$
+</div>
+
+<div class="rmk envbox">**Remark.**
+OK fine not quite. This wouldn't quite work, because any function that differs from the 0 function on a set of measure 0 would have norm 0 violating the norm axiom that only the 0 vector can have norm 0. The solution is to consider equivalence classes of functions. Functions are equivalent if they differ on a set of measure 0. 
+</div>
+
+There is one extra piece of geometry that would be nice, namely an inner product. This is the straightforward generalization of the dot product in $\mathbb{R}^2$
+
+For sequences this is defined as 
+<div class="defn envbox">**Definition.**
+Let $x = (\xi_1, \xi_2, \ldots), y = (\eta_1, \eta_2, \ldots) \in \ell^2$, then we define the inner product as 
+$$(x | y) = \sum_{i\geq 1} \xi_i \eta_i$$
+</div>
+
+and for functions this is defined as 
+<div class="defn envbox">**Definition.**
+$$(x|y) = \int_0^1 x(t) y(t) dt$$
+</div>
+
+<div class="rmk envbox">**Remark.**
+Note the similarity between the definitions, the idea is that we point-wise / component-wise multiply the functions / sequences and then "sum" this. 
+</div>
+
+Why don't we define this for any Banach space? Because it is nice when the inner product _induces the norm_, and this only happens in $\ell^2$ and $L^2$.
+
+<div class="rmk envbox">**Remark.**
+The sense in which the inner product induces the norm is that
+$$(x|x) = ||x||_2^2$$
+</div>
+
+<div class="defn envbox">**Definition.**
+A normed linear space where the norm is induced by an inner product on the space is called a Hilbert space.
+</div>
+
+The geometry that the inner product gives us access to is the notion of _orthogonality_. 
+
+<div class="defn envbox">**Definition.**
+Vectors $x,y$ are said to be orthogonal iff 
+$$(x|y) = 0$$
+</div>
+
+Orthogonality makes possible the notion of projection.
+
 
 # Proof of Projection Theorem
 
@@ -35,59 +287,25 @@ Here is a depiction of this for $\mathbb{R}^2$ and $\mathbb{R}^3$:
   $$x-m_0 \perp m \quad \forall m \in M.$$
 </div>
 
-# The $p$-norms.
+Now, I'll prove the projection theorem. The proof strategy is as follows:
 
-<div class="defn envbox">**Definition.**
-The $p$-norm of a sequence is defined to be:
-$$||(\xi_1,\xi_2,\ldots)||_p = \left(\sum_{i\geq 1} |\xi_i|^p \right) ^ {1/p}.$$
-</div>
+  * Fisrt I will exhibit a sequence which converges to $m_0$
+  * Then I will show that $m_0$ is unique
+  * Finally I will show that orthogonality of error characterizes $m_0$
 
-# Make a remark about how you can still solve the problem by blowing up a unit ball
-
-
-
-<!-- # this is a test -->
-
-<!-- ### what -->
-
-<!-- thm -->
-<!--   blah blah  -->
-<!--     blah -->
-<!--     asdfjasdfasd -->
-<!-- end thm -->
-
-<!-- begin thm -->
-<!-- Given a closed set G and an open set G tilda there exists a unieq x in H such that x convolved with the abelian subgroup fo QQ generated by modding out by all comutators is normal and uncountably finite  -->
-<!-- end thm -->
-
-<!-- ### asbasdf -->
-
-<!-- - heyo -->
-<!-- - brobro -->
-<!-- - yayaya -->
-
-<!-- $$\int_0^1 x^2 dx$$ -->
-
-<!-- $3x+44 = \sqrt{55}$ -->
 
 
 <!-- ```python -->
 <!-- def test(x): -->
 <!--   return x*2 -->
-
 <!-- x = [1,2,3,4] -->
 <!-- print(x) -->
 <!-- ``` -->
-
 <!-- ```javascript -->
-<!-- function fany(bl){ -->
+<!-- function fanyGeometry(bl){ -->
 <!--   if(test){ -->
 <!--     console.log("ro"); -->
 <!--   } -->
 <!-- } -->
 <!-- ``` -->
-
-
-
-<!-- ----- -->
 

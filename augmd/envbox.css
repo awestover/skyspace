@@ -2,11 +2,11 @@
   background-color: #CEC7FF;
 }
 
-.rmk .ex {
-  background-color: #FFD6D7;
+.rmk, .ex {
+  background-color: #fec4ff;
 }
 
-.lem .prop .cor {
+.lem, .prop, .cor {
   background-color: #CEFFD6;
 }
 
