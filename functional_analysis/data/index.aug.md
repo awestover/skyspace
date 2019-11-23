@@ -84,7 +84,7 @@ $$(\alpha\beta)x = \alpha(\beta x)$$
 <div class="ex envbox">**Example.**
 The standard finite dimensional example of a vector space is $\mathbb{R}^n$.
 
-![Vector addition in $\mathbb{R}^2$](defnVectorSpace.png)
+![Vector addition in $\mathbb{R}^2$](data/defnVectorSpace.png)
 
 </div>
 
