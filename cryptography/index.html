@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  	<title>Encryption Demonstration</title>
+
+    <!-- Import my functions -->
+    <script src="generateKeys.js" type="text/javascript"></script>
+    <script src="primeGenerator.js" type="text/javascript"></script>
+
+  </head>
+
+  <body>
+
+    <div id="input">
+
+      <div id="generatePrime">
+        <button onclick='document.getElementById("displayPrime").innerHTML =
+        biggerPrime(parseInt(Math.random()*10000));'>Generate Prime</button>
+        <h1 id="displayPrime"></h1>
+      </div>
+
+      <div id="generateKey">
+        <button onclick='document.getElementById("displayKey").innerHTML =
+        formatKeys(keys());'>Generate Keys</button>
+        <h1 id="displayKey"></h1>
+      </div>
+
+      <div id="alterKeys">
+        <label>Chose p</label>
+        <input id="pnew" value="new p"></input>
+        <label>Chose q</label>
+        <input id="qnew" value="new q"></input>
+        <label>Chose e</label>
+        <input id="enew" value="new e"></input>
+        <button onclick='document.getElementById("displayNewKeys").innerHTML =
+        formatKeys(NseededGenKeys());'>Recalculate Stuff</button>
+        <h1 id="displayNewKeys"></h1>
+      </div>
+
+      <div id="encodeText">
+        <label>English</label>
+        <input id="eng" value="english"></input>
+        <button onclick='document.getElementById("numMsgBin").innerHTML =
+        engToBinary(document.getElementById("eng").value);
+        document.getElementById("numMsgDec").innerHTML =
+        binaryToDec(engToBinary(document.getElementById("eng").value));'>
+        Encode message</button>
+        <h1>Text can be represented in binary with a=00000 b=00001, etc.
+          These values can be converted into decimal as well </h1>
+
+        <br><h3>In binary</h3>
+        <h1 id="numMsgBin"></h1>
+        <br><h3>Or in decimal</h3>
+        <h1 id="numMsgDec"></h1>
+      </div>
+
+      <div id="encode">
+        <label>message</label>
+        <input id="m" value="m"></input>
+        <button onclick='document.getElementById("encodedMessage").innerHTML =
+        encodeMessage();'>Encode message</button>
+        <h1>c = (m^e) % n</h1>
+        <h1 id="encodedMessage"></h1>
+      </div>
+
+      <div id="decode">
+        <label>message</label>
+        <input id="encodedM" value="encodedM"></input>
+        <button onclick='document.getElementById("decodedMessage").innerHTML =
+        decodeMessage();'>Decode message</button>
+        <h1>m = (c^d) % n = m^(e*d) % n</h1>
+        <h1 id="decodedMessage"></h1>
+      </div>
+
+    </div>
+
+  </body>
+
+</html>
