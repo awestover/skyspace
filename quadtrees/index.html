@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test stuff</title>
+
+  </head>
+  <body>
+    <script src = "p5.min.js" type="text/javascript"></script>
+    <script src="Quadtree.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+class Ball {
+  constructor(box) {
+    this.box = box;
+    this.idx = 4;
+    this.traversalCode = null;
+  }
+
+  getBox() {
+    return this.box;
+  }
+  display() {
+    let cols = [color(0,255,0),color(255,0,0),color(0,0,255),color(150,150,150),color(0,0,0)];
+    noStroke();
+    fill(cols[this.idx]);
+    rect(this.box[0],this.box[1],this.box[2],this.box[3]);
+  }
+}
+
+let tree;
+let balls = [];
+function setup() {
+  createCanvas(500,500);
+  tree = new Quadtree([width/2, height/2, width, height]);
+  for (let i = 0; i < 100; i++)
+  {
+    balls.push(new Ball([random()*width, random()*height, (random()+1)*width/32, (random()+1)*height/32]));
+    tree.insert(balls[i]);
+  }
+}
+function draw() {
+  background(100);
+  for (let i = 0; i < balls.length; i++)
+  {
+    balls[i].display();
+  }
+  tree.display();
+}
+    </script>
+  </body>
+</html>
