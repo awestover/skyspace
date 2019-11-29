@@ -20,7 +20,7 @@ body {
 #content{
   padding: 1em;
   margin: auto !important;
-  max-width: 55em;
+  /* max-width: 55em; */
 }
 
 a {

@@ -1,16 +1,22 @@
 .wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
 }
 
 #sidebar {
-  width: 250px;
+  width: 30%;
 }
+#content {
+  width: 70%;
+  overflow: scroll !important;
+}
+
 #sidebar-content {
   position: fixed;
   height: 100vh;
-  overflow: scroll;
+  overflow: scroll !important;
+  width: 30%;
 }
 
 #sidebar.active {
