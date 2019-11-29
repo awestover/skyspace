@@ -1,10 +1,13 @@
-------
+# Alek Westover
+# Functional Analysis
 
-> The shortest distance from a point to a line is the perpendicular to the line. Right?
+---
 
-> Define shortest, distance, point, line and perpendicular.
+> Rand: "The shortest distance from a point to a line is the perpendicular to the line. Right?"  
+> Alek: "Define shortest, distance, point, line and perpendicular."  
+> Rand: "Fair engouh..."
 
-> Fair engouh...
+---
 
 # Plan: 
 - Motivating Pictures
@@ -14,6 +17,7 @@
 - Functional Analysis Definitions: _Banach Space_, _inner product_, _Hilbert Space_
 - Projection Theorem
 
+---
 
 # Motivating Pictures
 
@@ -45,6 +49,7 @@ And the optimization problem in $\mathbb{R}^3$:
 ![Projection Theorem in $\mathbb{R}^3$](data/projthmInR3.png)
 
 </div>
+------
 
 
 

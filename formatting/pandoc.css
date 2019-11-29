@@ -1,5 +1,5 @@
 /*
- * I add this to html files generated with pandoc.
+ * This is a nice generic stylesheet for html files generated with pandoc (that I took from github).
  */
 
 html {
@@ -14,10 +14,13 @@ body {
   font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
   font-size: 12px;
   line-height: 1.7;
-  padding: 1em;
-  margin: auto;
-  max-width: 42em;
   background: #fefefe;
+}
+
+#content{
+  padding: 1em;
+  margin: auto !important;
+  max-width: 55em;
 }
 
 a {
@@ -110,6 +113,7 @@ blockquote {
   padding-left: 3em;
   border-left: 0.5em #EEE solid;
 }
+
 
 hr {
   display: block;
@@ -260,6 +264,20 @@ table td {
     font-size: 16px;
   }
 }
+
+@media only screen and (min-width: 1000px) {
+  body {
+    font-size: 18px !important;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  body {
+    font-size: 20px !important;
+  }
+}
+
+
 @media print {
   * {
     background: transparent !important;
