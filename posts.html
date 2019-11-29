@@ -3,9 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Posts</title>
+    <title>SkySpace</title>
+
+    <link href="formatting/pandoc.css" rel="stylesheet">
+    <link href="formatting/envbox.css" rel="stylesheet">
+    <link href="formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
   </head>
   <body>
-    body
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h3>SkySpace</h3>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:250px" src="formatting/dog.jpg" alt="sheep-dog"/>
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="index.html">Home</a> </li>
+            <li> <a href="posts.html">Posts</a> </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content">
+
+      </div>
+    </div>
+    <script charset="utf-8">
+      $(document).ready(function() {
+        $('#content').load("toc.html"); 
+      });
+    </script>
+
   </body>
 </html>
