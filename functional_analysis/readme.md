@@ -397,18 +397,3 @@ end pf
 
 # The End
 
-
-<!-- ```python -->
-<!-- def test(x): -->
-<!--   return x*2 -->
-<!-- x = [1,2,3,4] -->
-<!-- print(x) -->
-<!-- ``` -->
-<!-- ```javascript -->
-<!-- function fanyGeometry(bl){ -->
-<!--   if(test){ -->
-<!--     console.log("ro"); -->
-<!--   } -->
-<!-- } -->
-<!-- ``` -->
-
