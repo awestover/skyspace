@@ -5,10 +5,10 @@
 }
 
 #sidebar {
-  width: 30%;
+  width: 20%;
 }
 #content {
-  width: 70%;
+  width: 80%;
   overflow: scroll !important;
 }
 
@@ -16,7 +16,7 @@
   position: fixed;
   height: 100vh;
   overflow: scroll !important;
-  width: 30%;
+  width: 20%;
 }
 
 #sidebar.active {
