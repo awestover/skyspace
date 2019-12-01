@@ -12,6 +12,11 @@
   overflow: scroll !important;
 }
 
+#disqus_thread {
+  width: 70%;
+  margin-left: 25%;
+}
+
 #sidebar-content {
   position: fixed;
   height: 100vh;
