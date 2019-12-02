@@ -22,6 +22,7 @@
   height: 100vh;
   overflow: scroll !important;
   width: 20%;
+  background: #000;
 }
 
 #sidebar.active {
@@ -119,3 +120,7 @@
     background: #000;
 }
 
+
+canvas {
+  width: 250px !important;
+}

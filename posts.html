@@ -30,18 +30,20 @@
             <li> <a href="index.html">Home</a> </li>
             <li> <a href="posts.html">Posts</a> </li>
           </ul>
+          <div id="canvas-parent"> </div>
         </div>
       </nav>
 
-      <div id="content">
-
-      </div>
+      <div id="content"> </div>
     </div>
     <script charset="utf-8">
       $(document).ready(function() {
         $('#content').load("toc.html"); 
       });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <script src="formatting/bouncyGraphAnimation.js" charset="utf-8"></script>
 
   </body>
 </html>
