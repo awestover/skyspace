@@ -43,7 +43,7 @@ That is, we break up a time signal into its different frequency components, a su
 It's just like the decomposition of white light into all the frequencies, except better, because we are doing it for vectors in $\mathbb{C}^n$.
 
 The DFT takes in a vector $(x_0,x_1,\ldots, x_{n-1}) \in \mathbb{C}^n$ and outputs a vector $X \in \mathbb{C}^n$ with 
-$$X[k] = (w_k | x) = \sum_{i=0}^{n-1} x[i] w_{2n}^{ik}$$
+$$X[k] = (w_k | x) = \sum_{i=0}^{n-1} x[i] w_{n}^{ik}$$
 
 ## Fast Fourier Transform
 It turns out that there is a very fast algorithm to compute the DFT, much faster than $O(n^2)$. It is called the Fast Fourier Transform (FFT).

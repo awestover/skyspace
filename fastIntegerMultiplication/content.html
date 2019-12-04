@@ -19,7 +19,7 @@
 <p>It turns out that this makes the multiplication take time <span class="math inline">\(O(n \log n)\)</span>. yay!!</p>
 <h2 id="discrete-fourier-transform">Discrete Fourier transform:</h2>
 <p>The tool that makes this all possible is the Discrete Fourier Transform (DFT). The DFT is a really interesting change of basis. It is a way of interpretting a signal in the time domain in the frequency domain. That is, we break up a time signal into its different frequency components, a sum of complex exponentials. It’s just like the decomposition of white light into all the frequencies, except better, because we are doing it for vectors in <span class="math inline">\(\mathbb{C}^n\)</span>.</p>
-<p>The DFT takes in a vector <span class="math inline">\((x_0,x_1,\ldots, x_{n-1}) \in \mathbb{C}^n\)</span> and outputs a vector <span class="math inline">\(X \in \mathbb{C}^n\)</span> with <span class="math display">\[X[k] = (w_k | x) = \sum_{i=0}^{n-1} x[i] w_{2n}^{ik}\]</span></p>
+<p>The DFT takes in a vector <span class="math inline">\((x_0,x_1,\ldots, x_{n-1}) \in \mathbb{C}^n\)</span> and outputs a vector <span class="math inline">\(X \in \mathbb{C}^n\)</span> with <span class="math display">\[X[k] = (w_k | x) = \sum_{i=0}^{n-1} x[i] w_{n}^{ik}\]</span></p>
 <h2 id="fast-fourier-transform">Fast Fourier Transform</h2>
 <p>It turns out that there is a very fast algorithm to compute the DFT, much faster than <span class="math inline">\(O(n^2)\)</span>. It is called the Fast Fourier Transform (FFT).</p>
 <p>DFT can be computed in <span class="math inline">\(O(n\log n)\)</span> time (much better than the naive <span class="math inline">\(O(n^2)\)</span> algorithm). This is because of the following remarkable fact:</p>
