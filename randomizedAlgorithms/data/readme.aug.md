@@ -8,7 +8,7 @@
 
 > Rand: "But it has worst case performance like $O(n^2)$ !!! That's so trash. What about mergesort?"
 
-> Alek: "Actually it turns out that with high probability in n quicksort is super fast, in particular $O(n \log n)$, and actually in particular way better than mergesort because the expected number of comparisons that it makes is like $< 2n \log n$ which is a super good constant"
+> Alek: "Actually it turns out that with high probability in n quicksort is super fast, in particular $O(n \log n)$, and actually in particular way better than mergesort because the expectation of the number of comparisons that it makes is like $2n \log n$ which is a super good constant"
 
 > Rand: "hmmm, that sounds pretty good. tell me more."
 
@@ -305,6 +305,31 @@ $$Pr[\sum_{i}^{2\log n} X_i > (1+\epsilon)\log n] < n^{-\epsilon^2/3}.$$
 This is awesome, i.e. high probability.
 To guarantee that we get more than $\log_{4/3} n$ heads (which is what we need), we set $\epsilon = \frac{1}{\ln (4/3)} - 1 \approx 2.5$
 Then we get that the result happens with probability approximately $1/n^2$.
+
+
+<div class="rmk envbox">**Remark.**
+OK, it turns out that we can still compute the average running time of quicksort without chernoff bounds for this problem, chernoff bounds are kinda like an OP hammer that we can hit a bunch of _random_ problems with. 
+Before I tell you about this though, one should note that all my effort introducing chernoff bounds was not "wasted".
+First of all Chernoff bounds are useful for other problems.
+Second of all the Chernoff bound proof gives kind of a nicer result, a probability, versus an expectation which is what I'm going to get with my other method.
+By symetry (which is guaranteed by the random choice of the pivot) it doesn't actually matter. 
+But at the very least, if you take one thing away from this post, it should be that "if you flip $\log n$ coins, the probability of the number of heads deviating from half by a $\epsilon$-factor of the number of coins is *exponentially small in $\epsilon$*".
+That all said, here is a (more elegant? / easier?) proof that quicksort is "fast".
+
+Consider two indices $1 \le i < j \le n$ in the array (have I been 1-indexing? I'm not sure; it doesn't matter, I am now). The probability of comparing $A[i], A[j]$ is precisely the chance that $A[i]$ or $A[j]$ is selected as a pivot before any of $A[i+1], A[i+2], \ldots, A[j-1]$. This is $\frac{2}{j-i-1}$.
+Make indicator variables for the different comparisons that you can do, expectation of total comparisons is sum of expectations of indicator variables by linearity of expectation. OK, so this is 
+$$\sum_{1 \le i < j \le n}\frac{2}{j-i+1}$$
+
+Now, we kind of draw diagonals in this triangular array, if you know what I mean.
+That is, consider level sets of $j-i+1$. How many times can $j-i+1 = k$? Well by inspection of the triangular array it is just $n-k$ times, we could have $i=1, j=k$ or $i=2,j=k-1$ etc until $j=n, i=n-k+1$.
+So we now have 
+$$2\sum_{k=2}^{n} \frac{n-k}{k}$$
+Breaking this up we get
+$$2((n-1)+\sum_{i=2}^n \frac{n}{k})$$
+But the latter term is approximately $n \log n$.
+Hence we have that the expected number of comparisons is about $2n\log n$
+
+</div>
 
 # Lowerbound on comparison based sorting
 
