@@ -35,7 +35,7 @@ An algorithm is said to be fast with high probability in $n$ (input size) if for
 
 I'd like to analyze the running time of quicksort using something called a concentration bound, but first I'll quickly talk about some basic probability theory. 
 
-# Some probability background
+# Probability background
 
 I define some basic concepts:
 
@@ -239,10 +239,11 @@ as desired.
 
 First let me review the quicksort algorithm:
 
-- Pick a pivot _randomly_
+- Pick a pivot _randomly_ (**this is key!**)
 - Partition the array relative to the pivot 
 - Recurse on the subarray of elements less than the pivot, and recurse on the subarray of elements greater than the pivot
 
+Here is an implementation of this algorithm in `C++`
 ```{c}
 #include <stdio.h>
 #include <stdlib.h>
@@ -267,16 +268,25 @@ int partition(int* A, int n, int pivot){
   return low;
 }
 
+// Note: I assume that the elements of A are all distinct in this simplisitc implementation of quicksort, it is easy to modify this code to work for arrays that can have duplicate elements 
 void quicksort(int* A, int n){
-  if(n>2){
-    srand(time(NULL)); // set seed for rng
+  if(n>1){
     int pivot = A[rand()%n]; // randomly select the pivot
-    int splitIndex = partition(A, n);
+    int splitIndex = partition(A, n, pivot);
     quicksort(A, splitIndex);
     quicksort(A+splitIndex, n-splitIndex);
   }
 }
 
+int main(){
+    srand(time(NULL)); // set seed for rng
+    int n = 100;
+    int* A = (int*)malloc(sizeof(int)*n);
+    for (int i = 0; i < n; ++i) {
+        A[i] = rand();
+    }
+    quicksort(A, n);
+}
 ```
 
 
@@ -285,15 +295,24 @@ Then $X_i$ is bernouli with $p=1/2$.
 If you flip $\log n$ coins then whp the number of heads is tightly concentrated around half
 thus you basically just need $2n\log n$ comparisons for quicksort whp.
 
+More formally, let $\epsilon > 0$ be constant, and say we have $2\log n$ fair coins.
+Then the chernoff bound gives
 
-ACK there is a bug in the code
+$$Pr[|\sum_{i=1}^{2\log n} X_i - \log n| > \epsilon \log n] \le 2 e^{- (1/3)\epsilon^2\log n} = 2 n^{-\epsilon^2/3}. $$
+In fact we really only need
 
+$$Pr[\sum_{i}^{2\log n} X_i > (1+\epsilon)\log n] < n^{-\epsilon^2/3}.$$
+This is awesome, i.e. high probability.
+To guarantee that we get more than $\log_{4/3} n$ heads (which is what we need), we set $\epsilon = \frac{1}{\ln (4/3)} - 1 \approx 2.5$
+Then we get that the result happens with probability approximately $1/n^2$.
 
 # Lowerbound on comparison based sorting
 
 It turns out that, as you might have known, the algorithm had to be in $\Omega(n \log n)$, because all comparison based sorting algorithms are. Here is a proof:
-Consider a binary tree with $n!$ leaves. Then it has depth $\log n!$ by Stirling's approximation this is like $n \log \frac{n}{e} = \Omega(n \log n)$.
+Consider a binary tree with $n!$ leaves. Then it has depth $\log n!$. By Stirling's approximation this is like $n \log \frac{n}{e} = \Omega(n \log n)$.
 With comparison based sorting algorithms every comparison moves you a level in this tree, and you have to get to a leaf starting from the root. Hence the lower bound.
+
+![tree](data/tree.png)
 
 Note that there are other types of sorting algorithms, e.g. _counting sort_, _radix sort_ (these exploit the fact that the arrays they need to sort have a small discrete set of possible values in them).
  
