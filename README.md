@@ -6,3 +6,4 @@
 | [Cache Behavior](cacheBehavior) | An introduction to the performance benefits that cache behavior can bring to a program. | I assume you can read simple code, and that you know what a matrix / 2d array is|
 | [Fundamental Theorem of Calculus](fundamentalTheoremOfCalculus/fundamentalTheoremOfCalculus.pdf) | introduce basic notions in calculus, prove fundamental theorem of calculus (incredibly rigorously with a ton of analysis)| Technically no preqeqs, but it'll be a bit cooler if you know calculus|
 | [Digital Signal Processing](digitalSignalProcessing/digitalSignalProcessing.pdf) | what are signals? Fourier transform, convolutions, LTIs.| should know some linear algebra |
+| [Cryptography](cryptography) | crypto history, rsa, lots of content pending | a tiny bit of number theory would be good, e.g. know what "mod" means and know what Euler's  Theorem is (not really necessary) |
