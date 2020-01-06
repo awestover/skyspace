@@ -1,1 +1,1 @@
-pandoc README.md -o toc.html
+pandoc --mathjax README.md -o toc.html
