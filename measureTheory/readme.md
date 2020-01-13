@@ -139,12 +139,66 @@ We then form a set $V_0$ by taking an element from each equivalence class. This 
 
 Now we will consider sets $V_q$ for $q\in\mathbb{Q}\cap [-1,1]$ defined as $V_q = q+V_0$. That is, we consider translations of $V_0$ by all rationals on $[-1,1]$.
 
-Note that $V_q \cap V_p = \emptyset \iff p\neq q$ because
-imagine $x \in V_q \cap V_p$, this implies 
+Note that $V_q \cap V_p \neq \emptyset \iff p = q$ because
+imagine $x \in V_q \cap V_p$, this implies $x-q, x-p \in V_0$. Now consider $x-q - (x-p) = p-q$. This difference must be $0$, because we chose exactly one element from each equivalence class, so all distinct elements in $V_0$ differ by an irrational. Hence, $p=q$ and $V_p = V_q$.
+
+OK but here's the problem. Yeah they're disjoint, but they still cover $[0,1]$.
+Here's why, consider any $x \in [0,1]$. Well consider the element from the equivalence class that $x$ is in that is in $V_0$, which we'll call $y$. We know that $x-y \in \mathbb{Q}$ and more specifically $x-y \in \mathbb{Q} \cap [-1, 1]$. And we have access to all rational shifts of $y$ on $[-1,1]$. So we have $x$.
+But also clearly $\cup_{q\in\mathbb{Q}} V_q \subset [-1,2]$ because $V_0 \subset [0,1]$ and the points are shifted by at most $\pm 1$. 
+
+OK, now here's the killer blow as they say: countable additivity of disjoint sets measures!
+
+$$ \mu\left(\bigcup_{q\in\mathbb{Q}} V_q\right) = \sum_{q\in\mathbb{Q}}\mu(V_q)  $$
+Clearly measure is translation invariant so $\mu(V_q) = V_0 \forall q$.
+Hence
+$$ \mu\left(\bigcup_{q\in\mathbb{Q}} V_q\right) = \sum_{q\in\mathbb{Q}}\mu(V_0)  $$
+
+Oh no.
+
+$$[0,1] \subset \mu\left(\bigcup_{q\in\mathbb{Q}} V_q\right) \subset [-1,2]$$
+
+Yeah that's right, so by monotonicity of measure
+$$ 1 \le \mu\left(\bigcup_{q\in\mathbb{Q}} V_q\right) \le 3$$
+But then, 
+$$ 1 \le  \sum_{q\in\mathbb{Q}}\mu(V_0)  \le 3$$
+Well $\mu(V_0)$ can't be $0$, or the sum would be 0, which is too small. And also $\mu(V_0)$ can't be $\epsilon > 0$ or the sum would be infinite which is too big.
+Ahggg!! its' un unmeasurable subset of $\mathbb{R}$.
+
 
 
 end pf
 
+# Lesbegue Integration
+
+Now we're going to talk about lesbegue integration.
+
+recall that in reimann integration the idea is to partition the domain up, and take one funciton value per each part of the domain.
+
+Here's Lesbegue integration:
+Partition the codomain, and multiply function values by the measure of their preimages!!! 
+
+
+
+# Lesbegue's dominated convergence theorem
+
+Do you think that 
+
+$$\lim_{n\to \infty} \int f_n = \int \lim_{n\to\infty} f_n$$
+Well it turns out that this isn't true of all function sequences.
+
+Lesbegue's dominated convergence theorem says that it is true of functions that are dominated (bounded in magnitude, maybe in support too).
+
+Here's a counterexample if you don't have that constraint though
+
+$$f_n(x) = 1_{[n,n+1]}$$
+That is, $f_n$ is the indicator function for the interval $[n,n+1]$
+
+We have 
+$$\int f_n = 1 \forall n \implies \lim_{n\to\infty} \int f_n = 1$$
+But, 
+
+$$\lim_{n\to\infty} f_n \cong 0$$
+so $$\int \lim f_n = 0$$
 
 
 
