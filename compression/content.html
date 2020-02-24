@@ -1,0 +1,51 @@
+<h1 id="compression">Compression</h1>
+<h2 id="work-in-progress">WORK IN PROGRESS</h2>
+<h2 id="its-important">Its important</h2>
+<p>makes sending stuff fast</p>
+<h2 id="entropy">Entropy</h2>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Entropy is <span class="math display">\[H = \sum_i p_i \log p_i\]</span></p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> You can’t beat the entropy in encryption. Probably Shannon proved this.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> No compression scheme works all the time. But who cares.</p>
+</div>
+<h2 id="huffman-coding">Huffman coding</h2>
+<p>Cool compression technique. Almost achieves the entropy. Assign short symbols to more common letters in your alphabet.</p>
+<p>Python implementation:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">class</span> Node():</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="co">&quot;&quot;&quot;this is a node in a tree&quot;&quot;&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, val, count):</span>
+<span id="cb1-5"><a href="#cb1-5"></a>        <span class="va">self</span>.val <span class="op">=</span> val <span class="co"># e.g. &quot;a&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>        <span class="va">self</span>.count <span class="op">=</span> count <span class="co"># e.g. 300</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>        <span class="va">self</span>.left <span class="op">=</span> <span class="va">None</span> <span class="co"># will be a Node</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>        <span class="va">self</span>.right <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a>    <span class="kw">def</span> printTree(<span class="va">self</span>, prefix<span class="op">=</span><span class="st">&quot;&quot;</span>):</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="bu">print</span>(<span class="ss">f&quot;val: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>val<span class="sc">}</span><span class="ss">, count: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>count<span class="sc">}</span><span class="ss">, prefix: </span><span class="sc">{</span>prefix<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        <span class="cf">if</span> <span class="va">self</span>.left:</span>
+<span id="cb1-13"><a href="#cb1-13"></a>            <span class="va">self</span>.left.printTree(prefix<span class="op">+</span><span class="st">&quot;0&quot;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="cf">if</span> <span class="va">self</span>.right:</span>
+<span id="cb1-15"><a href="#cb1-15"></a>            <span class="va">self</span>.right.printTree(prefix<span class="op">+</span><span class="st">&quot;1&quot;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a>alphabet <span class="op">=</span> [<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>]</span>
+<span id="cb1-19"><a href="#cb1-19"></a>counts <span class="op">=</span> [<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">300</span>,<span class="dv">5000</span>,<span class="dv">1</span>]</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a>S <span class="op">=</span> [Node(alphabet[i], counts[i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(alphabet))]</span>
+<span id="cb1-22"><a href="#cb1-22"></a></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="cf">while</span> <span class="bu">len</span>(S) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb1-24"><a href="#cb1-24"></a>    S.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x.count)</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    x, y <span class="op">=</span> S[<span class="dv">0</span>], S[<span class="dv">1</span>]</span>
+<span id="cb1-26"><a href="#cb1-26"></a>    S <span class="op">=</span> S[<span class="dv">2</span>:]</span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="co"># merge the 2 least counts nodes</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>    mergeNode <span class="op">=</span> Node(<span class="st">&quot;dumb internal node&quot;</span>, x.count<span class="op">+</span>y.count)</span>
+<span id="cb1-29"><a href="#cb1-29"></a>    mergeNode.left <span class="op">=</span> x</span>
+<span id="cb1-30"><a href="#cb1-30"></a>    mergeNode.right <span class="op">=</span> y</span>
+<span id="cb1-31"><a href="#cb1-31"></a>    S.append(mergeNode)</span>
+<span id="cb1-32"><a href="#cb1-32"></a></span>
+<span id="cb1-33"><a href="#cb1-33"></a>S[<span class="dv">0</span>].printTree()</span></code></pre></div>
+<h2 id="the-end">The End</h2>
