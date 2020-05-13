@@ -6,15 +6,21 @@ Spencer. The Probablistic Method, pioneered by Erdos, is a really interesting
 way to think about combinatorics problems. Here is a high level overview of how
 proofs by the probabilistic method go 
 
-> Consider a random thing
-> Break the thing up into simple sub-things
-> Compute something on the sub-things
-> Combine the sub-things together to get 
-> Pr[thing is good] > 0
-> Thus, there must be some thing that is good.
+---
+
+> Consider a random thing  
+> Break the thing up into simple sub-things  
+> Compute something on the sub-things  
+> Combine the sub-things together to get   
+> Pr[thing is good] > 0  
+> Thus, there must be some thing that is good.  
+
+---
 
 The approach is often pretty non-constructive but sometimes it can be made
 constructive. 
+
+##### story
 
 I want to read this book because I believe that it contains some really elegant
 math, and I think math is super cool. The first half of my senior year wasn't
