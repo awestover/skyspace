@@ -21,6 +21,9 @@ The approach is often pretty non-constructive but sometimes it can be made
 constructive. 
 
 ##### story
+begin rmk
+this part is "soggy / crumbly". Consider skipping straight to Chapter 1.
+end rmk
 
 I want to read this book because I believe that it contains some really elegant
 math, and I think math is super cool. The first half of my senior year wasn't
