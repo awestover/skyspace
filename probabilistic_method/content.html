@@ -32,4 +32,269 @@ Thus, there must be some thing that is good.</p>
 <p>This is difficult stuff, there are a lot of exercises from the sections that I’ve read that I haven’t been able to figure out <strong>yet</strong>.</p>
 <p>A final note to the reader: this blog is probably gonna get very casual in terms of language used. In particular I’m potentially gonna use slang, and exclamations of excitement such as “yo epic” and “now that’s pretty cool” or similar. Also there are going to be a <strong>lot</strong> of speelling mistakes. I hope neither of these things distract from the mahtematical content of the blog (in fact I bet the “enthusiasm” will be helpful)</p>
 <p>Now we begin our discussion of <strong>THE PROBABILISTIC METHOD</strong>!!!!!!</p>
+<h1 id="chapter-0">Chapter 0</h1>
+<h3 id="may-13">[[May 13]]</h3>
+<h2 id="some-basic-combinatorial-objects">some basic combinatorial objects</h2>
+<p>This is not a chapter in the book. In this post I’m just going to define a bunch of combinatorial objects.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A set is an (unordered) collection of distinct objects.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> Some nice sets:</p>
+<ul>
+<li><span class="math inline">\(\mathbb{N} = \{1,2,\ldots, \}\)</span> (natural numbers)</li>
+<li><span class="math inline">\(\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots \}\)</span> (integers)</li>
+<li><span class="math inline">\(\mathbb{Q} = \{ p/q : p,q\in \mathbb{Z}, q\neq 0 \}\)</span> (rationals)</li>
+<li><span class="math inline">\(\mathbb{R}\)</span> is the completion of <span class="math inline">\(\mathbb{Q}\)</span> (reals)</li>
+<li><span class="math inline">\(\mathbb{R}^n\)</span></li>
+<li><span class="math inline">\(\mathbb{C}\)</span></li>
+<li><span class="math inline">\([n] = \{1,2,\ldots, n\}\)</span></li>
+<li><span class="math inline">\(\{\{1,2\}, \{1,2,3\}\}\)</span></li>
+<li><span class="math inline">\(\{(1,2), (2,3)\}\)</span></li>
+</ul>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> You might notice that I didn’t list the ZFC set theory axioms. That’s because</p>
+<ul>
+<li>this is a blog post on combinatorics</li>
+<li>basically all the sets we are going to be dealing with are <strong>finite</strong></li>
+<li>I don’t know a lot about set theory</li>
+</ul>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A multiset is an unordered collection of possibly not distinct objects</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> some multisets:</p>
+<ul>
+<li><span class="math inline">\(\{1,2\}\)</span></li>
+<li><span class="math inline">\(\{1,1,1,2\}\)</span></li>
+</ul>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> An <span class="math inline">\(n\)</span> element list, also called a <span class="math inline">\(n\)</span>-tuple, is an ordered set of elements</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> some lists:</p>
+<ul>
+<li><span class="math inline">\((1,2,3,4,5)\)</span></li>
+<li><span class="math inline">\((5,4,3,2,1)\)</span></li>
+</ul>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> An undirected graph is composed of a set <span class="math inline">\(V\)</span> of “vertices” along with a set <span class="math inline">\(E\)</span> of “edges”. Every edge <span class="math inline">\(e \in E\)</span> is composed of 2 vertices, i.e. <span class="math inline">\(e=\{x,y\}\)</span> for vertices <span class="math inline">\(x, y \in V\)</span>.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> See graphical depictions of these graphs below. (vertices are represented by dots, edges by lines)</p>
+<ul>
+<li><span class="math inline">\(P_n\)</span> the path graph with <span class="math inline">\(n\)</span> edges.</li>
+<li><span class="math inline">\(C_n\)</span> the cycle graph on <span class="math inline">\(n\)</span> vertices.</li>
+<li><span class="math inline">\(K_n\)</span> the complete graph on <span class="math inline">\(n\)</span> vertices</li>
+<li><span class="math inline">\(K_{n, m}\)</span> the complete bipartite graph with one part having <span class="math inline">\(n\)</span> vertices, and the other part having <span class="math inline">\(m\)</span> vertices.</li>
+<li><span class="math inline">\(W_n\)</span> the wheel graph on <span class="math inline">\(n\)</span> vertices.</li>
+<li><span class="math inline">\(St_n\)</span> the star graph on <span class="math inline">\(n\)</span> vertices.</li>
+<li><span class="math inline">\(\square_n\)</span> the cube graph in <span class="math inline">\(n\)</span> dimensions.</li>
+</ul>
+<p>(thanks to <a href="http://people.qc.cuny.edu/faculty/christopher.hanusa/courses/634sp11/Documents/634ch1-2.pdf">this random site</a> for their “dictionary of graphs” )</p>
+<p><img src="data/chpt0/graph0.png" alt="some graphs" /> <img src="data/chpt0/graph1.png" alt="some graphs" /> <img src="data/chpt0/graph2.png" alt="some graphs" /></p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A directed graph is a composed of a set <span class="math inline">\(V\)</span> of vertices along with a set <span class="math inline">\(E\)</span> of edges. Here the edges are directed, i.e. they are lists rather than sets. e.g. <span class="math inline">\((x,y) \in E\)</span> for <span class="math inline">\(x,y\in V\)</span> is an edge.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> <img src="data/chpt0/graph3.png" alt="a poset :O" /></p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A tournament on <span class="math inline">\(n\)</span> vertices is a orientation of the edges in <span class="math inline">\(K_n\)</span>. That is, for each pair of distinct <span class="math inline">\(x, y \in V\)</span> either <span class="math inline">\((x,y) \in E\)</span> or <span class="math inline">\((y, x) \in E.\)</span></p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> <img src="data/chpt0/graph4.png" alt="tournament" /></p>
+</div>
+<p>begin def A hypergraph is a set of vertices <span class="math inline">\(V\)</span> along with a family <span class="math inline">\(E\)</span> of subsets of <span class="math inline">\(V\)</span> called edges. end def</p>
+<div class="ex envbox">
+<p><strong>Example.</strong> <img src="data/chpt0/graph5.png" alt="hypergraph" /></p>
+</div>
+<h2 id="some-basic-functions">some basic functions</h2>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Without getting into measure theory, here’s my shot at defining / describing a random variable.</p>
+<p>“The outcome of a random process”</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong></p>
+<ul>
+<li>A fair coin toss (aka Bernouli random variable with <span class="math inline">\(p=1/2\)</span>)</li>
+<li>Flip <span class="math inline">\(100\)</span> coins, count number of heads (aka binomial random variable with <span class="math inline">\(p=1/2\)</span>, <span class="math inline">\(n=100\)</span>)</li>
+</ul>
+<figure>
+<img src="data/chpt0/misc0.png" alt="" /><figcaption>coin toss</figcaption>
+</figure>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Probability distribution. For the discrete case these are probability mass functions. In the continuous case we need probability density functions.</p>
+<p>Assigns probabilities to events.</p>
+<p>Probabilities are non-negative, and should sum/integrate to <span class="math inline">\(1\)</span>.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> some pmfs:</p>
+<ul>
+<li><span class="math inline">\(\Pr(X=k)= 1/n\)</span> for <span class="math inline">\(k \in [n]\)</span>. (uniform distribution on <span class="math inline">\([n]\)</span>)</li>
+<li><span class="math inline">\(\Pr(X=k) = p^k (1-p)^{n-k} \binom{n}{k}\)</span> for <span class="math inline">\(k \in 0,1,\ldots, n\)</span> (binomial PMF with parameters <span class="math inline">\(n, p\)</span>)</li>
+<li><span class="math inline">\(\Pr(X=k) = \frac{e^{-\mu} \mu^k}{k!}\)</span> for <span class="math inline">\(k=0,1,2,\ldots\)</span> (poisson PMF with parameter <span class="math inline">\(\mu\)</span>)</li>
+</ul>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> An event is a subset of the possible things that can happen.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong></p>
+<ul>
+<li>You flip 2 coins and get at least <span class="math inline">\(1\)</span> head.</li>
+<li>You choose a random number uniformly from <span class="math inline">\([0,1]\)</span> and it is at most <span class="math inline">\(0.1415\)</span>.</li>
+</ul>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> The expectation of a random variable <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[\mathbb{E} = \sum_{x} x \Pr(X=x)\]</span></p>
+<p>this is just “weighted average of outcomes using probabilities as weights”</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> Some examples</p>
+<ul>
+<li>If you flip <span class="math inline">\(100\)</span> coins the expectation of the random variable “number of heads” is <span class="math inline">\(50\)</span></li>
+</ul>
+</div>
+<p>OK, sorry if these definitions are a bit too soggy and non-rigorous for the measure theory enthusiasts / people who know about probability. Also sorry if it is too long and you’re bored now, or if its too short and I forgot to define important things. Luckily you can google stuff. Anyways, see you next chapter!!</p>
 <h1 id="chapter-1">Chapter 1</h1>
+<h4 id="may-13-1">[[May 13]]</h4>
+<p>(yes I’m writing these concurrently. gotta jump start the blog.)</p>
+<p>OK!!! We’re going to actually show the probabilistic method in action now, through a very cool example: <strong>Ramsey Numbers</strong>.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> The Ramsey Number <span class="math inline">\(R(a,b)\)</span> is the smallest number of people that must be in a room such that there must be either a subset of <span class="math inline">\(a\)</span> people who <em>all know each other</em> or a subsetof <span class="math inline">\(b\)</span> people who <em>all don’t know each other</em>.</p>
+<p>Here are two more “graph-theoretically-technical” ways of saying this.</p>
+<p><span class="math inline">\(R(a,b)\)</span> is the minimum <span class="math inline">\(n \in \mathbb{N}\)</span> such that any graph on <span class="math inline">\(n\)</span> vertices must either have an <span class="math inline">\(a\)</span>-clique (i.e. have <span class="math inline">\(K_a\)</span> as an induced subgraph) or have a <span class="math inline">\(b\)</span>-independent set (i.e. have a completely disconnected induced subgraph on <span class="math inline">\(b\)</span> vertices).</p>
+<p><span class="math inline">\(R(a,b)\)</span> is the minimum <span class="math inline">\(n\in\mathbb{N}\)</span> such that any <span class="math inline">\(2\)</span>-coloring of <span class="math inline">\(K_n\)</span> with red and blue must have a <span class="math inline">\(K_a\)</span> monochromatic red induced subgraph or a <span class="math inline">\(K_b\)</span> monochromatic blue subgraph.</p>
+</div>
+<p>Computing <span class="math inline">\(R(a,b)\)</span> is in fact a large open problem in combinatorics. Very few non-trivial values of this function are known.</p>
+<div class="ex envbox">
+<p><strong>Example.</strong> Let’s compute some trivial values and bounds on <span class="math inline">\(R(a,b)\)</span></p>
+<ul>
+<li><span class="math inline">\(R(a, b) = R(b, a)\)</span> because if you swap the colors red and blue then its still the same number.</li>
+<li><span class="math inline">\(R(1, c) = 1\)</span> because if you have <span class="math inline">\(1\)</span> person, then there is definitely <span class="math inline">\(K_1\)</span> as a subgraph and it’s certainly monochromatic (it has no edges :) )</li>
+<li><span class="math inline">\(R(2, c) = c\)</span> because
+<ul>
+<li>if we color every edge in <span class="math inline">\(K_n\)</span> blue for <span class="math inline">\(n&lt;c\)</span> then there clearly is no monochromatic red <span class="math inline">\(K_2\)</span> or a monochromatic <span class="math inline">\(K_c\)</span> contained in this graph</li>
+<li>But, in <span class="math inline">\(K_c\)</span>,
+<ul>
+<li>Either every edge is blue, in which case there is a monochromatic blue <span class="math inline">\(K_n\)</span></li>
+<li>There is a red edge, in which case there is a monochromatic red <span class="math inline">\(K_2\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> Now we are going to compute the only other value of <span class="math inline">\(R(a,b)\)</span> that I know how to compute: <span class="math inline">\(R(3,3)\)</span>.</p>
+<p>First, note that <span class="math inline">\(R(3,3) &gt; 5\)</span> by the following picture:</p>
+<figure>
+<img src="data/chpt1/graph0.png" alt="" /><figcaption><span class="math inline">\(R(3,3) &gt; 5\)</span> graph</figcaption>
+</figure>
+<p>If you look at this graph, you’ll see that there are no monochromatic triangles (<span class="math inline">\(K_3\)</span>’s). Thus <span class="math inline">\(n=5\)</span> is not large enough to guarantee that every <span class="math inline">\(2\)</span>-coloring of <span class="math inline">\(K_n\)</span> has a monochromatic triangle (<span class="math inline">\(K_3\)</span>).</p>
+<p>On the other hand though, I claim <span class="math inline">\(R(3,3) \le 6\)</span>.</p>
+<p>Here’s why: Consider a coloring of <span class="math inline">\(K_6\)</span> and take some vertex <span class="math inline">\(v\)</span>. <span class="math inline">\(v\)</span> of course has <span class="math inline">\(5\)</span> neighbors. By the pidgeon-hole principle <span class="math inline">\(v\)</span> either has at least <span class="math inline">\(3\)</span> red edged neighbors or at least <span class="math inline">\(3\)</span> blue edged neighbors. WLOG let’s say <span class="math inline">\(v\)</span> has at least <span class="math inline">\(3\)</span> red edged neighbors.</p>
+<p>None of these neighbors can be connected to each other by a red edge, or else they would form a red triangle with <span class="math inline">\(v\)</span>! But then we are forced to have a blue triangle! So it’s impossible for <span class="math inline">\(K_6\)</span> to not have a monochromatic triangle.</p>
+<figure>
+<img src="data/chpt1/graph1.png" alt="" /><figcaption><span class="math inline">\(R(3,3) \le 6\)</span> graph</figcaption>
+</figure>
+<p>Thus <span class="math display">\[R(3,3) = 6.\]</span></p>
+</div>
+<p>Now I’m going to derive some cool bounds on the Ramsey numbers. First I’ll derive an upper bound. This proof doesn’t use the probabilistic method, but it’s still cool. I read the proof <a href="https://math.mit.edu/~apost/courses/18.204_2018/ramsey-numbers.pdf">here</a>.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[R(a, b) \le R(a-1,b) + R(a, b-1)\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> It’s actually pretty similar to the <span class="math inline">\(R(3,3) \le 6\)</span> proof.</p>
+<p>Let <span class="math inline">\(n = R(a-1,b)+R(a,b-1)\)</span>. Assume for contradiction that there exists a <span class="math inline">\(2\)</span>-coloring of <span class="math inline">\(K_n\)</span> (with red and blue) such that <span class="math inline">\(K_n\)</span> doesn’t have <span class="math inline">\(K_a\)</span> monochromatic red subgrpah or <span class="math inline">\(K_b\)</span> monochromatic blue subgraph.</p>
+<p>Fix a vertex <span class="math inline">\(v\)</span>. Let <span class="math inline">\(A\)</span> be the set of neighbors connected to <span class="math inline">\(v\)</span> with red edges, and <span class="math inline">\(B\)</span> be the set of neighbors connected to <span class="math inline">\(v\)</span> with blue edges. There are <span class="math inline">\(n\)</span> total vertices, so <span class="math inline">\(|A|+|B|+1=n\)</span>.</p>
+<p>Now consider the induced subgraph on <span class="math inline">\(A\)</span>. By assumption <span class="math inline">\(A\)</span> doesn’t contain a <span class="math inline">\(K_b\)</span> monochromatic blue subgraph. Furthermore, each vertex in <span class="math inline">\(A\)</span> is connected to <span class="math inline">\(v\)</span> by a red edge, so if <span class="math inline">\(A\)</span> has a red <span class="math inline">\(K_{a-1}\)</span> then there is a red <span class="math inline">\(K_a\)</span>, which cannot be either, also by assumption. Thus we have <span class="math inline">\(|A| \le R(a-1, b) -1\)</span>.</p>
+<p>By identical reasoning we have that <span class="math inline">\(|B| \le R(a, b-1) -1\)</span>.</p>
+<p>However this is problematic: <span class="math display">\[n = |A|+|B|+1 \le R(a-1, b) -1 + R(a,b-1) -1 + 1 = n-1\]</span> a contradiction.</p>
+<p>Hence <span class="math inline">\(K_n\)</span> actually must have a monocrhomatic red <span class="math inline">\(K_a\)</span> or monochromatic blue <span class="math inline">\(K_b\)</span>. And thus <span class="math inline">\(R(a,b) \le n\)</span> as desired.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> <span class="math display">\[R(a,b) \le \binom{a+b-2}{a-1}\]</span></p>
+<p>and in particular <span class="math display">\[R(k, k) \le O\left(\frac{4^{k-1}}{\sqrt{k-1}}\right).\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The recurrence is obviously binomial coefficients. For the base case use the trivial values of <span class="math inline">\(R(a,b)\)</span> that we computed.</p>
+<p>Plugging in <span class="math inline">\(a=b\)</span> we get central binomial coefficients, which can be estimated easily by Stirling’s approximation.</p>
+</div>
+<p>ok, now what you’ve actually been waiting for <strong>the first proof in the book!! a lower bound on diagonal Ramsey numbers by the probabilistic method.</strong></p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Fix <span class="math inline">\(k\)</span>. Let <span class="math inline">\(n\)</span> be sufficiently small such that <span class="math inline">\(\binom{n}{k}2^{1-\binom{k}{2}} &lt; 1\)</span>.</p>
+<p>Then <span class="math inline">\(R(k,k) &gt; n\)</span> (i.e. there is some <span class="math inline">\(2\)</span>-coloring of <span class="math inline">\(K_n\)</span> that doesn’t have any monochromatic <span class="math inline">\(K_k\)</span> induced subgraphs)</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(n\)</span> be as specified. Consider a random <span class="math inline">\(2\)</span>-coloring of <span class="math inline">\(K_n\)</span> with each edge being randomly red or blue with equal probabilities (<span class="math inline">\(1/2\)</span>) and all these random choices being made independently.</p>
+<p>For any set of <span class="math inline">\(k\)</span> of the vertices (<span class="math inline">\(S \subset V\)</span> with <span class="math inline">\(|S| = k\)</span>) let the <span class="math inline">\(M_S\)</span> be the event that the induced subgraph on <span class="math inline">\(S\)</span> is monochromatic.</p>
+<p>For any <span class="math inline">\(S\)</span> <span class="math display">\[\Pr[M_S] = 2\cdot \frac{1}{2^{\binom{k}{2}}}\]</span> because there are <span class="math inline">\(\binom{k}{2}\)</span> edges in <span class="math inline">\(S\)</span>, and <span class="math inline">\(S\)</span> could be monochromatic red or blue.</p>
+<p>By the union bound we have</p>
+<p><span class="math display">\[ \Pr\left[ \bigvee_{S\subset V, |S|=k} M_S \right] \le \sum_{S\subset V, |S|=k} \Pr[M_S] = \binom{n}{k} 2^{1-\binom{k}{2}} &lt; 1\]</span> by assumption.</p>
+<p>But then the probability that all events <span class="math inline">\(M_S\)</span> do not occur is strictly positive.</p>
+<p>Hence for some random <span class="math inline">\(2\)</span>-coloring it must be that all events <span class="math inline">\(M_S\)</span> do not occur.</p>
+<p>That is, there is some <span class="math inline">\(2\)</span>-coloring of <span class="math inline">\(K_n\)</span> for which there are no monochromatic <span class="math inline">\(K_k\)</span> induced subgraphs.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> <span class="math display">\[R(k,k) &gt; \lfloor 2^{k/2}\rfloor\]</span> for <span class="math inline">\(k \ge 3\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We claim that <span class="math inline">\(n=\lfloor2^{k/2}\rfloor\)</span> satisfies <span class="math inline">\(\binom{n}{k}2^{1-\binom{k}{2}} &lt; 1\)</span>. Note that <span class="math display">\[\binom{n}{k}2^{1-\binom{k}{2}} \le \frac{1}{k!}\frac{2^{k^2/2}}{2^{k^2/2-k/2 -1}} = \frac{2^{k/2-1}}{k!} &lt; 1\]</span> for <span class="math inline">\(k \ge 3\)</span> because I graphed it.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Stirling’s approximation says <span class="math display">\[k! \sim \sqrt{2\pi k} (k/e)^k\]</span> (i.e. the ratio of these functions tends towards <span class="math inline">\(1\)</span> as <span class="math inline">\(n\to\infty\)</span>).</p>
+</div>
+<h1 id="chapter-2">Chapter 2</h1>
+<h4 id="may-13-2">[[May 13]]</h4>
+<p>(ok writing this much on one day was probably a bad idea. but it was fun so whatever)</p>
+<p>Chapter 2 is about Expectation. Specifically the new proof strategy highlighted looks like this</p>
+<hr />
+<blockquote>
+<p>make some random thing<br />
+Compute the expectation of it<br />
+there has to be a point where <span class="math inline">\(X \ge \mathbb{E}[X]\)</span> and where <span class="math inline">\(X \le \mathbb{E}[X]\)</span></p>
+</blockquote>
+<hr />
+<p>One really nice thing about expectation is that it’s linear. I recently was talking about this with people, and I thought of a really nice picture to go with my usual proof of this fact.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Expectation is linear That is, if <span class="math inline">\(X, Y\)</span> are random variables and <span class="math inline">\(a \in \mathbb{R}\)</span> is some scalar, then</p>
+<p><span class="math display">\[\mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y]\]</span> and <span class="math display">\[\mathbb{E}[aX] = a\mathbb{E}[X]\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> First let’s prove the scalar multiplier thing. It’s basically trivial from the definition: scaling all the outcomes by some amount clearly scales the average by the same amount. More formally we have by the definioin of expectation:</p>
+<p><span class="math display">\[\mathbb{E}[aX] = \sum_{y} y \Pr[aX = y] = \sum_{x} ax \Pr[aX = ax] = a\sum_{x} x \Pr[X = x] = a\mathbb{E}[X].\]</span></p>
+<p>ok so that’s super intuitive. But the fact that the sum of the expectations of <strong>even dependent random variables</strong> is still the expectation of their sum seems counterintuitive to some people at first. Here’s a picture that will make it obvious though.</p>
+<figure>
+<img src="data/chpt2/linearityofexpectation.png" alt="" /><figcaption><span class="math inline">\(\mathbb{E}[X+Y] =\mathbb{E}[X] + \mathbb{E}[Y]\)</span></figcaption>
+</figure>
+<p>So that’s <em>legendary</em> as they say.</p>
+</div>
+<p>ok so there’s a couple of problems that I want to share with you now. But I’m kind of tired of writing atm so I’ll just chose my favorite of them</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(v_1,\ldots, v_n \in \mathbb{R}^m\)</span> be arbitrary unit vectors. Then there exists <span class="math inline">\(\epsilon_1,\ldots, \epsilon_n \in \{-1,1\}\)</span> such that <span class="math display">\[\left| \sum_{i=1}^n \epsilon_i v_i \right| \le \sqrt{n}\]</span> and there exists <span class="math inline">\(\epsilon_1,\ldots, \epsilon_n \in \{-1,+1\}\)</span> such that <span class="math display">\[\left| \sum_{i=1}^n \epsilon_i v_i \right| \ge \sqrt{n}\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Choose the <span class="math inline">\(\epsilon_i\)</span> randomly with <span class="math inline">\(\Pr[\epsilon_i=-1] = \Pr[\epsilon_i = +1] = 1/2\)</span> (and indpendently). Let <span class="math display">\[X = \left|\sum_{i=1}^n \epsilon_i v_i\right|^2 \]</span> Note</p>
+<p><span class="math display">\[X = \sum_{i,j} \epsilon_i\epsilon_j v_i\cdot v_j \]</span></p>
+<p>Let’s compute <span class="math inline">\(\mathbb{E}[X]\)</span>:</p>
+<p><span class="math display">\[\mathbb{E}[X] = \sum_{i,j} \mathbb{E}[\epsilon_i\epsilon_j] v_i\cdot v_j \]</span></p>
+<p>If <span class="math inline">\(i=j\)</span> then <span class="math inline">\(\mathbb{E}[\epsilon_i^2] = \mathbb{E}[1] = 1.\)</span> Else, <span class="math inline">\(\epsilon_i, \epsilon_j\)</span> are independent, so <span class="math inline">\(\mathbb{E}[\epsilon_i \epsilon_j] = \mathbb{E}[\epsilon_i] \mathbb{E}[\epsilon_j] = 0\)</span></p>
+<p>Overall we have <span class="math display">\[\mathbb{E}[X] = \sum_{i} v_i\cdot v_i = n \]</span></p>
+<p>There must be choice of <span class="math inline">\(\epsilon_i\)</span> so that <span class="math inline">\(X\ge \mathbb{E}[X]\)</span> and so that <span class="math inline">\(X \le \mathbb{E}[X]\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Furthermore, if you choose the <span class="math inline">\(\epsilon_i\)</span> greedily, it works.</p>
+<p>Let’s say that we are trying to get the resulting vector <span class="math inline">\(\sum_i \epsilon_i v_i\)</span> to be far from the origin. Greedily choosing them means you flip the vector so that it points in roughly the same directino as the partial sum so far. i.e. make the dot-product <span class="math display">\[\epsilon_s v_s \cdot \left( \sum_{i=1}^{s-1} \epsilon_i v_i \right) \ge 0.\]</span></p>
+<p>In the worst case for the vector sum being big this dot product is always <span class="math inline">\(0\)</span>. Then we are kind of spiralling around the origin rather than exploding out. But regardless, even in this trash case we’re good! Here’s a picture showing that greed is good and that even in the trash case we’re rolling.</p>
+<p><img src="data/chpt2/bigvecsum.png" alt="big sum" /> <img src="data/chpt2/rootn.png" alt="adverserial case is not so bad" /></p>
+</div>
+<p>I’ll try the exercises and put any cool ones I solve here (also for week 1).</p>
+<h1 id="chapter-3">Chapter 3</h1>
+<h4 id="coming-no-later-than-friday-may-22">[coming no later than Friday May 22]]</h4>
