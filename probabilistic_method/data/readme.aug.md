@@ -22,7 +22,9 @@ constructive.
 
 ##### story
 <div class="rmk envbox">**Remark.**
-this part is "soggy / crumbly". Consider skipping straight to Chapter 1.
+this part is very soggy and crumbly. Consider skipping straight to Chapter 0,
+or even Chapter 1. Nevertheless I feel obligated to write an at least somewhat
+compelling preface, because I like to read prefaces. So here we go.
 </div>
 
 I want to read this book because I believe that it contains some really elegant
@@ -31,64 +33,76 @@ super fun for me; I was super busy and doing a lot of things that I didn't find
 very interesting. Thinking back on that time, the most prominent positive
 memory is of math. In particular, I was taking a functional analysis class.
 Twice a week, every week, I would rush out of school and jump on my bike to
-ride over to the local university (Harvard) where I was listening to the
+ride over to a local university (Harvard) where I was listening to the
 lectures. I left behind all the baggage of tasks performed grudgingly and was
-immersed in theland of infinite dimensional vector spaces for a magnificent
-hour. On weekends, and in other spare moments of time that I could find I
-worked on the psets for the class, which usually consisted of a couple really
-interesting and often challenging proofs.
+immersed in theland of infinite dimensional vector spaces and bounded linear
+functionals for a magnificent hour. On weekends, and in other spare moments of
+time that I could find I worked on the psets for the class, which usually
+consisted of a couple really interesting and often challenging proofs.
 
-There are a couple things that I think made my experience in this functional
-analysis class so great
+One time when I was biking there it rained (really hard). Prior to the bike
+ride I was annoyed because of "school and stuff". I was completely soaked by
+the time I got there, and pretty cold too (Note: some people have pointed out
+that I should have taken the bus instead of biking, especially when the weather
+was sub-optimal. This is a good point. Also note that I am not advocating for
+biking in the rain, especially when it is cold. In fact this is kind of a dumb
+thing to do.). Yet, seemingly strangely I felt very happy while biking. I
+thought about it a bit and came up with this list of things that I think made
+my experience with functional analysis so great:
 
-- I was taking it purely for fun (in particular, I didn't tell my school that I was taking it, and didn't do anythign with my grade)
-- An incredibly enthusiastic professor guided me through the definitions and theorems of the book, with many fun examples 
+- I was learning it purely for fun (in particular, I didn't tell my school that I was taking this class, and didn't do anythign with my grade)
+- An incredibly enthusiastic professor guided us through the definitions and theorems of the book, with many fun examples (on a black board!)
 - The content had some really interesting and non-trivial, while still elegant, proofs. 
-- Doing math with other people. (I had a fun time sharing the cool stuff that I was learning about in class with other people, in fact I gave a talk about it to our math team and [wrote a blog post about it!!!](https://awestover.github.io/skyspace/functional_analysis/) 
+- I was able to share the novel math I was learning with my friends. I did this a lot while walking to and from school, and I also gave a talk to our math team about it and even [wrote a (short) blog post about it!!!](https://awestover.github.io/skyspace/functional_analysis/) 
 
-Anyways, this whole story did have a point.
+Anyways, this story does have a point.
 
 I love math. But keeping a consistent schedule, even at doing things that you
-love, is hard, especially if the thing you like to do is challenging. 
+love, is hard (for me at least), especially if the thing you like to do is
+challenging. Other stuff will innevitably try to get in the way.
 That's where this blog comes in. 
-I'm going to write a (time stamped!) blog post **every week by Friday** about
+I'm going to write a blog post **every week by Friday** about
 the chapter of the Probabilistic Method that I've been reading.
-Having a blog means that with non-zero probability some people will be sad if I
-don't read a week. It also gives me a very nice record of the things I've
-learned, and will look very cool (I hope to draw lots of pictures). 
+Having a blog means that with **non-zero probability** some people will be sad if I
+don't read for a week. It also gives me a very nice record of the things I've
+learned, and will look very cool (I plan to draw lots of pictures). 
 Also, maybe this blog can teach you some cool combinatorics too! I will do my
 best to make my explanations compelte and understandable to people who haven't
 been reading the book. In particular I will introduce any combinatorial objects
 that it talks about.
 
-If you're interested in reading this, don't be put off by all the fancy words
-and stuff. I didn't know what a "Ramsey number" or a "Hypergraph" was before
-reading this book either. In actuality these are not too complicated ideas; I
-hope to be able to convince you of this proposition by drawing some pictures.
+If you're interested in reading this, please don't be put off by all the fancy
+words and stuff, or by personal feelings of inadequacy. I didn't know what a
+"Ramsey number" or a "Hypergraph" was before reading this book either. In
+actuality these are not too complicated ideas; I hope to be able to convince
+you of this proposition by drawing some pictures. Some more notes:
 
 - If you read this and think it's cool please let me know! 
 - If you read this and are confused about something, also let me know! I'd love to talk about it!
 - If you read this and think I've botched some math somewhere, definitely let me know!
 
-This is difficult stuff, there are a lot of exercises from the sections that
-I've read that I haven't been able to figure out **yet**.
-
-A final note to the reader: this blog is probably gonna get very casual in
-terms of language used. In particular I'm potentially gonna use slang, and
+A final note to the reader: this blog is going to be somewhat casual,
+especially in terms of language used, although also sometimes in terms of
+definitions and proofs. In particular I'm potentially gonna use slang, and
 exclamations of excitement such as "yo epic" and "now that's pretty cool" or
-similar. Also there are going to be a **lot** of speelling mistakes. I hope
+similar. Also there are going to be a *lot* of speelling mistakes. I hope
 neither of these things distract from the mahtematical content of the blog (in
-fact I bet the "enthusiasm" will be helpful)
+fact I suspect the enthusiasm will be helpful).
+
+Really the final note to the reader before starting: 
+<div class="rmk envbox">**Remark.**
+**Thank you for reading! (conditional on the existence of you). I hope you find this experience as epic as I have.**
+</div>
 
 Now we begin our discussion of **THE PROBABILISTIC METHOD**!!!!!!  
 
 # Chapter 0 
 ### [[May 13]]
 
-## some basic combinatorial objects
-
 This is not a chapter in the book. In this post I'm just going to define a bunch of combinatorial objects.
+Some of them you are likely already familiar with, but some definitions may be new. At least look at the pictures.
 
+## some basic combinatorial objects
 
 <div class="defn envbox">**Definition.**
 A set is an (unordered) collection of distinct objects.
@@ -427,10 +441,12 @@ Stirling's approximation says $$k! \sim \sqrt{2\pi k} (k/e)^k$$ (i.e. the ratio 
 
 # Chapter 2
 #### [[May 13]] 
-(ok writing this much on one day was probably a bad idea. but it was fun so whatever)
+(yes again all this is written on the same day. ok writing this much on one day
+was probably a bad idea. but it was fun so whatever. I did get a little tired
+by the end, but I think I stopped before the content started suffering.)
 
 Chapter 2 is about Expectation.
-Specifically the new proof strategy highlighted looks like this 
+Specifically the new proof strategy highlighted looks like this:
 
 ---
 
@@ -524,5 +540,9 @@ I'll try the exercises and put any cool ones I solve here (also for week 1).
 # Chapter 3
 #### [coming no later than Friday May 22]]
 
-
+# Chapter 4
+# Chapter 5
+# Chapter 6
+# Chapter 7
+# Chapter 8
 
