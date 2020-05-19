@@ -32,6 +32,11 @@
 }
 
 img {
-  max-width: 700px;
-  max-height: 700px;
+  max-width: 50vw;
+  max-height: 50vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5vh;
 }
+
