@@ -43,7 +43,7 @@
     <script charset="utf-8">
       $(document).ready(function() {
         // could have a call-back function, e.g. for more styling
-        $('#content').load("content.html", function(){
+        $('#content').load("data/content.html", function(){
           $.getScript("https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full");
           var pres = document.querySelectorAll("pre>code");
           for (var i = 0; i < pres.length; i++) {
@@ -52,7 +52,7 @@
         }); 
       });
       $(document).ready(function() {
-        $('#toc').load("toc.html", function(){
+        $('#toc').load("data/toc.html", function(){
           $.getScript("../formatting/scrolling-nav.js");
         }); 
       });

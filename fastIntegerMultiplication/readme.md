@@ -122,7 +122,7 @@ and we can find $r_k$ as desired.
 
 # Thanks!
 
-Thanks so much to this wonderful resource: [http://numbers.computation.free.fr/Constants/Algorithms/fft.html]
+Thanks so much to [this wonderful resource](http://numbers.computation.free.fr/Constants/Algorithms/fft.html)
 
 I relied heavily on this great article when writing this blog post. What do I think I add over that article? Well, I plan to add some pictures, and maybe give some extra background. I have a different method of displaying the ideas, so maybe it helps you. As a lower bound on the utility created by me creating this page, making this post definitely helped me understand the algorithm a lot better ;).
 

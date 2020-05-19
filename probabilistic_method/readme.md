@@ -546,3 +546,5 @@ I'll try the exercises and put any cool ones I solve here (also for week 1).
 # Chapter 7
 # Chapter 8
 
+# The End
+

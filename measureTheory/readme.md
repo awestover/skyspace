@@ -10,7 +10,7 @@
 
 > Rand: How so? 
 
-> Alek: It's just so $\mathbb{R}^n$-y yah know? And it can't even handle integrating really basic functions like the indicator function for $\mathbb{Q}\cup [0,1]$. Ugh, if only there was a better way.
+> Alek: It's just so $\mathbb{R}^n$-y yah know? And it can't even handle integrating really basic functions like the indicator function for $\mathbb{Q}\cap [0,1]$. Ugh, if only there was a better way.
 
 > Rand: Well what could you do besides partitioning the domain, and summing over function values on each element of the partition?
 
