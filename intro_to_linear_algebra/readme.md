@@ -139,8 +139,7 @@ Some examples are:
 - $f(x) = \sqrt{2} x.$
 - $f(x) = x^2$.
 - $f(x) = 0.$
-- $f(x) = $ the number of numbers less than $x$ that are relatively prime to $x$ (i.e.the number of $y<x$ such that $gcd(x,y) = 1$).
--
+- $f(x) =$ the number of numbers less than $x$ that are relatively prime to $x$ (i.e.the number of $y<x$ such that $gcd(x,y) = 1$).
 
 end ex
 
