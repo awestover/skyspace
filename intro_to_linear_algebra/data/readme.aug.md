@@ -4,17 +4,17 @@ I hope that this little introduction to linear algebra helps you appreciate
 what it really **is**. I think the first time I saw linear algebra someone was
 like, "here's a sysmtem of equations, let's write it all these coefficients
 down in a box. Let's call this box a matrix. yay now we can solve linear
-equations by just manipulating this box! wooo."
-I think this isn't the best way to go about it. So, while representing linear
-transformations in terms of matrices is nice, and solving systems of equations
-is also nice, I am not going to write down **any** matrices today. 
-Rather, I'm going to come at this topic from a different angle. I think that this angle 
-will be a little bit different than other stuff out there, although maybe not.
-Anyways, I hope you enjoy it regardless!
+systems of equations by just manipulating this box. wooo." I think this isn't
+the best way to go about it. So, while representing linear transformations in
+terms of matrices is nice, and solving systems of equations is also nice, I am
+not going to write down **any** matrices today. I'm just going to talk to you
+about vector spaces and structure preserving maps between vector spaces (aka
+linear maps). I think that this angle will be a little bit different than other
+stuff out there, although maybe not. Anyways, I hope you enjoy it!
 
 # Vector Space
 
-Well let's get right to it:
+Well let's get right to it, no messing around here:
 
 <div class="defn envbox">**Definition.**
 Roughly speaking, A vector space is a set of objects called **vectors** along
@@ -99,6 +99,9 @@ Let $x,y,z \in V$ let $c,k \in \mathbb{K}$.
 - "Distributive axioms" 
   - $c(x+y) = cx + cy$
   - $(c+k)x = cx + kx$
+- "Closure axioms"
+  - $x+y \in V$
+  - $cx \in V$
 </div>
 
 OK. So probably none of these definitions were very surprising. I'll give some

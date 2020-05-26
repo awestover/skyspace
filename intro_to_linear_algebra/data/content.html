@@ -1,7 +1,7 @@
 <h1 id="an-introduction-to-linear-algebra">An Introduction to Linear Algebra</h1>
-<p>I hope that this little introduction to linear algebra helps you appreciate what it really <strong>is</strong>. I think the first time I saw linear algebra someone was like, “here’s a sysmtem of equations, let’s write it all these coefficients down in a box. Let’s call this box a matrix. yay now we can solve linear equations by just manipulating this box! wooo.” I think this isn’t the best way to go about it. So, while representing linear transformations in terms of matrices is nice, and solving systems of equations is also nice, I am not going to write down <strong>any</strong> matrices today. Rather, I’m going to come at this topic from a different angle. I think that this angle will be a little bit different than other stuff out there, although maybe not. Anyways, I hope you enjoy it regardless!</p>
+<p>I hope that this little introduction to linear algebra helps you appreciate what it really <strong>is</strong>. I think the first time I saw linear algebra someone was like, “here’s a sysmtem of equations, let’s write it all these coefficients down in a box. Let’s call this box a matrix. yay now we can solve linear systems of equations by just manipulating this box. wooo.” I think this isn’t the best way to go about it. So, while representing linear transformations in terms of matrices is nice, and solving systems of equations is also nice, I am not going to write down <strong>any</strong> matrices today. I’m just going to talk to you about vector spaces and structure preserving maps between vector spaces (aka linear maps). I think that this angle will be a little bit different than other stuff out there, although maybe not. Anyways, I hope you enjoy it!</p>
 <h1 id="vector-space">Vector Space</h1>
-<p>Well let’s get right to it:</p>
+<p>Well let’s get right to it, no messing around here:</p>
 <div class="defn envbox">
 <p><strong>Definition.</strong> Roughly speaking, A vector space is a set of objects called <strong>vectors</strong> along with a set of objects called <strong>scalars</strong>, where the notion of addition of vectors and multiplication of vectors by scalars makes sense. Furthermore addition and scaling of vectors play nicely, in particular playing nicely with scalars being added and multiplied.</p>
 </div>
@@ -55,6 +55,11 @@
 <ul>
 <li><span class="math inline">\(c(x+y) = cx + cy\)</span></li>
 <li><span class="math inline">\((c+k)x = cx + kx\)</span></li>
+</ul></li>
+<li>“Closure axioms”
+<ul>
+<li><span class="math inline">\(x+y \in V\)</span></li>
+<li><span class="math inline">\(cx \in V\)</span></li>
 </ul></li>
 </ul>
 </div>
