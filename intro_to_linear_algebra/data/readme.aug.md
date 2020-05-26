@@ -112,9 +112,9 @@ functions between vector spaces!
 The vector space (over the reals) of polynomials with real coefficients $\mathbb{R}[x]$.
 Addition and multiplication is defined component-wise, i.e.
 
-$$k (p_n x^n + p_{n-1} x^{n-1} + \cdots + p_0) = kp_n x^n + kp_{n-1}x^{n-1} + \cdots + kp_0$$
+$$k \sum p_j x^j = \sum kp_j x^j $$
 
-$$\sum a_n x^n + \sum b_n x^n = \sum (a_n + b_n) x^n.$$
+$$\sum a_j x^j + \sum b_j x^j = \sum (a_j + b_j) x^j.$$
 
 You can say things like
 $$(3x^2 + x + 2) + 5x = 3x^2 + 6x + 2.$$
