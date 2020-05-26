@@ -50,7 +50,7 @@ vector.
 
 Scalar multiplication is accomplished by shrinking/growing the vectors. 
 
-![$\mathbb{R}^2$](R2.png)
+![$\mathbb{R}^2$](data/R2.png)
 
 Some important properties to note about this vector space (these generalize):
 
