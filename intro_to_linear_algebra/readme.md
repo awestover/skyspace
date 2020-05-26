@@ -1,15 +1,15 @@
-# An Introduction to Linear Algebra
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\setof}[2]{\{#1 \mid #2\}}
+\newcommand{\im}{\mathrm{im}}
 
-$\newcommand{\R}{\mathbb{R}}$
-$\newcommand{\C}{\mathbb{C}}$
-$\newcommand{\N}{\mathbb{N}}$
-$\newcommand{\Q}{\mathbb{Q}}$
-$\newcommand{\Z}{\mathbb{Z}}$
-$\newcommand{\K}{\mathbb{K}}$
-$\newcommand{\F}{\mathbb{F}}$
-$\newcommand{\set}[1]{\{#1\}}$
-$\newcommand{\setof}[2]{\{#1 \mid #2\}}$
-$\newcommand{\im}{\mathrm{im}}$
+# An Introduction to Linear Algebra
 
 I hope that this little introduction to linear algebra helps you appreciate
 what it really **is**. I think the first time I saw linear algebra someone was
