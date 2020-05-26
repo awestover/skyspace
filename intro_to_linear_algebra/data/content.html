@@ -145,6 +145,50 @@
 <p><strong>Example.</strong> The vector space of polynomials wtih real coefficients of degree <span class="math inline">\(2\)</span> or less, denote <span class="math inline">\(P_2\)</span>, is isomprphic to <span class="math inline">\(\mathbb{R}^3\)</span>. In particular, we can associate the polynomial <span class="math inline">\(ax^2 + bx + c \in P_2\)</span> with, for instance, <span class="math inline">\((a,b,c) \in\mathbb{R}^3.\)</span> This map is clearly an isomorphism.</p>
 </div>
 <h1 id="bases">Bases</h1>
+<p>Given a set, an interesting question to ask is “how big is this set”. For almost all of the vector spaces we’ve discussed though, the set of vectors is infinite (in fact often uncountably infinite!) so this wouldn’t be a very satisfying thing. However, we can define a notion of largeness of a vector space, <strong>dimension</strong> based on the minimal number of vectors required to be able to reach all the vectors in a space. Now I’ll define this more formally.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A linear combination of a set of vectors <span class="math inline">\(v_1,\ldots, v_n\)</span> is a vector of the form <span class="math display">\[\sum_{i=1}^n \alpha_i v_i\]</span> for some scalars <span class="math inline">\(\alpha_i\)</span>.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A set of vectors <span class="math inline">\(v_1, \ldots, v_n\)</span> is said to <strong>span</strong> a vector space <span class="math inline">\(V\)</span> if any vector <span class="math inline">\(v \in V\)</span> can be expressed as some linear combination of <span class="math inline">\(v_1,\ldots, v_n\)</span>. i.e. there must exist <span class="math inline">\(\alpha_i\)</span> such that <span class="math display">\[v = \sum_{i} \alpha_i v_i.\]</span></p>
+</div>
+<p>However, we are interested in a <strong>minimal spanning set</strong>.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A <strong>minimal spanning set</strong> for a vector space <span class="math inline">\(V\)</span> is a finite set of vectors <span class="math inline">\(v_i\)</span> that spans the space, such that if you remove any vector <span class="math inline">\(v_i\)</span> from the set, the resulting set of vectors no longer spans <span class="math inline">\(V\)</span>.</p>
+<p>A minimal spanning set is also called a basis.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> A basis for a vector space need not exist. If a vector space does not admit a basis then it is called an <strong>infinite dimensional vector space</strong>.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> The vector space of polynomials is infinite dimensional; it clearly admits no basis: imagine it did, then take a polynomial with degree more than the highest degree of the basis elements, this yields a contradiction.</p>
+</div>
+begin clm We claim that the number of elements in a basis for <span class="math inline">\(V\)</span> is unique. end defn
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(V\)</span> have two bases <span class="math inline">\(v_1,\ldots, v_m\)</span> and <span class="math inline">\(w_1,\ldots, w_n\)</span>. We aim to show that <span class="math inline">\(m=n\)</span>.</p>
+<p>As <span class="math inline">\(v_i\)</span> spans <span class="math inline">\(V\)</span> we can express each <span class="math inline">\(w_j\)</span> as a linear combination of <span class="math inline">\(v_i\)</span>’s. On the other hand, we can express each <span class="math inline">\(w_j\)</span> as a linear combination of <span class="math inline">\(v_j\)</span>’s.</p>
+<p>Assume for contradiction that <span class="math inline">\(m \neq n\)</span>. Without loss of generality <span class="math inline">\(m &lt; n\)</span>.</p>
+<p>We inductively create a series of spanning sets:</p>
+<ul>
+<li><span class="math inline">\(v_1,\ldots, v_m\)</span></li>
+<li><span class="math inline">\(w_1, v_2, \ldots, v_m\)</span> this is possible as the previous set was spanning, hence <span class="math inline">\(w_1\)</span> can be written as a linear combination of <span class="math inline">\(v_i\)</span>’s, and it must have a non-zero coefficient, which is on <span class="math inline">\(v_1\)</span> without loss of generality</li>
+<li><span class="math inline">\(w_1, w_2, v_3, \ldots, v_m\)</span> by the same logic</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+<li><span class="math inline">\(w_1,w_2,\ldots, w_m\)</span></li>
+</ul>
+<p>But this can’t be spanning! It contradicts the minimality of the set <span class="math inline">\(w_1,\ldots, w_n\)</span>, because we shouldn’t be able to remove <span class="math inline">\(w_{m+1},\ldots, w_n\)</span> and still get a spanning set! Hence it is impossible for <span class="math inline">\(m \neq n\)</span>.</p>
+<p>And thus the number of elements in a basis is well defined.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> We call the dimension of a vector space the number of elements in a basis for it.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A set <span class="math inline">\(v_1,\ldots, v_n\)</span> of vectors is said to be linearly independent if no vector can be made as a linear combination of the other vectors. Equivalently, <span class="math display">\[\sum_i \alpha_i v_i = 0 \,\,\,\, \implies \alpha_i = 0.\]</span></p>
+</div>
+begin clm An equivalent definition of a basis is <strong>maximal linear independent set of vectors</strong> end clm
+<div class="pf envbox">
+<p><strong>Proof.</strong> left as an exercise to the reader</p>
+</div>
 <h1 id="image-and-kernel">Image and Kernel</h1>
 <p>OK, now you’re ready to see a very cool result, the <strong>Rank Nullity Theorem</strong>. It is a relationship between two very important sets that give a lot of information about a linear transformation: the image and kernel of the linear transformation.</p>
 <div class="defn envbox">
@@ -154,7 +198,7 @@
 <div class="ex envbox">
 <p><strong>Example.</strong> A line through the origin in <span class="math inline">\(\mathbb{R}^2\)</span> or <span class="math inline">\(\mathbb{R}^3\)</span> is a subspace.</p>
 <figure>
-<img src="subspace.png" alt="" /><figcaption>subspace.png</figcaption>
+<img src="data/subspace.png" alt="" /><figcaption>subspace.png</figcaption>
 </figure>
 </div>
 <div class="ex envbox">

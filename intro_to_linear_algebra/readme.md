@@ -280,6 +280,83 @@ end ex
 
 # Bases
 
+Given a set, an interesting question to ask is "how big is this set". For
+almost all of the vector spaces we've discussed though, the set of vectors is
+infinite (in fact often uncountably infinite!) so this wouldn't be a very
+satisfying thing. However, we can define a notion of largeness of a vector
+space, **dimension** based on the minimal number of vectors required to be able
+to reach all the vectors in a space. Now I'll define this more formally.
+
+begin defn
+A linear combination of a set of vectors $v_1,\ldots, v_n$ is a vector of the form 
+$$\sum_{i=1}^n \alpha_i v_i$$
+for some scalars $\alpha_i$.
+end defn
+
+begin defn
+A set of vectors $v_1, \ldots, v_n$ is said to **span** a vector space $V$ if
+any vector $v \in V$ can be expressed as some linear combination of
+$v_1,\ldots, v_n$. i.e. there must exist $\alpha_i$ such that 
+$$v = \sum_{i} \alpha_i v_i.$$
+end defn
+
+However, we are interested in a **minimal spanning set**.
+
+begin defn 
+A **minimal spanning set** for a vector space $V$ is a finite set of vectors $v_i$
+that spans the space, such that if you remove any vector $v_i$ from the set,
+the resulting set of vectors no longer spans $V$.
+
+A minimal spanning set is also called a basis.
+end defn
+
+begin rmk
+A basis for a vector space need not exist. If a vector space does not admit a basis then it is called an **infinite dimensional vector space**. 
+end rmk
+begin ex
+The vector space of polynomials is infinite dimensional; it clearly admits no basis: imagine it did, then take a polynomial with degree more than the highest degree of the basis elements, this yields a contradiction.
+end ex
+
+begin clm
+We claim that the number of elements in a basis for $V$ is unique.
+end defn
+begin pf
+Let $V$ have two bases $v_1,\ldots, v_m$ and $w_1,\ldots, w_n$. We aim to show that $m=n$.
+
+As $v_i$ spans $V$ we can express each $w_j$ as a linear combination of $v_i$'s.
+On the other hand, we can express each $w_j$ as a linear combination of $v_j$'s.
+
+Assume for contradiction that $m \neq n$. Without loss of generality $m < n$. 
+
+We inductively create a series of spanning sets:
+
+- $v_1,\ldots, v_m$
+- $w_1, v_2, \ldots, v_m$ this is possible as the previous set was spanning, hence $w_1$ can be written as a linear combination of $v_i$'s, and it must have a non-zero coefficient, which is on $v_1$ without loss of generality
+- $w_1, w_2, v_3, \ldots, v_m$ by the same logic
+- $\cdots$
+- $w_1,w_2,\ldots, w_m$
+
+But this can't be spanning! It contradicts the minimality of the set $w_1,\ldots, w_n$, because we shouldn't be able to remove $w_{m+1},\ldots, w_n$ and still get a spanning set! 
+Hence it is impossible for $m \neq n$.
+
+And thus the number of elements in a basis is well defined. 
+end pf
+
+begin defn
+We call the dimension of a vector space the number of elements in a basis for it. 
+end defn
+
+begin defn
+A set $v_1,\ldots, v_n$ of vectors is said to be linearly independent if no vector can be made as a linear combination of the other vectors. Equivalently, 
+$$\sum_i \alpha_i v_i = 0 \,\,\,\, \implies \alpha_i = 0.$$
+end defn
+
+begin clm
+An equivalent definition of a basis is **maximal linear independent set of vectors**
+end clm
+begin pf
+left as an exercise to the reader
+end pf
 
 # Image and Kernel
 OK, now you're ready to see a very cool result, the **Rank Nullity Theorem**. It is a relationship between two very important sets that give a lot of information about a linear transformation: the image and kernel of the linear transformation.
@@ -294,7 +371,7 @@ end defn
 begin ex
 A line through the origin in $\mathbb{R}^2$ or $\mathbb{R}^3$ is a subspace. 
 
-![subspace.png](subspace.png)
+![subspace.png](data/subspace.png)
 end ex
 
 begin ex
