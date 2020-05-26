@@ -229,16 +229,16 @@ This map does projection onto the line $y=\frac{4}{3}x.$
 <div class="ex envbox">**Example.**
 Let $P_n$ be the space of polynomials of degree at most $n$.
 The map $T: P_n \to P_n$ 
-$T(p) = p'$ (the derivative) is linear. 
+$$T(p) = p'$$ (the derivative) is linear. 
 </div>
 
 <div class="ex envbox">**Example.**
 Let $P_n$ be the space of polynomials of degree at most $n$.
 The map $T: P_n \to \mathbb{R}^3$ 
-$T(p) = (p(1), p(2), p(3))$ is linear. 
+$$T(p) = (p(1), p(2), p(3))$$ is linear. 
 </div>
 
-being remark
+<div class="rmk envbox">**Remark.**
 Sometimes we care about non-linear maps between vector spaces. But these are
 pretty hard to understand. So instead, it is really useful often to use linear
 approximations of non-linear maps to try to understand them. 
@@ -263,7 +263,7 @@ function.
 
 ![data/lolpic.png](data/lolpic.png)
 
-end remark
+</div>
 
 Invertible linear maps are a very important type of linear map. For instance, they can be used to define what it means for two vector spaces to be "the same":
 

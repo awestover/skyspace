@@ -123,19 +123,20 @@
 <p>This map does projection onto the line <span class="math inline">\(y=\frac{4}{3}x.\)</span></p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> Let <span class="math inline">\(P_n\)</span> be the space of polynomials of degree at most <span class="math inline">\(n\)</span>. The map <span class="math inline">\(T: P_n \to P_n\)</span> <span class="math inline">\(T(p) = p&#39;\)</span> (the derivative) is linear.</p>
+<p><strong>Example.</strong> Let <span class="math inline">\(P_n\)</span> be the space of polynomials of degree at most <span class="math inline">\(n\)</span>. The map <span class="math inline">\(T: P_n \to P_n\)</span> <span class="math display">\[T(p) = p&#39;\]</span> (the derivative) is linear.</p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> Let <span class="math inline">\(P_n\)</span> be the space of polynomials of degree at most <span class="math inline">\(n\)</span>. The map <span class="math inline">\(T: P_n \to \mathbb{R}^3\)</span> <span class="math inline">\(T(p) = (p(1), p(2), p(3))\)</span> is linear.</p>
+<p><strong>Example.</strong> Let <span class="math inline">\(P_n\)</span> be the space of polynomials of degree at most <span class="math inline">\(n\)</span>. The map <span class="math inline">\(T: P_n \to \mathbb{R}^3\)</span> <span class="math display">\[T(p) = (p(1), p(2), p(3))\]</span> is linear.</p>
 </div>
-<p>being remark Sometimes we care about non-linear maps between vector spaces. But these are pretty hard to understand. So instead, it is really useful often to use linear approximations of non-linear maps to try to understand them.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Sometimes we care about non-linear maps between vector spaces. But these are pretty hard to understand. So instead, it is really useful often to use linear approximations of non-linear maps to try to understand them.</p>
 <p>The <strong>derivative</strong> of a function is defined to be the best linear approximation to it.</p>
 <p>For example, the derivative of the function <span class="math inline">\(f(x,y) = x^2 + y^2\)</span> at the point <span class="math inline">\((a,b)\)</span> is the function <span class="math inline">\(T(\Delta x,\Delta y) = 2a\Delta x + 2b\Delta y.\)</span> Note that <span class="math inline">\(T\)</span> does not take in the actual values <span class="math inline">\(x,y\)</span> but rather <span class="math inline">\(\Delta x\)</span> and <span class="math inline">\(\Delta y\)</span>, which are defined as <span class="math inline">\(x-a, y-b\)</span>. And <span class="math inline">\(T\)</span> outputs the difference from <span class="math inline">\(f(a,b)\)</span>. Thus the approxmiation to <span class="math inline">\(f\)</span> is really <span class="math display">\[f(x,y) \approx T(x-a, y-b) + f(a,b).\]</span> However of course, this function is not linear in <span class="math inline">\(x,y\)</span>! But <span class="math inline">\(T\)</span> is linear in <span class="math inline">\(\Delta x, \Delta y\)</span>.</p>
 <p>Note: if you were taught in some single-variable calculus course that the derivative of a function is a number <strong>abandon this notion right now!!!!</strong> The derivative is the best linear approximation to a function. In <span class="math inline">\(\mathbb{R}\)</span> there happens to be an easy way to associate linear functions with numbers (the slope of the function). This doesn’t generalize. It’s way better to think of derrivatives as linear functions that do the best job at approximating the function.</p>
 <figure>
 <img src="data/lolpic.png" alt="" /><figcaption>data/lolpic.png</figcaption>
 </figure>
-<p>end remark</p>
+</div>
 <p>Invertible linear maps are a very important type of linear map. For instance, they can be used to define what it means for two vector spaces to be “the same”:</p>
 <div class="defn envbox">
 <p><strong>Definition.</strong> Two vector spaces are said to be <strong>isomorphic</strong>, written <span class="math inline">\(V \cong W\)</span> if there exists an invertible linear map <span class="math inline">\(\phi : V\to W\)</span> that is onto <span class="math inline">\(W\)</span> (i.e. hits all of <span class="math inline">\(W\)</span>).</p>
