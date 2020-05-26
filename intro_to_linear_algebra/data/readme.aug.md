@@ -1,5 +1,16 @@
 # An Introduction to Linear Algebra
 
+$\newcommand{\R}{\mathbb{R}}$
+$\newcommand{\C}{\mathbb{C}}$
+$\newcommand{\N}{\mathbb{N}}$
+$\newcommand{\Q}{\mathbb{Q}}$
+$\newcommand{\Z}{\mathbb{Z}}$
+$\newcommand{\K}{\mathbb{K}}$
+$\newcommand{\F}{\mathbb{F}}$
+$\newcommand{\set}[1]{\{#1\}}$
+$\newcommand{\setof}[2]{\{#1 \mid #2\}}$
+$\newcommand{\im}{\mathrm{im}}$
+
 I hope that this little introduction to linear algebra helps you appreciate
 what it really **is**. I think the first time I saw linear algebra someone was
 like, "here's a sysmtem of equations, let's write it all these coefficients
@@ -28,9 +39,9 @@ Before I make this a bit more precise (e.g. defining nice) I think it's better
 that I provide some examples of vector spaces to illustrate what is similar between them.
 
 <div class="ex envbox">**Example.**
-The most classic of all examples: the set of vectors is $\mathbb{R}^n$, and the set of scalars is $\mathbb{R}$. 
-$\mathbb{R}^n$ refers to the set of $n$-element lists of real numbers.
-Consider $\mathbb{R}^2$. Some vectors in $\mathbb{R}^2$ are 
+The most classic of all examples: the set of vectors is $\R^n$, and the set of scalars is $\R$. 
+$\R^n$ refers to the set of $n$-element lists of real numbers.
+Consider $\R^2$. Some vectors in $\R^2$ are 
 
 - $(0, 1)$
 - $(1, 0)$
@@ -50,7 +61,7 @@ vector.
 
 Scalar multiplication is accomplished by shrinking/growing the vectors. 
 
-![$\mathbb{R}^2$](data/R2.png)
+![$\R^2$](data/R2.png)
 
 Some important properties to note about this vector space (these generalize):
 
@@ -75,17 +86,17 @@ Another thing that is implicit in this all is the idea of "closure". $x+y$
 needs to be a vector for any vectors $x,y$, and also $kx$ needs to be a vector
 for any vector $x$ and any scalar $k$.
 
-Also, if you don't know what a field is, don't worry about it. A field is just a set with multiplication and addition that play really nicely with it. Usually this will be $\mathbb{R}$ for us, although there are some other cool fields (e.g. finite fields, complex numbers).
+Also, if you don't know what a field is, don't worry about it. A field is just a set with multiplication and addition that play really nicely with it. Usually this will be $\R$ for us, although there are some other cool fields (e.g. finite fields, complex numbers).
 </div>
 
 <div class="defn envbox">**Definition.**
 Now we formally define a vector space. A vector space $V$ over a field
-$\mathbb{K}$ is a set of vectors $V$ and scalars $\mathbb{K}$ satisfying the
+$\K$ is a set of vectors $V$ and scalars $\K$ satisfying the
 following axioms: 
 
 Let $0\in V$ denote the **zero-vector** (it's properties are defined in the
 axioms below).
-Let $x,y,z \in V$ let $c,k \in \mathbb{K}$.
+Let $x,y,z \in V$ let $c,k \in \K$.
 
 - "Additive axioms":
   - $x+y=y+x$ (commutativity of addition)
@@ -109,7 +120,7 @@ more examples of vector spaces now, and then we'll start talking about
 functions between vector spaces!
 
 <div class="ex envbox">**Example.**
-The vector space (over the reals) of polynomials with real coefficients $\mathbb{R}[x]$.
+The vector space (over the reals) of polynomials with real coefficients $\R[x]$.
 Addition and multiplication is defined component-wise, i.e.
 
 $$k \sum p_j x^j = \sum kp_j x^j $$
@@ -127,11 +138,11 @@ achieved by negating polynomial's coefficients i.e. $x+1 + (-x-1) = 0$.
 </div>
 
 <div class="ex envbox">**Example.**
-Functions $f: \mathbb{N} \to \mathbb{R}$ (vector space over the reals). 
+Functions $f: \N \to \R$ (vector space over the reals). 
 
 Addition is defined point-wise, i.e. 
 
-$f + g$ is a function such that $(f+g)(x) = f(x) + g(x)$ for all $x\in\mathbb{N}$.
+$f + g$ is a function such that $(f+g)(x) = f(x) + g(x)$ for all $x\in\N$.
 $kf$ is a function with $(kf)(x) = kf(x)$.
 
 
@@ -147,7 +158,7 @@ Some examples are:
 </div>
 
 <div class="ex envbox">**Example.**
-$\mathbb{R}^\mathbb{N}$ (over the reals). This is the space of infinite sequences. Elements include vectors like 
+$\R^\N$ (over the reals). This is the space of infinite sequences. Elements include vectors like 
 
 $$(1, 1/2, 1/3, 1/4, \ldots)$$
 and 
@@ -168,7 +179,7 @@ real numbers? (yes!, more on this later)
 OK I'll do a couple more quick examples and then start talking about linear transformations. I'm getting there, I promise!
 
 <div class="ex envbox">**Example.**
-$\mathbb{C}$ over $\mathbb{C}$. Enough said.
+$\C$ over $\C$. Enough said.
 </div>
 
 <div class="ex envbox">**Example.**
@@ -176,9 +187,9 @@ The space of continuous functions on $[0,1]$.
 </div>
 
 <div class="ex envbox">**Example.**
-$(\mathbb{Z}/2\mathbb{Z})^n$ the space of binary strings of length $n$.
+$(\Z/2\Z)^n$ the space of binary strings of length $n$.
 
-I'll just comment on addition in $\mathbb{Z}/2\mathbb{Z}$ for a second. 
+I'll just comment on addition in $\Z/2\Z$ for a second. 
 
 $1+1 = 0$, $1+0= 1$, $0+0 = 0.$ Sound crazy? It's not. You could interpret $1,0$ as true, false, and then this is NAND (i.e. NOT AND). You could also just think of it as addition mod 2.
 
@@ -203,7 +214,7 @@ I would probably define linear algebra as
 Anyways, here's some examples:
 
 <div class="ex envbox">**Example.**
-Consider a map $T : \mathbb{R}^2 \to \mathbb{R}^2$ that does
+Consider a map $T : \R^2 \to \R^2$ that does
 $$(x, y) \mapsto (-y, x) $$
 
 This map is linear. It does rotation by 90 degrees counter-clockwise. 
@@ -214,14 +225,14 @@ Here is a visualization of this map acting on a set of points:
 </div>
 
 <div class="ex envbox">**Example.**
-Consider a map $T : \mathbb{R}^2 \to \mathbb{R}^2$ that does
+Consider a map $T : \R^2 \to \R^2$ that does
 $$(x, y) \mapsto (2x, 2y) $$
 
 This map is linear. It scales vectors up. 
 </div>
 
 <div class="ex envbox">**Example.**
-Consider a map $T : \mathbb{R}^2 \to \mathbb{R}^2$ that does
+Consider a map $T : \R^2 \to \R^2$ that does
 $$(x, y) \mapsto \left(\frac{3}{5} x + \frac{4}{5} y\right)(3/5, 4/5).$$
 
 This map does projection onto the line $y=\frac{4}{3}x.$
@@ -236,7 +247,7 @@ $$T(p) = p'$$ (the derivative) is linear.
 
 <div class="ex envbox">**Example.**
 Let $P_n$ be the space of polynomials of degree at most $n$.
-The map $T: P_n \to \mathbb{R}^3$ 
+The map $T: P_n \to \R^3$ 
 $$T(p) = (p(1), p(2), p(3))$$ is linear. 
 </div>
 
@@ -257,7 +268,7 @@ not linear in $x,y$! But $T$ is linear in $\Delta x, \Delta y$.
 
 Note: if you were taught in some single-variable calculus course that the
 derivative of a function is a number **abandon this notion right now!!!!** The
-derivative is the best linear approximation to a function. In $\mathbb{R}$
+derivative is the best linear approximation to a function. In $\R$
 there happens to be an easy way to associate linear functions with numbers (the
 slope of the function). This doesn't generalize. It's way better to think of
 derrivatives as linear functions that do the best job at approximating the
@@ -275,8 +286,8 @@ Two vector spaces are said to be **isomorphic**, written $V \cong W$ if there ex
 
 <div class="ex envbox">**Example.**
 The vector space of polynomials wtih real coefficients of degree $2$ or less,
-denote $P_2$, is isomprphic to $\mathbb{R}^3$. In particular, we can associate
-the polynomial $ax^2 + bx + c \in P_2$ with, for instance, $(a,b,c) \in\mathbb{R}^3.$
+denote $P_2$, is isomprphic to $\R^3$. In particular, we can associate
+the polynomial $ax^2 + bx + c \in P_2$ with, for instance, $(a,b,c) \in\R^3.$
 This map is clearly an isomorphism.
 </div>
 
@@ -290,16 +301,22 @@ space, **dimension** based on the minimal number of vectors required to be able
 to reach all the vectors in a space. Now I'll define this more formally.
 
 <div class="defn envbox">**Definition.**
-A linear combination of a set of vectors $v_1,\ldots, v_n$ is a vector of the form 
+A linear combination of a set of vectors $\set{v_1,\ldots, v_n}$ is a vector of the form 
 $$\sum_{i=1}^n \alpha_i v_i$$
 for some scalars $\alpha_i$.
 </div>
 
 <div class="defn envbox">**Definition.**
-A set of vectors $v_1, \ldots, v_n$ is said to **span** a vector space $V$ if
+A set of vectors $\set{v_1, \ldots, v_n}$ is said to **span** a vector space $V$ if
 any vector $v \in V$ can be expressed as some linear combination of
 $v_1,\ldots, v_n$. i.e. there must exist $\alpha_i$ such that 
 $$v = \sum_{i} \alpha_i v_i.$$
+</div>
+
+<div class="defn envbox">**Definition.**
+We write the set of all linear combinations of $v_1,\ldots, v_n$ as $$[v_1, \ldots, v_n]$$ This is the **span** of $v_1, \ldots, v_n$. 
+
+$v_1, \ldots, v_n$ spans a vector space $V$ if $V \subset [v_1,\ldots,v_n]$.
 </div>
 
 However, we are interested in a **minimal spanning set**.
@@ -321,9 +338,9 @@ The vector space of polynomials is infinite dimensional; it clearly admits no ba
 
 begin clm
 We claim that the number of elements in a basis for $V$ is unique.
-end defn
+end clm
 <div class="pf envbox">**Proof.**
-Let $V$ have two bases $v_1,\ldots, v_m$ and $w_1,\ldots, w_n$. We aim to show that $m=n$.
+Let $V$ have two bases $\set{v_1,\ldots, v_m}$ and $\set{w_1,\ldots, w_n}$. We aim to show that $m=n$.
 
 As $v_i$ spans $V$ we can express each $w_j$ as a linear combination of $v_i$'s.
 On the other hand, we can express each $w_j$ as a linear combination of $v_j$'s.
@@ -332,13 +349,13 @@ Assume for contradiction that $m \neq n$. Without loss of generality $m < n$.
 
 We inductively create a series of spanning sets:
 
-- $v_1,\ldots, v_m$
-- $w_1, v_2, \ldots, v_m$ this is possible as the previous set was spanning, hence $w_1$ can be written as a linear combination of $v_i$'s, and it must have a non-zero coefficient, which is on $v_1$ without loss of generality
-- $w_1, w_2, v_3, \ldots, v_m$ by the same logic
-- $\cdots$
-- $w_1,w_2,\ldots, w_m$
+- $\set{v_1,\ldots, v_m}$
+- $\set{w_1, v_2, \ldots, v_m}$ this is possible as the previous set was spanning, hence $w_1$ can be written as a linear combination of $v_i$'s, and it must have a non-zero coefficient, which is on $v_1$ without loss of generality
+- $\set{w_1, w_2, v_3, \ldots, v_m}$ by the same logic
+- $\cdots$ (induction or whatever)
+- $\set{w_1,w_2,\ldots, w_m}$
 
-But this can't be spanning! It contradicts the minimality of the set $w_1,\ldots, w_n$, because we shouldn't be able to remove $w_{m+1},\ldots, w_n$ and still get a spanning set! 
+But this can't be spanning! It contradicts the minimality of the set $\set{w_1,\ldots, w_n}$, because we shouldn't be able to remove $w_{m+1},\ldots, w_n$ and still get a spanning set! 
 Hence it is impossible for $m \neq n$.
 
 And thus the number of elements in a basis is well defined. 
@@ -348,13 +365,41 @@ And thus the number of elements in a basis is well defined.
 We call the dimension of a vector space the number of elements in a basis for it. 
 </div>
 
+<div class="ex envbox">**Example.**
+The so called "standard basis" for $\R^n$ is the set of vectors $\set{(1,0,0,\ldots,0), (0,1,0,0,\ldots, 0), \ldots\}$ etc with the $i$-th standard basis vector $e_i$ containing $0$ in every component except a $1$ in the $i$-th component.
+</div>
+
+<div class="ex envbox">**Example.**
+A basis for $P_2$ is $\set{1, x, x^2}$
+</div>
+
+<div class="ex envbox">**Example.**
+An altenrative basis for $\R^2$ is $\set{(1,2), (2,1)}$. Clearly this set
+spans the same space, but it is just a different way of representing points. 
+
+You can represent points like $(5,7)$ as $(5,7) = 3(1,2) + 1(2,1)$.
+Thus you could say that $(5,7)$'s coordinates in the new basis rae $(3,1)$.
+</div>
+
+beign rmk
+There
+are situations in which change of basis can be incredibly helpful. For example, 
+imagine that you are making a 3D game and you have a camera that you want to
+rotate to look at the player. There is a simple way to represent the camera's
+rotation as a linear transformation relative the the camera's local
+coordinates. But on the world coordinates this isn't true. So you'd like to do
+a change of basis, to the new basis being a vector which is where the camera is
+looking at, a vector that is up for the camera, and a vector to the right.
+end rmk
+
 <div class="defn envbox">**Definition.**
 A set $v_1,\ldots, v_n$ of vectors is said to be linearly independent if no vector can be made as a linear combination of the other vectors. Equivalently, 
 $$\sum_i \alpha_i v_i = 0 \,\,\,\, \implies \alpha_i = 0.$$
 </div>
 
 begin clm
-An equivalent definition of a basis is **maximal linear independent set of vectors**
+An equivalent definition of a basis is **maximal linear independent set of
+vectors**
 end clm
 <div class="pf envbox">**Proof.**
 left as an exercise to the reader
@@ -364,14 +409,14 @@ left as an exercise to the reader
 OK, now you're ready to see a very cool result, the **Rank Nullity Theorem**. It is a relationship between two very important sets that give a lot of information about a linear transformation: the image and kernel of the linear transformation.
 
 <div class="defn envbox">**Definition.**
-A subspace of a vector space $V$ over $\mathbb{K}$ is a subset $M \subset V$ of the vectors that is closed under addition and multiplication.
+A subspace of a vector space $V$ over $\K$ is a subset $M \subset V$ of the vectors that is closed under addition and multiplication.
 
 That is, 
-For any $x,y\in M$ we have $x+y \in M$, and for any $c \in\mathbb{K}$ we have $cx \in M$.
+For any $x,y\in M$ we have $x+y \in M$, and for any $c \in\K$ we have $cx \in M$.
 </div>
 
 <div class="ex envbox">**Example.**
-A line through the origin in $\mathbb{R}^2$ or $\mathbb{R}^3$ is a subspace. 
+A line through the origin in $\R^2$ or $\R^3$ is a subspace. 
 
 ![subspace.png](data/subspace.png)
 </div>
@@ -387,13 +432,13 @@ Note that any subspace contains the $0$-vector as this is necessary to be closed
 Now, as promised, I define some really imporant subspaces.
 
 <div class="defn envbox">**Definition.**
-The image of a linear transformation $T : V\to W$ is the set $\mathrm{im}(T) =
-\{T(x) | x\in V\}.$ That is, the set of all vectors "hit" by $T$; the set of
+The image of a linear transformation $T : V\to W$ is the set $\im(T) =
+\setof{T(x)}{x\in V}.$ That is, the set of all vectors "hit" by $T$; the set of
 all vectors $y \in W$ so that there exists $x \in V$ with $T(x) = y$.
 </div>
 
 <div class="defn envbox">**Definition.**
-The kernel of a linear transformation $T: V \to W$ is the set $\ker(T) = \{x \in V | T(x)= 0\}.$ That is, the set of vectors sent to the zero vector.
+The kernel of a linear transformation $T: V \to W$ is the set $\ker(T) = \setof{x \in V}{T(x)= 0}.$ That is, the set of vectors sent to the zero vector.
 </div>
 
 I really like the following picture, showing graphically these spaces:
@@ -401,13 +446,13 @@ I really like the following picture, showing graphically these spaces:
 
 <div class="thm envbox">**Theorem.**
 Let $T: V\to W$.
-$\mathrm{im}(T)$ is a subspace of $W$ and $\ker(T)$ is a subspace of $V$.
+$\im(T)$ is a subspace of $W$ and $\ker(T)$ is a subspace of $V$.
 </div>
 <div class="pf envbox">**Proof.**
-Take $x,y \in \mathrm{im}(T)\subset W$, $c$ a scalar. 
+Take $x,y \in \im(T)\subset W$, $c$ a scalar. 
 Then there must be $a,b \in V$ with $T(a) = x, T(b) = y$. Then 
 $$T(a+cb) = T(a)+cT(b) = x+cy.$$
-So $x+cy \in \mathrm{im}(T).$
+So $x+cy \in \im(T).$
 Hence $\im(T)$ is a subspace of $W$, as it is closed under both scaling and addition. 
 
 Now take $x, y\in \ker(T) \subset V$, $c$ a scalar.
@@ -416,15 +461,21 @@ $$T(x+cy) = T(x) + cT(y) = 0+ c0 = 0+0 = 0.$$
 Hence $\ker(T)$ is a subspace of $V$, as it is closed under both scaling and addition.
 </div>
 
+<div class="ex envbox">**Example.**
+Consider the linear transformation $T: \R^2 \to \R^3$, defined by $T(x,y) = (x,0,0).$
+
+$\im(T) = [(1,0,0)]$
+</div>
+
 The Rank Nullity Theorem is a relationhsip between these subspaces, which I believe is **"deep stuff"**. I'll state it now, but we'll need one more idea before the proof.
 
 <div class="thm envbox">**Theorem.**
 Let $T: V \to W$ be a linear map. Then 
-$$\dim\mathrm{im}(T) + \dim \ker T = \dim V.$$
+$$\dim\im(T) + \dim \ker T = \dim V.$$
 </div>
 
 <div class="rmk envbox">**Remark.**
-$\dim \mathrm{im} T$ is called the "rank" of $T$, and $\dim \ker T$ is called the
+$\dim \im T$ is called the "rank" of $T$, and $\dim \ker T$ is called the
 "nullity" of $T$.
 </div>
 
@@ -442,13 +493,13 @@ Now we prove the following key fact:
 (First Isomorphism Theorem) 
 
 Let $T: V\to W$, then
-$$V/\ker T \cong \mathrm{im} T$$
+$$V/\ker T \cong \im T$$
 </div>
 <div class="pf envbox">**Proof.**
 Consider $x \in V/\ker T$. Let $x = z+\ker T$ for arbitrary $z\in x$. Note that
 for any $y \in x$, $T(y) = T(z).$ Hence it makes sense to say $T(x) = T(z)$.
 We claim that $\phi(z+\ker T) = T(z)$ is an isomorphism between $V/\ker T$ and
-$\mathrm{im}(T)$.
+$\im(T)$.
 First note that $\phi$ is well defined because regardless of the chosen
 representative $z \in x$, $T(z)$ is the same.
 
@@ -458,7 +509,7 @@ element of the codomain).
 
 First we show $\phi$ is one-to-one. If $T(x) = T(y)$ then $T(x-y) = 0$ so $x-y
 \in \ker T$, as desired.
-Next, we show $\phi$ is onto. Take any $y \in \mathrm{im}(T)$. By definition
+Next, we show $\phi$ is onto. Take any $y \in \im(T)$. By definition
 there is some $x \in V$ mapping to $y$. Then all of the vectors in $x+\ker T$
 map to $y$, as desired.
 
@@ -468,6 +519,32 @@ Here's a picture showing this:
 
 ![first isomorphism thm](data/firstisothm.png)
 </div>
+
+<div class="ex envbox">**Example.**
+Consider the map $T: P_2 \to P_2$ defined by $ax^2 + bx + c\cdot 1 \mapsto ax+b$. 
+$\ker T = [1]$, $\im T = [1, x]$.
+In $P_2/\ker T$ we group together polynomials that differ by a constant, so
+$P_2/\ker T = \setof{\setof{ax^2+bx+c}{c\in \R}}{a,b\in\R}.$
+We can write this as
+$P_2/\ker T = \setof{ax^2+bx + \R \cdot 1}{a,b\in\R}.$
+But this can easily be identified with $\setof{ax+b}{a,b\in\R}$.
+Hence
+$$P_2/\ker T \cong \im T.$$
+</div>
+
+<div class="ex envbox">**Example.**
+Consider the map $T: \R^2 \to \R^2$ defined as $T(x,y) = (x, y)$. $\ker T = \set{0}$, and $\R^2/\ker T = \setof{\set{(x,y)}}{x,y\in \R}$. But this is trivially identified with $\R^2 = \im T$.
+</div>
+
+<div class="ex envbox">**Example.**
+Consider the map $T: \R^3 \to \R^2$ defined as $T(x,y,z) = (z, y)$. $\ker T = [(1,0,0)]$, and $\R^3/\ker T = \setof{[(1,0,0)] + (0,y,z)}{y, z\in \R}$. But this is trivially identified with $\R^2 = \im T$.
+</div>
+
+<div class="ex envbox">**Example.**
+Consider the map $T: \R^3 \to \R^2$ defined as $T(x,y,z) = (0, y)$. $\ker T = [(1,0,0), (0,0,1)]$, and $\R^3/\ker T = \setof{[(1,0,0), (0,0,1)] + (0,y,0)}{y\in \R}$. But this is trivially identified with $[(0,1)] = \im T$.
+</div>
+
+I hope you get the point. 
 
 Now rank nullity is evident. We simply need a small Lemma on the dimension of
 Quotient spaces:
@@ -488,9 +565,9 @@ $$\dim V/M = \dim V - \dim M.$$
 Now we prove rank nullity 
 <div class="pf envbox">**Proof.**
 By the first isomorphism theorem
-$$V/\ker T = \mathrm{im} T.$$
+$$V/\ker T = \im T.$$
 By our lemma this implies
-$$\dim V/\ker T = \dim V - \dim \ker T = \dim \mathrm{im} T$$
+$$\dim V/\ker T = \dim V - \dim \ker T = \dim \im T$$
 as desired.
 </div>
 
