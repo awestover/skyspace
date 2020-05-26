@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-xs = np.linspace(-2,2,10)
-ys = np.linspace(-2,2,10)
+xs = np.linspace(-10,10,10)
+ys = np.linspace(-10,10,10)
 Xs, Ys = np.meshgrid(xs, ys)
 U = -Ys
 V = Xs

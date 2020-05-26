@@ -195,9 +195,9 @@ begin ex
 ![tournament](data/chpt0/graph4.png)
 end ex
 
-begin def 
+begin defn
 A hypergraph is a set of vertices $V$ along with a family $E$ of subsets of $V$ called edges.
-end def
+end defn
 
 begin ex
 ![hypergraph](data/chpt0/graph5.png)
@@ -539,6 +539,8 @@ I'll try the exercises and put any cool ones I solve here (also for week 1).
 
 # Chapter 3
 #### [coming no later than Friday May 22]]
+
+CRAP. I'm so sorry @my_dedicated_fanbase. I totally forgot about this and stuff. In my defense I was at a hackathon stayed up till 4:30am, and I've also been binge-rereading Mistborn (3 700+ page books in 3 days? oops). Agh this blog is falling apart! I've done like one of the homework problems so far. aggghhhhh. OK, I'm gonna resolve to do better in the future. From now on. etc, etc. Anyways, I'm gonna read a bit and go to bed, but tomorrow I really legitamitely will be trying the homework problems and doing some reading. cya!
 
 # Chapter 4
 # Chapter 5
