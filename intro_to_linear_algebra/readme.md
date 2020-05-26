@@ -366,7 +366,10 @@ We call the dimension of a vector space the number of elements in a basis for it
 end defn
 
 begin ex
-The so called "standard basis" for $\R^n$ is the set of vectors $\set{(1,0,0,\ldots,0), (0,1,0,0,\ldots, 0), \ldots\}$ etc with the $i$-th standard basis vector $e_i$ containing $0$ in every component except a $1$ in the $i$-th component.
+The so called "standard basis" for $\R^n$ is the set of vectors
+$\set{(1,0,0,\ldots,0), (0,1,0,0,\ldots, 0), \ldots, (0,0,\ldots, 1)}$ with the
+$i$-th standard basis vector $e_i$ containing $0$ in every component except a
+$1$ in the $i$-th component.
 end ex
 
 begin ex
