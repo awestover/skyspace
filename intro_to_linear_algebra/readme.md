@@ -418,11 +418,11 @@ The Rank Nullity Theorem is a relationhsip between these subspaces, which I beli
 
 begin thm
 Let $T: V \to W$ be a linear map. Then 
-$$\dim\mathrm{im}(T) + \dim \img T = \dim V.$$
+$$\dim\mathrm{im}(T) + \dim \ker T = \dim V.$$
 end thm
 
 begin rmk
-$\dim \img T$ is called the "rank" of $T$, and $\dim \ker T$ is called the
+$\dim \mathrm{im} T$ is called the "rank" of $T$, and $\dim \ker T$ is called the
 "nullity" of $T$.
 end rmk
 
@@ -444,7 +444,7 @@ $$V/\ker T \cong \mathrm{im} T$$
 end thm
 begin pf
 Consider $x \in V/\ker T$. Let $x = z+\ker T$ for arbitrary $z\in x$. Note that
-for any $y \in x $, $T(y) = T(z).$ Hence it makes sense to say $T(x) = T(z)$.
+for any $y \in x$, $T(y) = T(z).$ Hence it makes sense to say $T(x) = T(z)$.
 We claim that $\phi(z+\ker T) = T(z)$ is an isomorphism between $V/\ker T$ and
 $\mathrm{im}(T)$.
 First note that $\phi$ is well defined because regardless of the chosen

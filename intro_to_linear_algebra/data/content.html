@@ -225,10 +225,10 @@ begin clm An equivalent definition of a basis is <strong>maximal linear independ
 </div>
 <p>The Rank Nullity Theorem is a relationhsip between these subspaces, which I believe is <strong>“deep stuff”</strong>. I’ll state it now, but we’ll need one more idea before the proof.</p>
 <div class="thm envbox">
-<p><strong>Theorem.</strong> Let <span class="math inline">\(T: V \to W\)</span> be a linear map. Then <span class="math display">\[\dim\mathrm{im}(T) + \dim \img T = \dim V.\]</span></p>
+<p><strong>Theorem.</strong> Let <span class="math inline">\(T: V \to W\)</span> be a linear map. Then <span class="math display">\[\dim\mathrm{im}(T) + \dim \ker T = \dim V.\]</span></p>
 </div>
 <div class="rmk envbox">
-<p><strong>Remark.</strong> <span class="math inline">\(\dim \img T\)</span> is called the “rank” of <span class="math inline">\(T\)</span>, and <span class="math inline">\(\dim \ker T\)</span> is called the “nullity” of <span class="math inline">\(T\)</span>.</p>
+<p><strong>Remark.</strong> <span class="math inline">\(\dim \mathrm{im} T\)</span> is called the “rank” of <span class="math inline">\(T\)</span>, and <span class="math inline">\(\dim \ker T\)</span> is called the “nullity” of <span class="math inline">\(T\)</span>.</p>
 </div>
 <p>Before proving this, we need a really cool idea: Quotient Spaces!!!</p>
 <div class="defn envbox">
@@ -240,7 +240,7 @@ begin clm An equivalent definition of a basis is <strong>maximal linear independ
 <p>Let <span class="math inline">\(T: V\to W\)</span>, then <span class="math display">\[V/\ker T \cong \mathrm{im} T\]</span></p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Consider <span class="math inline">\(x \in V/\ker T\)</span>. Let <span class="math inline">\(x = z+\ker T\)</span> for arbitrary <span class="math inline">\(z\in x\)</span>. Note that for any $y x $, <span class="math inline">\(T(y) = T(z).\)</span> Hence it makes sense to say <span class="math inline">\(T(x) = T(z)\)</span>. We claim that <span class="math inline">\(\phi(z+\ker T) = T(z)\)</span> is an isomorphism between <span class="math inline">\(V/\ker T\)</span> and <span class="math inline">\(\mathrm{im}(T)\)</span>. First note that <span class="math inline">\(\phi\)</span> is well defined because regardless of the chosen representative <span class="math inline">\(z \in x\)</span>, <span class="math inline">\(T(z)\)</span> is the same.</p>
+<p><strong>Proof.</strong> Consider <span class="math inline">\(x \in V/\ker T\)</span>. Let <span class="math inline">\(x = z+\ker T\)</span> for arbitrary <span class="math inline">\(z\in x\)</span>. Note that for any <span class="math inline">\(y \in x\)</span>, <span class="math inline">\(T(y) = T(z).\)</span> Hence it makes sense to say <span class="math inline">\(T(x) = T(z)\)</span>. We claim that <span class="math inline">\(\phi(z+\ker T) = T(z)\)</span> is an isomorphism between <span class="math inline">\(V/\ker T\)</span> and <span class="math inline">\(\mathrm{im}(T)\)</span>. First note that <span class="math inline">\(\phi\)</span> is well defined because regardless of the chosen representative <span class="math inline">\(z \in x\)</span>, <span class="math inline">\(T(z)\)</span> is the same.</p>
 <p>To show that <span class="math inline">\(\phi\)</span> is invertible we must show that it is one-to-one (doesn’t map different values to the same output) and also that it is onto (maps to each element of the codomain).</p>
 <p>First we show <span class="math inline">\(\phi\)</span> is one-to-one. If <span class="math inline">\(T(x) = T(y)\)</span> then <span class="math inline">\(T(x-y) = 0\)</span> so <span class="math inline">\(x-y \in \ker T\)</span>, as desired. Next, we show <span class="math inline">\(\phi\)</span> is onto. Take any <span class="math inline">\(y \in \mathrm{im}(T)\)</span>. By definition there is some <span class="math inline">\(x \in V\)</span> mapping to <span class="math inline">\(y\)</span>. Then all of the vectors in <span class="math inline">\(x+\ker T\)</span> map to <span class="math inline">\(y\)</span>, as desired.</p>
 <p>Hence the vector spaces are isomorphic.</p>
