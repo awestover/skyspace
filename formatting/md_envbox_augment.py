@@ -6,13 +6,14 @@ try:
 except:
     sys.exit("ERROR: Please input a file to eat")
 
-environment_types = ["thm", "rmk", "prop", "ex", "cor", "lem", "defn", "pf"]
+environment_types = ["thm", "rmk", "prop", "ex", "cor", "lem", "clm", "defn", "pf"]
 long_name = {
     "thm": "Theorem",
     "rmk": "Remark",
     "prop": "Proposition",
     "ex": "Example",
     "cor": "Corollary",
+    "clm": "Claim",
     "lem": "Lemma",
     "defn": "Definition",
     "pf": "Proof"

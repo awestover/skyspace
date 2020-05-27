@@ -1,33 +1,41 @@
-.thm {
-  background-image: linear-gradient(#B7F8DB, #50A7C2)
-}
-
 .pf {
-  background-image: linear-gradient(#ee9ca7,#ffdde1);
-}
-
-.defn {
-  background-color: #CEFFD6;
+  background-color: #fffcad;
+  border-color: #ffff00;
 }
 
 .ex {
-  background-color: #FFDDE4;
+  background-color: #ffdde4;
+  border-color: #000000;
 }
 
-.lem, .prop, .cor {
-  background-color: #CEC7FF;
+.defn {
+  border-color: #add8e6;
+  background-color: #00ffff;
 }
 
 .rmk {
-  background-color: #ADD8E6;
+  background-color: #dbd7c3;
+  border-color: #668C64;
+}
+
+.thm {
+  background-color: #cec7ff;
+  border-color: #5D4EBF;
+}
+
+.lem, .prop, .cor, .clm {
+  background-color: #ceffd6;
+  border-color: #00ff00;
 }
 
 .envbox {
+  border-style: solid; 
+  border-width: thick;
+
   padding: 3%;
   margin-bottom: 3%;
   margin-top: 3%;
 
-  overflow-x: scroll;
   width: 100%;
 }
 
