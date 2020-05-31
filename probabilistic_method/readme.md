@@ -540,7 +540,20 @@ I'll try the exercises and put any cool ones I solve here (also for week 1).
 # Chapter 3
 #### [coming no later than Friday May 22]]
 
-CRAP. I'm so sorry @my_dedicated_fanbase. I totally forgot about this and stuff. In my defense I was at a hackathon stayed up till 4:30am, and I've also been binge-rereading Mistborn (3 700+ page books in 3 days? oops). Agh this blog is falling apart! I've done like one of the homework problems so far. aggghhhhh. OK, I'm gonna resolve to do better in the future. From now on. etc, etc. Anyways, I'm gonna read a bit and go to bed, but tomorrow I really legitamitely will be trying the homework problems and doing some reading. cya!
+dang it!!! I'm so sorry @my_dedicated_fanbase. I totally forgot about this and
+stuff. In my defense I was at a hackathon stayed up till 4:30am, and I've also
+been binge-rereading Mistborn (3 700+ page books in 3 days? oops). Agh this
+blog is falling apart! I've done like one of the homework problems so far.
+aggghhhhh. OK, I'm gonna resolve to do better in the future. From now on. etc,
+etc. Anyways, I'm gonna read a bit and go to bed, but tomorrow I really
+legitamitely will be trying the homework problems and doing some reading. cya!
+
+Update number 2: again, I didn't get to doing this. I've done a bit more of the
+homework now, but it's really intense. Honestly I might go and read a different book...
+I do really want to read that generatingfunctionology book, and I think I can
+do more of the exercises. I'll keep trying on the probabilistic method though. I'm not having
+trouble understanding the proofs, it's creating them that's the problem. lol. Anyways, 
+hopefully I can get chapter 3 out soon. 
 
 # Chapter 4
 # Chapter 5
