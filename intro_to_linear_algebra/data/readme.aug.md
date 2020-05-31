@@ -281,7 +281,7 @@ function.
 Invertible linear maps are a very important type of linear map. For instance, they can be used to define what it means for two vector spaces to be "the same":
 
 <div class="defn envbox">**Definition.**
-Two vector spaces are said to be **isomorphic**, written $V \cong W$ if there exists an invertible linear map $\phi : V\to W$ that is onto $W$ (i.e. hits all of $W$).
+Two vector spaces are said to be **isomorphic**, written $V \cong W$ if there exists an invertible linear map $\phi : V\to W$ (that is $\phi$ must be onto $W$ and must be one to one).
 </div>
 
 <div class="ex envbox">**Example.**
@@ -336,9 +336,9 @@ A basis for a vector space need not exist. If a vector space does not admit a ba
 The vector space of polynomials is infinite dimensional; it clearly admits no basis: imagine it did, then take a polynomial with degree more than the highest degree of the basis elements, this yields a contradiction.
 </div>
 
-begin clm
+<div class="clm envbox">**Claim.**
 We claim that the number of elements in a basis for $V$ is unique.
-end clm
+</div>
 <div class="pf envbox">**Proof.**
 Let $V$ have two bases $\set{v_1,\ldots, v_m}$ and $\set{w_1,\ldots, w_n}$. We aim to show that $m=n$.
 
@@ -400,10 +400,10 @@ A set $v_1,\ldots, v_n$ of vectors is said to be linearly independent if no vect
 $$\sum_i \alpha_i v_i = 0 \,\,\,\, \implies \alpha_i = 0.$$
 </div>
 
-begin clm
+<div class="clm envbox">**Claim.**
 An equivalent definition of a basis is **maximal linear independent set of
 vectors**
-end clm
+</div>
 <div class="pf envbox">**Proof.**
 left as an exercise to the reader
 </div>

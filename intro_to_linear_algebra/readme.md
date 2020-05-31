@@ -281,7 +281,7 @@ end rmk
 Invertible linear maps are a very important type of linear map. For instance, they can be used to define what it means for two vector spaces to be "the same":
 
 begin defn
-Two vector spaces are said to be **isomorphic**, written $V \cong W$ if there exists an invertible linear map $\phi : V\to W$ that is onto $W$ (i.e. hits all of $W$).
+Two vector spaces are said to be **isomorphic**, written $V \cong W$ if there exists an invertible linear map $\phi : V\to W$ (that is $\phi$ must be onto $W$ and must be one to one).
 end defn
 
 begin ex

@@ -144,7 +144,7 @@
 </div>
 <p>Invertible linear maps are a very important type of linear map. For instance, they can be used to define what it means for two vector spaces to be “the same”:</p>
 <div class="defn envbox">
-<p><strong>Definition.</strong> Two vector spaces are said to be <strong>isomorphic</strong>, written <span class="math inline">\(V \cong W\)</span> if there exists an invertible linear map <span class="math inline">\(\phi : V\to W\)</span> that is onto <span class="math inline">\(W\)</span> (i.e. hits all of <span class="math inline">\(W\)</span>).</p>
+<p><strong>Definition.</strong> Two vector spaces are said to be <strong>isomorphic</strong>, written <span class="math inline">\(V \cong W\)</span> if there exists an invertible linear map <span class="math inline">\(\phi : V\to W\)</span> (that is <span class="math inline">\(\phi\)</span> must be onto <span class="math inline">\(W\)</span> and must be one to one).</p>
 </div>
 <div class="ex envbox">
 <p><strong>Example.</strong> The vector space of polynomials wtih real coefficients of degree <span class="math inline">\(2\)</span> or less, denote <span class="math inline">\(P_2\)</span>, is isomprphic to <span class="math inline">\(\mathbb{R}^3\)</span>. In particular, we can associate the polynomial <span class="math inline">\(ax^2 + bx + c \in P_2\)</span> with, for instance, <span class="math inline">\((a,b,c) \in\mathbb{R}^3.\)</span> This map is clearly an isomorphism.</p>
@@ -172,7 +172,9 @@
 <div class="ex envbox">
 <p><strong>Example.</strong> The vector space of polynomials is infinite dimensional; it clearly admits no basis: imagine it did, then take a polynomial with degree more than the highest degree of the basis elements, this yields a contradiction.</p>
 </div>
-begin clm We claim that the number of elements in a basis for <span class="math inline">\(V\)</span> is unique. end clm
+<div class="clm envbox">
+<p><strong>Claim.</strong> We claim that the number of elements in a basis for <span class="math inline">\(V\)</span> is unique.</p>
+</div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> Let <span class="math inline">\(V\)</span> have two bases <span class="math inline">\(\{v_1,\ldots, v_m\}\)</span> and <span class="math inline">\(\{w_1,\ldots, w_n\}\)</span>. We aim to show that <span class="math inline">\(m=n\)</span>.</p>
 <p>As <span class="math inline">\(v_i\)</span> spans <span class="math inline">\(V\)</span> we can express each <span class="math inline">\(w_j\)</span> as a linear combination of <span class="math inline">\(v_i\)</span>’s. On the other hand, we can express each <span class="math inline">\(w_j\)</span> as a linear combination of <span class="math inline">\(v_j\)</span>’s.</p>
@@ -205,7 +207,9 @@ begin clm We claim that the number of elements in a basis for <span class="math 
 <div class="defn envbox">
 <p><strong>Definition.</strong> A set <span class="math inline">\(v_1,\ldots, v_n\)</span> of vectors is said to be linearly independent if no vector can be made as a linear combination of the other vectors. Equivalently, <span class="math display">\[\sum_i \alpha_i v_i = 0 \,\,\,\, \implies \alpha_i = 0.\]</span></p>
 </div>
-begin clm An equivalent definition of a basis is <strong>maximal linear independent set of vectors</strong> end clm
+<div class="clm envbox">
+<p><strong>Claim.</strong> An equivalent definition of a basis is <strong>maximal linear independent set of vectors</strong></p>
+</div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> left as an exercise to the reader</p>
 </div>
