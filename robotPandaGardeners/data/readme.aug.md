@@ -5,7 +5,6 @@
 
 # Introduction
 
-![panda1.png](panda1.png)
 Everything I learned about this game comes from the following article: [Bilò, Davide, et al. "Cutting Bamboo Down to Size." arXiv preprint arXiv:2005.00168 (2020).](https://arxiv.org/abs/2005.00168). This is an awesome article! I highly recommend reading it. Obviously they do a better job explaining this topic than me. I'm pretty much just writing this so that I can understand it. The one reason why maybe this is a good article for you to read is that I was pretty unfamiliar with some of the ideas from the article before reading it, so I spell out a few things more explicitely (e.g. the cool data structures used in their oracle) than the article. I'm not the type of person that likes making things longer but whatever. I dunno. lol. if I haven't convinced you that there is no reason for this blog post to exist, then read and enjoy!
 
 The other day I was reading about robot panda gardeners. 
