@@ -5,7 +5,17 @@
 
 # Introduction
 
-Everything I learned about this game comes from the following article: [Bilò, Davide, et al. "Cutting Bamboo Down to Size." arXiv preprint arXiv:2005.00168 (2020).](https://arxiv.org/abs/2005.00168). This is an awesome article! I highly recommend reading it. Obviously they do a better job explaining this topic than me. I'm pretty much just writing this so that I can understand it. The one reason why maybe this is a good article for you to read is that I was pretty unfamiliar with some of the ideas from the article before reading it, so I spell out a few things more explicitely (e.g. the cool data structures used in their oracle) than the article. I'm not the type of person that likes making things longer but whatever. I dunno. lol. if I haven't convinced you that there is no reason for this blog post to exist, then read and enjoy!
+Everything I learned about this game comes from the following article: [Bilò,
+Davide, et al. "Cutting Bamboo Down to Size." arXiv preprint arXiv:2005.00168
+(2020).](https://arxiv.org/abs/2005.00168). This is an awesome article! I
+highly recommend reading it. Obviously they do a better job explaining this
+topic than me. I'm pretty much just writing this so that I can understand it.
+The one reason why maybe this is a good article for you to read is that I was
+pretty unfamiliar with some of the ideas from the article before reading it, so
+I spell out a few things more explicitely (e.g. the cool data structures used
+in their oracle) than the article. I'm not the type of person that likes making
+things longer but whatever. I dunno. lol. if I haven't convinced you that there
+is no reason for this blog post to exist, then read and enjoy!
 
 The other day I was reading about robot panda gardeners. 
 Specifically here is the problem:
@@ -221,19 +231,22 @@ satisfying the following properties:
 For any node $v = (x, p)$
 
 - all descendants of $v$ have priority lower than $p$.
-- all left descendants of $v$ have value less than $x$.
-- all right descendants of $v$ have value greater than $x$.
+
+If you compute the median of the values of all descendants of $v$ then 
+- all left descendants of $v$ have value less than this median.
+- all right descendants of $v$ have value greater than that median.
 </div>
 
-It's a binary tree, so as long as it's depth is $O(\log n)$ (i.e. it's a
-balanced tree) you can store it in an a array with space $O(n)$ and as long as
-insertion is $O(\log n)$ (which it is, I'll describe insertion in a second) you
-can build a priority search tree in time $O(n \log n)$.
+It's a binary tree, and it's obviously balanced by the median thing, so its
+depth is $O(\log n)$ and you can store it in an a array with space $O(n)$ and
+as long as insertion is $O(\log n)$ (which it is, I'll describe insertion in a
+second) you can build a priority search tree in time $O(n \log n)$.
 
 ok, so now let's talk about how to do all the opperations that you need to do.
 
 So, imagine that you wanted to query for a certain value. Then it's just like a
 binary search tree. 
+**Note: I guess you have to store the medians.**
 
 OK now let me talk about the application to the specific problem of a Reduce-Fastest$(x)$ oracle.
 
@@ -335,6 +348,10 @@ gap for $b_3$ is $8$, $\ldots$, the gap for $b_{n-1}$ is $2^{n-1}$. And of
 course the gap for $b_n$ is also $2^{n-1}$. This ensures that bamboo $b_i$
 never grows above $1$.
 
+Another thing that you should note is that you can increment a binary counter in $O(1)$ **ammortized time**. I guess this just means average time. Basically this is because
+$$\frac{1}{2}1 + \frac{1}{4}2 + \frac{1}{8}3 + \frac{1}{16} 4 + \cdots  \le O(1).$$
+COol.
+
 OK, so that's super simple, but what about the **real** game?
 First let's do the powers of $1/2$ one still. 
 So here's the idea: they define a **virtual bamboo** to be a bunch of bamboo lumped together. 
@@ -345,7 +362,10 @@ Then you globally and internally inside the virtual bamboos do the super simple 
 
 yay!
 
-Note: it's actually really technically interesting how they make the virtual bamboos with their merge operations. I don't fully understand the proof that the merge tree thing has depth $O(\log n)$ (although I do get why it has depth less than $O(n)$, and it feels vaguely intuitive to me.)
+Note: it's actually really technically interesting how they make the virtual
+bamboos with their merge operations. I don't fully understand the proof that
+the merge tree thing has depth $O(\log n)$ (although I do get why it has depth
+less than $O(n)$, and it feels vaguely intuitive to me.)
 
 Now, notice that in restricting the $h_i$'s to be powers of $1/2$ the $h_i$'s
 were changed by at most a factor of $2$. 

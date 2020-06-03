@@ -61,13 +61,12 @@
 <p>For any node <span class="math inline">\(v = (x, p)\)</span></p>
 <ul>
 <li>all descendants of <span class="math inline">\(v\)</span> have priority lower than <span class="math inline">\(p\)</span>.</li>
-<li>all left descendants of <span class="math inline">\(v\)</span> have value less than <span class="math inline">\(x\)</span>.</li>
-<li>all right descendants of <span class="math inline">\(v\)</span> have value greater than <span class="math inline">\(x\)</span>.</li>
 </ul>
+<p>If you compute the median of the values of all descendants of <span class="math inline">\(v\)</span> then - all left descendants of <span class="math inline">\(v\)</span> have value less than this median. - all right descendants of <span class="math inline">\(v\)</span> have value greater than that median.</p>
 </div>
-<p>It’s a binary tree, so as long as it’s depth is <span class="math inline">\(O(\log n)\)</span> (i.e. it’s a balanced tree) you can store it in an a array with space <span class="math inline">\(O(n)\)</span> and as long as insertion is <span class="math inline">\(O(\log n)\)</span> (which it is, I’ll describe insertion in a second) you can build a priority search tree in time <span class="math inline">\(O(n \log n)\)</span>.</p>
+<p>It’s a binary tree, and it’s obviously balanced by the median thing, so its depth is <span class="math inline">\(O(\log n)\)</span> and you can store it in an a array with space <span class="math inline">\(O(n)\)</span> and as long as insertion is <span class="math inline">\(O(\log n)\)</span> (which it is, I’ll describe insertion in a second) you can build a priority search tree in time <span class="math inline">\(O(n \log n)\)</span>.</p>
 <p>ok, so now let’s talk about how to do all the opperations that you need to do.</p>
-<p>So, imagine that you wanted to query for a certain value. Then it’s just like a binary search tree.</p>
+<p>So, imagine that you wanted to query for a certain value. Then it’s just like a binary search tree. <strong>Note: I guess you have to store the medians.</strong></p>
 <p>OK now let me talk about the application to the specific problem of a Reduce-Fastest<span class="math inline">\((x)\)</span> oracle.</p>
 <p>So the (dynamic) data that is going to be stored in the priority search tree is <span class="math display">\[\{(d_1, 1), \ldots, (d_n, n)\}\]</span> where <span class="math inline">\(d_i\)</span> is the next day on which bamboo <span class="math inline">\(b_i\)</span> will have height at least <span class="math inline">\(x\)</span>. Note that this is going to be updated every day.</p>
 <p>The queries that it needs to support are:</p>
@@ -116,6 +115,7 @@
 <li>and then it just repeats</li>
 </ul>
 <p>So there are some things that you should have observed. The gap between days when we cut <span class="math inline">\(b_1\)</span> is <span class="math inline">\(2\)</span>, the gap between days when we cut <span class="math inline">\(b_2\)</span> is <span class="math inline">\(4\)</span>, the gap for <span class="math inline">\(b_3\)</span> is <span class="math inline">\(8\)</span>, <span class="math inline">\(\ldots\)</span>, the gap for <span class="math inline">\(b_{n-1}\)</span> is <span class="math inline">\(2^{n-1}\)</span>. And of course the gap for <span class="math inline">\(b_n\)</span> is also <span class="math inline">\(2^{n-1}\)</span>. This ensures that bamboo <span class="math inline">\(b_i\)</span> never grows above <span class="math inline">\(1\)</span>.</p>
+<p>Another thing that you should note is that you can increment a binary counter in <span class="math inline">\(O(1)\)</span> <strong>ammortized time</strong>. I guess this just means average time. Basically this is because <span class="math display">\[\frac{1}{2}1 + \frac{1}{4}2 + \frac{1}{8}3 + \frac{1}{16} 4 + \cdots  \le O(1).\]</span> COol.</p>
 <p>OK, so that’s super simple, but what about the <strong>real</strong> game? First let’s do the powers of <span class="math inline">\(1/2\)</span> one still. So here’s the idea: they define a <strong>virtual bamboo</strong> to be a bunch of bamboo lumped together. Then by collapsing the original bamboo forest into an appropraite set of virtual bamboos they can get a really nice set of virtual bamboos.</p>
 <p>Then you globally and internally inside the virtual bamboos do the super simple strategy.</p>
 <p>yay!</p>
