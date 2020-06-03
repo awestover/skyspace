@@ -220,6 +220,7 @@ The priority search tree $T$ associated with this data is a binary tree
 satisfying the following properties:
 
 For any node $v = (x, p)$
+
 - all descendants of $v$ have priority lower than $p$.
 - all left descendants of $v$ have value less than $x$.
 - all right descendants of $v$ have value greater than $x$.
@@ -235,6 +236,43 @@ ok, so now let's talk about how to do all the opperations that you need to do.
 So, imagine that you wanted to query for a certain value. Then it's just like a
 binary search tree. 
 
+OK now let me talk about the application to the specific problem of a Reduce-Fastest$(x)$ oracle.
+
+So the (dynamic) data that is going to be stored in the priority search tree is 
+$$\{(d_1, 1), \ldots, (d_n, n)\}$$ 
+where $d_i$ is the next day on which bamboo $b_i$ will have height at least $x$.
+Note that this is going to be updated every day.
+
+The queries that it needs to support are:
+
+- $\mathbf{\text{MinIReadyBeforeDayD}(T, D)}$: return the minimum $i$ such that $d_i \le D$. (note: if you're following along with the paper you will notice that they have a typo about this! don't worry I have lots of typos too I bet.)
+- **GetD**$(T, i)$: returns $d_i$ i.e. finds the node $(d_i, i)$.
+
+It can support them in $O(\log n)$ time. Great!
+
+After cutting the bamboo $b_i$ we need to update the tree. I think the way to
+do this is to delete it, sift, and then insert it and sift again. (sifting is
+that thing you do with heaps).
+
+Ah, but we're not quite done, because there is this subtle issue: throughout
+this we have been implicity assuming that $d_i \le O(1)$. But the oracle is
+going to continue **forever**! So this is clearly not a reasonable assumption.
+To solve this problem they divide the days up into intervals of $I$ days, and
+then store $2$ trees: one for the current interval and one for the next interval.
+
+Then within each tree they don't store $d_i$ but rather $\delta_i = d_i - nj$
+for the $j$-th interval which consists of days $\{nj, nj+1, \ldots,
+n(j+1)-1\}.$
+
+Say that the two trees you were maintaining are called $T_1, T_2$.
+At the end of an interval you just are like $T_1 \gets T_2$ and $T_2 \gets T_2$
+Except reduce the numbers in $T_2$ by $n$.
+
+This aught to do the trick.
+
+At this point the theorm should be pretty clear, it's basically just saying
+"priority search trees" have $O(n)$ space-complexity and can be queried in
+$O(\log n)$ time!
  
 ### Reduce-Max
 
@@ -252,7 +290,7 @@ end thm
 
 The algorithm they made for this, which they call **Tree**, is an amazing
 example of the famous problem solving principle 
-> "To solve a hard problem, first solve a simpler problem, then prove that your problem can be reduced to the simpler problem." -me (jk, not actually original)
+> "To solve a hard problem, first solve a simpler problem, then prove that your original problem can be reduced to the simpler problem." -Alek
 
 So first round down all the $h_i$'s to powers of $1/2$. But they want to
 preserve the summing-to-$1$ property, so it's slightly more complicated than this.
@@ -265,14 +303,68 @@ To analyze this new game, they next look at a sub-case(even simpler problem!!!)
 which they call **regular growth rates**. This is where the growth rates are 
 $$1/2, 1/4, 1/8, \ldots, 1/2^{n-1}, 1/2^{n-1}.$$
 
+Consider the binary representation of $D$ with $n-1$ digits (so like take $D
+\mod 2^{n-1}$ and do zero-padding on the left). 
 In this case they have a really simple rule to decide what to cut: on day $D$
-cut bamboo $b_i$ if the least-significant $0$ in $D$ is the $i$-th
+cut bamboo $b_i$ if the right-most (i.e. least-significant) $0$ in $D$ is the $i$-th
 least-significant bit of $D$; if there are no $0$'s in $D$ then cut $b_n$.
+Let's look at this a little bit (ahhhh get it. oh gross puns):
 
-OK wait I have to go to dinner. This might not be quite right. When I get back here is my todo list:
+Let's run through the cutting schedule with $n=5$
 
-- check this super simpel case
-- talk about priority search trees some more
-- talk about virtual bamboos a bit
+- $0000 \implies$ cut $b_1$
+- $0001 \implies$ cut $b_2$
+- $0010 \implies$ cut $b_1$
+- $0011 \implies$ cut $b_3$
+- $0100 \implies$ cut $b_1$
+- $0101 \implies$ cut $b_2$
+- $0110 \implies$ cut $b_1$
+- $0111 \implies$ cut $b_4$
+- $1000 \implies$ cut $b_1$
+- $1001 \implies$ cut $b_2$
+- $1010 \implies$ cut $b_1$
+- $1011 \implies$ cut $b_3$
+- $1100 \implies$ cut $b_1$
+- $1101 \implies$ cut $b_2$
+- $1110 \implies$ cut $b_1$
+- $1111 \implies$ cut $b_5$
+- and then it just repeats
 
+So there are some things that you should have observed. The gap between days
+when we cut $b_1$ is $2$, the gap between days when we cut $b_2$ is $4$, the
+gap for $b_3$ is $8$, $\ldots$, the gap for $b_{n-1}$ is $2^{n-1}$. And of
+course the gap for $b_n$ is also $2^{n-1}$. This ensures that bamboo $b_i$
+never grows above $1$.
+
+OK, so that's super simple, but what about the **real** game?
+First let's do the powers of $1/2$ one still. 
+So here's the idea: they define a **virtual bamboo** to be a bunch of bamboo lumped together. 
+Then by collapsing the original bamboo forest into an appropraite set of
+virtual bamboos they can get a really nice set of virtual bamboos.
+
+Then you globally and internally inside the virtual bamboos do the super simple strategy.
+
+yay!
+
+Note: it's actually really technically interesting how they make the virtual bamboos with their merge operations. I don't fully understand the proof that the merge tree thing has depth $O(\log n)$ (although I do get why it has depth less than $O(n)$, and it feels vaguely intuitive to me.)
+
+Now, notice that in restricting the $h_i$'s to be powers of $1/2$ the $h_i$'s
+were changed by at most a factor of $2$. 
+So if you just pretend like you're playing with the fake growth rates, then the
+real height,s and hence the real backlog, is no more than a factor of $2$
+larger than you think it is.
+
+# The End
+I've had a blast reading this paper. I have to say the robot pandas really made
+me happy, what a fun way to phrase the work scheduling problem. 
+
+The upper bound proofs are very classic combinatorics: "inductively prove a set
+of invariants". I really love the forced tradeoffs that give the inequalities.
+I'm always happy to see cool data structures and really liked hearing about
+priority search queues. The final oracle for achieving backlog 2 is such a cool
+example of solving a simple problem and reducing the harder problem to the
+simple problem. SO COOL!
+
+In the future I'll try to have more robot panda gardeners in my own work, and
+in my own life. I'll also try to do some mroe blog posts about cool papers.
 

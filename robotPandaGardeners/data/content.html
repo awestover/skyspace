@@ -58,11 +58,30 @@
 <div class="defn envbox">
 <p><strong>Definition.</strong> Say you have a set of data <span class="math inline">\(\{(x_1, p_1), \ldots, (x_n, p_n)\}.\)</span> We call the <span class="math inline">\(p_i\)</span>’s <strong>priorities</strong> and we call the <span class="math inline">\(x_i\)</span>’s <strong>values</strong>.</p>
 <p>The priority search tree <span class="math inline">\(T\)</span> associated with this data is a binary tree satisfying the following properties:</p>
-<p>For any node <span class="math inline">\(v = (x, p)\)</span> - all descendants of <span class="math inline">\(v\)</span> have priority lower than <span class="math inline">\(p\)</span>. - all left descendants of <span class="math inline">\(v\)</span> have value less than <span class="math inline">\(x\)</span>. - all right descendants of <span class="math inline">\(v\)</span> have value greater than <span class="math inline">\(x\)</span>.</p>
+<p>For any node <span class="math inline">\(v = (x, p)\)</span></p>
+<ul>
+<li>all descendants of <span class="math inline">\(v\)</span> have priority lower than <span class="math inline">\(p\)</span>.</li>
+<li>all left descendants of <span class="math inline">\(v\)</span> have value less than <span class="math inline">\(x\)</span>.</li>
+<li>all right descendants of <span class="math inline">\(v\)</span> have value greater than <span class="math inline">\(x\)</span>.</li>
+</ul>
 </div>
 <p>It’s a binary tree, so as long as it’s depth is <span class="math inline">\(O(\log n)\)</span> (i.e. it’s a balanced tree) you can store it in an a array with space <span class="math inline">\(O(n)\)</span> and as long as insertion is <span class="math inline">\(O(\log n)\)</span> (which it is, I’ll describe insertion in a second) you can build a priority search tree in time <span class="math inline">\(O(n \log n)\)</span>.</p>
 <p>ok, so now let’s talk about how to do all the opperations that you need to do.</p>
 <p>So, imagine that you wanted to query for a certain value. Then it’s just like a binary search tree.</p>
+<p>OK now let me talk about the application to the specific problem of a Reduce-Fastest<span class="math inline">\((x)\)</span> oracle.</p>
+<p>So the (dynamic) data that is going to be stored in the priority search tree is <span class="math display">\[\{(d_1, 1), \ldots, (d_n, n)\}\]</span> where <span class="math inline">\(d_i\)</span> is the next day on which bamboo <span class="math inline">\(b_i\)</span> will have height at least <span class="math inline">\(x\)</span>. Note that this is going to be updated every day.</p>
+<p>The queries that it needs to support are:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{\text{MinIReadyBeforeDayD}(T, D)}\)</span>: return the minimum <span class="math inline">\(i\)</span> such that <span class="math inline">\(d_i \le D\)</span>. (note: if you’re following along with the paper you will notice that they have a typo about this! don’t worry I have lots of typos too I bet.)</li>
+<li><strong>GetD</strong><span class="math inline">\((T, i)\)</span>: returns <span class="math inline">\(d_i\)</span> i.e. finds the node <span class="math inline">\((d_i, i)\)</span>.</li>
+</ul>
+<p>It can support them in <span class="math inline">\(O(\log n)\)</span> time. Great!</p>
+<p>After cutting the bamboo <span class="math inline">\(b_i\)</span> we need to update the tree. I think the way to do this is to delete it, sift, and then insert it and sift again. (sifting is that thing you do with heaps).</p>
+<p>Ah, but we’re not quite done, because there is this subtle issue: throughout this we have been implicity assuming that <span class="math inline">\(d_i \le O(1)\)</span>. But the oracle is going to continue <strong>forever</strong>! So this is clearly not a reasonable assumption. To solve this problem they divide the days up into intervals of <span class="math inline">\(I\)</span> days, and then store <span class="math inline">\(2\)</span> trees: one for the current interval and one for the next interval.</p>
+<p>Then within each tree they don’t store <span class="math inline">\(d_i\)</span> but rather <span class="math inline">\(\delta_i = d_i - nj\)</span> for the <span class="math inline">\(j\)</span>-th interval which consists of days <span class="math inline">\(\{nj, nj+1, \ldots, n(j+1)-1\}.\)</span></p>
+<p>Say that the two trees you were maintaining are called <span class="math inline">\(T_1, T_2\)</span>. At the end of an interval you just are like <span class="math inline">\(T_1 \gets T_2\)</span> and <span class="math inline">\(T_2 \gets T_2\)</span> Except reduce the numbers in <span class="math inline">\(T_2\)</span> by <span class="math inline">\(n\)</span>.</p>
+<p>This aught to do the trick.</p>
+<p>At this point the theorm should be pretty clear, it’s basically just saying “priority search trees” have <span class="math inline">\(O(n)\)</span> space-complexity and can be queried in <span class="math inline">\(O(\log n)\)</span> time!</p>
 <h3 id="reduce-max-1">Reduce-Max</h3>
 <p>Bunch of lines. Upper envelope thing. See their paper.</p>
 <h3 id="tree-backlog-2">Tree: backlog 2</h3>
@@ -71,14 +90,38 @@
 <div class="thm envbox">
 <p><strong>Theorem.</strong> There exists a cutting oracle that never lets backlog exceed <span class="math inline">\(2\)</span>, uses <span class="math inline">\(O(n)\)</span> space, can be built in <span class="math inline">\(O(n \log n)\)</span> time, and can report the bamboo to trim in <span class="math inline">\(O(\log n)\)</span> amortized time.</p>
 </div>
-<p>The algorithm they made for this, which they call <strong>Tree</strong>, is an amazing example of the famous problem solving principle &gt; “To solve a hard problem, first solve a simpler problem, then prove that your problem can be reduced to the simpler problem.” -me (jk, not actually original)</p>
+<p>The algorithm they made for this, which they call <strong>Tree</strong>, is an amazing example of the famous problem solving principle &gt; “To solve a hard problem, first solve a simpler problem, then prove that your original problem can be reduced to the simpler problem.” -Alek</p>
 <p>So first round down all the <span class="math inline">\(h_i\)</span>’s to powers of <span class="math inline">\(1/2\)</span>. But they want to preserve the summing-to-<span class="math inline">\(1\)</span> property, so it’s slightly more complicated than this. The backlog in the real game is at most double the backlog in this other game, since the growth rates were at most doubled.</p>
 <p>They prove a bound of <span class="math inline">\(1\)</span> on backlog in this new game where the growth rates are nice.</p>
 <p>To analyze this new game, they next look at a sub-case(even simpler problem!!!) which they call <strong>regular growth rates</strong>. This is where the growth rates are <span class="math display">\[1/2, 1/4, 1/8, \ldots, 1/2^{n-1}, 1/2^{n-1}.\]</span></p>
-<p>In this case they have a really simple rule to decide what to cut: on day <span class="math inline">\(D\)</span> cut bamboo <span class="math inline">\(b_i\)</span> if the least-significant <span class="math inline">\(0\)</span> in <span class="math inline">\(D\)</span> is the <span class="math inline">\(i\)</span>-th least-significant bit of <span class="math inline">\(D\)</span>; if there are no <span class="math inline">\(0\)</span>’s in <span class="math inline">\(D\)</span> then cut <span class="math inline">\(b_n\)</span>.</p>
-<p>OK wait I have to go to dinner. This might not be quite right. When I get back here is my todo list:</p>
+<p>Consider the binary representation of <span class="math inline">\(D\)</span> with <span class="math inline">\(n-1\)</span> digits (so like take <span class="math inline">\(D \mod 2^{n-1}\)</span> and do zero-padding on the left). In this case they have a really simple rule to decide what to cut: on day <span class="math inline">\(D\)</span> cut bamboo <span class="math inline">\(b_i\)</span> if the right-most (i.e. least-significant) <span class="math inline">\(0\)</span> in <span class="math inline">\(D\)</span> is the <span class="math inline">\(i\)</span>-th least-significant bit of <span class="math inline">\(D\)</span>; if there are no <span class="math inline">\(0\)</span>’s in <span class="math inline">\(D\)</span> then cut <span class="math inline">\(b_n\)</span>. Let’s look at this a little bit (ahhhh get it. oh gross puns):</p>
+<p>Let’s run through the cutting schedule with <span class="math inline">\(n=5\)</span></p>
 <ul>
-<li>check this super simpel case</li>
-<li>talk about priority search trees some more</li>
-<li>talk about virtual bamboos a bit</li>
+<li><span class="math inline">\(0000 \implies\)</span> cut <span class="math inline">\(b_1\)</span></li>
+<li><span class="math inline">\(0001 \implies\)</span> cut <span class="math inline">\(b_2\)</span></li>
+<li><span class="math inline">\(0010 \implies\)</span> cut <span class="math inline">\(b_1\)</span></li>
+<li><span class="math inline">\(0011 \implies\)</span> cut <span class="math inline">\(b_3\)</span></li>
+<li><span class="math inline">\(0100 \implies\)</span> cut <span class="math inline">\(b_1\)</span></li>
+<li><span class="math inline">\(0101 \implies\)</span> cut <span class="math inline">\(b_2\)</span></li>
+<li><span class="math inline">\(0110 \implies\)</span> cut <span class="math inline">\(b_1\)</span></li>
+<li><span class="math inline">\(0111 \implies\)</span> cut <span class="math inline">\(b_4\)</span></li>
+<li><span class="math inline">\(1000 \implies\)</span> cut <span class="math inline">\(b_1\)</span></li>
+<li><span class="math inline">\(1001 \implies\)</span> cut <span class="math inline">\(b_2\)</span></li>
+<li><span class="math inline">\(1010 \implies\)</span> cut <span class="math inline">\(b_1\)</span></li>
+<li><span class="math inline">\(1011 \implies\)</span> cut <span class="math inline">\(b_3\)</span></li>
+<li><span class="math inline">\(1100 \implies\)</span> cut <span class="math inline">\(b_1\)</span></li>
+<li><span class="math inline">\(1101 \implies\)</span> cut <span class="math inline">\(b_2\)</span></li>
+<li><span class="math inline">\(1110 \implies\)</span> cut <span class="math inline">\(b_1\)</span></li>
+<li><span class="math inline">\(1111 \implies\)</span> cut <span class="math inline">\(b_5\)</span></li>
+<li>and then it just repeats</li>
 </ul>
+<p>So there are some things that you should have observed. The gap between days when we cut <span class="math inline">\(b_1\)</span> is <span class="math inline">\(2\)</span>, the gap between days when we cut <span class="math inline">\(b_2\)</span> is <span class="math inline">\(4\)</span>, the gap for <span class="math inline">\(b_3\)</span> is <span class="math inline">\(8\)</span>, <span class="math inline">\(\ldots\)</span>, the gap for <span class="math inline">\(b_{n-1}\)</span> is <span class="math inline">\(2^{n-1}\)</span>. And of course the gap for <span class="math inline">\(b_n\)</span> is also <span class="math inline">\(2^{n-1}\)</span>. This ensures that bamboo <span class="math inline">\(b_i\)</span> never grows above <span class="math inline">\(1\)</span>.</p>
+<p>OK, so that’s super simple, but what about the <strong>real</strong> game? First let’s do the powers of <span class="math inline">\(1/2\)</span> one still. So here’s the idea: they define a <strong>virtual bamboo</strong> to be a bunch of bamboo lumped together. Then by collapsing the original bamboo forest into an appropraite set of virtual bamboos they can get a really nice set of virtual bamboos.</p>
+<p>Then you globally and internally inside the virtual bamboos do the super simple strategy.</p>
+<p>yay!</p>
+<p>Note: it’s actually really technically interesting how they make the virtual bamboos with their merge operations. I don’t fully understand the proof that the merge tree thing has depth <span class="math inline">\(O(\log n)\)</span> (although I do get why it has depth less than <span class="math inline">\(O(n)\)</span>, and it feels vaguely intuitive to me.)</p>
+<p>Now, notice that in restricting the <span class="math inline">\(h_i\)</span>’s to be powers of <span class="math inline">\(1/2\)</span> the <span class="math inline">\(h_i\)</span>’s were changed by at most a factor of <span class="math inline">\(2\)</span>. So if you just pretend like you’re playing with the fake growth rates, then the real height,s and hence the real backlog, is no more than a factor of <span class="math inline">\(2\)</span> larger than you think it is.</p>
+<h1 id="the-end">The End</h1>
+<p>I’ve had a blast reading this paper. I have to say the robot pandas really made me happy, what a fun way to phrase the work scheduling problem.</p>
+<p>The upper bound proofs are very classic combinatorics: “inductively prove a set of invariants”. I really love the forced tradeoffs that give the inequalities. I’m always happy to see cool data structures and really liked hearing about priority search queues. The final oracle for achieving backlog 2 is such a cool example of solving a simple problem and reducing the harder problem to the simple problem. SO COOL!</p>
+<p>In the future I’ll try to have more robot panda gardeners in my own work, and in my own life. I’ll also try to do some mroe blog posts about cool papers.</p>
