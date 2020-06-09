@@ -22,9 +22,12 @@ constructive.
 
 ##### story
 begin rmk
-this part is very soggy and crumbly. Consider skipping straight to Chapter 0,
-or even Chapter 1. Nevertheless I feel obligated to write an at least somewhat
-compelling preface, because I like to read prefaces. So here we go.
+This part is a somewhat soggy and crumbly "personal motivation
+for doing this story thing". Consider skipping straight to my
+post on Chapter 0, or even Chapter 1. Nevertheless I feel
+obligated to write an at least somewhat compelling preface,
+because I like to read prefaces. So yeah, whatever. If the real
+numbers are complete, then I better be complete in my blogging.
 end rmk
 
 I want to read this book because I believe that it contains some really elegant
@@ -36,9 +39,10 @@ Twice a week, every week, I would rush out of school and jump on my bike to
 ride over to a local university (Harvard) where I was listening to the
 lectures. I left behind all the baggage of tasks performed grudgingly and was
 immersed in theland of infinite dimensional vector spaces and bounded linear
-functionals for a magnificent hour. On weekends, and in other spare moments of
-time that I could find I worked on the psets for the class, which usually
-consisted of a couple really interesting and often challenging proofs.
+functionals for a magnificent hour and fiveteen minutes. On
+weekends and whatever other spare moments of time that I found I
+worked on the psets for the class, which usually consisted of a
+couple really interesting and often pretty challenging proofs.
 
 One time when I was biking there it rained (really hard). Prior to the bike
 ride I was annoyed because of "school and stuff". I was completely soaked by
@@ -51,25 +55,34 @@ thought about it a bit and came up with this list of things that I think made
 my experience with functional analysis so great:
 
 - I was learning it purely for fun (in particular, I didn't tell my school that I was taking this class, and didn't do anythign with my grade)
-- An incredibly enthusiastic professor guided us through the definitions and theorems of the book, with many fun examples (on a black board!)
+- An incredibly enthusiastic professor guided us through the definitions and proofs from the book, with many fun examples (on a black board!)
 - The content had some really interesting and non-trivial, while still elegant, proofs. 
 - I was able to share the novel math I was learning with my friends. I did this a lot while walking to and from school, and I also gave a talk to our math team about it and even [wrote a (short) blog post about it!!!](https://awestover.github.io/skyspace/functional_analysis/) 
 
-Anyways, this story does have a point.
+Anyways, this story does have a point. It just is going to take
+me a minute to get to it.
 
-I love math. But keeping a consistent schedule, even at doing things that you
-love, is hard (for me at least), especially if the thing you like to do is
-challenging. Other stuff will innevitably try to get in the way.
+The point is: I love math. 
+
+OK, you might say, I probably could have guessed that. What's
+with the long story?
+
+I love math, But keeping a consistent schedule, even at doing things that you
+love, is hard (for me at least), especially if the thing in
+question is challenging. Other stuff will innevitably try to get in the way.
 That's where this blog comes in. 
-I'm going to write a blog post **every week by Friday** about
+I'm going to write a blog post regularly about
 the chapter of the Probabilistic Method that I've been reading.
 Having a blog means that with **non-zero probability** some people will be sad if I
 don't read for a week. It also gives me a very nice record of the things I've
 learned, and will look very cool (I plan to draw lots of pictures). 
-Also, maybe this blog can teach you some cool combinatorics too! I will do my
+So that's my selfish rationale for writing this blog.
+
+Furthermore, maybe this blog can teach you some cool combinatorics too! I will do my
 best to make my explanations compelte and understandable to people who haven't
 been reading the book. In particular I will introduce any combinatorial objects
-that it talks about.
+that it talks about. Sharing math with others is something I find
+super fun, so I hope you enjoy.
 
 If you're interested in reading this, please don't be put off by all the fancy
 words and stuff, or by personal feelings of inadequacy. I didn't know what a
@@ -250,7 +263,7 @@ end ex
 begin defn
 The expectation of a random variable $X$ is 
 
-$$\mathbb{E} = \sum_{x} x \Pr(X=x)$$
+$$\mathbb{E}[X] = \sum_{x} x \Pr(X=x)$$
 
 this is just "weighted average of outcomes using probabilities as weights"
 end defn
@@ -544,8 +557,7 @@ dang it!!! I'm so sorry @my_dedicated_fanbase. I totally forgot about this and
 stuff. In my defense I was at a hackathon stayed up till 4:30am, and I've also
 been binge-rereading Mistborn (3 700+ page books in 3 days? oops). Agh this
 blog is falling apart! I've done like one of the homework problems so far.
-aggghhhhh. OK, I'm gonna resolve to do better in the future. From now on. etc,
-etc. Anyways, I'm gonna read a bit and go to bed, but tomorrow I really
+aggghhhhh. OK, I'm gonna do better in the future. Anyways, I'm gonna read a bit and go to bed, but tomorrow I really
 legitamitely will be trying the homework problems and doing some reading. cya!
 
 Update number 2: again, I didn't get to doing this. I've done a bit more of the
@@ -554,6 +566,12 @@ I do really want to read that generatingfunctionology book, and I think I can
 do more of the exercises. I'll keep trying on the probabilistic method though. I'm not having
 trouble understanding the proofs, it's creating them that's the problem. lol. Anyways, 
 hopefully I can get chapter 3 out soon. 
+
+update number 3:
+ok this section is really coming soon. for real now! 
+I convinced a couple of people to join a little club to read this
+book with me which'll be super helpful in terms of reminding me
+to read :). And just super fun in general.
 
 # Chapter 4
 # Chapter 5
