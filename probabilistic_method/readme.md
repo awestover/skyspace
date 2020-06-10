@@ -6,16 +6,14 @@ Spencer. The Probablistic Method, pioneered by Erdos, is a really interesting
 way to think about combinatorics problems. Here is a high level overview of how
 proofs by the probabilistic method go 
 
----
-
-> Consider a random thing  
-> Break the thing up into simple sub-things  
-> Compute something on the sub-things  
-> Combine the sub-things together to get  
-> Pr[thing is good] > 0  
-> Thus, there must be some thing that is good.  
-
----
+begin quote
+Consider a random thing
+Break the thing up into simple sub-things
+Compute something on the sub-things
+Combine the sub-things together to get
+Pr[thing is good] > 0
+Thus, there must be some thing that is good.
+end quote
 
 The approach is often pretty non-constructive but sometimes it can be made
 constructive. 
@@ -124,12 +122,12 @@ end defn
 begin ex
 Some nice sets:
 
-- $\mathbb{N} = \{1,2,\ldots, \}$ (natural numbers)
-- $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots \}$ (integers)
-- $\mathbb{Q} = \{ p/q : p,q\in \mathbb{Z}, q\neq 0 \}$ (rationals)
-- $\mathbb{R}$ is the completion of $\mathbb{Q}$ (reals)
-- $\mathbb{R}^n$
-- $\mathbb{C}$
+- $\N = \{1,2,\ldots, \}$ (natural numbers)
+- $\Z = \{\ldots, -2, -1, 0, 1, 2, \ldots \}$ (integers)
+- $\Q = \{ p/q : p,q\in \Z, q\neq 0 \}$ (rationals)
+- $\R$ is the completion of $\Q$ (reals)
+- $\R^n$
+- $\C$
 - $[n] = \{1,2,\ldots, n\}$
 - $\{\{1,2\}, \{1,2,3\}\}$
 - $\{(1,2), (2,3)\}$
@@ -263,7 +261,7 @@ end ex
 begin defn
 The expectation of a random variable $X$ is 
 
-$$\mathbb{E}[X] = \sum_{x} x \Pr(X=x)$$
+$$\E[X] = \sum_{x} x \Pr(X=x)$$
 
 this is just "weighted average of outcomes using probabilities as weights"
 end defn
@@ -293,12 +291,12 @@ other* or a subsetof $b$ people who *all don't know each other*.
 
 Here are two more "graph-theoretically-technical" ways of saying this.
 
-$R(a,b)$ is the minimum $n \in \mathbb{N}$ such that any graph on $n$ vertices
+$R(a,b)$ is the minimum $n \in \N$ such that any graph on $n$ vertices
 must either have an $a$-clique (i.e. have $K_a$ as an induced subgraph) or have
 a $b$-independent set (i.e. have a completely disconnected induced subgraph on
 $b$ vertices).
 
-$R(a,b)$ is the minimum $n\in\mathbb{N}$ such that any $2$-coloring of $K_n$
+$R(a,b)$ is the minimum $n\in\N$ such that any $2$-coloring of $K_n$
 with red and blue must have a $K_a$ monochromatic red induced subgraph or a
 $K_b$ monochromatic blue subgraph.
 end defn
@@ -465,7 +463,7 @@ Specifically the new proof strategy highlighted looks like this:
 
 > make some random thing  
 > Compute the expectation of it  
-> there has to be a point where $X \ge \mathbb{E}[X]$ and where $X \le \mathbb{E}[X]$   
+> there has to be a point where $X \ge \E[X]$ and where $X \le \E[X]$   
 
 ---
 
@@ -475,11 +473,11 @@ with my usual proof of this fact.
 
 begin thm
 Expectation is linear
-That is, if $X, Y$ are random variables and $a \in \mathbb{R}$ is some scalar, then 
+That is, if $X, Y$ are random variables and $a \in \R$ is some scalar, then 
 
-$$\mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y]$$ 
+$$\E[X+Y] = \E[X] + \E[Y]$$ 
 and 
-$$\mathbb{E}[aX] = a\mathbb{E}[X]$$ 
+$$\E[aX] = a\E[X]$$ 
 
 end thm
 
@@ -489,13 +487,13 @@ definition: scaling all the outcomes by some amount clearly scales the average
 by the same amount.
 More formally we have by the definioin of expectation:
 
-$$\mathbb{E}[aX] = \sum_{y} y \Pr[aX = y] = \sum_{x} ax \Pr[aX = ax] = a\sum_{x} x \Pr[X = x] = a\mathbb{E}[X].$$
+$$\E[aX] = \sum_{y} y \Pr[aX = y] = \sum_{x} ax \Pr[aX = ax] = a\sum_{x} x \Pr[X = x] = a\E[X].$$
 
 ok so that's super intuitive. But the fact that the sum of the expectations of
 **even dependent random variables** is still the expectation of their sum seems
 counterintuitive to some people at first. Here's a picture that will make it obvious though. 
 
-![$\mathbb{E}[X+Y] =\mathbb{E}[X] + \mathbb{E}[Y]$](data/chpt2/linearityofexpectation.png)
+![$\E[X+Y] =\E[X] + \E[Y]$](data/chpt2/linearityofexpectation.png)
 
 So that's *legendary* as they say.
 end pf
@@ -504,7 +502,7 @@ ok so there's a couple of problems that I want to share with you now. But I'm
 kind of tired of writing atm so I'll just chose my favorite of them
 
 begin thm
-Let $v_1,\ldots, v_n \in \mathbb{R}^m$ be arbitrary unit vectors. Then there exists $\epsilon_1,\ldots, \epsilon_n \in \{-1,1\}$ such that 
+Let $v_1,\ldots, v_n \in \R^m$ be arbitrary unit vectors. Then there exists $\epsilon_1,\ldots, \epsilon_n \in \{-1,1\}$ such that 
 $$\left| \sum_{i=1}^n \epsilon_i v_i \right| \le \sqrt{n}$$
 and there exists $\epsilon_1,\ldots, \epsilon_n \in \{-1,+1\}$ such that 
 $$\left| \sum_{i=1}^n \epsilon_i v_i \right| \ge \sqrt{n}$$
@@ -518,17 +516,17 @@ Note
 
 $$X = \sum_{i,j} \epsilon_i\epsilon_j v_i\cdot v_j $$
 
-Let's compute $\mathbb{E}[X]$:
+Let's compute $\E[X]$:
 
-$$\mathbb{E}[X] = \sum_{i,j} \mathbb{E}[\epsilon_i\epsilon_j] v_i\cdot v_j $$
+$$\E[X] = \sum_{i,j} \E[\epsilon_i\epsilon_j] v_i\cdot v_j $$
 
-If $i=j$ then $\mathbb{E}[\epsilon_i^2] = \mathbb{E}[1] = 1.$
-Else, $\epsilon_i, \epsilon_j$ are independent, so $\mathbb{E}[\epsilon_i \epsilon_j] = \mathbb{E}[\epsilon_i] \mathbb{E}[\epsilon_j] = 0$
+If $i=j$ then $\E[\epsilon_i^2] = \E[1] = 1.$
+Else, $\epsilon_i, \epsilon_j$ are independent, so $\E[\epsilon_i \epsilon_j] = \E[\epsilon_i] \E[\epsilon_j] = 0$
 
 Overall we have
-$$\mathbb{E}[X] = \sum_{i} v_i\cdot v_i = n $$
+$$\E[X] = \sum_{i} v_i\cdot v_i = n $$
 
-There must be choice of $\epsilon_i$ so that $X\ge \mathbb{E}[X]$ and so that $X \le \mathbb{E}[X]$.
+There must be choice of $\epsilon_i$ so that $X\ge \E[X]$ and so that $X \le \E[X]$.
 
 end pf
 
@@ -572,6 +570,58 @@ ok this section is really coming soon. for real now!
 I convinced a couple of people to join a little club to read this
 book with me which'll be super helpful in terms of reminding me
 to read :). And just super fun in general.
+
+OK let's go.
+
+Here's the big idea for this week:
+
+begin quote
+Random structures are pretty good
+But often it turns out that by altering a random structure 
+you can get somehting even better than what you started with!
+This is called an **alteration**
+end quote
+
+This is maybe best described by example:
+
+begin thm
+Consider the ramsay number $R(k,k)$. For any integer $n$,
+$$R(k, k) > n - \binom{n}{k}2^{1-\binom{k}{2}}.$$ 
+end thm
+
+This turns out to be better than the method I originally talked
+about way back in Chapter 1! In particular we get
+
+begin cor
+$$R(k,k) > \frac{1}{e}(1+o(1))k2^{k/2}$$
+end cor
+Wheras the old one can't be better than 
+begin cor
+$$R(k,k) > \frac{1}{e\sqrt{2}}(1+o(1))k2^{k/2}$$
+end cor
+begin rmk
+I actually just showed $R(k,k)>2^{k/2}$, but if I cared more
+about the exact asymptotics apparenly that's what the asymptotics come out to.
+end rmk
+begin rmk
+Actuall asymptotics aren't important at all, it's the method that's important.
+end rmk
+
+So let's prove it!
+begin pf
+Randomly color a graph on $n$ vertices. Let $X$ be the random
+variable "number of monochromatic $K_k$ subgraphs". By linearity
+of expeectation 
+$$\E[X] = \binom{n}{k} 2^{1-\binom{k}{2}}.$$
+Of course there is some coloring where $X \le \E[X]$. Pick such a
+coloring, and remove a vertex from every monochromatic $K_k$.
+Of course this new graph has now monochromatic $K_k$, we just
+destroyed them all!
+But the new graph has at least 
+$$n-\binom{n}{k} 2^{1-\binom{k}{2}}$$
+vertices, hence the desired claim.
+end pf
+
 
 # Chapter 4
 # Chapter 5

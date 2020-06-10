@@ -6,7 +6,10 @@ try:
 except:
     sys.exit("ERROR: Please input a file to eat")
 
-environment_types = ["thm", "rmk", "prop", "ex", "cor", "lem", "clm", "defn", "pf"]
+with open ("../formatting/tex_macros.tex", "r") as f:
+    tex_macros = f.read()
+
+environment_types = ["thm", "rmk", "prop", "ex", "cor", "lem", "clm", "defn", "pf", "quote"]
 long_name = {
     "thm": "Theorem",
     "rmk": "Remark",
@@ -16,7 +19,8 @@ long_name = {
     "clm": "Claim",
     "lem": "Lemma",
     "defn": "Definition",
-    "pf": "Proof"
+    "pf": "Proof", 
+    "quote": "Quote"
 }
 
 looking_for_closure = False
@@ -31,18 +35,29 @@ with open(file, "r") as f:
                 if row.strip() == f"begin {env_type}":
                     looking_for_closure = True
                     start_environment = env_type
-                    out_text += f'<div class="{start_environment} envbox">**{long_name[start_environment]}.**\n'
+                    
+                    if start_environment == "quote":
+                        out_text += "---\n\n"
+                    else:
+                        out_text += f'<div class="{start_environment} envbox">**{long_name[start_environment]}.**\n'
+
                     row_handled = True
                     break
         elif looking_for_closure:
             if row.strip() == f"end {start_environment}":
                 looking_for_closure = False
-                out_text += f"</div>\n"
+                if start_environment == "quote":
+                    out_text += "\n---\n"
+                else:
+                    out_text += f"</div>\n"
                 unclosed_stack = []
                 start_environment = ""
                 row_handled = True
         if not row_handled:
-            out_text += row
+            if looking_for_closure and start_environment == "quote":
+                out_text += "> " + row.strip() + "  \n"
+            else:
+                out_text += row
 
 if looking_for_closure:
     sys.exit("ERROR: no closure!")
@@ -52,6 +67,7 @@ path_start, path_end = os.path.split(file.replace(".md", ".aug.md"))
 out_path = os.path.join(path_start, "data", path_end)
 
 with open(out_path, 'w') as f:
+    f.write(tex_macros)
     f.write(out_text)
 
 

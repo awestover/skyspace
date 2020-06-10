@@ -1,3 +1,5 @@
+
+
 <h1 id="the-probabilistic-method">The Probabilistic Method</h1>
 <h3 id="preface">preface</h3>
 <p>I am going to try to read “The Probablistic Method” by Noga Alon and Joel H. Spencer. The Probablistic Method, pioneered by Erdos, is a really interesting way to think about combinatorics problems. Here is a high level overview of how proofs by the probabilistic method go</p>
@@ -51,9 +53,9 @@ Really the final note to the reader before starting:
 <div class="ex envbox">
 <p><strong>Example.</strong> Some nice sets:</p>
 <ul>
-<li><span class="math inline">\(\mathbb{N} = \{1,2,\ldots, \}\)</span> (natural numbers)</li>
-<li><span class="math inline">\(\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots \}\)</span> (integers)</li>
-<li><span class="math inline">\(\mathbb{Q} = \{ p/q : p,q\in \mathbb{Z}, q\neq 0 \}\)</span> (rationals)</li>
+<li><span class="math inline">\(\mathbb{N}= \{1,2,\ldots, \}\)</span> (natural numbers)</li>
+<li><span class="math inline">\(\mathbb{Z}= \{\ldots, -2, -1, 0, 1, 2, \ldots \}\)</span> (integers)</li>
+<li><span class="math inline">\(\mathbb{Q}= \{ p/q : p,q\in \mathbb{Z}, q\neq 0 \}\)</span> (rationals)</li>
 <li><span class="math inline">\(\mathbb{R}\)</span> is the completion of <span class="math inline">\(\mathbb{Q}\)</span> (reals)</li>
 <li><span class="math inline">\(\mathbb{R}^n\)</span></li>
 <li><span class="math inline">\(\mathbb{C}\)</span></li>
@@ -165,7 +167,7 @@ Really the final note to the reader before starting:
 </div>
 <div class="defn envbox">
 <p><strong>Definition.</strong> The expectation of a random variable <span class="math inline">\(X\)</span> is</p>
-<p><span class="math display">\[\mathbb{E}[X] = \sum_{x} x \Pr(X=x)\]</span></p>
+<p><span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[X] = \sum_{x} x \Pr(X=x)\]</span></p>
 <p>this is just “weighted average of outcomes using probabilities as weights”</p>
 </div>
 <div class="ex envbox">
@@ -270,20 +272,20 @@ Really the final note to the reader before starting:
 <blockquote>
 <p>make some random thing<br />
 Compute the expectation of it<br />
-there has to be a point where <span class="math inline">\(X \ge \mathbb{E}[X]\)</span> and where <span class="math inline">\(X \le \mathbb{E}[X]\)</span></p>
+there has to be a point where <span class="math inline">\(X \ge \mathop{\mathrm{\mathbb{E}}}[X]\)</span> and where <span class="math inline">\(X \le \mathop{\mathrm{\mathbb{E}}}[X]\)</span></p>
 </blockquote>
 <hr />
 <p>One really nice thing about expectation is that it’s linear. I recently was talking about this with people, and I thought of a really nice picture to go with my usual proof of this fact.</p>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Expectation is linear That is, if <span class="math inline">\(X, Y\)</span> are random variables and <span class="math inline">\(a \in \mathbb{R}\)</span> is some scalar, then</p>
-<p><span class="math display">\[\mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y]\]</span> and <span class="math display">\[\mathbb{E}[aX] = a\mathbb{E}[X]\]</span></p>
+<p><span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[X+Y] = \mathop{\mathrm{\mathbb{E}}}[X] + \mathop{\mathrm{\mathbb{E}}}[Y]\]</span> and <span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[aX] = a\mathop{\mathrm{\mathbb{E}}}[X]\]</span></p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> First let’s prove the scalar multiplier thing. It’s basically trivial from the definition: scaling all the outcomes by some amount clearly scales the average by the same amount. More formally we have by the definioin of expectation:</p>
-<p><span class="math display">\[\mathbb{E}[aX] = \sum_{y} y \Pr[aX = y] = \sum_{x} ax \Pr[aX = ax] = a\sum_{x} x \Pr[X = x] = a\mathbb{E}[X].\]</span></p>
+<p><span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[aX] = \sum_{y} y \Pr[aX = y] = \sum_{x} ax \Pr[aX = ax] = a\sum_{x} x \Pr[X = x] = a\mathop{\mathrm{\mathbb{E}}}[X].\]</span></p>
 <p>ok so that’s super intuitive. But the fact that the sum of the expectations of <strong>even dependent random variables</strong> is still the expectation of their sum seems counterintuitive to some people at first. Here’s a picture that will make it obvious though.</p>
 <figure>
-<img src="data/chpt2/linearityofexpectation.png" alt="" /><figcaption><span class="math inline">\(\mathbb{E}[X+Y] =\mathbb{E}[X] + \mathbb{E}[Y]\)</span></figcaption>
+<img src="data/chpt2/linearityofexpectation.png" alt="" /><figcaption><span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[X+Y] =\mathop{\mathrm{\mathbb{E}}}[X] + \mathop{\mathrm{\mathbb{E}}}[Y]\)</span></figcaption>
 </figure>
 <p>So that’s <em>legendary</em> as they say.</p>
 </div>
@@ -294,11 +296,11 @@ there has to be a point where <span class="math inline">\(X \ge \mathbb{E}[X]\)<
 <div class="pf envbox">
 <p><strong>Proof.</strong> Choose the <span class="math inline">\(\epsilon_i\)</span> randomly with <span class="math inline">\(\Pr[\epsilon_i=-1] = \Pr[\epsilon_i = +1] = 1/2\)</span> (and indpendently). Let <span class="math display">\[X = \left|\sum_{i=1}^n \epsilon_i v_i\right|^2 \]</span> Note</p>
 <p><span class="math display">\[X = \sum_{i,j} \epsilon_i\epsilon_j v_i\cdot v_j \]</span></p>
-<p>Let’s compute <span class="math inline">\(\mathbb{E}[X]\)</span>:</p>
-<p><span class="math display">\[\mathbb{E}[X] = \sum_{i,j} \mathbb{E}[\epsilon_i\epsilon_j] v_i\cdot v_j \]</span></p>
-<p>If <span class="math inline">\(i=j\)</span> then <span class="math inline">\(\mathbb{E}[\epsilon_i^2] = \mathbb{E}[1] = 1.\)</span> Else, <span class="math inline">\(\epsilon_i, \epsilon_j\)</span> are independent, so <span class="math inline">\(\mathbb{E}[\epsilon_i \epsilon_j] = \mathbb{E}[\epsilon_i] \mathbb{E}[\epsilon_j] = 0\)</span></p>
-<p>Overall we have <span class="math display">\[\mathbb{E}[X] = \sum_{i} v_i\cdot v_i = n \]</span></p>
-<p>There must be choice of <span class="math inline">\(\epsilon_i\)</span> so that <span class="math inline">\(X\ge \mathbb{E}[X]\)</span> and so that <span class="math inline">\(X \le \mathbb{E}[X]\)</span>.</p>
+<p>Let’s compute <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[X]\)</span>:</p>
+<p><span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[X] = \sum_{i,j} \mathop{\mathrm{\mathbb{E}}}[\epsilon_i\epsilon_j] v_i\cdot v_j \]</span></p>
+<p>If <span class="math inline">\(i=j\)</span> then <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[\epsilon_i^2] = \mathop{\mathrm{\mathbb{E}}}[1] = 1.\)</span> Else, <span class="math inline">\(\epsilon_i, \epsilon_j\)</span> are independent, so <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[\epsilon_i \epsilon_j] = \mathop{\mathrm{\mathbb{E}}}[\epsilon_i] \mathop{\mathrm{\mathbb{E}}}[\epsilon_j] = 0\)</span></p>
+<p>Overall we have <span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[X] = \sum_{i} v_i\cdot v_i = n \]</span></p>
+<p>There must be choice of <span class="math inline">\(\epsilon_i\)</span> so that <span class="math inline">\(X\ge \mathop{\mathrm{\mathbb{E}}}[X]\)</span> and so that <span class="math inline">\(X \le \mathop{\mathrm{\mathbb{E}}}[X]\)</span>.</p>
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Furthermore, if you choose the <span class="math inline">\(\epsilon_i\)</span> greedily, it works.</p>
@@ -312,6 +314,38 @@ there has to be a point where <span class="math inline">\(X \ge \mathbb{E}[X]\)<
 <p>dang it!!! I’m so sorry <span class="citation" data-cites="my_dedicated_fanbase">@my_dedicated_fanbase</span>. I totally forgot about this and stuff. In my defense I was at a hackathon stayed up till 4:30am, and I’ve also been binge-rereading Mistborn (3 700+ page books in 3 days? oops). Agh this blog is falling apart! I’ve done like one of the homework problems so far. aggghhhhh. OK, I’m gonna do better in the future. Anyways, I’m gonna read a bit and go to bed, but tomorrow I really legitamitely will be trying the homework problems and doing some reading. cya!</p>
 <p>Update number 2: again, I didn’t get to doing this. I’ve done a bit more of the homework now, but it’s really intense. Honestly I might go and read a different book… I do really want to read that generatingfunctionology book, and I think I can do more of the exercises. I’ll keep trying on the probabilistic method though. I’m not having trouble understanding the proofs, it’s creating them that’s the problem. lol. Anyways, hopefully I can get chapter 3 out soon.</p>
 <p>update number 3: ok this section is really coming soon. for real now! I convinced a couple of people to join a little club to read this book with me which’ll be super helpful in terms of reminding me to read :). And just super fun in general.</p>
+<p>OK let’s go.</p>
+<p>Here’s the big idea for this week:</p>
+<hr />
+<blockquote>
+<p>Random structures are pretty good<br />
+But often it turns out that by altering a random structure<br />
+you can get somehting even better than what you started with!<br />
+This is called an <strong>alteration</strong></p>
+</blockquote>
+<hr />
+<p>This is maybe best described by example:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Consider the ramsay number <span class="math inline">\(R(k,k)\)</span>. For any integer <span class="math inline">\(n\)</span>, <span class="math display">\[R(k, k) &gt; n - \binom{n}{k}2^{1-\binom{k}{2}}.\]</span></p>
+</div>
+<p>This turns out to be better than the method I originally talked about way back in Chapter 1! In particular we get</p>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> <span class="math display">\[R(k,k) &gt; \frac{1}{e}(1+o(1))k2^{k/2}\]</span></p>
+</div>
+Wheras the old one can’t be better than
+<div class="cor envbox">
+<p><strong>Corollary.</strong> <span class="math display">\[R(k,k) &gt; \frac{1}{e\sqrt{2}}(1+o(1))k2^{k/2}\]</span></p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> I actually just showed <span class="math inline">\(R(k,k)&gt;2^{k/2}\)</span>, but if I cared more about the exact asymptotics apparenly that’s what the asymptotics come out to.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Actuall asymptotics aren’t important at all, it’s the method that’s important.</p>
+</div>
+So let’s prove it!
+<div class="pf envbox">
+<p><strong>Proof.</strong> Randomly color a graph on <span class="math inline">\(n\)</span> vertices. Let <span class="math inline">\(X\)</span> be the random variable “number of monochromatic <span class="math inline">\(K_k\)</span> subgraphs”. By linearity of expeectation <span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[X] = \binom{n}{k} 2^{1-\binom{k}{2}}.\]</span> Of course there is some coloring where <span class="math inline">\(X \le \mathop{\mathrm{\mathbb{E}}}[X]\)</span>. Pick such a coloring, and remove a vertex from every monochromatic <span class="math inline">\(K_k\)</span>. Of course this new graph has now monochromatic <span class="math inline">\(K_k\)</span>, we just destroyed them all! But the new graph has at least <span class="math display">\[n-\binom{n}{k} 2^{1-\binom{k}{2}}\]</span> vertices, hence the desired claim.</p>
+</div>
 <h1 id="chapter-4">Chapter 4</h1>
 <h1 id="chapter-5">Chapter 5</h1>
 <h1 id="chapter-6">Chapter 6</h1>
