@@ -1,3 +1,5 @@
+# asymptotic analysis
+
 Now, I have mixed feelings about asymptotic analysis.
 
 On the ond hand, estimating functions is pretty cool.
@@ -42,6 +44,10 @@ tight (i.e. useful) when $0< \delta\ll 1/2$.
 
 For $\delta\approx 0$
 $$1-\delta \approx \frac{1}{1+\delta}$$ 
+
+### series
+
+$$\ln x \le \sum_{i=1}^x 1/i \le \ln x + 1$$
 
 ### quadratics:
 $$x^2 \ge 0$$
