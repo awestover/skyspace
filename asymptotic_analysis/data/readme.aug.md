@@ -45,6 +45,16 @@ $$(1+x)^r \le 1+rx$$
 
 For $p>0$
 $$1-xp\le e^{-xp}$$
+Here's another version of this one (you get it by taking the
+$\ln$ of the above):
+$$\ln \frac{1}{1-xp} \ge xp.$$
+
+This one is super common! So I'll write it again, 
+$$1-\delta \le e^{-\delta}$$ 
+and
+$$\ln \frac{1}{1-\delta} \ge \delta$$
+these two are valid for all $\delta \in \R$, but they're really
+tight (i.e. useful) when $0< \delta\ll 1/2$.
 
 For $\delta\approx 0$
 $$1-\delta \approx \frac{1}{1+\delta}$$ 
