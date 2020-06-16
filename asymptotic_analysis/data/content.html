@@ -1,0 +1,21 @@
+
+
+<p>Now, I have mixed feelings about asymptotic analysis.</p>
+<p>On the ond hand, estimating functions is pretty cool. On the other hand, sometimes asymptotic analysis feels a little bit too “computy” to me. Like you have to do calculus, and there are often really nasty expressions.</p>
+<p>I think the key to having a good expereience with asymptotic analysis is to have a good understanding of functions.</p>
+<p>Hence this little blog post in which I’m going to write down a bunch of ineqaulities that are often rpetty useful.</p>
+<h1 id="general-stuff">general stuff</h1>
+<p>Bernouli’s Identity: For <span class="math inline">\(x\ge -1, r \in \mathbb{Z}_{\ge 0}\)</span> <span class="math display">\[(1+x)^r \ge 1+rx\]</span></p>
+<p>Also, for <span class="math inline">\(x\ge -1, r\ge 1\)</span> (<span class="math inline">\(r\in\mathbb{R}\)</span>) <span class="math display">\[(1+x)^r \ge 1+rx\]</span></p>
+<p>for <span class="math inline">\(x\ge -1, r\in [0,1]\)</span> (<span class="math inline">\(r\in\mathbb{R}\)</span>) <span class="math display">\[(1+x)^r \le 1+rx\]</span></p>
+<p>(equality at <span class="math inline">\(r=1\)</span>)</p>
+<p>For <span class="math inline">\(p&gt;0\)</span> <span class="math display">\[1-xp\le e^{-xp}\]</span></p>
+<p>For <span class="math inline">\(\delta\approx 0\)</span> <span class="math display">\[1-\delta \approx \frac{1}{1+\delta}\]</span></p>
+<h1 id="binomial-stuff">Binomial stuff</h1>
+<p><span class="math display">\[\binom{n}{k} \le 2^n\]</span> <span class="math display">\[\binom{n}{k} \le \frac{n^k}{k!}\]</span> <span class="math display">\[\left(\frac{n}{k}\right)^k \le \binom{n}{k} \le \left(\frac{ne}{k}\right)^k\]</span></p>
+<p><a href="http://page.mi.fu-berlin.de/shagnik/notes/binomials.pdf">This nice little handout on binomial bounds</a> gives some more specific bounds:</p>
+<p>If <span class="math inline">\(k\le o(\sqrt{n})\)</span> then <span class="math display">\[\binom{n}{k} = (1+o(1))\frac{n^k}{k!},\]</span> which is tight up to a multiplicative <span class="math inline">\(O(\sqrt{k})\)</span> error.</p>
+<p>If <span class="math inline">\(k\le o(n)\)</span> <span class="math display">\[\log \binom{n}{k}  = (1+o(1)) k \log n/k\]</span></p>
+<p>If <span class="math inline">\(k\ge \Omega(n)\)</span> then <span class="math display">\[\binom{n}{k} = 2^{\Omega(n)}\]</span> specifically <span class="math inline">\(\binom{n}{k} \approx 2^{n\cdot H(k/n)}\)</span> where <span class="math inline">\(H\)</span> is the binary entropy funcion <span class="math inline">\(H(p) = -p\log p - (1-p) \log (1-p).\)</span></p>
+<h1 id="sums">sums</h1>
+<p>AM-GM is a classic <span class="math display">\[\frac{1}{n}\sum_{i=1}^n a_i \ge \prod_{i=1}^n a_i^{1/n}\]</span></p>
