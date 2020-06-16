@@ -49,9 +49,10 @@ $$1-xp\le e^{-xp}$$
 For $\delta\approx 0$
 $$1-\delta \approx \frac{1}{1+\delta}$$ 
 
-quadratics:
+### quadratics:
 $$x^2 \ge 0$$
 $$a(x-h)^2+k \ge k$$
+
 
 # calculus:
 $f'(x_0) = 0$ and $f''(x_0) > 0$ then $x_0$ is a local minimum of
@@ -130,7 +131,7 @@ $$\left(\frac{1}{n} \sum a_i^{k_1} \right)^{1/k_1} \ge
 \left(\frac{1}{n} \sum a_i^{k_2} \right)^{1/k_2} $$
 
 weighted AM-GM:
-$$\sum \lambda_i a_i \ge \prod a_i^\lambda_i$$
+$$\sum \lambda_i a_i \ge \prod a_i^{\lambda_i}$$
 for weights $\lambda_i\ge 0$ summing to $1$ ($\sum \lambda_i = 1$).
 
 # probability inequalities
