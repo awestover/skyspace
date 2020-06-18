@@ -36,6 +36,51 @@ proofs by the probabilistic method go
 The approach is often pretty non-constructive but sometimes it can be made
 constructive. 
 
+##### resonable example
+<div class="rmk envbox">**Remark.**
+Yup I'm putting math in the preface to my blog!
+I think this is a good idea. It gives you a bit of a better idea
+what this blog is about. It'd be kind of weird to keep reading
+for hours before you even know what the probabilistic method
+is!
+</div>
+
+Let $\mathcal{F}$ be an intersecting family of sets
+Let $2k \le n$ and suppose $\mathcal{F}$ is an intersecting family of $k$ element subsets of an $n$ set
+
+<div class="thm envbox">**Theorem.**
+**"Erdos-Ko-Rado Theorem"**
+$$|\mathcal{F}| \le {n-1 \choose k-1}$$
+</div>
+
+<div class="rmk envbox">**Remark.**
+This is tight! It is achievable by the "sunflower configuration", where you choose all sets that intersect with $0$
+</div>
+
+<div class="lem envbox">**Lemma.**
+\mathcal{F} can contain at most k sets of the form s+[k]
+</div>
+<div class="pf envbox">**Proof.**
+fix some set $t+[k]$ in $\mathcal{F}$. To intersect $t+[k]$ the set has to be like 
+$t-i+[k]$ or $t+i+[k]$ for some $0 < i < k$. There are $2(k-1)$ such sets.
+We can pair off sets of the form $s+[k]$ with sets of the form $s+k+[k]$.
+Because $2k \le n$ these sets are disjoint. Hence, $\mathcal{F}$ contains at most one of
+them. Hence $\mathcal{F}$ contains at most $2(k-1)/2 + 1 = k$ of these types of sets.
+</div>
+
+<div class="pf envbox">**Proof.**
+(proof of Erdos-Ko-Rado Theorem)
+
+Choose a random permutation $\pi$ of $[n]$. Choose a random $i \in [n]$.
+Conditioning on $\pi$, the probability of $\sigma(i+[k]) \in \mathcal{F}$ is at most $k/n$ by the Lemma (relabel stuff).
+The probability of A \in \mathcal{F} is of course equal to $|\mathcal{F}| / {n \choose k}$.
+Thus we have
+$$\frac{|\mathcal{F}|}{{n \choose k}} \le \frac{k}{n}.$$
+Hence
+$$|\mathcal{F}| \le {n \choose k} \frac{k}{n} = {n-1 \choose k-1}.$$
+</div>
+
+
 ##### story
 <div class="rmk envbox">**Remark.**
 This part is a somewhat soggy and crumbly "personal motivation

@@ -14,6 +14,27 @@ Thus, there must be some thing that is good.</p>
 </blockquote>
 <hr />
 <p>The approach is often pretty non-constructive but sometimes it can be made constructive.</p>
+<h5 id="resonable-example">resonable example</h5>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Yup I’m putting math in the preface to my blog! I think this is a good idea. It gives you a bit of a better idea what this blog is about. It’d be kind of weird to keep reading for hours before you even know what the probabilistic method is!</p>
+</div>
+<p>Let <span class="math inline">\(\mathcal{F}\)</span> be an intersecting family of sets Let <span class="math inline">\(2k \le n\)</span> and suppose <span class="math inline">\(\mathcal{F}\)</span> is an intersecting family of <span class="math inline">\(k\)</span> element subsets of an <span class="math inline">\(n\)</span> set</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <strong>“Erdos-Ko-Rado Theorem”</strong> <span class="math display">\[|\mathcal{F}| \le {n-1 \choose k-1}\]</span></p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> This is tight! It is achievable by the “sunflower configuration”, where you choose all sets that intersect with <span class="math inline">\(0\)</span></p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong>  can contain at most k sets of the form s+[k]</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> fix some set <span class="math inline">\(t+[k]\)</span> in <span class="math inline">\(\mathcal{F}\)</span>. To intersect <span class="math inline">\(t+[k]\)</span> the set has to be like <span class="math inline">\(t-i+[k]\)</span> or <span class="math inline">\(t+i+[k]\)</span> for some <span class="math inline">\(0 &lt; i &lt; k\)</span>. There are <span class="math inline">\(2(k-1)\)</span> such sets. We can pair off sets of the form <span class="math inline">\(s+[k]\)</span> with sets of the form <span class="math inline">\(s+k+[k]\)</span>. Because <span class="math inline">\(2k \le n\)</span> these sets are disjoint. Hence, <span class="math inline">\(\mathcal{F}\)</span> contains at most one of them. Hence <span class="math inline">\(\mathcal{F}\)</span> contains at most <span class="math inline">\(2(k-1)/2 + 1 = k\)</span> of these types of sets.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> (proof of Erdos-Ko-Rado Theorem)</p>
+<p>Choose a random permutation <span class="math inline">\(\pi\)</span> of <span class="math inline">\([n]\)</span>. Choose a random <span class="math inline">\(i \in [n]\)</span>. Conditioning on <span class="math inline">\(\pi\)</span>, the probability of <span class="math inline">\(\sigma(i+[k]) \in \mathcal{F}\)</span> is at most <span class="math inline">\(k/n\)</span> by the Lemma (relabel stuff). The probability of A  is of course equal to <span class="math inline">\(|\mathcal{F}| / {n \choose k}\)</span>. Thus we have <span class="math display">\[\frac{|\mathcal{F}|}{{n \choose k}} \le \frac{k}{n}.\]</span> Hence <span class="math display">\[|\mathcal{F}| \le {n \choose k} \frac{k}{n} = {n-1 \choose k-1}.\]</span></p>
+</div>
 <h5 id="story">story</h5>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> This part is a somewhat soggy and crumbly “personal motivation for doing this story thing”. Consider skipping straight to my post on Chapter 0, or even Chapter 1. Nevertheless I feel obligated to write an at least somewhat compelling preface, because I like to read prefaces. So yeah, whatever. If the real numbers are complete, then I better be complete in my blogging.</p>
