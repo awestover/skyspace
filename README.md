@@ -15,3 +15,4 @@
 | [Vector Calculus](vectorCalculus) | Talk about div, grad, curl, then about why differential forms are better. introduce important vector calculus notions, and talk about wedge products, differential forms, exterior derivatives, stokses thm $\int_B d\phi = \int_{\partial B} \phi$, (_note: work in progress_) | should know some calculus, probably multi and linear really. Or you can just look at the colorfull vector field pictures, they're nice too :) |
 | [Marriage Problem](marriage_problem) | aka the secretary problem | need a tiny bit of knowledge of how probability works |
 | [Compression](compression) | compressiony stuff | I guess a bit of familiarity with the tree data structure is nice, but really this is a very accesible article, I hope |
+|[Q is countable](countable) | A cool visualization of the diagonilization argument for why countable unions of countable sets are countable. | know what a bijection is|
