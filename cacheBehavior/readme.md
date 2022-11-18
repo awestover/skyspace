@@ -4,10 +4,9 @@
 ---
 
 > Alek: Wow Cache Behavior really matters !!!  
-> Rand: yup
+> Rand: yup! but knowing cache size doesn't sometimes
 
 ---
-
 
 # How is an array stored in memory?
 

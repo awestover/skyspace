@@ -35,27 +35,20 @@
         </div>
       </nav>
 
-      <div id="content">
-        <h1>Alek Westover</h1>
-        <hr>
-        <p>I started this blog because I have learned a lot of cool things and
-        want to share them. I love to do this in person, but I think that there
-        is also something valuable about making a more structured presentation
-        of ideas. This website will hopefully:</p> 
-        <ul>
-          <li>Help me better understand some cool ideas</li>
-          <li>Help me better remember some cool ideas</li>
-          <li>Help me better explain some cool ideas</li>
-          <li>Teach some people some cool ideas</li>
-        </ul>
-        <p>I plan to mainly focus on math, but I will also do some more
-        programming related things.</p>
-        <br>
-        <p>If you find any errors in the content on this website, or want to talk about any ideas on the website, please contact me at: <emph>alek dot westover at gmail dot com</emph>, or make an issue / pull request on github. </p>
-<!-- In this blog I will share some cool math and programming ideas that I have come across. This is mainly for personal benefit, as I believe summarizing ideas is a great way to remember them and understand them better, but hopefully some other people can also derive utility from this website too. -->
+      <div id="content"> 
       </div>
     </div>
+
+
+    <script charset="utf-8">
+      $(document).ready(function() {
+        $('#content').load("feed-elts.html"); 
+      });
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
     <script src="formatting/bouncyGraphAnimation.js" charset="utf-8"></script>
+
   </body>
 </html>
+

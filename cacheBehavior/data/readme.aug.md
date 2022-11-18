@@ -1,13 +1,28 @@
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\setof}[2]{\{#1 \mid #2\}}
+\newcommand{\im}{\mathrm{im}}
+
+\DeclareMathOperator{\polylog}{\text{polylog}}
+\DeclareMathOperator{\poly}{\text{poly}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\text{Var}}
+
 # Alek Westover
 # Cache Behavior Matters!
 
 ---
 
 > Alek: Wow Cache Behavior really matters !!!  
-> Rand: yup
+> Rand: yup! but knowing cache size doesn't sometimes
 
 ---
-
 
 # How is an array stored in memory?
 

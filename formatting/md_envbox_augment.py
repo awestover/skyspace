@@ -6,7 +6,7 @@ try:
 except:
     sys.exit("ERROR: Please input a file to eat")
 
-with open ("../formatting/tex_macros.tex", "r") as f:
+with open ("/home/alek/Desktop/art/skyspace/formatting/tex_macros.tex", "r") as f:
     tex_macros = f.read()
 
 environment_types = ["thm", "rmk", "prop", "ex", "cor", "lem", "clm", "defn", "pf", "quote"]
