@@ -91,7 +91,7 @@ for fname in os.listdir():
     stages = ["{title}", "{contents}", "{description}", "{body}"]
     stage = 0
     for i in range(1,len(all_rows)):
-      print(stages[stage])
+      #  print(stages[stage])
       if stages[stage] == "{body}":
         body.append(all_rows[i])
       elif all_rows[i].strip() == stages[stage+1]:
@@ -103,10 +103,10 @@ for fname in os.listdir():
       elif stages[stage] == "{description}":
         description += all_rows[i]
     
-    print(title)
-    print(toc(contents))
-    print(description)
-    print(augment_md(body))
+    #  print(title)
+    #  print(toc(contents))
+    #  print(description)
+    #  print(augment_md(body))
   
     aug_loc = join("compiled", real_name+".aug.md")
     with open(aug_loc, "w") as f:

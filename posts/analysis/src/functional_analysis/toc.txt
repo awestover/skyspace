@@ -1,7 +1,0 @@
-Plan
-Motivating Pictures
-Background
-Linear Algebra
-Analysis
-Functional Analysis <br>Definitions
-Proof of <br>Projection Theorem

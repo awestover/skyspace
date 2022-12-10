@@ -1,0 +1,51 @@
+<h1 id="asymptotic-analysis">asymptotic analysis</h1>
+<p>Now, I have mixed feelings about asymptotic analysis.</p>
+<p>On the ond hand, estimating functions is pretty cool. On the other hand, sometimes asymptotic analysis feels a little bit too “computy” to me. Like you have to do calculus, and there are often really nasty expressions.</p>
+<p>I think the key to having a good expereience with asymptotic analysis is to have a good understanding of functions.</p>
+<p>Hence this little blog post in which I’m going to write down a bunch of ineqaulities that are often rpetty useful.</p>
+<h1 id="general-stuff">general stuff</h1>
+<p>Bernouli’s Identity: For <span class="math inline">\(x\ge -1, r \in \mathbb{Z}_{\ge 0}\)</span> <span class="math display">\[(1+x)^r \ge 1+rx\]</span></p>
+<p>Also, for <span class="math inline">\(x\ge -1, r\ge 1\)</span> (<span class="math inline">\(r\in\mathbb{R}\)</span>) <span class="math display">\[(1+x)^r \ge 1+rx\]</span></p>
+<p>for <span class="math inline">\(x\ge -1, r\in [0,1]\)</span> (<span class="math inline">\(r\in\mathbb{R}\)</span>) <span class="math display">\[(1+x)^r \le 1+rx\]</span></p>
+<p>(equality at <span class="math inline">\(r=1\)</span>)</p>
+<p>For <span class="math inline">\(p&gt;0\)</span> <span class="math display">\[1-xp\le e^{-xp}\]</span> Here’s another version of this one (you get it by taking the <span class="math inline">\(\ln\)</span> of the above): <span class="math display">\[\ln \frac{1}{1-xp} \ge xp.\]</span></p>
+<p>This one is super common! So I’ll write it again, <span class="math display">\[1-\delta \le e^{-\delta}\]</span> and <span class="math display">\[\ln \frac{1}{1-\delta} \ge \delta\]</span> these two are valid for all <span class="math inline">\(\delta \in \mathbb{R}\)</span>, but they’re really tight (i.e. useful) when <span class="math inline">\(0&lt; \delta\ll 1/2\)</span>.</p>
+<p>For <span class="math inline">\(\delta\approx 0\)</span> <span class="math display">\[1-\delta \approx \frac{1}{1+\delta}\]</span></p>
+<h3 id="series">series</h3>
+<p><span class="math display">\[\ln x \le \sum_{i=1}^x 1/i \le \ln x + 1\]</span></p>
+<h3 id="quadratics">quadratics:</h3>
+<p><span class="math display">\[x^2 \ge 0\]</span> <span class="math display">\[a(x-h)^2+k \ge k\]</span></p>
+<h1 id="calculus">calculus:</h1>
+<p><span class="math inline">\(f&#39;(x_0) = 0\)</span> and <span class="math inline">\(f&#39;&#39;(x_0) &gt; 0\)</span> then <span class="math inline">\(x_0\)</span> is a local minimum of your function.</p>
+<p>Taylor’s Inequality: For simplicity I take the domain of <span class="math inline">\(f\)</span> to be the region of convergence of its taylor series. If <span class="math inline">\(f\)</span> used to have a bigger domain, consider the restriction of <span class="math inline">\(f\)</span> to this domain.</p>
+<p>Say we have some infinitely differentiable <span class="math inline">\(f\)</span>; consider the Taylor Series for <span class="math inline">\(f\)</span> about <span class="math inline">\(x=a\)</span>.</p>
+<p>Let <span class="math display">\[P_k(x) = \sum_{i=0}^k \frac{f^{(i)}(a)}{i!}(x-a)^i\]</span> <span class="math display">\[S_k(x) = \sum_{i=k}^\infty \frac{f^{(i)}(a)}{i!}(x-a)^i\]</span></p>
+<p>Then <span class="math inline">\(f(x) = P_k(x) + S_k(x).\)</span> Say we are interested in bounding <span class="math inline">\(f(x) - P_k(x)\)</span>. Of course this can be accomplished by bounding <span class="math inline">\(S_k(x)\)</span>. That wasn’t so scary now, was it!</p>
+<p>The more typical way to write this is to observe that <span class="math display">\[S_k(x) = \frac{f^{(k+1)}(x)}{(k+1)!}(x-a)^{k+1}\]</span> and then say</p>
+<p><span class="math display">\[f(x) - P_k(x) = \frac{f^{(k+1)}(x)}{(k+1)!}(x-a)^{k+1}\]</span></p>
+<p>But really we want an inequality. So we take any <span class="math inline">\(M\)</span> that is an upper bound for <span class="math inline">\(S_k(x)\)</span> i.e. <span class="math inline">\(M \ge S_k(x)\)</span> for all <span class="math inline">\(x\)</span> (in the domain). Given such a choice of <span class="math inline">\(M\)</span> we have <span class="math display">\[f(x) - P_k(x) \le \frac{M}{(k+1)!}(x-a)^{k+1}\]</span></p>
+<p>Another form of Taylor’s Theorem is just that <span class="math display">\[f(x) - P_k(x) \le o(|x-a|^k)\]</span> as <span class="math inline">\(x\to a\)</span> (this little-<span class="math inline">\(o\)</span> notation is a bit weird, but I’ll live with it) which is nice.</p>
+<h1 id="binomial-stuff">Binomial stuff</h1>
+<p><span class="math display">\[\binom{n}{k} \le 2^n\]</span> <span class="math display">\[\binom{n}{k} \le \frac{n^k}{k!}\]</span> <span class="math display">\[\left(\frac{n}{k}\right)^k \le \binom{n}{k} \le \left(\frac{ne}{k}\right)^k\]</span></p>
+<p><a href="http://page.mi.fu-berlin.de/shagnik/notes/binomials.pdf">This nice little handout on binomial bounds</a> gives some more specific bounds:</p>
+<p>If <span class="math inline">\(k\le o(\sqrt{n})\)</span> then <span class="math display">\[\binom{n}{k} = (1+o(1))\frac{n^k}{k!},\]</span> which is tight up to a multiplicative <span class="math inline">\(O(\sqrt{k})\)</span> error.</p>
+<p>If <span class="math inline">\(k\le o(n)\)</span> <span class="math display">\[\log \binom{n}{k}  = (1+o(1)) k \log n/k\]</span></p>
+<p>If <span class="math inline">\(k\ge \Omega(n)\)</span> then <span class="math display">\[\binom{n}{k} = 2^{\Omega(n)}\]</span> specifically <span class="math inline">\(\binom{n}{k} \approx 2^{n\cdot H(k/n)}\)</span> where <span class="math inline">\(H\)</span> is the binary entropy funcion <span class="math inline">\(H(p) = -p\log p - (1-p) \log (1-p).\)</span></p>
+<h1 id="sums">sums</h1>
+<p>AM-GM is a classic <span class="math display">\[\frac{1}{n}\sum_{i=1}^n a_i \ge \prod_{i=1}^n a_i^{1/n}\]</span></p>
+<p>Who could stand to not have the triangle inequality <span class="math display">\[|\sum x_i | \le \sum |x_i|\]</span></p>
+<p>Cauchy-shwarz, another classic <span class="math display">\[\Big|\sum a_i b_i \Big|^2 \le \sum a_i^2 \sum b_i^2\]</span></p>
+<p><a href="https://artofproblemsolving.com/wiki/index.php/Root-Mean_Square-Arithmetic_Mean-Geometric_Mean-Harmonic_mean_Inequality">aops has some generlaizations of AM-GM here</a> <a href="https://artofproblemsolving.com/wiki/index.php/Power_Mean_Inequality">power mean inequality</a></p>
+<p>power mean inequality: For any <span class="math inline">\(a_1,\ldots, a_n \ge 0\)</span> and <span class="math inline">\(k_1, k_2 \in \mathbb{R}\)</span> with <span class="math inline">\(k_1\ge k_2\)</span> <span class="math display">\[\left(\frac{1}{n} \sum a_i^{k_1} \right)^{1/k_1} \ge
+\left(\frac{1}{n} \sum a_i^{k_2} \right)^{1/k_2} \]</span></p>
+<p>weighted AM-GM: <span class="math display">\[\sum \lambda_i a_i \ge \prod a_i^{\lambda_i}\]</span> for weights <span class="math inline">\(\lambda_i\ge 0\)</span> summing to <span class="math inline">\(1\)</span> (<span class="math inline">\(\sum \lambda_i = 1\)</span>).</p>
+<h1 id="probability-inequalities">probability inequalities</h1>
+<ul>
+<li>Markov’s Inequality</li>
+<li>Chebyshev’s Inequality</li>
+<li>Chernoff Bound</li>
+<li>Hoeffding Bound</li>
+<li>Jensen’s Inequality</li>
+</ul>
+<h1 id="thats-it-so-far">That’s It so Far</h1>
+<p>Do you have an inequality that you really like that I don’t have written down? Please let me know!</p>

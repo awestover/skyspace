@@ -1,0 +1,2 @@
+asymptotic analysis
+what are functions look like

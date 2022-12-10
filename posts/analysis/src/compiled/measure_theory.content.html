@@ -1,0 +1,130 @@
+<h1 id="measure-theory">Measure Theory</h1>
+<hr />
+<blockquote>
+<p>Alek: You know what’s trash?</p>
+</blockquote>
+<blockquote>
+<p>Rand: What?</p>
+</blockquote>
+<blockquote>
+<p>Alek: The Reiman integral.</p>
+</blockquote>
+<blockquote>
+<p>Rand: How so?</p>
+</blockquote>
+<blockquote>
+<p>Alek: It’s just so <span class="math inline">\(\mathbb{R}^n\)</span>-y yah know? And it can’t even handle integrating really basic functions like the indicator function for <span class="math inline">\(\mathbb{Q}\cap [0,1]\)</span>. Ugh, if only there was a better way.</p>
+</blockquote>
+<blockquote>
+<p>Rand: Well what could you do besides partitioning the domain, and summing over function values on each element of the partition?</p>
+</blockquote>
+<blockquote>
+<p>Alek: What if you instead <em>partition the codomain</em>, and then see how much of the domain fits into the codomain bins?</p>
+</blockquote>
+<blockquote>
+<p>Rand: How do you measure how much of the domain falls into the codomain bins?</p>
+</blockquote>
+<blockquote>
+<p>Alek: <strong><em>Measure Theory!!!</em></strong></p>
+</blockquote>
+<hr />
+<h1 id="a-measure-space">A Measure Space</h1>
+<p>OK, before defining a measure space in full generality, I’ll give some super nice motivating examples that are very relatable and stuff to ease you into the topic.</p>
+<p>So one really useful type of measure is a “probability measure” on a space. For simplicity, let’s say that we are trying to assing probabilities to subsets of <span class="math inline">\([0,1]\)</span> “occuring”. Maybe we are chosing a random number at uniform from <span class="math inline">\([0,1]\)</span> and an event <span class="math inline">\(E_S\)</span> corresponding to a set <span class="math inline">\(S\subset [0,1]\)</span> is said to occur if the randomly chosen point lies in <span class="math inline">\(S\)</span>. It would kinda seem like we want to define a function $: ([0,1]) $ that maps any subset of <span class="math inline">\([0,1]\)</span> (the powerset is denoted by <span class="math inline">\(\mathcal{P}\)</span>, and is the collection of all subsets of the set) to a probability (which is by convention a number in <span class="math inline">\([0,1]\)</span>. <em>It turns out that this actually</em> <strong>doesn’t work!!!!</strong> (As I will show shortly by constructing a subset of <span class="math inline">\([0,1]\)</span> which isn’t measurable). You need some “<span class="math inline">\(\sigma\)</span>-Algebra” of subsets that the measure is going to be defined on which is not all subsets, just the subsets that we actually care about :).</p>
+<hr />
+<blockquote>
+<p>Rand: so let me get this straight, the first thing you are gonna do once you define a measure is show that it’s broken?</p>
+</blockquote>
+<blockquote>
+<p>Alek: Well, I don’t know if the existence of non-lesbegue-measurable sets means “measure theory is broken”</p>
+</blockquote>
+<blockquote>
+<p>Rand: lolllll</p>
+</blockquote>
+<blockquote>
+<p>Alek: idk bro, just trust me, the construction is pretty epic</p>
+</blockquote>
+<blockquote>
+<p>Rand: whatever you say dude…</p>
+</blockquote>
+<hr />
+<p>Anyways, back to defining a measure on this space. Beause the point on <span class="math inline">\([0,1]\)</span> is being chosen uniformly at random, we probably want our probability measure function thing to have <span class="math inline">\(\mu((a,b)) = b-a\)</span> for any <span class="math inline">\((a,b) \subset [0,1]\)</span>. Actually we definitely want this, it is saying e.g. that the probability of chosing a number less than <span class="math inline">\(1/2\)</span> is well <span class="math inline">\(1/2\)</span> which is pretty good. We would also like to satisfy some basic probability axioms like</p>
+<ul>
+<li><span class="math inline">\(\mu(\emptyset) = 0\)</span></li>
+<li>$(A)   A$</li>
+<li><span class="math inline">\(\mu([0,1]) = 1\)</span></li>
+<li>For a countable number of disjoint sets <span class="math inline">\(A_1, A_2, \ldots\)</span> we have countable additivity, i.e. <span class="math display">\[\mu\left( \bigcup_{i\ge 1} A_i \right) = \sum_{i\ge 1} \mu(A_i)\]</span></li>
+</ul>
+<p>It turns out that we can get all this, and the property <span class="math inline">\(\mu((a,b)) = b-a\)</span> with the following definition:</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <span class="math display">\[\mu(E) = \inf \Big\{ \sum_{n\ge 1} l(I_n) : E \subset \bigcup_{n \ge 1} I_n \text{ where } \{\exists a_n,b_n, \text{ such that } I_n = (a_n, b_n)\}_{n\ge 1}\Big\}\]</span></p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In words, this says <em>very very very roughly (this is not a good way to describe an infimum, sorry :( )</em> “the measure of a set <span class="math inline">\(E\)</span> is the limit of the sum of the lengths of the intervals in smaller and smaller interval <em>covers</em> of the set”</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong></p>
+<p>Ok, you’ll notice that this is really asymmetric, “why did we do an infimum over covers instead of a supremum over stuff contained in the set?”</p>
+<p>Well, because its a tiny bit nicer.</p>
+<p>The definition of measure that I gave is called “outer measure”. You can also define “inner measure” as the supremum over compact sets contained in a set.</p>
+<p>It turns out that “inner measure = outer measure” for any measurable set.</p>
+<p>Also countable additivity is actually only countable subaditivity if you don’t restrict to measurable sets. :(</p>
+<p>Basically “let all your sets be measurable” except if you are interested in seeing some really weird stuff.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> One should note that this definition of measure has all the nice properties that we wanted!</p>
+<p>Namely,</p>
+<ul>
+<li><span class="math inline">\(\mu(\emptyset) = 0\)</span> because <span class="math inline">\(l(\emptyset) = 0\)</span> <span class="math inline">\(\emptyset = (0,0)\)</span> or just say that <span class="math inline">\(l(\emptyset) = 0\)</span>.</li>
+<li>$((a,b)) = b-a $ because <span class="math inline">\((a,b)\cup \emptyset \cup \emptyset \cup \cdots\)</span> covers <span class="math inline">\((a,b)\)</span></li>
+<li><span class="math inline">\(\mu([0,1]) = 1\)</span> (above)</li>
+<li>countable (sub?)-additivity (ok, so we unfortunately don’t have countable additivity yet… this is beacause of those dang non-measurable sets and stuff. don’t worry, we get this once we define our sigma algebra)</li>
+<li>measure is non-negative : well length is so yup, we’re good</li>
+</ul>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Measure has a lot of really nice properties:</p>
+<ul>
+<li>translation invariant: <span class="math inline">\(\mu(x+E) = \mu(E)\)</span></li>
+<li>monotone: <span class="math inline">\(A\subset B \implies \mu(A) \le \mu(B)\)</span></li>
+</ul>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong></p>
+<p>We really want countable additivity, so we introduce the “splitting condition” which says for a set <span class="math inline">\(A\)</span> that</p>
+<p><span class="math display">\[\mu(X)  = \mu(X \cap A) + \mu(X \setminus A) \quad \forall X \subset \mathbb{R}\]</span></p>
+<p>If <span class="math inline">\(A\)</span> satisfies this, then <span class="math inline">\(A\)</span> satisfies this, then <span class="math inline">\(A\)</span> satisfies this, then <span class="math inline">\(A\)</span> satisfies this, then <span class="math inline">\(A\)</span> is said to be Lesbegue measurable, and we get countable additivity, not lame subaditivity. yay!</p>
+</div>
+<h1 id="an-unmeasurable-set">An unmeasurable set!!!</h1>
+<p>OK, I just defined measure like half a minute ago. Now seems like a good time to show that defining it as a function on all subsets of <span class="math inline">\([0,1]\)</span> is not a great idea. More specifically, there are subsets of <span class="math inline">\([0,1]\)</span> that aren’t measurable!! (with the axiom of choice… (Just for fun, a quote from a stackoverflow article “The sentence ‘outermeasure is not finitely additive’ is independent from ZF+DC”) luckily we aren’t crazy set theorists and accept ZFC :) (set theory sounds pretty interesting, but I really like choice. Trust me <span class="math inline">\(\exists\)</span> weird stuff with choice))</p>
+<p>Anyways, the following is true:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(\exists V \subset [0,1]\)</span> that isn’t measurable</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Break <span class="math inline">\([0,1]\)</span> up into equivalence classes based on the relation that <span class="math display">\[x \sim y \iff x-y \in \mathbb{Q}\]</span> That is, consider <span class="math inline">\([0,1]/\mathbb{Q}\)</span>. WOW! WEIRD!</p>
+<p>This means that for an equivalence class <span class="math inline">\(\overline{x}\)</span>, any pair of elements in <span class="math inline">\(\overline{x}\)</span> differ from each other by some rational (a potentially different rational for each pair).</p>
+<p>So there are an uncountably infinite number of equivalence classes, things like <span class="math inline">\(\mathbb{Q}, \mathbb{Q} + \pi, \mathbb{Q}+e\)</span> and stuff.</p>
+<p>We then form a set <span class="math inline">\(V_0\)</span> by taking an element from each equivalence class. This is a lot of axiom of choice-ing!!! Like hard core axiom of choice. I digress.</p>
+<p>Now we will consider sets <span class="math inline">\(V_q\)</span> for <span class="math inline">\(q\in\mathbb{Q}\cap [-1,1]\)</span> defined as <span class="math inline">\(V_q = q+V_0\)</span>. That is, we consider translations of <span class="math inline">\(V_0\)</span> by all rationals on <span class="math inline">\([-1,1]\)</span>.</p>
+<p>Note that <span class="math inline">\(V_q \cap V_p \neq \emptyset \iff p = q\)</span> because imagine <span class="math inline">\(x \in V_q \cap V_p\)</span>, this implies <span class="math inline">\(x-q, x-p \in V_0\)</span>. Now consider <span class="math inline">\(x-q - (x-p) = p-q\)</span>. This difference must be <span class="math inline">\(0\)</span>, because we chose exactly one element from each equivalence class, so all distinct elements in <span class="math inline">\(V_0\)</span> differ by an irrational. Hence, <span class="math inline">\(p=q\)</span> and <span class="math inline">\(V_p = V_q\)</span>.</p>
+<p>OK but here’s the problem. Yeah they’re disjoint, but they still cover <span class="math inline">\([0,1]\)</span>. Here’s why, consider any <span class="math inline">\(x \in [0,1]\)</span>. Well consider the element from the equivalence class that <span class="math inline">\(x\)</span> is in that is in <span class="math inline">\(V_0\)</span>, which we’ll call <span class="math inline">\(y\)</span>. We know that <span class="math inline">\(x-y \in \mathbb{Q}\)</span> and more specifically <span class="math inline">\(x-y \in \mathbb{Q} \cap [-1, 1]\)</span>. And we have access to all rational shifts of <span class="math inline">\(y\)</span> on <span class="math inline">\([-1,1]\)</span>. So we have <span class="math inline">\(x\)</span>. But also clearly <span class="math inline">\(\cup_{q\in\mathbb{Q}} V_q \subset [-1,2]\)</span> because <span class="math inline">\(V_0 \subset [0,1]\)</span> and the points are shifted by at most <span class="math inline">\(\pm 1\)</span>.</p>
+<p>OK, now here’s the killer blow as they say: countable additivity of disjoint sets measures!</p>
+<p><span class="math display">\[ \mu\left(\bigcup_{q\in\mathbb{Q}} V_q\right) = \sum_{q\in\mathbb{Q}}\mu(V_q)  \]</span> Clearly measure is translation invariant so <span class="math inline">\(\mu(V_q) = V_0 \forall q\)</span>. Hence <span class="math display">\[ \mu\left(\bigcup_{q\in\mathbb{Q}} V_q\right) = \sum_{q\in\mathbb{Q}}\mu(V_0)  \]</span></p>
+<p>Oh no.</p>
+<p><span class="math display">\[[0,1] \subset \mu\left(\bigcup_{q\in\mathbb{Q}} V_q\right) \subset [-1,2]\]</span></p>
+<p>Yeah that’s right, so by monotonicity of measure <span class="math display">\[ 1 \le \mu\left(\bigcup_{q\in\mathbb{Q}} V_q\right) \le 3\]</span> But then, <span class="math display">\[ 1 \le  \sum_{q\in\mathbb{Q}}\mu(V_0)  \le 3\]</span> Well <span class="math inline">\(\mu(V_0)\)</span> can’t be <span class="math inline">\(0\)</span>, or the sum would be 0, which is too small. And also <span class="math inline">\(\mu(V_0)\)</span> can’t be <span class="math inline">\(\epsilon &gt; 0\)</span> or the sum would be infinite which is too big. Ahggg!! its’ un unmeasurable subset of <span class="math inline">\(\mathbb{R}\)</span>.</p>
+</div>
+<h1 id="lesbegue-integration">Lesbegue Integration</h1>
+<p>Now we’re going to talk about lesbegue integration.</p>
+<p>recall that in reimann integration the idea is to partition the domain up, and take one funciton value per each part of the domain.</p>
+<p>Here’s Lesbegue integration: Partition the codomain, and multiply function values by the measure of their preimages!!!</p>
+<h1 id="lesbegues-dominated-convergence-theorem">Lesbegue’s dominated convergence theorem</h1>
+<p>Do you think that</p>
+<p><span class="math display">\[\lim_{n\to \infty} \int f_n = \int \lim_{n\to\infty} f_n\]</span> Well it turns out that this isn’t true of all function sequences.</p>
+<p>Lesbegue’s dominated convergence theorem says that it is true of functions that are dominated (bounded in magnitude, maybe in support too).</p>
+<p>Here’s a counterexample if you don’t have that constraint though</p>
+<p><span class="math display">\[f_n(x) = 1_{[n,n+1]}\]</span> That is, <span class="math inline">\(f_n\)</span> is the indicator function for the interval <span class="math inline">\([n,n+1]\)</span></p>
+<p>We have <span class="math display">\[\int f_n = 1 \forall n \implies \lim_{n\to\infty} \int f_n = 1\]</span> But,</p>
+<p><span class="math display">\[\lim_{n\to\infty} f_n \cong 0\]</span> so <span class="math display">\[\int \lim f_n = 0\]</span></p>

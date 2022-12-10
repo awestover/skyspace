@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SkySpace</title>
+
+    <link href="/formatting/pandoc.css" rel="stylesheet">
+    <link href="/formatting/envbox.css" rel="stylesheet">
+    <link href="/formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h3>SkySpace</h3>
+          </div>
+          <ul class="list-unstyled components">
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="/index.html">Home</a> </li>
+            <li> <a href="/about.html">About</a> </li>
+            <li> <a href="/topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#randomized-algorithms
+" class="js-scroll-trigger">Randomized Algorithms
+</a> </li>
+<li> <a href="#what-is-a-randomized-algorithm
+" class="js-scroll-trigger">What is a randomized algorithm?
+</a> </li>
+<li> <a href="#probability-background
+" class="js-scroll-trigger">Probability background
+</a> </li>
+<li> <a href="#bounds
+" class="js-scroll-trigger">Bounds
+</a> </li>
+<li> <a href="#applying-chernoff-bound-to-quicksort
+" class="js-scroll-trigger">Applying Chernoff Bound to Quicksort
+</a> </li>
+<li> <a href="#lowerbound-on-comparison-based-sorting
+" class="js-scroll-trigger">Lowerbound on comparison based sorting
+</a> </li>
+            </div>
+          </ul>
+          <div id="canvas-parent"> </div>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <h1 id="randomized-algorithms">Randomized Algorithms</h1>
+<hr />
+<blockquote>
+<p>Rand: “Mirror, mirror, hanging on Alek’s wall (no I don’t actually have a mirror that would be kinda creppy / narscisistic, you get the point, maybe read this as”webcam, webcam…“) who is the fastest sorting algorithm of them all”</p>
+</blockquote>
+<blockquote>
+<p>Alek: “Ummm, Probably <em>quicksort</em>”</p>
+</blockquote>
+<blockquote>
+<p>Rand: “But it has worst case performance like <span class="math inline">\(O(n^2)\)</span> !!! That’s so trash. What about mergesort?”</p>
+</blockquote>
+<blockquote>
+<p>Alek: “Actually it turns out that with high probability in n quicksort is super fast, in particular <span class="math inline">\(O(n \log n)\)</span>, and actually in particular way better than mergesort because the expectation of the number of comparisons that it makes is like <span class="math inline">\(2n \log n\)</span> which is a super good constant”</p>
+</blockquote>
+<blockquote>
+<p>Rand: “hmmm, that sounds pretty good. tell me more.”</p>
+</blockquote>
+<blockquote>
+<p>Alek: “OK, and as an added bonus I’ll refrain from my entropy joke”</p>
+</blockquote>
+<hr />
+<h1 id="what-is-a-randomized-algorithm">What is a randomized algorithm?</h1>
+<p>In this post I’m going to discuss algorithms that use randomness. Randomness plays a crucial role in many algorithms. For example, randomness is used in</p>
+<ul>
+<li>Getting a good fast heuristic approximate solution to a problem</li>
+<li>Cryptography: randomness is the key to security</li>
+<li>Analyzing algorithms that deterministically get the right answer, but use randomness to get there. With such an algorithm it is often desirable to show that the algorithm is fast “with high probability”</li>
+</ul>
+<h1 id="analysis-of-probably-fast-algorithms">Analysis of “probably fast” algorithms</h1>
+<p>Quicksort is the prototypical example (in my opinion) of a randomized algorithm that is fast “with high probability”.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> An algorithm is said to be fast with high probability in <span class="math inline">\(n\)</span> (input size) if for any constant <span class="math inline">\(c\)</span>, the algorithm’s probablity of “being fast” can be made <span class="math inline">\(1/n^c\)</span>.</p>
+</div>
+<p>I’d like to analyze the running time of quicksort using something called a concentration bound, but first I’ll quickly talk about some basic probability theory.</p>
+<h1 id="probability-background">Probability background</h1>
+<p>I define some basic concepts:</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A <strong>probability space</strong> is defined by 3 sets <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span> that satisfy some axioms. <span class="math inline">\(\Omega\)</span> is the sample space, <span class="math inline">\(\mathcal{F}\)</span> is the set of events, and <span class="math inline">\(P\)</span> is a function <span class="math inline">\(P: \mathcal{F} \to [0,1]\)</span> that assigns probabilities to events. The axioms that <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span> must satisfy are:</p>
+<ul>
+<li><p><span class="math inline">\(\Omega \neq \emptyset\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal{F}\)</span> is a collection of subsets of <span class="math inline">\(\Omega\)</span>, and it is a <span class="math inline">\(\sigma-\)</span>algebra on <span class="math inline">\(\Omega\)</span>, that is</p>
+<ul>
+<li><span class="math inline">\(\Omega \in \mathcal{F}\)</span> (contains the sample space)</li>
+<li><span class="math inline">\(A \in \mathcal{F} \implies (\Omega \ A) \in \mathcal{F}\)</span> (is closed under complements)</li>
+<li><span class="math inline">\(A_i \in \mathcal{F}\)</span> for <span class="math inline">\(i=1,2,\ldots\)</span>, then <span class="math inline">\(\bigcup_{i\geq 1} A_i \in \mathcal{F}\)</span> (is closed under countable unions)</li>
+</ul></li>
+<li><p><span class="math inline">\(P\)</span> is a probability measure, so</p>
+<ul>
+<li><span class="math inline">\(P: \mathcal{F} \to [0,1]\)</span></li>
+<li><span class="math inline">\(P(\Omega) = 1\)</span></li>
+<li>If <span class="math inline">\(E_1, E_2, \ldots \in \mathcal{F}\)</span> are disjoint events then <span class="math display">\[P\left(\bigcup_{i\geq 1}E_i\right) = \sum_{i\geq 1} P(E_i)\]</span></li>
+</ul></li>
+</ul>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A <strong>random variable</strong> defined on the probability space is a (measurable) function <span class="math inline">\(X: \Omega \to S \subset \mathbb{R}\)</span> (<span class="math inline">\(S\)</span> is some state space).</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> The probability of an event <span class="math inline">\(A \subset S\)</span> is <span class="math display">\[Pr(A) = P(\{\omega \in \Omega : X(\omega) \in A\})\]</span></p>
+</div>
+<p>begin remark For this post, only discrete probability is of interest (stay tuned for a post on measure theory and continuous probability at some point in time!) Thus, we take <span class="math inline">\(\mathcal{F}= \mathcal{P}(\Omega)\)</span> (the powerset). Also the state space will always be a (finite) subset of <span class="math inline">\(\mathbb{R}\)</span> in this post. end remark</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A <strong>bernouli random variable</strong> with parameter <span class="math inline">\(p\)</span> is defined by <span class="math display">\[Pr(X=0) = 1-p \quad Pr(X=1) = p.\]</span> Note that this is just a coin that is heads with probability <span class="math inline">\(p\)</span> and tails otherwise.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Another really common type of random variable is a “binomial random variable” This is the sum of <span class="math inline">\(n\)</span> bernoulis random variables. It has probability mass function <span class="math display">\[P(X=k) = {n \choose k} p^k (1-p)^k\]</span></p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> The expectation of a discrete random variable <span class="math inline">\(X: \Omega \to S \subset \mathbb{R}\)</span> is <span class="math display">\[\sum_{\omega \in \Omega} X(\omega) Pr(X=X(\omega))\]</span></p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Expectation is linear: <span class="math display">\[ \mathbb{E}[kX]= \sum_{\omega \in \Omega} kX(\omega) Pr(kX =kX(\omega)) = k\sum_{\omega \in \Omega} X(\omega) Pr(X =X(\omega)) = k\mathbb{E}[X]\]</span> and also <span class="math display">\[\mathbb{E}[X+Y] = \sum_{x \in \text{im}{X}} \sum_{y \in \text{im}{Y}} (x+y) Pr(X=x \land Y=y)\]</span> <span class="math display">\[ = \sum_{x \in \text{im}{X}}x \sum_{y \in \text{im}{Y}} Pr(X=x \land Y=y) + \sum_{y \in \text{im}{Y}}y \sum_{x \in \text{im}{X}} Pr(X=x \land Y=y)\]</span> <span class="math display">\[ = \sum_{x \in \text{im}{X}}x Pr(X=x) + \sum_{y \in \text{im}{Y}}y Pr(Y=y)\]</span> <span class="math display">\[ = \mathbb{E}[X] + \mathbb{E}[Y].\]</span></p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> The variance of a discrete random variable <span class="math inline">\(X: \Omega \to S \subset \mathbb{R}\)</span> is <span class="math display">\[\mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2\]</span> The LHS is the definition of variance, which is read “expectation of squared deviation from the mean”, and the RHS is derived via simple algebraic manipulations exploiting linearity of expectation.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> The expectation of a bernouli random variable is <span class="math display">\[0(1-p) + 1(p) = p\]</span> By linearity of expectation the expectation of a binomial random variable is <span class="math inline">\(np\)</span>. Note that in particular for <span class="math inline">\(p=1/2\)</span> this says that if you flip <span class="math inline">\(n\)</span> fair coins the expectation of the number of heads is <span class="math inline">\(n/2\)</span>.</p>
+<p>Note that the variance of a bernouli random variable is <span class="math inline">\(p(1-p)\)</span> And then you can show that the variance of a binomial random variable is <span class="math inline">\(n p (1-p)\)</span></p>
+<p>Also, we could interpret these as standard deviations too, (<span class="math inline">\(\sigma = \sqrt{\text{Var}[X]}\)</span>)</p>
+<p><span class="math inline">\(\sigma = \sqrt{np(1-p)}\)</span> for the binomial random variable.</p>
+<p>Note that <span class="math inline">\(\sigma\)</span> is a more geometrically / physically meaningful quantity, as it has the same units as e.g. <span class="math inline">\(\mathbb{E}[X]\)</span>.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Two events <span class="math inline">\(A,B\)</span> are independent if “the fact that one occurs gives no information about whether the other occured”. This can be expressed as, <span class="math display">\[Pr[A\land B] = Pr[A] \cdot Pr[B]\]</span></p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Two events <span class="math inline">\(A,B\)</span> are mutually exclusive if “they can’t both happen”. This can be expressed as, <span class="math display">\[Pr[A\land B] = 0\]</span></p>
+</div>
+<h1 id="bounds">Bounds</h1>
+<p>Now that I have defined probability, I will demonstrate some bounds on probabilities.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <strong>Markov’s Inequlity</strong> <span class="math display">\[Pr[X &gt; k \mathbb{E}[X]] \le 1/k. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Note that <span class="math inline">\(a \cdot Pr[X &gt; a]\)</span> lower-bounds <span class="math inline">\(\mathbb{E}[X]\)</span>. Set <span class="math inline">\(a = k\mathbb{E}[X]\)</span> and we reach the desired inequality: <span class="math display">\[Pr[X &gt; k \mathbb{E}[X]] k\mathbb{E}[X] \le \mathbb{E}[X] \implies Pr[X &gt; k \mathbb{E}[X]] \le 1/k. \]</span></p>
+<figure>
+<img src="src/images/markovIneq.png" alt="" /><figcaption>Markov’s Inequality graphically</figcaption>
+</figure>
+</div>
+<p>This is kind of useful on its own, but there are some really cool coroloaries: concentration bounds.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Chebyshev’s inequality: <span class="math display">\[Pr[|X-\mu| &gt; k\sigma] \le 1/k^2\]</span> Where <span class="math inline">\(X\)</span> is a random variable with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, for any <span class="math inline">\(k &gt; 0\)</span>.</p>
+</div>
+<p>Note: this is really nice, it says that there is a really good chance that the outcome of a random experiment will be pretty close it’s mean (i.e. the random variable is “tightly concentrated around its mean”).</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This is a direct corollary of Markov’s inequality: <span class="math display">\[Pr[(X-\mu)^2 &gt; k \mathbb{E}[(X-\mu)^2]] \le 1/k\]</span> We substitute <span class="math inline">\(k&#39; = \sqrt{k}\)</span> to get <span class="math display">\[Pr[(X-\mu)^2 &gt; (k&#39;)^2 \text{Var}[X]] \le (1/k&#39;)^2\]</span> <span class="math display">\[=Pr[|X-\mu|^2 &gt; (k&#39;)^2 \sigma^2] \le (1/k&#39;)^2\]</span> <span class="math display">\[=Pr[|X-\mu| &gt; k&#39; \sigma] \le (1/k&#39;)^2\]</span></p>
+</div>
+<p>This is nice, but for certain types of random variables you can actually give a much stronger concentration bound. In particular,</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <strong>Chernoff Bound</strong> Let <span class="math inline">\(X_1,X_2, \ldots, X_n\)</span> be iid bernouli random variables with <span class="math inline">\(\mathbb{E}[X_i] = p\)</span> for all <span class="math inline">\(i\)</span>. Let <span class="math inline">\(\epsilon \in (0,1)\)</span>. Then <span class="math display">\[Pr\left[ |\sum_{i =1}^n X_i - np| &gt; np\epsilon \right] \le 2 e^{-np\epsilon^2/3}.\]</span> Or in english “the probability of the sum of the random variables deviating from the expectation of the sum (<span class="math inline">\(pn\)</span>) by more than an <span class="math inline">\(\epsilon\)</span> factor of the mean is exponentially small in <span class="math inline">\(\epsilon\)</span>”</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> I have not stated this theorem in full generality, see <a href="https://en.wikipedia.org/wiki/Hoeffding%27s_inequality">Hoeffding’s inequality</a> on wikipedia, and even <a href="https://en.wikipedia.org/wiki/Doob_martingale#McDiarmid&#39;s_inequality">McDiarmid’s inequality</a>. But the case of bernouli random variables <span class="math inline">\(X_i\)</span> is the only one relevant to this article.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Now we prove the Chernoff Bound.</p>
+<p>Let <span class="math inline">\(X = \sum_i X_i\)</span></p>
+<p>Take some <span class="math inline">\(t&gt;0\)</span> Consider <span class="math display">\[\mathbb{E}[e^{tX_i}] =  (1-p)e^0 + p e^t = 1+p(e^t-1) \le e^{p(e^t-1)}\]</span> Where we know that <span class="math inline">\(1+px &lt; e^{px}\)</span> for <span class="math inline">\(x &gt; 0\)</span> (note <span class="math inline">\(e^t -1 &gt; 0\)</span> for <span class="math inline">\(t&gt;0\)</span>) by insepction of the graphs / derrivatives: <img src="src/images/g1.png" alt="Graph of functions" /></p>
+<p>Then consider <span class="math display">\[\mathbb{E}[e^{tX}] = \mathbb{E}[e^{t\sum_{i} X_i}] = \mathbb{E}[\prod_{i} e^{tX_i}] = \prod_{i} \mathbb{E}[e^{tX_i}] &lt; \prod_{i=1}^n e^{p(e^t-1)} = e^{np(e^t-1)}\]</span></p>
+<p>This is true for all <span class="math inline">\(t&gt;0\)</span>. For any <span class="math inline">\(\epsilon &gt; 0\)</span>, we take <span class="math inline">\(t = \ln( \epsilon + 1)\)</span> so that <span class="math inline">\(e^t - 1 = \epsilon\)</span>.</p>
+<p>Then we have <span class="math display">\[\mathbb{E}[e^{tX}] &lt; e^{np\epsilon} \]</span></p>
+<p>Now by Markov’s Inequality we have that <span class="math display">\[Pr[X &gt; a] = Pr[e^{tX} &gt; e^{ta}] \le \frac{1}{e^{ta}} \cdot \mathbb{E}[e^{tX}] \]</span></p>
+<p>Hence we have <span class="math display">\[Pr[X&gt;a] &lt; e^{np\epsilon - a\ln(\epsilon + 1)}\]</span></p>
+<p>We set <span class="math inline">\(a = np(1+\epsilon)\)</span>, to achieve <span class="math display">\[Pr[X&gt;np(1+\epsilon)] &lt; e^{np\epsilon - np(1+\epsilon)\ln(\epsilon + 1)}\]</span> <span class="math display">\[Pr[X&gt;np(1+\epsilon)] &lt; \left(\frac{e^{\epsilon}}{e^{(1+\epsilon)\ln(\epsilon+1)}}\right)^{np}\]</span> <span class="math display">\[Pr[X&gt;np(1+\epsilon)] &lt; \left(\frac{e^{\epsilon}}{(\epsilon+1)^{\epsilon+1}}\right)^{np}\]</span></p>
+<p>Then because <span class="math display">\[\frac{2\epsilon}{2+\epsilon} \le \ln(1+\epsilon) \]</span></p>
+<figure>
+<img src="src/images/g2.png" alt="" /><figcaption>Other graph</figcaption>
+</figure>
+<p>we have <span class="math display">\[\frac{e^{\epsilon}}{(\epsilon+1)^{\epsilon+1}} \le \frac{e^{\epsilon}}{e^{\frac{2\epsilon(1+\epsilon)}{2+\epsilon}}} = e^{\frac{-\epsilon^2}{3}}\]</span> (the last equality is because <span class="math inline">\(\epsilon \in (0,1)\)</span>).</p>
+<p>Thus <span class="math display">\[Pr[X&gt;np(1+\epsilon)] &lt; e^{-np\epsilon^2/3}\]</span> This yields <span class="math display">\[Pr[X-np&gt;np\epsilon] &lt; e^{-np\epsilon^2/3}\]</span> This is almost what we want, but we also need to bound <span class="math display">\[Pr[X-np &lt; -np\epsilon\]</span> by a similar argument you can get the same bound on this though. Thus we have in total <span class="math display">\[Pr[|X-np|&gt;np\epsilon] &lt; 2\cdot e^{-np\epsilon^2/3}\]</span> as desired.</p>
+</div>
+<blockquote>
+<p>Rand: “Holly cow, that was gnarly, was that really relevant to quicksort?” Alek: “yeah we can analyze quicksort now”</p>
+</blockquote>
+<h1 id="applying-chernoff-bound-to-quicksort">Applying Chernoff Bound to Quicksort</h1>
+<p>First let me review the quicksort algorithm:</p>
+<ul>
+<li>Pick a pivot <em>randomly</em> (<strong>this is key!</strong>)</li>
+<li>Partition the array relative to the pivot</li>
+<li>Recurse on the subarray of elements less than the pivot, and recurse on the subarray of elements greater than the pivot</li>
+</ul>
+<p>Here is an implementation of this algorithm in <code>C++</code></p>
+<pre class="{c}"><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+int partition(int* A, int n, int pivot){
+  int low = 0; int high = n-1;
+  while (low &lt; high){
+    while(A[low] &lt;= pivot &amp;&amp; low &lt; high){
+      low++;
+    }
+    while(A[high] &gt; pivot &amp;&amp; low &lt; high){
+      high--;
+    }
+    int tmp = A[low];
+    A[low] = A[high];
+    A[high] = tmp;
+  }
+  if(A[low] &lt;= pivot &amp;&amp; low &lt; n){
+    low++;
+  }
+  return low;
+}
+
+// Note: I assume that the elements of A are all distinct in this simplisitc implementation of quicksort, it is easy to modify this code to work for arrays that can have duplicate elements 
+void quicksort(int* A, int n){
+  if(n&gt;1){
+    int pivot = A[rand()%n]; // randomly select the pivot
+    int splitIndex = partition(A, n, pivot);
+    quicksort(A, splitIndex);
+    quicksort(A+splitIndex, n-splitIndex);
+  }
+}
+
+int main(){
+    srand(time(NULL)); // set seed for rng
+    int n = 100;
+    int* A = (int*)malloc(sizeof(int)*n);
+    for (int i = 0; i &lt; n; ++i) {
+        A[i] = rand();
+    }
+    quicksort(A, n);
+}</code></pre>
+<p>Let <span class="math inline">\(X_i\)</span> be the random variable which has value 1 if the rank of the pivot is in the middle, i.e. in <span class="math inline">\([n/4, 3n/4]\)</span> Then <span class="math inline">\(X_i\)</span> is bernouli with <span class="math inline">\(p=1/2\)</span>. If you flip <span class="math inline">\(\log n\)</span> coins then whp the number of heads is tightly concentrated around half thus you basically just need <span class="math inline">\(2n\log n\)</span> comparisons for quicksort whp.</p>
+<p>More formally, let <span class="math inline">\(\epsilon &gt; 0\)</span> be constant, and say we have <span class="math inline">\(2\log n\)</span> fair coins. Then the chernoff bound gives</p>
+<p><span class="math display">\[Pr[|\sum_{i=1}^{2\log n} X_i - \log n| &gt; \epsilon \log n] \le 2 e^{- (1/3)\epsilon^2\log n} = 2 n^{-\epsilon^2/3}. \]</span> In fact we really only need</p>
+<p><span class="math display">\[Pr[\sum_{i}^{2\log n} X_i &gt; (1+\epsilon)\log n] &lt; n^{-\epsilon^2/3}.\]</span> This is awesome, i.e. high probability. To guarantee that we get more than <span class="math inline">\(\log_{4/3} n\)</span> heads (which is what we need), we set <span class="math inline">\(\epsilon = \frac{1}{\ln (4/3)} - 1 \approx 2.5\)</span> Then we get that the result happens with probability approximately <span class="math inline">\(1/n^2\)</span>.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> OK, it turns out that we can still compute the average running time of quicksort without chernoff bounds for this problem, chernoff bounds are kinda like an OP hammer that we can hit a bunch of <em>random</em> problems with. Before I tell you about this though, one should note that all my effort introducing chernoff bounds was not “wasted”. First of all Chernoff bounds are useful for other problems. Second of all the Chernoff bound proof gives kind of a nicer result, a probability, versus an expectation which is what I’m going to get with my other method. By symetry (which is guaranteed by the random choice of the pivot) it doesn’t actually matter. But at the very least, if you take one thing away from this post, it should be that “if you flip <span class="math inline">\(\log n\)</span> coins, the probability of the number of heads deviating from half by a <span class="math inline">\(\epsilon\)</span>-factor of the number of coins is <em>exponentially small in <span class="math inline">\(\epsilon\)</span></em>”. That all said, here is a (more elegant? / easier?) proof that quicksort is “fast”.</p>
+<p>Consider two indices <span class="math inline">\(1 \le i &lt; j \le n\)</span> in the array (have I been 1-indexing? I’m not sure; it doesn’t matter, I am now). The probability of comparing <span class="math inline">\(A[i], A[j]\)</span> is precisely the chance that <span class="math inline">\(A[i]\)</span> or <span class="math inline">\(A[j]\)</span> is selected as a pivot before any of <span class="math inline">\(A[i+1], A[i+2], \ldots, A[j-1]\)</span>. This is <span class="math inline">\(\frac{2}{j-i-1}\)</span>. Make indicator variables for the different comparisons that you can do, expectation of total comparisons is sum of expectations of indicator variables by linearity of expectation. OK, so this is <span class="math display">\[\sum_{1 \le i &lt; j \le n}\frac{2}{j-i+1}\]</span></p>
+<p>Now, we kind of draw diagonals in this triangular array, if you know what I mean. That is, consider level sets of <span class="math inline">\(j-i+1\)</span>. How many times can <span class="math inline">\(j-i+1 = k\)</span>? Well by inspection of the triangular array it is just <span class="math inline">\(n-k\)</span> times, we could have <span class="math inline">\(i=1, j=k\)</span> or <span class="math inline">\(i=2,j=k-1\)</span> etc until <span class="math inline">\(j=n, i=n-k+1\)</span>. So we now have <span class="math display">\[2\sum_{k=2}^{n} \frac{n-k}{k}\]</span> Breaking this up we get <span class="math display">\[2((n-1)+\sum_{i=2}^n \frac{n}{k})\]</span> But the latter term is approximately <span class="math inline">\(n \log n\)</span>. Hence we have that the expected number of comparisons is about <span class="math inline">\(2n\log n\)</span></p>
+</div>
+<h1 id="lowerbound-on-comparison-based-sorting">Lowerbound on comparison based sorting</h1>
+<p>It turns out that, as you might have known, the algorithm had to be in <span class="math inline">\(\Omega(n \log n)\)</span>, because all comparison based sorting algorithms are. Here is a proof: Consider a binary tree with <span class="math inline">\(n!\)</span> leaves. Then it has depth <span class="math inline">\(\log n!\)</span>. By Stirling’s approximation this is like <span class="math inline">\(n \log \frac{n}{e} = \Omega(n \log n)\)</span>. With comparison based sorting algorithms every comparison moves you a level in this tree, and you have to get to a leaf starting from the root. Hence the lower bound.</p>
+<figure>
+<img src="src/images/tree.png" alt="" /><figcaption>tree</figcaption>
+</figure>
+<p>Note that there are other types of sorting algorithms, e.g. <em>counting sort</em>, <em>radix sort</em> (these exploit the fact that the arrays they need to sort have a small discrete set of possible values in them).</p>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="/formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+  </body>
+</html>

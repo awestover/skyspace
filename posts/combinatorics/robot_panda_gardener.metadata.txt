@@ -1,0 +1,3 @@
+robot panda gardener
+ I read a cool paper [Bilò, Davide, et al. “Cutting Bamboo Down to Size.” arXiv preprint arXiv:2005.00168 (2020)](https://arxiv.org/abs/2005.00168) and wrote a little "summary" of it. | very chill and very awesome! 
+
