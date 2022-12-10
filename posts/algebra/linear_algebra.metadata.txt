@@ -1,0 +1,2 @@
+A Friendly Introduction to Linear Algebra
+intro to linear algebra. done a nice way

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SkySpace</title>
+
+    <link href="/formatting/pandoc.css" rel="stylesheet">
+    <link href="/formatting/envbox.css" rel="stylesheet">
+    <link href="/formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h3>SkySpace</h3>
+          </div>
+          <ul class="list-unstyled components">
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="/index.html">Home</a> </li>
+            <li> <a href="/about.html">About</a> </li>
+            <li> <a href="/topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#vector-calculus-physics-edition
+" class="js-scroll-trigger">Vector Calculus, Physics Edition
+</a> </li>
+<li> <a href="#vector-calculus-math-edition
+" class="js-scroll-trigger">Vector Calculus, Math Edition
+</a> </li>
+            </div>
+          </ul>
+          <div id="canvas-parent"> </div>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <h1 id="vector-calculus">Vector Calculus</h1>
+<hr />
+<blockquote>
+<p>Rand: Hey, I really got nothing</p>
+</blockquote>
+<blockquote>
+<p>Al: Just the area of a circle is 0 because a circle is a 1 dimensional submanifold of <span class="math inline">\(\mathbb{R}^2\)</span></p>
+</blockquote>
+<blockquote>
+<p>Rand: Oh RW. What a guy.</p>
+</blockquote>
+<hr />
+<h1 id="vector-calculus-physics-edition">Vector Calculus, Physics Edition</h1>
+<p>Note: we work in <span class="math inline">\(\mathbb{R}^3\)</span> because physics. Or maybe actually <span class="math inline">\(\mathbb{R}^2\)</span> so I can draw stuff.</p>
+<p>A vector field is a function <span class="math inline">\(F: \mathbb{R}^3 \to \mathbb{R}^3\)</span>. Intuitively this can be thought of as associating to each point in space a vector. Vector fields can model fluid forces, wind, electric fields, and more abstractly things like population dynamics and stuff.</p>
+<p>Here are some really good examples of vector fields (Note: we draw just some of the vectors, but really there are vectors associated with every point):</p>
+<figure>
+<img src="src/images/div1.png" alt="" /><figcaption>Vector Field for F(x,y) = (x,y)</figcaption>
+</figure>
+<figure>
+<img src="src/images/divneg1.png" alt="" /><figcaption>Vector Field for F(x,y) = (-x,-y)</figcaption>
+</figure>
+<figure>
+<img src="src/images/curlcounter.png" alt="" /><figcaption>Vector Field for F(x,y) = (-y,x)</figcaption>
+</figure>
+<p>Some things you might care about measuring about a vector field are</p>
+<ul>
+<li>it’s “divergence” at a point: e.g. how much fluid is leaving this point? is the point a source / sink?</li>
+<li>it’s “curl” around a point: e.g. how much is fluid circulating around this point?</li>
+</ul>
+<p>Things you might want to measure about functions include - The “gradient” at a point: what is the direction of steepest ascent in function values?</p>
+<p>The divergence, <span class="math inline">\(\nabla \cdot F\)</span>, is defined for <span class="math inline">\(F = (a,b,c)\)</span> as <span class="math inline">\(\nabla \cdot F = \frac{\partial a}{\partial x} + \frac{\partial b}{\partial y} + \frac{\partial c}{\partial z}\)</span> So for <span class="math inline">\(F(x,y) = (x,y)\)</span> this is <span class="math inline">\(2\)</span>, and for <span class="math inline">\(F(x,y) = (-x,-y)\)</span> this is <span class="math inline">\(-2\)</span> and for <span class="math inline">\(F(x,y) = (-y,x)\)</span> this is <span class="math inline">\(0\)</span>. This is pretty good, positive divergence means stuff is going out (net), negative divergence means stuff is coming in (net), and zero divergence means stuff is exiting and entering at equal rates.</p>
+<p>We can define curl <span class="math inline">\(\nabla \times F\)</span>, for <span class="math inline">\(F = (a,b)\)</span> (it’s similar in <span class="math inline">\(\mathbb{R}^3\)</span>, I don’t ahve the motivation to type it though) as <span class="math inline">\((\frac{\partial b}{\partial x} - \frac{\partial a}{\partial y})\vec{k}\)</span>.</p>
+<p>This gives the zero vector for <span class="math inline">\((x,y)\)</span> and <span class="math inline">\((-x,-y)\)</span>, and it gives <span class="math inline">\((0,0,2)\)</span> for <span class="math inline">\((-y,x)\)</span> (the magnitude is magnitude of curl, and direction of vector indicates clockwise / counterclockwise). (note: the direction is basically determined by the right hand rule from physics).</p>
+<p>We can define the gradient of a function <span class="math inline">\(f\)</span> as <span class="math inline">\(\left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right)\)</span>. For example the gradient of the function <span class="math inline">\(f(x,y) = x^2 + y^2\)</span> is <span class="math inline">\(\nabla f = (2x, 2y)\)</span>, i.e. you want to go radially outward for steepest ascent.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Shout out to gradient descent! If you have some parameters <span class="math inline">\(\Theta\)</span> in some model, and you want to upate your parameters to minimize a cost function <span class="math inline">\(J\)</span>, you basically just do <span class="math inline">\(\Theta&#39; = \Theta - \alpha \nabla J(\Theta)\)</span>. Yay machine learning. (Note: ML is kinda more complex than I’m making it out to be here…)</p>
+</div>
+<p>Anyways, so there are these things– “div, grad, curl and all that” (yes this is the title of a book) – but this all seems kind of physicsy and <span class="math inline">\(\mathbb{R}^3\)</span> specificy.</p>
+<p>We can do better. Let’s do it.</p>
+<h1 id="vector-calculus-math-edition">Vector Calculus, Math Edition</h1>
+<p>OK, so now we’re going to introduce <em>differential forms</em>. This will consist of - defining a differential form - saying how to integrate a differential manifold over some surface - defining the exterior derivative - stating and hand waving about stokses’ theorem</p>
+<p>Lets do it.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <strong>Differential form</strong></p>
+<p>A differential k-form is a function that takes as input an “anchored k-parallelpiped”, i.e. a point and k spanning vectors for a parallelpiped, and outputs a real number.</p>
+<p>A differential 0-form is a nice function</p>
+<p>A differential 1-form on, say, <span class="math inline">\(\mathbb{R}^4\)</span>, looks something like this: <span class="math inline">\(x_1^2 dx_2 + x_3 dx_3\)</span></p>
+<p>How do you evaluate it if you are given an anchored 1-parallelpiped (i.e. a line segment)? Well, let me define the behavior of the basis elements for the vector space of 1-forms on <span class="math inline">\(\mathbb{R}^4\)</span>:</p>
+<p><span class="math inline">\(dx_i\)</span> extracts the <span class="math inline">\(i\)</span>-th component from a vector</p>
+<p>OK, how does this help? Because I want differential forms to be bilinear functions. Why? well just wait a sec, let me define 2-forms first.</p>
+<p>2-forms look like this: <span class="math inline">\(2x_3dx_1\wedge dx_2\)</span> how do you evaluate one of these? You feed a 2-form 2 vectors, then <span class="math inline">\(dx_i\wedge dx_j\)</span> extracts the <span class="math inline">\(i\)</span>-th and <span class="math inline">\(j\)</span>-th rows of the vectors and then you take the determinant of that matrix, and then you scale by whatever function was multiplying the differential form, evaluated at the anchor point.</p>
+<p>In general, a basis k-form on <span class="math inline">\(\mathbb{R}^n\)</span> looks like say <span class="math inline">\(dx_{i_1} \wedge \cdots \wedge dx_{i_k}\)</span>, and if you feed it <span class="math inline">\(k\)</span> vectors and an anchor point it will take a <span class="math inline">\(k\times k\)</span> determinant of the matrix you get by taking rows <span class="math inline">\(i_1, i_2, \ldots, i_k\)</span> of the spanning vectors.</p>
+<p>OK, so because k-forms are defined in terms of determinants (or at least that’s how I defined them, actually you can define determinants in terms of wedge products, and I guess that’s better because you don’t have to chose a basis and stuff, basically you consider a free group of stuffs, and cross out stuff by modding out by the properties that you want like bilinearity and antisymmetry, but anyways I think this coordinate-y definition is maybe more accessible), they inheret this bilinearity and antisymmetry properties.</p>
+</div>
+<p>OK cool, but what’s that weird wedge symbol? Well previously you could have just thought about it as some formal opperator, and <span class="math inline">\(dx_1\wedge dx_2\)</span></p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Wedge Product</p>
+<p>you have 2 forms and you wedge them</p>
+<p>its anticommutative, and a linear function of any of the arguments</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Exterior Derrivative</p>
+<p>for a function <span class="math inline">\(f\)</span>, it is simply <span class="math inline">\(\sum_{i=1}^n \frac{\partial f}{\partial x_i} dx_i\)</span></p>
+<p><span class="math inline">\(ddf = 0\)</span></p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> integral of differential form over a parameterized surface</p>
+<p>Say you wanna integrate a form <span class="math inline">\(\phi\)</span> over a surface <span class="math inline">\(R = \gamma(I)\)</span>, then you have</p>
+<p><span class="math display">\[\int_R \phi = \int_{I} \phi_\gamma(D\gamma) dV\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Stokes</p>
+<p><span class="math display">\[\int_R \phi = \int_{\partial R} d \phi\]</span></p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="/formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+  </body>
+</html>

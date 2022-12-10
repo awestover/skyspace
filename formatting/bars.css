@@ -9,7 +9,7 @@
 }
 #content {
   width: 80%;
-  overflow: scroll !important;
+  /* overflow: scroll !important; */
 }
 
 #disqus_thread {
@@ -125,7 +125,7 @@
     background: #000000;
 }
 
-
 canvas {
   width: 250px !important;
 }
+

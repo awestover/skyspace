@@ -1,4 +1,0 @@
-Travelling Salesman Problem (TSP) is one of the most famous
-NP-hard problems. Today, we are going to solve it really fast!
-(well, really just approximate it to within a factor of 1.5, but
- still).

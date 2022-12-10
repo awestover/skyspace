@@ -1,18 +1,82 @@
-| Topic | Description | Intensity |
-|---|---|---|
-| [Probabistic Method](probabilistic_method) | Lots of neat combinatorics. Follows the book "The Probabilistic Method" by Noga Alon and Joel Spencer, which details an elegant perspective on combinatorics problems initiated by Erdos. | Need some basic combinatorics. I'll try to define the new combinatorial objects I come across though. |
-| [Funtional Analysis](functional_analysis) | Build up to, and proof of Projection Theorem. Might also talk about general Banach spaces but probably mostly Hilbert spaces. | Technically no prereqs, but it'll be easier to follow if you've had an introductory college course in Linear Algebra and Real Analysis ;) |
-| [Introduction To Linear Algebra](intro_to_linear_algebra) | An introduction to linear algebra. It will be a pretty different introduction than you are likely to get elsewise (AFAIK). I hope it will be a good one. | light intensity |
-| [Robotic Panda Gardener](robotPandaGardeners) | I read a cool paper [Bilò, Davide, et al. “Cutting Bamboo Down to Size.” arXiv preprint arXiv:2005.00168 (2020)](https://arxiv.org/abs/2005.00168) and wrote a little "summary" of it. | very chill and very awesome! |
-| [Fast Integer Multiplication](fastIntegerMultiplication) | Do you feel like you're not fast enough at math? What if there were a provably faster way to do almost every computation (up to constants)? Nearly every computation that you ever do relies on multiplication (sorry if this offends anyone). In this blog post I show how to multiply together two n-digit numbers not in time $O(n^2)$, like you've been doing your whole life till now, but in time $O(n \log n)$ using the Fast Fourier Transform. Wow!!  *terms and conditions may apply* | You need to know what complex numbers are, some linear algebra is probably useful. It's not a self contained introduction to digital signal processing, you an see [Digital Signal Processing](digitalSignalProcessing/digitalSignalProcessing.pdf) for an introduction to digital signal processing. But technically you don't need to know any DSP to understand the article, because I define a fourier transform.|
-| [Randomized Algorithms](randomizedAlgorithms) | An introduction to how to analyze a specific type of randomized algorithm. There is a lot of introductory probability in here. | Knowing a bit of probability would probably be helpful |
-| [Cache Behavior](cacheBehavior) | An introduction to the performance benefits that cache behavior can bring to a program. | I assume you can read simple code, and that you know what a matrix / 2d array is|
-| [Asymptotic Analysis](asymptotic_analysis) | understanding what functions are like | no prereqs |
-| [Fundamental Theorem of Calculus](fundamentalTheoremOfCalculus/fundamentalTheoremOfCalculus.pdf) | introduce basic notions in calculus, prove fundamental theorem of calculus (incredibly rigorously with a ton of analysis)| Technically no preqeqs, but it'll be a bit cooler if you know calculus|
-| [Digital Signal Processing](digitalSignalProcessing/digitalSignalProcessing.pdf) | what are signals? Fourier transform, convolutions, LTIs.| should know some linear algebra |
-| [Measure Theory](measureTheory) | Read this if you are interested in any of the following questions: "what is a meausre space?", "what's a set in $\mathbb{R}$" that has no well defined inner-measure? / why do measure spaces need $\sigma$-Algebra's defined on them?", "what's a Lesbegue integral?", "what's Lesbegue's dominated convergence theorem?" (_note: work in progress_) | I probably assume some real analysis background |
-| [Cryptography](cryptography/) | crypto history, rsa, lots of content pending (_note: work in progress_) | a tiny bit of number theory would be good, e.g. know what "mod" means and know what Euler's  Theorem is (not really necessary) |
-| [Vector Calculus](vectorCalculus) | Talk about div, grad, curl, then about why differential forms are better. introduce important vector calculus notions, and talk about wedge products, differential forms, exterior derivatives, stokses thm $\int_B d\phi = \int_{\partial B} \phi$, (_note: work in progress_) | should know some calculus, probably multi and linear really. Or you can just look at the colorfull vector field pictures, they're nice too :) |
-| [Marriage Problem](marriage_problem) | aka the secretary problem | need a tiny bit of knowledge of how probability works |
-| [Compression](compression) | compressiony stuff | I guess a bit of familiarity with the tree data structure is nice, but really this is a very accesible article, I hope |
-|[Q is countable](countable) | A cool visualization of the diagonilization argument for why countable unions of countable sets are countable. | know what a bijection is |
+# skyspace 2
+
+This is a blog that I hope to be able to keep consistently!
+I plan to use it largely to be a way of reflecting on cool math /
+cs stuff that I am learning in classes in school, in doing
+random research, and in discussions with friends. 
+I enjoy sharing what I learn, and find that I learn a lot by
+sharing. 
+Sometimes when I'm swamped with work and stumped by various
+problems its easy to forget how cool and beautiful math is.
+I hope that this blog can serve as a reminder that math is
+awesome! Just in case you forgot.
+
+## why skyspace 2?
+
+skyspace 1 was great, but had some problems that prevented me
+from using it super frequently. This is an attempt to remedy
+those problems.
+
+## skyspace 2 design principles:
+- articles are appended to a feed
+- also can be tagged into categories 
+
+- efficiency:
+  - we should not have to rebuild the entire site each time. just
+  a tiny portion of it
+
+- actively share quality content!
+  - have some way for people to "subscribe"
+  - advertise via word of mouth
+  - also make it fun: have some reccuring characters in the blog posts
+
+- smooth addition of new content
+  - this cannot be overstated. I need to be able to bring up the
+  editing window for the latest post in 5 keystrokes or less.
+
+- logical organization: 
+
+```
+ss2/
+index.html
+--> links to dated articles
+topics.html
+--> links to the topic pages
+complexity/
+  index.html
+  --> contains the Disquss for the category
+  --> contains links to articles in the category
+  --> contains the description of the category
+  src/
+    README.md
+    --> description of the category
+    images/
+      img1.png
+    120922.md
+      title: IP
+
+      contents: 
+      story
+      IP = PSPACE!
+
+      description: 
+      high probability veryify a statement without a certificate!
+
+      body:
+      blah blah blah
+
+      begin thm
+      test $\int x^2 = x^3 / 3$
+      end thm
+
+probability/
+
+randomized-algorithms/
+```
+
+- simplicity:
+--> skyspace1 was really complicated and very fragile. Hopefully
+skyspace2 is better.
+
+
+

@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width" />
     <title>SkySpace</title>
 
-    <link href="formatting/pandoc.css" rel="stylesheet">
-    <link href="formatting/envbox.css" rel="stylesheet">
-    <link href="formatting/bars.css" rel="stylesheet">
+    <link href="/formatting/pandoc.css" rel="stylesheet">
+    <link href="/formatting/envbox.css" rel="stylesheet">
+    <link href="/formatting/bars.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 
   </head>
   <body>
@@ -24,27 +26,34 @@
             <h3>SkySpace</h3>
           </div>
           <ul class="list-unstyled components">
-            <!-- <img style="width:250px" src="formatting/dog.jpg" alt="sheep-dog"/> -->
             <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
-            <li> <a href="index.html">Home</a> </li>
-            <li> <a href="about.html">About</a> </li>
-            <li> <a href="topics.html">Topics</a> </li>
+            <li> <a href="/index.html">Home</a> </li>
+            <li> <a href="/about.html">About</a> </li>
+            <li> <a href="/topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            ***TOC REPLACE THING 322946***
+            </div>
           </ul>
           <div id="canvas-parent"> </div>
         </div>
       </nav>
 
-      <div id="content">
+      <div id="content"> 
+      ***CONTENT REPLACE THING 3899259***
       </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="/formatting/scrolling-nav.js"></script>
 
     <script charset="utf-8">
-      $(document).ready(function() {
-        $('#content').load("topic-elts.html"); 
-      });
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
     </script>
 
-    </div>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script> -->
-    <!-- <script src="formatting/bouncyGraphAnimation.js" charset="utf-8"></script> -->
   </body>
 </html>
