@@ -1,1 +1,1 @@
-/home/alek/Desktop/art/skyspace/posts/misc/src
+/home/alek/Desktop/art/skyspace/posts/combinatorics/src
