@@ -45,7 +45,7 @@ OK, before defining a measure space in full generality, I'll give some super nic
 
 So one really useful type of measure is a "probability measure" on a space.
 For simplicity, let's say that we are trying to assing probabilities to subsets of $[0,1]$ "occuring". Maybe we are chosing a random number at uniform from $[0,1]$ and an event $E_S$ corresponding to a set $S\subset [0,1]$ is said to occur if the randomly chosen point lies in $S$. 
-It would kinda seem like we want to define a function $\mu: \mathcal{P}([0,1]) \to [0,1] $ that maps any subset of $[0,1]$ (the powerset is denoted by $\mathcal{P}$, and is the collection of all subsets of the set) to a probability (which is by convention a number in $[0,1]$. *It turns out that this actually* **doesn't work!!!!** (As I will show shortly by constructing a subset of $[0,1]$ which isn't measurable). You need some "$\sigma$-Algebra" of subsets that the measure is going to be defined on which is not all subsets, just the subsets that we actually care about :).
+It would kinda seem like we want to define a function $\mu: \mathcal{P}([0,1]) \to [0,1]$ that maps any subset of $[0,1]$ (the powerset is denoted by $\mathcal{P}$, and is the collection of all subsets of the set) to a probability (which is by convention a number in $[0,1]$. *It turns out that this actually* **doesn't work!!!!** (As I will show shortly by constructing a subset of $[0,1]$ which isn't measurable). You need some "$\sigma$-Algebra" of subsets that the measure is going to be defined on which is not all subsets, just the subsets that we actually care about :).
 
 ---
 
@@ -67,7 +67,7 @@ $\mu((a,b)) = b-a$ for any $(a,b) \subset [0,1]$. Actually we definitely want th
 We would also like to satisfy some basic probability axioms like 
 
 - $\mu(\emptyset) = 0$
-- $\mu(A) \ge 0 \quad \forall \text{ (measurable...) } A\subset[0,1] $
+- $\mu(A) \ge 0 \quad \forall \text{ (measurable...) } A\subset[0,1]$
 - $\mu([0,1]) = 1$
 - For a countable number of disjoint sets $A_1, A_2, \ldots$ we have countable additivity, i.e. $$\mu\left( \bigcup_{i\ge 1} A_i \right) = \sum_{i\ge 1} \mu(A_i)$$
 
@@ -105,7 +105,7 @@ One should note that this definition of measure has all the nice properties that
 Namely, 
 
 * $\mu(\emptyset) = 0$ because $l(\emptyset) = 0$ $\emptyset = (0,0)$ or just say that $l(\emptyset) = 0$. 
-* $\mu((a,b)) = b-a $ because $(a,b)\cup \emptyset \cup \emptyset \cup \cdots$ covers $(a,b)$ 
+* $\mu((a,b)) = b-a$ because $(a,b)\cup \emptyset \cup \emptyset \cup \cdots$ covers $(a,b)$ 
 * $\mu([0,1]) = 1$ (above)
 * countable (sub?)-additivity (ok, so we unfortunately don't have countable additivity yet... this is beacause of those dang non-measurable sets and stuff. don't worry, we get this once we define our sigma algebra)
 * measure is non-negative : well length is so yup, we're good

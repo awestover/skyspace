@@ -30,7 +30,7 @@
 <hr />
 <h1 id="a-measure-space">A Measure Space</h1>
 <p>OK, before defining a measure space in full generality, I’ll give some super nice motivating examples that are very relatable and stuff to ease you into the topic.</p>
-<p>So one really useful type of measure is a “probability measure” on a space. For simplicity, let’s say that we are trying to assing probabilities to subsets of <span class="math inline">\([0,1]\)</span> “occuring”. Maybe we are chosing a random number at uniform from <span class="math inline">\([0,1]\)</span> and an event <span class="math inline">\(E_S\)</span> corresponding to a set <span class="math inline">\(S\subset [0,1]\)</span> is said to occur if the randomly chosen point lies in <span class="math inline">\(S\)</span>. It would kinda seem like we want to define a function $: ([0,1]) $ that maps any subset of <span class="math inline">\([0,1]\)</span> (the powerset is denoted by <span class="math inline">\(\mathcal{P}\)</span>, and is the collection of all subsets of the set) to a probability (which is by convention a number in <span class="math inline">\([0,1]\)</span>. <em>It turns out that this actually</em> <strong>doesn’t work!!!!</strong> (As I will show shortly by constructing a subset of <span class="math inline">\([0,1]\)</span> which isn’t measurable). You need some “<span class="math inline">\(\sigma\)</span>-Algebra” of subsets that the measure is going to be defined on which is not all subsets, just the subsets that we actually care about :).</p>
+<p>So one really useful type of measure is a “probability measure” on a space. For simplicity, let’s say that we are trying to assing probabilities to subsets of <span class="math inline">\([0,1]\)</span> “occuring”. Maybe we are chosing a random number at uniform from <span class="math inline">\([0,1]\)</span> and an event <span class="math inline">\(E_S\)</span> corresponding to a set <span class="math inline">\(S\subset [0,1]\)</span> is said to occur if the randomly chosen point lies in <span class="math inline">\(S\)</span>. It would kinda seem like we want to define a function <span class="math inline">\(\mu: \mathcal{P}([0,1]) \to [0,1]\)</span> that maps any subset of <span class="math inline">\([0,1]\)</span> (the powerset is denoted by <span class="math inline">\(\mathcal{P}\)</span>, and is the collection of all subsets of the set) to a probability (which is by convention a number in <span class="math inline">\([0,1]\)</span>. <em>It turns out that this actually</em> <strong>doesn’t work!!!!</strong> (As I will show shortly by constructing a subset of <span class="math inline">\([0,1]\)</span> which isn’t measurable). You need some “<span class="math inline">\(\sigma\)</span>-Algebra” of subsets that the measure is going to be defined on which is not all subsets, just the subsets that we actually care about :).</p>
 <hr />
 <blockquote>
 <p>Rand: so let me get this straight, the first thing you are gonna do once you define a measure is show that it’s broken?</p>
@@ -51,7 +51,7 @@
 <p>Anyways, back to defining a measure on this space. Beause the point on <span class="math inline">\([0,1]\)</span> is being chosen uniformly at random, we probably want our probability measure function thing to have <span class="math inline">\(\mu((a,b)) = b-a\)</span> for any <span class="math inline">\((a,b) \subset [0,1]\)</span>. Actually we definitely want this, it is saying e.g. that the probability of chosing a number less than <span class="math inline">\(1/2\)</span> is well <span class="math inline">\(1/2\)</span> which is pretty good. We would also like to satisfy some basic probability axioms like</p>
 <ul>
 <li><span class="math inline">\(\mu(\emptyset) = 0\)</span></li>
-<li>$(A)   A$</li>
+<li><span class="math inline">\(\mu(A) \ge 0 \quad \forall \text{ (measurable...) } A\subset[0,1]\)</span></li>
 <li><span class="math inline">\(\mu([0,1]) = 1\)</span></li>
 <li>For a countable number of disjoint sets <span class="math inline">\(A_1, A_2, \ldots\)</span> we have countable additivity, i.e. <span class="math display">\[\mu\left( \bigcup_{i\ge 1} A_i \right) = \sum_{i\ge 1} \mu(A_i)\]</span></li>
 </ul>
@@ -76,7 +76,7 @@
 <p>Namely,</p>
 <ul>
 <li><span class="math inline">\(\mu(\emptyset) = 0\)</span> because <span class="math inline">\(l(\emptyset) = 0\)</span> <span class="math inline">\(\emptyset = (0,0)\)</span> or just say that <span class="math inline">\(l(\emptyset) = 0\)</span>.</li>
-<li>$((a,b)) = b-a $ because <span class="math inline">\((a,b)\cup \emptyset \cup \emptyset \cup \cdots\)</span> covers <span class="math inline">\((a,b)\)</span></li>
+<li><span class="math inline">\(\mu((a,b)) = b-a\)</span> because <span class="math inline">\((a,b)\cup \emptyset \cup \emptyset \cup \cdots\)</span> covers <span class="math inline">\((a,b)\)</span></li>
 <li><span class="math inline">\(\mu([0,1]) = 1\)</span> (above)</li>
 <li>countable (sub?)-additivity (ok, so we unfortunately don’t have countable additivity yet… this is beacause of those dang non-measurable sets and stuff. don’t worry, we get this once we define our sigma algebra)</li>
 <li>measure is non-negative : well length is so yup, we’re good</li>
