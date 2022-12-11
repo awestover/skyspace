@@ -3,8 +3,9 @@ from os.path import join
 import sys
 
 BASEDIR=os.environ["SKYSPACE"]
+os.chdir(BASEDIR)
 
-with open (join(BASEDIR,"formatting/tex_macros.tex"), "r") as f:
+with open ("formatting/tex_macros.tex", "r") as f:
   tex_macros = f.read()
 
 long_name = {
@@ -74,61 +75,63 @@ def toc(contents):
 
   return "\n".join(elts)
 
-# main!
-for fname in os.listdir():
-  if ".md" in fname:
-    real_name = fname.replace(".md", "")
-    with open(fname, "r") as f: 
-      all_rows = []
-      for row in f:
-        all_rows.append(row)
+for folder in os.listdir(join(BASEDIR,"posts")):
+  os.chdir(join(BASEDIR,"posts", folder, "src"))
 
-    title = ""
-    contents = []
-    description = ""
-    body = []
+  for fname in os.listdir():
+    if ".md" in fname:
+      real_name = fname.replace(".md", "")
+      with open(fname, "r") as f: 
+        all_rows = []
+        for row in f:
+          all_rows.append(row)
 
-    stages = ["{title}", "{contents}", "{description}", "{body}"]
-    stage = 0
-    for i in range(1,len(all_rows)):
-      #  print(stages[stage])
-      if stages[stage] == "{body}":
-        body.append(all_rows[i])
-      elif all_rows[i].strip() == stages[stage+1]:
-        stage += 1
-      elif stages[stage] == "{title}":
-        title += all_rows[i]
-      elif stages[stage] == "{contents}":
-        contents.append(all_rows[i])
-      elif stages[stage] == "{description}":
-        description += all_rows[i]
+      title = ""
+      contents = []
+      description = ""
+      body = []
+
+      stages = ["{title}", "{contents}", "{description}", "{body}"]
+      stage = 0
+      for i in range(1,len(all_rows)):
+        #  print(stages[stage])
+        if stages[stage] == "{body}":
+          body.append(all_rows[i])
+        elif all_rows[i].strip() == stages[stage+1]:
+          stage += 1
+        elif stages[stage] == "{title}":
+          title += all_rows[i]
+        elif stages[stage] == "{contents}":
+          contents.append(all_rows[i])
+        elif stages[stage] == "{description}":
+          description += all_rows[i]
+      
+      #  print(title)
+      #  print(toc(contents))
+      #  print(description)
+      #  print(augment_md(body))
     
-    #  print(title)
-    #  print(toc(contents))
-    #  print(description)
-    #  print(augment_md(body))
-  
-    aug_loc = join("compiled", real_name+".aug.md")
-    with open(aug_loc, "w") as f:
-      f.write(augment_md(body))
-    #  with open(join("compiled", real_name+".toc.html"), "w") as f:
-    #    f.write(toc(contents))
+      aug_loc = join("compiled", real_name+".aug.md")
+      with open(aug_loc, "w") as f:
+        f.write(augment_md(body))
+      #  with open(join("compiled", real_name+".toc.html"), "w") as f:
+      #    f.write(toc(contents))
 
-    os.system(f"pandoc --mathjax {aug_loc} -o compiled/{real_name}.content.html")
+      os.system(f"pandoc --mathjax {aug_loc} -o compiled/{real_name}.content.html")
 
-    with open(f"compiled/{real_name}.content.html", "r") as f:
-      compiled_body = f.read()
+      with open(f"compiled/{real_name}.content.html", "r") as f:
+        compiled_body = f.read()
 
-    with open(join(BASEDIR, 'formatting/template.html'), "r") as f:
-      template = f.read()
+      with open(join(BASEDIR, 'formatting/template.html'), "r") as f:
+        template = f.read()
 
-    template= template.replace("***CONTENT REPLACE THING 3899259***", compiled_body)
-    template = template.replace("***TOC REPLACE THING 322946***", toc(contents))
-    
-    with open(f"../{real_name}.html", "w") as f:
-      f.write(template)
-    with open(f"../{real_name}.metadata.txt", "w") as f:
-      f.write(title)
-      f.write(description)
+      template= template.replace("***CONTENT REPLACE THING 3899259***", compiled_body)
+      template = template.replace("***TOC REPLACE THING 322946***", toc(contents))
+      
+      with open(f"../{real_name}.html", "w") as f:
+        f.write(template)
+      with open(f"../{real_name}.metadata.txt", "w") as f:
+        f.write(title)
+        f.write(description)
 
 
