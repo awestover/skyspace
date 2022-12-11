@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SkySpace</title>
+
+    <link href="/formatting/pandoc.css" rel="stylesheet">
+    <link href="/formatting/envbox.css" rel="stylesheet">
+    <link href="/formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h3>SkySpace</h3>
+          </div>
+          <ul class="list-unstyled components">
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="/index.html">Home</a> </li>
+            <li> <a href="/about.html">About</a> </li>
+            <li> <a href="/topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+          <div id="canvas-parent"> </div>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>Well, if you’re reading this then skyspace2.0 officially works. First, I want to apologize: there is a little bit of gross-ness that came from porting skyspace1.0 to skyspace 2.0. Future articles are all going to be made according to the new specs, but old articles were somewhat incompatible with the skyspace2.0 format. Basically what I mean is, please forgive if there is gross stuff that happened when I ported to skyspace2.0, I couldn’t delete the old content!</p>
+<p>I will comment that skyspace2.0 is not completely done, although I am a little exhausted from spending the last 10hrs completely revamping it so the fixes might not come for a while.</p>
+<h2 id="whats-left-todo">What’s left? TODO:</h2>
+<ol type="1">
+<li>I want to display images with the feeds if possible, I think that could be cool</li>
+<li>I also need a logo and story for the recurring characters that I’m planning on existing in skyspace2.0: stay tuned</li>
+<li>I want to have a way of letting people subscribe to receive updates about the blog; it’s not quite clear to me yet how best to do this</li>
+<li>I haven’t added discuss back into this yet topics and index are kind of gross, should style them up</li>
+<li>Finally, most obviously, I need posts!</li>
+</ol>
+<p>These will hopefully be coming in the next couple of days. maybe</p>
+<p>thanks for the patience! I’m excited to embark on the era of skyspace2.0 with you!</p>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="/formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+  </body>
+</html>
