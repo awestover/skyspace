@@ -1,3 +1,17 @@
+{title}
+fast multiply integers
+{contents}
+Background
+Rough Idea
+Discrete Fourier Transform
+Fast Fourier Transform
+Using this for the Integer multiplication problem
+The End
+{description}
+fft
+{body}
+
+
 ## Background
 
 begin rmk 

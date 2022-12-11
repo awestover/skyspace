@@ -1,3 +1,16 @@
+{title}
+compression
+{contents}
+Background
+Rough Idea
+Discrete Fourier Transform
+Fast Fourier Transform
+Using this for the Integer multiplication problem
+The End
+{description}
+compress
+{body}
+
 # Compression
 
 ## WORK IN PROGRESS

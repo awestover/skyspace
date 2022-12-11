@@ -1,3 +1,0 @@
-Entropy
-Huffman Coding
-The End

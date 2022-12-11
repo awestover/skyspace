@@ -1,3 +1,20 @@
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\setof}[2]{\{#1 \mid #2\}}
+\newcommand{\im}{\mathrm{im}}
+
+\DeclareMathOperator{\polylog}{\text{polylog}}
+\DeclareMathOperator{\poly}{\text{poly}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\text{Var}}
+
+
 # Alek Westover
 # Cache Behavior Matters!
 
@@ -50,13 +67,13 @@ The standard way to do this is with the "Least Recently Used" or LRU method.
 This mandates that the piece of information that was least recently accessed in
 cache will be evicted when new data needs to be placed in cache. 
 
-begin rmk
+<div class="rmk envbox">**Remark.**
 In a sense this isn't optimal. The optimal eviction pollicy "OPT" is to evict the
 piece of data that will be needed farthest in the future. However this eviction
 strategy is "omniscient" which is unrealistic.
 However, the resource augmentation theorem says that LRU is competitive with
 OPT if LRU is allowed a slightly larger cache, so LRU isn't so bad.
-end rmk
+</div>
 
 ***Cache efficiency can have a large impact on a program's performance***
 
@@ -67,9 +84,9 @@ Cache efficiency comes in 2 basic flavors:
 - *Temporal Cache Efficiency*: refers to making multiple accesses to the same cache line at times that are close to one another. If the access times are close, then the data is likely still in cache, so no cache miss will occur when the data is accessed again. On the converse side, this means that performing multiple passes over data, and thereby accessing the same element at multiple different times, is detrimental to performance in terms of cache behavior. 
 - *Spatial Cache Efficiency*: refers to making multiple requests for data in a single cache line. If the cache line is already loaded into memory, then subsequent requests for data in the same cache line will not lead to cache misses.
 
-begin rmk
+<div class="rmk envbox">**Remark.**
 Out-of-place algorithms are not very spatially cache efficient.
-end rmk
+</div>
 
 # Cool Examples!!
 
@@ -78,7 +95,7 @@ But it could.
 
 A really cool illustrative example is that of the following 2 simple matrix multiplication programs.
 
-begin rmk
+<div class="rmk envbox">**Remark.**
 In this example I will think of matrices as 1D arrays.
 If you are a mathy person this is because 
 $$\mathbb{R}^{N\cdot N} \cong \mathbb{R}^N\times\mathbb{R}^N.$$
@@ -88,9 +105,9 @@ If I have a 2D array `A`, and a flattened version `F` of `A` then I would get `A
 ![Flattened Matrix](data/matrixVector.png)
 
 Note that in memory, a multidimensional array is actually represented in exactly this way, the entries in the same row of the matrix are right next to each other in memory, but the entries in different rows, even if they are in the same column, are at least `N` apart.
-end rmk
+</div>
 
-begin ex
+<div class="ex envbox">**Example.**
 The naive way to square a matrix A is just to do it:
 ```cpp
 #include <cstdlib>
@@ -131,9 +148,9 @@ int main(){
 However, this is making one big mistake: in the inner loop each `A[k*N+j]` for
 different values of `k` is in a different cache line. So this program suffers from cache inneficiency.
 Is it a big deal?
-end ex
+</div>
 
-begin ex
+<div class="ex envbox">**Example.**
 To see if this really matters, we can make a version of the matrix squaring
 program that is more cache efficient, by storing the transpose of the matrix `A` as pre-processing.
 This is $O(N^2)$ extra pre-processing, but the algorithm is `O(N^3)`, so this
@@ -183,7 +200,7 @@ int main(){
 ```
 
 ![Transpose squaring](data/coolMatrixMultiply.png)
-end ex
+</div>
 
 *Performance analysis:*
 The perforance difference is stunning. When both where run (without any

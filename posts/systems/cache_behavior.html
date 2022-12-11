@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SkySpace</title>
+
+    <link href="/formatting/pandoc.css" rel="stylesheet">
+    <link href="/formatting/envbox.css" rel="stylesheet">
+    <link href="/formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h3>SkySpace</h3>
+          </div>
+          <ul class="list-unstyled components">
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="/index.html">Home</a> </li>
+            <li> <a href="/about.html">About</a> </li>
+            <li> <a href="/topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#array-in-memory
+" class="js-scroll-trigger">Array in Memory
+</a> </li>
+<li> <a href="#what-is-cache
+" class="js-scroll-trigger">What is Cache?
+</a> </li>
+<li> <a href="#cache-efficiency
+" class="js-scroll-trigger">Cache Efficiency
+</a> </li>
+<li> <a href="#cool-examples
+" class="js-scroll-trigger">Cool Examples!!
+</a> </li>
+            </div>
+          </ul>
+          <div id="canvas-parent"> </div>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <h1 id="alek-westover">Alek Westover</h1>
+<h1 id="cache-behavior-matters">Cache Behavior Matters!</h1>
+<hr />
+<blockquote>
+<p>Alek: Wow Cache Behavior really matters !!!<br />
+Rand: yup! but knowing cache size doesn’t sometimes</p>
+</blockquote>
+<hr />
+<h1 id="how-is-an-array-stored-in-memory">How is an array stored in memory?</h1>
+<p>In <code>C/C++</code> if you want to access an element of an array you can do so by just incrementing a pointer to the start of the array.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="dt">int</span> N = <span class="dv">10</span>;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="dt">int</span>* arr = (<span class="dt">int</span>*)malloc(<span class="kw">sizeof</span>(<span class="dt">int</span>)*N);</span></code></pre></div>
+<p>Let’s look at <code>arr</code>, <code>arr+1</code>, <span class="math inline">\(\ldots\)</span>:</p>
+<figure>
+<img src="data/ptrsPic.png" alt="" /><figcaption>Pointers</figcaption>
+</figure>
+<p>So pointers are really big hex numbers that reference some location (address) in memory. Because <code>sizeof(int) = 4</code> each of the integers in the array I allocated is located 4 bytes appart in memory.</p>
+<p>If I had instead allocated an array of <code>bool</code>s, then the pointers to each entry in the array would look like this:</p>
+<figure>
+<img src="data/boolPtrs.png" alt="" /><figcaption>Boolean Pointers</figcaption>
+</figure>
+<p>The main takeaway is that the values in an array are stored <em>right next to one another</em>.</p>
+<p>And it turns out that when a computer moves data from main memory into cache (memory that can be rapidly acessed), it moves data not as individual elements, but as “cache lines”, or collections of elements.</p>
+<h1 id="what-is-cache">What is Cache?</h1>
+<p>Cache is a small amount of memory close to the CPU that can opperate much faster than main memory. The reason cache is small is because it is made of a more expensive material than the rest of the memory. The relatively small amount of data in cache can be accessed very fast.</p>
+<p>Whenever a program tries to read in some new data, two things can happen:</p>
+<ul>
+<li>A <em>cache hit</em> occurs if the desired data is already stored in Cache. In this case it is really fast to access the data</li>
+<li>A <em>cache mis</em> occurs if the desired data is not already loaded into Cache. In this case the data must be loaded into cache from main memory, which takes a while.</li>
+</ul>
+<p>When new data is put into cache, old data that is already in the cache must be evicted. The standard way to do this is with the “Least Recently Used” or LRU method. This mandates that the piece of information that was least recently accessed in cache will be evicted when new data needs to be placed in cache.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In a sense this isn’t optimal. The optimal eviction pollicy “OPT” is to evict the piece of data that will be needed farthest in the future. However this eviction strategy is “omniscient” which is unrealistic. However, the resource augmentation theorem says that LRU is competitive with OPT if LRU is allowed a slightly larger cache, so LRU isn’t so bad.</p>
+</div>
+<p><strong><em>Cache efficiency can have a large impact on a program’s performance</em></strong></p>
+<h1 id="cache-efficiency">Cache efficiency</h1>
+<p>Cache efficiency comes in 2 basic flavors:</p>
+<ul>
+<li><em>Temporal Cache Efficiency</em>: refers to making multiple accesses to the same cache line at times that are close to one another. If the access times are close, then the data is likely still in cache, so no cache miss will occur when the data is accessed again. On the converse side, this means that performing multiple passes over data, and thereby accessing the same element at multiple different times, is detrimental to performance in terms of cache behavior.</li>
+<li><em>Spatial Cache Efficiency</em>: refers to making multiple requests for data in a single cache line. If the cache line is already loaded into memory, then subsequent requests for data in the same cache line will not lead to cache misses.</li>
+</ul>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Out-of-place algorithms are not very spatially cache efficient.</p>
+</div>
+<h1 id="cool-examples">Cool Examples!!</h1>
+<p>At this point you might be thinking “big deal, there is this theoretical idea about good algorithm design. OK, doesn’t affect me.” But it could.</p>
+<p>A really cool illustrative example is that of the following 2 simple matrix multiplication programs.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In this example I will think of matrices as 1D arrays. If you are a mathy person this is because <span class="math display">\[\mathbb{R}^{N\cdot N} \cong \mathbb{R}^N\times\mathbb{R}^N.\]</span> If not, it’s because I can think of a matrix as a flattened vector. If I have a 2D array <code>A</code>, and a flattened version <code>F</code> of <code>A</code> then I would get <code>A[i][j]</code> as from <code>F</code> as <code>A[i][j] = F[N*i + j]</code>.</p>
+<figure>
+<img src="data/matrixVector.png" alt="" /><figcaption>Flattened Matrix</figcaption>
+</figure>
+<p>Note that in memory, a multidimensional array is actually represented in exactly this way, the entries in the same row of the matrix are right next to each other in memory, but the entries in different rows, even if they are in the same column, are at least <code>N</code> apart.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> The naive way to square a matrix A is just to do it:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;cstdlib&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;ctime&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="dt">int</span> main(){</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    srand(time(NULL)); <span class="co">// random seed</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    <span class="co">// randomly initiallize the array A</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="dt">int</span> N = <span class="dv">1</span>&lt;&lt;<span class="dv">9</span>;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="dt">int</span>* A = (<span class="dt">int</span>*)malloc(<span class="kw">sizeof</span>(<span class="dt">int</span>)*N*N);</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i) {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>            A[i*N+j] =  rand()%<span class="dv">1000</span>;</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>        }</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    }</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    <span class="co">// allocate room to store the product</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>    <span class="dt">int</span>* A_squared = (<span class="dt">int</span>*)malloc(<span class="kw">sizeof</span>(<span class="dt">int</span>)*N*N);</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>    <span class="co">// square A</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i) {</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>            <span class="dt">int</span> sum = <span class="dv">0</span>;</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>            <span class="cf">for</span> (<span class="dt">int</span> k = <span class="dv">0</span>; k &lt; N; ++k) {</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>                sum += A[i*N+k] * A[k*N+j];</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>            }</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>            A_squared[i*N+j] = sum;</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>        }</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>    }</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>}</span></code></pre></div>
+<figure>
+<img src="data/naiveSquare.png" alt="" /><figcaption>Naive squaring</figcaption>
+</figure>
+<p>However, this is making one big mistake: in the inner loop each <code>A[k*N+j]</code> for different values of <code>k</code> is in a different cache line. So this program suffers from cache inneficiency. Is it a big deal?</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> To see if this really matters, we can make a version of the matrix squaring program that is more cache efficient, by storing the transpose of the matrix <code>A</code> as pre-processing. This is <span class="math inline">\(O(N^2)\)</span> extra pre-processing, but the algorithm is <code>O(N^3)</code>, so this could concievably help if the cache misses are a big deal. Here is the code</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;cstdlib&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;ctime&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="dt">int</span> main(){</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    srand(time(NULL)); <span class="co">// random seed</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    <span class="co">// randomly initiallize the array A</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="dt">int</span> N = <span class="dv">1</span>&lt;&lt;<span class="dv">9</span>;</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="dt">int</span>* A = (<span class="dt">int</span>*)malloc(<span class="kw">sizeof</span>(<span class="dt">int</span>)*N*N);</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i) {</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>            A[i*N+j] =  rand()%<span class="dv">1000</span>;</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>        }</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    }</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="co">// store A transpose</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    <span class="dt">int</span>* A_transpose = (<span class="dt">int</span>*)malloc(<span class="kw">sizeof</span>(<span class="dt">int</span>)*N*N);</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i) {</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>            A_transpose[i*N+j] = A[j*N+i];</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>        }</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    }</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>    <span class="co">// allocate room to store the product</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>    <span class="dt">int</span>* A_squared = (<span class="dt">int</span>*)malloc(<span class="kw">sizeof</span>(<span class="dt">int</span>)*N*N);</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>    <span class="co">// square A</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; ++i) {</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>        <span class="cf">for</span> (<span class="dt">int</span> j = <span class="dv">0</span>; j &lt; N; ++j) {</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>            <span class="dt">int</span> sum = <span class="dv">0</span>;</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>            <span class="cf">for</span> (<span class="dt">int</span> k = <span class="dv">0</span>; k &lt; N; ++k) {</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>                sum += A[i*N+k] * A_transpose[j*N+k];</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>            }</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>            A_squared[i*N+j] = sum;</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>        }</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a>    }</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a>}</span></code></pre></div>
+<figure>
+<img src="data/coolMatrixMultiply.png" alt="" /><figcaption>Transpose squaring</figcaption>
+</figure>
+</div>
+<p><em>Performance analysis:</em> The perforance difference is stunning. When both where run (without any optimizations, i.e. compiled without O3) on arrays of size 1024 <code>time</code> recorded:</p>
+<ul>
+<li>For the naive program: <code>./a.out  15.78s user 0.07s system 99% cpu 15.970 total</code></li>
+<li>For the cache concious algorithm: <code>./a.out  3.35s user 0.03s system 98% cpu 3.432 total</code></li>
+</ul>
+<p>The cache concious program is 5 times faster (on my computer on this input)! Wow!! Neat!!</p>
+<h1 id="the-end">The End</h1>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="/formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+  </body>
+</html>

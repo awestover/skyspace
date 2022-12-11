@@ -1,6 +1,7 @@
 import os
 from os.path import join
 import sys
+from datetime import datetime
 
 os.chdir(join(os.environ["SKYSPACE"], "posts"))
 
@@ -35,7 +36,13 @@ with open("topic-elts.html", "w") as f:
     f.write(f"<h1>{dir}</h1>")
     f.write(topics[dir])
 
-all_feeds.sort(key=lambda x: x[0], reverse=True)
+def weird(x):
+  if x[0][0] in ["0", "1"]:
+    return datetime.strptime(x[0], "%m-%d-%y").strftime("%y-%m-%d")
+  else:
+    return "***"+x[0].lower().replace(" ", "")
+
+all_feeds.sort(key=weird, reverse=True)
 concat_feeds = "".join([x[1] for x in all_feeds])
 
 with open("compile-feeds.html", "w") as f:
