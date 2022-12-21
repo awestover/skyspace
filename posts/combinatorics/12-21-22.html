@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SkySpace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h3>SkySpace</h3>
+          </div>
+          <ul class="list-unstyled components">
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+          <div id="canvas-parent"> </div>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <div class="prop envbox">
+<p><strong>Proposition.</strong> In the decide on arrival model, no deterministic on-line algorithm has competitive ratio better than <span class="math inline">\(2\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Imagine we get tasks in the following order: <span class="math display">\[(2,p), (4,2p), (8,4p), (8, 8p)\times p-3.\]</span> Clearly OPT can handle this in time <span class="math inline">\(8\)</span>. If the algorithm decides any of the first <span class="math inline">\(3\)</span> tasks <span class="math inline">\(\ser\)</span> ever, then we don’t give the rest of the tasks and the algorithm has ratio <span class="math inline">\(2\)</span>. On the other hand, if the algorithm did the first <span class="math inline">\(3\)</span> tasks all in <span class="math inline">\(\pll\)</span>, then the total time is going to be approximately <span class="math inline">\(1+2+4+8 \approx 8\cdot 2\)</span>. This demonstrates the lower bound.</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,6 @@
+<div class="prop envbox">
+<p><strong>Proposition.</strong> In the decide on arrival model, no deterministic on-line algorithm has competitive ratio better than <span class="math inline">\(2\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Imagine we get tasks in the following order: <span class="math display">\[(2,p), (4,2p), (8,4p), (8, 8p)\times p-3.\]</span> Clearly OPT can handle this in time <span class="math inline">\(8\)</span>. If the algorithm decides any of the first <span class="math inline">\(3\)</span> tasks <span class="math inline">\(\ser\)</span> ever, then we don’t give the rest of the tasks and the algorithm has ratio <span class="math inline">\(2\)</span>. On the other hand, if the algorithm did the first <span class="math inline">\(3\)</span> tasks all in <span class="math inline">\(\pll\)</span>, then the total time is going to be approximately <span class="math inline">\(1+2+4+8 \approx 8\cdot 2\)</span>. This demonstrates the lower bound.</p>
+</div>
