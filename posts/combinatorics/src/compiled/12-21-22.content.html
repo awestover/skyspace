@@ -1,6 +1,27 @@
+<h2 id="lower-bound">lower bound</h2>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Sorry this probably doesn’t make too much sense unless you are intimately familiar with the notation that I made up for this problem. Ask me about it some time if you’re curious and I haven’t told you already!</p>
+</div>
 <div class="prop envbox">
 <p><strong>Proposition.</strong> In the decide on arrival model, no deterministic on-line algorithm has competitive ratio better than <span class="math inline">\(2\)</span>.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Imagine we get tasks in the following order: <span class="math display">\[(2,p), (4,2p), (8,4p), (8, 8p)\times p-3.\]</span> Clearly OPT can handle this in time <span class="math inline">\(8\)</span>. If the algorithm decides any of the first <span class="math inline">\(3\)</span> tasks <span class="math inline">\(\ser\)</span> ever, then we don’t give the rest of the tasks and the algorithm has ratio <span class="math inline">\(2\)</span>. On the other hand, if the algorithm did the first <span class="math inline">\(3\)</span> tasks all in <span class="math inline">\(\pll\)</span>, then the total time is going to be approximately <span class="math inline">\(1+2+4+8 \approx 8\cdot 2\)</span>. This demonstrates the lower bound.</p>
+<p><strong>Proof.</strong> Imagine we get tasks in the following order: <span class="math display">\[(2,p), (4,2p), (8,4p), (8, 8p)\times p-3.\]</span> Clearly OPT can handle this in time <span class="math inline">\(8\)</span>. If the algorithm decides any of the first <span class="math inline">\(3\)</span> tasks <span class="math inline">\(\mathop{\mathrm{\circledcirc}}\)</span> ever, then we don’t give the rest of the tasks and the algorithm has ratio <span class="math inline">\(2\)</span>. On the other hand, if the algorithm did the first <span class="math inline">\(3\)</span> tasks all in <span class="math inline">\(\mathop{\mathrm{\shortparallel}}\)</span>, then the total time is going to be approximately <span class="math inline">\(1+2+4+8 \approx 8\cdot 2\)</span>. This demonstrates the lower bound.</p>
 </div>
+<h2 id="reflections">reflections</h2>
+<p>I’ve been trying for probably 2 months (at least) at time of writing this post to prove a bound of <span class="math inline">\(\phi \approx 1.618\)</span> for the competitive ratio of a scheduling algorithm for a problem related to this. In the problem you have some tasks that come over time and you need to decide between multiple methods of performing the tasks. Fairly early on I reasoned that deciding what to do with a task on the moment it arrives is the way to go.</p>
+<p>There were a couple of reasons for this. 1. procrastinating a decision could prevent you from getting started with a task which seems potentially wasteful. 2. if you knew what tasks where going to come in the future, then clearly it never makes sense to procrastinate deciding how to run a task. 3. “decide on arrival” makes the algorithm theoretically much simpler / cleaner / easy to analyze.</p>
+<p>I spent a lot of time working with a specific decide on arrival strategy that I was fairly convinced should achieve <span class="math inline">\(\phi\)</span>. After weeks of being stuck, I finally stumbled upon an example, similar to the one in this article of a set of tasks where the algorithm is <strong>not</strong> in fact <span class="math inline">\(\phi\)</span> competitive, and cannot be better than <span class="math inline">\(2\)</span>.</p>
+<p>Was all the work it took to get here for naught? I don’t think so. Many people say the main goal of research is personal growth / learning. I think I get what this means, but is not the best explanation in my opinion. Here’s how I would describe it:</p>
+<blockquote>
+<p>Doing research is like climbing a mountain<br />
+Maybe you brought some nasty food like tuna<br />
+[Having to endure eating some gross math]<br />
+Maybe you have a bad sense of direction and it’s dark and rainy and you don’t know where you are.<br />
+[Having a faulty conjecture, many unsuccesful proof attempts ]   Your legs and back start to be in pain from the exertion<br />
+[pens run out of ink. Backpack and camera roll full of colorful pieces of paper and pictures of blackboards. Mind full of the ideas that have been tried, and the paths maybe worth trying slightly differently]<br />
+But if you step back. Smile at the challenges and laugh at the obstacles. It feels kind of epic.<br />
+[The process of creating new ideas is beautiful]</p>
+</blockquote>
+<p>It’s not the solution that ends up being the most meaningful. It’s the weeks and months spent imperceptibaly preparing yourselfl to arrive at the solution. Put poetically by Sanderson “Journey before Destination.”</p>
+<p>And so no, this method I was trying for a <span class="math inline">\(\phi\)</span> competitive algorithm was not succesful. But it led me to discover how important not deciding on arrival is. I in fact found that <span class="math inline">\(2\)</span> for the decide on arrival variant of the problem and is achieved by one of the algorithms I was thinking about. And now I have some new ideas for getting <span class="math inline">\(\phi\)</span>. Onward to phi!</p>

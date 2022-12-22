@@ -1,2 +1,4 @@
-a lower bound of 2
-
+scheduleing problem: a lower bound of 2
+this is a lower bound for a research problem that I've been
+thinking about (a lot!) recently. And some reflections on what it
+means.
