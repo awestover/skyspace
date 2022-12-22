@@ -1,0 +1,2 @@
+comp-geo: detect some lines
+solve some cool problems

@@ -65,12 +65,12 @@ Rand: yup! but knowing cache size doesn’t sometimes</p>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="dt">int</span>* arr = (<span class="dt">int</span>*)malloc(<span class="kw">sizeof</span>(<span class="dt">int</span>)*N);</span></code></pre></div>
 <p>Let’s look at <code>arr</code>, <code>arr+1</code>, <span class="math inline">\(\ldots\)</span>:</p>
 <figure>
-<img src="data/ptrsPic.png" alt="" /><figcaption>Pointers</figcaption>
+<img src="src/images/ptrsPic.png" alt="" /><figcaption>Pointers</figcaption>
 </figure>
 <p>So pointers are really big hex numbers that reference some location (address) in memory. Because <code>sizeof(int) = 4</code> each of the integers in the array I allocated is located 4 bytes appart in memory.</p>
 <p>If I had instead allocated an array of <code>bool</code>s, then the pointers to each entry in the array would look like this:</p>
 <figure>
-<img src="data/boolPtrs.png" alt="" /><figcaption>Boolean Pointers</figcaption>
+<img src="src/images/boolPtrs.png" alt="" /><figcaption>Boolean Pointers</figcaption>
 </figure>
 <p>The main takeaway is that the values in an array are stored <em>right next to one another</em>.</p>
 <p>And it turns out that when a computer moves data from main memory into cache (memory that can be rapidly acessed), it moves data not as individual elements, but as “cache lines”, or collections of elements.</p>
@@ -101,7 +101,7 @@ Rand: yup! but knowing cache size doesn’t sometimes</p>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> In this example I will think of matrices as 1D arrays. If you are a mathy person this is because <span class="math display">\[\mathbb{R}^{N\cdot N} \cong \mathbb{R}^N\times\mathbb{R}^N.\]</span> If not, it’s because I can think of a matrix as a flattened vector. If I have a 2D array <code>A</code>, and a flattened version <code>F</code> of <code>A</code> then I would get <code>A[i][j]</code> as from <code>F</code> as <code>A[i][j] = F[N*i + j]</code>.</p>
 <figure>
-<img src="data/matrixVector.png" alt="" /><figcaption>Flattened Matrix</figcaption>
+<img src="src/images/matrixVector.png" alt="" /><figcaption>Flattened Matrix</figcaption>
 </figure>
 <p>Note that in memory, a multidimensional array is actually represented in exactly this way, the entries in the same row of the matrix are right next to each other in memory, but the entries in different rows, even if they are in the same column, are at least <code>N</code> apart.</p>
 </div>
@@ -139,7 +139,7 @@ Rand: yup! but knowing cache size doesn’t sometimes</p>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>}</span></code></pre></div>
 <figure>
-<img src="data/naiveSquare.png" alt="" /><figcaption>Naive squaring</figcaption>
+<img src="src/images/naiveSquare.png" alt="" /><figcaption>Naive squaring</figcaption>
 </figure>
 <p>However, this is making one big mistake: in the inner loop each <code>A[k*N+j]</code> for different values of <code>k</code> is in a different cache line. So this program suffers from cache inneficiency. Is it a big deal?</p>
 </div>
@@ -185,7 +185,7 @@ Rand: yup! but knowing cache size doesn’t sometimes</p>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a>}</span></code></pre></div>
 <figure>
-<img src="data/coolMatrixMultiply.png" alt="" /><figcaption>Transpose squaring</figcaption>
+<img src="src/images/coolMatrixMultiply.png" alt="" /><figcaption>Transpose squaring</figcaption>
 </figure>
 </div>
 <p><em>Performance analysis:</em> The perforance difference is stunning. When both where run (without any optimizations, i.e. compiled without O3) on arrays of size 1024 <code>time</code> recorded:</p>

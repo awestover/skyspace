@@ -30,13 +30,13 @@ int* arr = (int*)malloc(sizeof(int)*N);
 
 Let's look at `arr`, `arr+1`, $\ldots$:
 
-![Pointers](data/ptrsPic.png)
+![Pointers](src/images/ptrsPic.png)
 
 So pointers are really big hex numbers that reference some location (address) in memory. Because `sizeof(int) = 4` each of the integers in the array I allocated is located 4 bytes appart in memory.
 
 If I had instead allocated an array of `bool`s, then the pointers to each entry in the array would look like this:
 
-![Boolean Pointers](data/boolPtrs.png)
+![Boolean Pointers](src/images/boolPtrs.png)
 
 The main takeaway is that the values in an array are stored _right next to one another_.
 
@@ -96,7 +96,7 @@ $$\mathbb{R}^{N\cdot N} \cong \mathbb{R}^N\times\mathbb{R}^N.$$
 If not, it's because I can think of a matrix as a flattened vector.
 If I have a 2D array `A`, and a flattened version `F` of `A` then I would get `A[i][j]` as from `F` as `A[i][j] = F[N*i + j]`.
 
-![Flattened Matrix](data/matrixVector.png)
+![Flattened Matrix](src/images/matrixVector.png)
 
 Note that in memory, a multidimensional array is actually represented in exactly this way, the entries in the same row of the matrix are right next to each other in memory, but the entries in different rows, even if they are in the same column, are at least `N` apart.
 end rmk
@@ -137,7 +137,7 @@ int main(){
 }
 ```
 
-![Naive squaring](data/naiveSquare.png)
+![Naive squaring](src/images/naiveSquare.png)
 
 However, this is making one big mistake: in the inner loop each `A[k*N+j]` for
 different values of `k` is in a different cache line. So this program suffers from cache inneficiency.
@@ -193,7 +193,7 @@ int main(){
 
 ```
 
-![Transpose squaring](data/coolMatrixMultiply.png)
+![Transpose squaring](src/images/coolMatrixMultiply.png)
 end ex
 
 *Performance analysis:*
