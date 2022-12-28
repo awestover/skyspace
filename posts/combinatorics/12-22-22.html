@@ -33,7 +33,9 @@
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
             <div id="toc">
-            
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
             </div>
           </ul>
           <div id="canvas-parent"> </div>
@@ -41,7 +43,44 @@
       </nav>
 
       <div id="content"> 
-      <p><a href="src/quadtrees/">quad</a> <a href="src/cryptography/">crypto</a></p>
+      <p>Well red-black trees, AVL trees, and other standard balanced binary search trees are</p>
+<ul>
+<li>super complicated</li>
+<li>not very beautiful</li>
+</ul>
+<p>So, can we do better?</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Splay Tree: a “self-balancing” binary search tree. In other words, it achieves <span class="math inline">\(O(\log n)\)</span> ammortized update / find operations. and it’s super simple.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>find(v):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  search the tree <span class="cf">for</span> v</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  splay(v)</span></code></pre></div>
+</div>
+<p>ok so what’s a splay operation? It’s a sequence of double rotations, termed <strong>zig-zag</strong>, <strong>zag-zig</strong>, <strong>zig-zig</strong>, <strong>zag-zag</strong>. In particular, these operations are performed a path from the splayed node to the root, and result in the splayed node becoming the root (or at least becoming really close to the root, e.g. distance <span class="math inline">\(1\)</span> away from the root).</p>
+<p>So why <em>splay</em>? Well, the key feature of any lazy data structure is that expensive operations in your data structure need to clean up the data structure. So for example if there is a <em>find</em> operation that takes a really long time, then the found node is moved to the top of the tree, causing subsequent searches on that node to be less expensive. This serves to shorten paths that are too long.</p>
+<p>Some more intuition for splay trees: if a nodes subtrees are unbalanced in size, e.g. one subtree has more than <span class="math inline">\(2/3\)</span> the weight of the full tree then that’s an indication that we are not super balanced. So, we want to make “huge subtrees” a high potential state, and then we can extract potential from them to fix them. We can fix a huge subtree by rotating it to be higher in the tree.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> The rank of a node <span class="math inline">\(x\)</span> is <span class="math inline">\(r(x) = \log\)</span> size of subtree rooted at <span class="math inline">\(x\)</span>.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> The amortized cost to splay node <span class="math inline">\(x\)</span> to the root <span class="math inline">\(t\)</span> is <span class="math inline">\(3 (r(t) -r(x)) + 1\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> just analyze the potential change from each double-rotation operation. It’s not too complicated.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> We get amortized <span class="math inline">\(\log n\)</span> operations for the splay tree.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> OK. Splay Trees are actually super weird though. There is this thing called the Dynamic Optimality conjecture, which postulates that splay trees are just literally the best at everything.</p>
+<p>Some data supporting the conjecture includes:</p>
+<ul>
+<li>if you had some access frequencies splay trees achieve (up to constants) entropy for average search time.</li>
+<li>static finger theorem: if you search for stuff and you are measuring how far you have to move to get to stuff</li>
+<li>cache optimality</li>
+</ul>
+</div>
+<h3 id="credit">credit</h3>
+<p>Splay Trees are were invented by Sleator and Tarjan My understanding of Splay Trees is thanks to Professor Karger</p>
 
       </div>
     </div>
