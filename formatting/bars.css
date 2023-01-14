@@ -4,28 +4,59 @@
   align-items: stretch;
 }
 
-#content {
-  width: calc(100vw - 150px);
-  margin-left: 150px;
-  padding: 5%;
+@media (min-width: 501px) {
+  #sidebar-content {
+    position: fixed;
+    height: 100vh;
+    width: 150px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    background: #000000;
+  }
+  #content {
+    width: calc(100vw - 150px);
+    margin-left: 150px;
+    padding: 5%;
+  }
+
+  #disqus_thread {
+    width: calc(100vw - 150px);
+    margin-left: 150px;
+    padding: 5%;
+  }
+  #sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #000000;
+  }
 }
 
-#disqus_thread {
-  width: calc(100vw - 150px);
-  margin-left: 150px;
-  padding: 5%;
+@media (max-width: 500px) {
+  /* CSS that should be displayed if width is equal to or less than 800px goes here */
+  #sidebar-content {
+    position: fixed;
+    height: 150px;
+    width: 100vw;
+    background: #000000;
+    overflow-x: auto;
+  }
+  #sidebar img {
+    width: 50px !important;
+    display:inline-block;
+  }
+
+  #sidebar ul.components li {
+    display: inline-block;
+    font-size: 12px;
+  }
+
+  #content {
+    margin-top: 150px;
+    padding: 5%;
+  }
+
 }
 
-#sidebar-content {
-  position: fixed;
-  height: 100vh;
-  width: 150px;
-  overflow-y: auto;
-  overflow-wrap: break-word;
-
-  background: #000000;
-}
-
+/* random crap */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 #sidebar p {
@@ -51,11 +82,6 @@
 }
 #sidebar h3 {
   color: #ffffff;
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #000000;
 }
 
 #sidebar ul p {
