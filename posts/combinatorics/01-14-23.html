@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SkySpace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h3>SkySpace</h3>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+          <div id="canvas-parent"> </div>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <h1 id="max-min-probability">max min probability</h1>
+<p>Let <span class="math inline">\(X_1,X_2,X_3\)</span> be random variables. Find <span class="math display">\[\max \min \{\Pr[X_1&gt;X_2], \Pr[X_2&gt;X_3], \Pr[X_3 &gt; X_1]\}\]</span></p>
+<div class="clm envbox">
+<p><strong>Claim.</strong> The maximal value is <span class="math inline">\(2/3\)</span>.</p>
+<p>Let <span class="math inline">\(Y_{ij}\)</span> denote the indicator random variable for <span class="math inline">\(X_i&gt;X_j\)</span>. Clearly <span class="math inline">\(Y_{12}+Y_{23}+Y_{31} \leq 2\)</span> so <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[\sum Y_{i, i+1}]\leq 2\)</span>. This means that <span class="math inline">\(\max\min \mathop{\mathrm{\mathbb{E}}}[Y_{i,i+1}] \leq 2/3\)</span>. Of course <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[Y_{ij}] = \Pr[X_i &gt; X_j]\)</span>, so we cannot do better than <span class="math inline">\(2/3\)</span>.</p>
+<p>We can achieve <span class="math inline">\(2/3\)</span> as follows:</p>
+<ul>
+<li>With probability <span class="math inline">\(1/3\)</span>, <span class="math inline">\(X_1&lt;X_3&lt;X_2\)</span></li>
+<li>With probability <span class="math inline">\(1/3\)</span>, <span class="math inline">\(X_3&lt;X_3&lt;X_1\)</span></li>
+<li>With probability <span class="math inline">\(1/3\)</span>, <span class="math inline">\(X_2&lt;X_1&lt;X_3\)</span>.</li>
+</ul>
+</div>
+<h1 id="coin-flip-sum-parity">coin flip sum parity</h1>
+<div class="clm envbox">
+<p><strong>Claim.</strong> Let <span class="math inline">\(X_i\)</span> be independent Bernouli’s. Claim: the sum has odd parity with probability <span class="math inline">\(1/2\)</span> iff one of the <span class="math inline">\(X_i\)</span>’s has odd parity with probability <span class="math inline">\(1/2\)</span>.</p>
+<p>Clearly if one of random variables, say <span class="math inline">\(X_n\)</span>, has an equal chance of being either parity, then the sum has equal chance of having either parity: the sum has some distribution before the addition of <span class="math inline">\(X_n\)</span>, and then adding <span class="math inline">\(X_n\)</span> makes the parity even or odd with equal probability.</p>
+<p>To show that one of the random variables must have <span class="math inline">\(p_i=1/2\)</span> for the parity to be equally likely odd or even, we proceed by induction. Consider r.v.s that have odd parity with probability <span class="math inline">\(p_1,p_2\)</span>. For the parity of the sum to be equally likely odd or even we must have <span class="math display">\[p_1p_2 + \bar{p_1}\bar{p_2} = p_1\bar{p_2} + \bar{p_1}p_2.\]</span> But this implies <span class="math display">\[p_1(p_2 - \bar{p_2}) = \bar{p_1} (p_2 - \bar{p_2}).\]</span> In other words, either <span class="math inline">\(p_1 = \bar{p_1}\)</span> or <span class="math inline">\(p_2 = \bar{p_2}\)</span>. Therefore we inductively find that adding independent random variables whose parity is not equally likely to be odd or even can never result in a random variable with equal probability of being even or odd.</p>
+</div>
+<h1 id="weights">weights</h1>
+<div class="clm envbox">
+<p><strong>Claim.</strong> You have weights <span class="math inline">\(2^0,2^1, \ldots, 2^{n-1}\)</span>. You put them on a scale in some order such that the right pan of the scale is never heavier than the left. How many ways can this be done?</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Let <span class="math inline">\(f(n)\)</span> denote the number of valid ways to place the weights. Say that the <span class="math inline">\(i\)</span>-th weight placed is of weight <span class="math inline">\(2^0\)</span>. If <span class="math inline">\(i=1\)</span> then the weight must be left pan or the right pan would be heavier. After placing this weight on the left pan though, we would be in essentially the same position but with <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>, because <span class="math inline">\(2^0\)</span> is so small compared to all the other weights that it can never affect which way the scales tip in the future, i.e. at any future state the scale will tip the same way even if we ignore the <span class="math inline">\(2^0\)</span> weight. On the other hand, if we place the <span class="math inline">\(2^0\)</span> weight at some position <span class="math inline">\(1&lt;i\leq n\)</span>, then we can place it on the right or the left scale: either way is fine. In this situation it suffices to compute a method for placing the <span class="math inline">\(2^1,\ldots, 2^n\)</span> weights, and then we can just insert this new weight.</p>
+<p>Thus we derive the recurrence: <span class="math display">\[f(n) = (2(n-1)+1)f(n-1) = (2n-1)f(n-1).\]</span> We have as the base case <span class="math inline">\(f(0) = f(1) = 1\)</span>. We remark that <span class="math inline">\(f(n)\)</span> is sometimes called the “double factorial” written <span class="math inline">\(n!!\)</span>.</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
