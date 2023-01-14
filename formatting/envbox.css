@@ -36,6 +36,8 @@
   margin-bottom: 3%;
   margin-top: 3%;
 
+  overflow-x: auto;
+
   width: 100%;
 }
 
