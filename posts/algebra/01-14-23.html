@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SkySpace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h3>SkySpace</h3>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+          <div id="canvas-parent"> </div>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>Ok so <em>spectral graph theory</em> refers to studying graphs by looking at their eigen-stuff. First, an important theorem: <strong>Spectral Theorem</strong>: A symetric real matrix (i.e. <span class="math inline">\(A^{\dag} = A\)</span>) 1) has real eigenvalues, 2) has an orthonormal eigenbasis! Having an orthonormal eigenbasis is really <strong>op</strong>.</p>
+Ok briefly let’s talk about norms; this is important:
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Let <span class="math inline">\(v\in \mathbb{R}^n\)</span>.</p>
+<p>Let <span class="math inline">\(|v|_1 = \sum |v_i|\)</span> denote the <span class="math inline">\(\ell_1\)</span> norm of <span class="math inline">\(v\)</span> (if we just write <span class="math inline">\(|v|\)</span> we mean <span class="math inline">\(|v|_1\)</span>) and A <span class="math inline">\(||v||_2 = \sqrt{\sum v_i^2}\)</span> denote the <span class="math inline">\(\ell_2\)</span> norm of <span class="math inline">\(v\)</span> (if we just write <span class="math inline">\(||v||\)</span> we mean <span class="math inline">\(||v||_2\)</span>), and <span class="math inline">\(|v|_{\infty} = \max_i |v_i}\)</span> denote the <span class="math inline">\(\ell_{\infty}\)</span> norm of <span class="math inline">\(v\)</span>.</p>
+<p>Then, <span class="math display">\[|v|/\sqrt{n} \leq ||v|| \leq |v|\]</span> Because crow’s distance is shorter than taxicab distance, but not by more than a factor of <span class="math inline">\(\sqrt{n}\)</span> (this extreme is achieved by a vector with all components equal).</p>
+<p>Also, <span class="math display">\[|v|_{\infty} \leq ||v|| \leq \sqrt{n}|v|_{\infty}.\]</span> Because just do the math.</p>
+</div>
+Ok, now we are going to talk about a nice type of graph:
+<div class="defn envbox">
+<p><strong>Definition.</strong> A <span class="math inline">\(n\)</span> vertex <span class="math inline">\(d\)</span> regular graph is a graph where each vertex has degree <span class="math inline">\(d\)</span>.</p>
+</div>
+<p>Note that if you feel like it you can make any graph into a regular graph by adding a bunch of self loops. We probably want a pretty low degree graph though generally.</p>
+<p>Consider a symmetric stochastic matrix <span class="math inline">\(A\)</span> arising as the adjacency matrix of an undirected <span class="math inline">\(n\)</span> vertex <span class="math inline">\(d\)</span> regular graph. Yay, spectral theorem says that it is orthonormally-diagonalizable.</p>
+<p>Note that $/n $, the uniform distribution, i.e. <span class="math inline">\((1/n, 1/n, \ldots)\)</span> is an eigenvector for <span class="math inline">\(A\)</span> with eigenvalue <span class="math inline">\(1\)</span>. Ok so that’s a boring eigenvector though. It turns out that generally the second largest eigenvalue is pretty interesting.</p>
+<div class="clm envbox">
+<p><strong>Claim.</strong> All eigenvalues of <span class="math inline">\(A\)</span> are at most <span class="math inline">\(1\)</span> in absolute value.</p>
+<p>Well, think about: <span class="math inline">\(A^k = V \Lambda^k V^{-1}\)</span>. If <span class="math inline">\(A\)</span> had an eigenvector <span class="math inline">\(|\lambda_i| &gt; 1\)</span>, then <span class="math inline">\(\Lambda^k\)</span> would blow up. But <span class="math inline">\(A^k\)</span> doesn’t blow up, it’s super nice and still a stochastic matrix: multiplying the matrix corresponds to taking more steps in your path. Anyways, so there is no way that <span class="math inline">\(A\)</span> has huge eigenvectors.</p>
+</div>
+Ok, so for any graph we define
+<div class="defn envbox">
+<p><strong>Definition.</strong> <span class="math inline">\(\lambda(G)\)</span> is the second largest eigenvalue.</p>
+<p><strong>Spectral gap</strong> is <span class="math inline">\(1-\lambda(G)\)</span>.</p>
+</div>
+<p>So having a spectral gap means that if you random walk a bit you get to the uniform distribution. Here’s a Lemma that says this more better.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math display">\[||A^k p - \mathbb{1}/n || \leq \lambda ^k\]</span> for any <span class="math inline">\(|p| = 1\)</span>, where <span class="math inline">\(\lambda\)</span> is the second largest eigenvalue of <span class="math inline">\(A\)</span>, which is a symmetric stochastic matrix.</p>
+<p>In other words, if you start with a probability distribution <span class="math inline">\(p\)</span> over the vertices and random walk for <span class="math inline">\(k\)</span> steps, then you are pretty dang close to the uniform distribution, especially if <span class="math inline">\(\lambda \ll 1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Well, this is really asking <span class="math display">\[\max_{v\perp \mathbb{1}, ||v||\leq 1} ||A^k v||\]</span></p>
+<p>Because orthonormal change of bases are norm preserving, we can just think about this relative to the eigen-basis for <span class="math inline">\(A\)</span>, but then it is abundantly clear that <span class="math inline">\(\lambda^k\)</span> is an upper bound for this thing.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> ok, so we can see that it would be nice if we had a graph with a large spectral gap. Such a graph is called an <strong>expander</strong>.</p>
+<p>We can talk about expander families algebraically, parameterized by <span class="math inline">\((n,d,\lambda)\)</span>, or combinatorially. The combinatorial definition basically says</p>
+<p>that for all small sets of vertices <span class="math inline">\(S\)</span>, i.e. <span class="math inline">\(|S| &lt; n/2\)</span>, they have a bunch of edges out of them. We can parametrize this to a family <span class="math inline">\((n,d,\rho)\)</span> with <span class="math display">\[|E(S, \bar{S})| \geq d\rho |S|.\]</span></p>
+</div>
+<p>Ok, so what’s all the <strong>hype</strong> about expanders?</p>
+<p>So far the coolest thing I know about expanders is that they can reduce the number of random bits you need when doing probability amplification. More precisely</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Imagine that you had an algorithm with one sided error that had probability of success <span class="math inline">\(1/2\)</span> and required the use of <span class="math inline">\(m\)</span> random bits.</p>
+<p>We can obviously amplify it to have probability of success <span class="math inline">\(1/2^k\)</span> by running it <span class="math inline">\(k\)</span> times. Naively this would require <span class="math inline">\(m\cdot k\)</span> random bits.</p>
+<p>But using expander magic we can get away with only <span class="math inline">\(m + O(k)\)</span> random bits and still amplify the probability of success up to <span class="math inline">\(2^{-\Omega(k)}\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> ok actually the proof is maybe a little complicated,</p>
+<p>but the idea is super simple: just take an expander with <span class="math inline">\(n = 2^m\)</span> vertices (each encoding a binary string of length <span class="math inline">\(m\)</span>) and degree <span class="math inline">\(d \in O(1)\)</span> and then step along the expander to get your random bits.</p>
+<p>If the probability of success for the algorithm is at least <span class="math inline">\(1/2\)</span>, then at most <span class="math inline">\(n/2\)</span> of the vertices of the graph are “bad coins”. And sufficiently long walks in expanders start to look pseudorandom pretty fast with exponentially good probability.</p>
+<p>Any ways this is all to say, expanders can fake randomness pretty well.</p>
+</div>
+<p>ok. So you might be wondering. Um. Can you give me an actual example of an expander family. That’s a good question. That would seem to be important if you wanted to do stuff with expanders. <strong>Stay tuned.</strong></p>
+<figure>
+<img src="../../images/cat.png" alt="" /><figcaption>rat</figcaption>
+</figure>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
