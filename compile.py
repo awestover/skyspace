@@ -22,6 +22,12 @@ long_name = {
 }
 environment_types = list(long_name.keys())
 
+IMAGES = [
+  ("<rat>", "<img src='../../images/rat.png' width='25%'>"),
+  ("<cat>", "<img src='../../images/cat.png' width='25%'>"),
+  ("<blob>", "<img src='../../images/blob.png' width='25%'>")
+]
+
 def augment_md(body):
   looking_for_closure = False
   start_environment = ""
@@ -60,6 +66,10 @@ def augment_md(body):
 
   if looking_for_closure:
     sys.exit("ERROR: no closure!")
+
+
+  for img in IMAGES:
+    out_text = out_text.replace(img[0], img[1])
 
   return tex_macros+out_text
 

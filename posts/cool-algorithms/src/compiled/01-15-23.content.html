@@ -1,0 +1,40 @@
+<blockquote>
+<p>Shatar: yo parallel computing is amazing. Whenever you have a hard problem just throw more cores at it and that will solve it! You gotta check out these parallel algorithms dude!<br />
+JJ: Contrary! I predict that some tasks are intrinsically serial.<br />
+Shatar: like what?<br />
+JJ: Consider the problem of graph reachability in a directed graph.<br />
+Shatar: ah, good <strong>connection</strong> to todays topic. I hope we will be able to <strong>reach</strong> a conclusion to the problem.<br />
+JJ: I wish you the best of luck with that endeavor, and will be interested to watch you try.<br />
+Shatar: As I always like to say “if a problem is really hard, but some relaxation or restriction of the problem is easier, then just pretend like that’s the problem you wanted to solve all along :)”<br />
+JJ: Your words contain much wisdom.</p>
+</blockquote>
+<p><img src='../../images/rat.png' width='25%'></p>
+<p>Shatar: So yeah anyways, here’s the problem: try to travel between two vertices in a graph. Can you do it?</p>
+JJ: Formally, the problem is defined as follows
+<div class="defn envbox">
+<p><strong>Definition.</strong> Let <span class="math inline">\(G\)</span> be a directed graph, with vertices <span class="math inline">\(s,t\in V\)</span> identified. Create an efficient parallel algorithm in the EREW PRAM model of computation to determine if there exists a path <span class="math inline">\(s\to t\)</span> in the graph.</p>
+</div>
+<p>Shatar: yeah whatever. Ok so in serial this is really easy, any traversal algorithm (DFS, BFS) should work in linear time.</p>
+<p>Shatar: so if we wanted to do this in parallel. Well one way to go would be exponentiating the adjacency matrix for the graph. Recall that we can square adjacency matrix in time <span class="math inline">\(\Theta(\lg n)\)</span> time with <span class="math inline">\(\mathop{\mathrm{\text{poly}}}(n)\)</span> processors via the straightforward divide into submatrices, recursively multiply those, then add stuff technique. Using exponentiation by squaring we achieve run time <span class="math inline">\(\lg^2 n\)</span> total for computing the new adjacency matrix. Then we can ready off <span class="math inline">\((A^n)_{s,t}\)</span> to determine the connectivity.</p>
+<p>JJ: In fact, this technique has determined all the connection data. This could be good: it means we have a very efficient transitive closure algorithm. But <span class="math inline">\(\log^2 n\)</span> span for connectivity of <span class="math inline">\(2\)</span> vertices seems somewhat wasteful.</p>
+<p>Shatar: well. that’s the best one I know. But I can show you a better one for undirected graphs! It works like this:</p>
+<p>Vertices are grouped into “stars” with a root and a bunch of nodes attached to it. Then, we repeatedly “hook” together stars that have edges between them.</p>
+<p>We say an edge is <strong>live</strong> if it connects vertices belonging to two different stars. In a <strong>hook</strong> opperation we add a pointer from the smaller index star to the larger index star, symbolizing that they need to be combined.</p>
+<p>Hooks turn the stars into a forest of trees. But then we can revert to having stars via pointer jumping, which can be done in parallel pretty well.</p>
+<p>JJ: As is, this is still <span class="math inline">\(\lg^2 n\)</span> span.</p>
+<p>Shatar: Ah! But there is a way we can do better. I’ll just give you the rough idea.</p>
+<p>we don’t need to have separate steps for pointer jumping and hooking: that was too inefficient.</p>
+<p>Now: At any point we will have some stars and some trees. Each round we hook every star to another star / tree. Either we hook to the root of the star or maybe hooks to something else. After each hook we do <span class="math inline">\(1\)</span> round of pointer jumping.</p>
+<p>We can analyze this with the following potential function: $= $ # of live stars $ + $ heights of live trees.</p>
+<p>When we hook the stars we decrease number of live stars, which offsets the increase in tree heights resulting in no net potential change. On the other hand, when we pointer jump we halve all of the live tree heights.</p>
+<p>Since the potential starts at <span class="math inline">\(n\)</span> this algorithm takes <span class="math inline">\(\lg n\)</span> steps. Which is clearly optimal span.</p>
+<p>JJ: As described here, it’s still not wrok efficient. But it turns out that you can get within an inverse ackerman function of work optimal. Or just get expected work optimal in the realm of randomized algorithms.</p>
+<figure>
+<img src="src/images/stars_forest.png" alt="" /><figcaption>forest of stars</figcaption>
+</figure>
+<blockquote>
+<p>Shatar: so. you convinced? JJ: You had me <strong>hooked</strong> by the potential function.<br />
+Shatar: You’re a <strong>star</strong>.<br />
+Blobby: why are the puns so bad you have to <strong>bold</strong> them?<br />
+Shatar: Go away Blob!</p>
+</blockquote>
