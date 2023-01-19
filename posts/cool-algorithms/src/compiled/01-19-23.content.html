@@ -1,0 +1,37 @@
+<p>ok, so you might have heard of paging, which is basically where you havea cache of pages, and you repeatedly get new page, and you have to deicde which pages to evict whenever you get a page that is not in your cache.</p>
+<p>Today we’re going to talk about a generalization of paging, called <span class="math inline">\(k\)</span>-server. In <span class="math inline">\(k\)</span>-server you now live in a metric space and your score is the total distance your servers travel.</p>
+<p>The way I like to think of it is you have a bunch of ice-cream trucks in a city. Over time you get some requests for ice cream. The trucks are really fast, but gas is really expensive. So you want to minimize the total distance that your ice-cream trucks travel to meet all the requests.</p>
+<p>Paging is this problem under the discrete metric (i.e. all non-identical points are distance <span class="math inline">\(1\)</span> from each other).</p>
+<p>ok, but what can we say about non-discrete metrics?</p>
+<p>Actually we are only going to consider a very special case today: online on-a-line <span class="math inline">\(k\)</span>-server. That is, we consider the metric space of a line.</p>
+<div class="clm envbox">
+<p><strong>Claim.</strong> There are at most <span class="math inline">\(2\)</span> servers that are reasonable to move: the closest server to the right/left of the request.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Imagine you thought it was a good idea to move someone else. Now when he moves past one of the dudes you were really supposed to move they swap hats and the dude you really should have moved goes in place of the other dude, but you are none the wiser.</p>
+</div>
+<p>ok, now we have <span class="math inline">\(2\)</span> options for what to move instead of having to consider all <span class="math inline">\(k\)</span> servers that we could move. But how to choose? The “correct choice” depends on the future sequence of requests. It certainly seems tricky. So we just don’t choose! <strong>Double Coverage Algorithm</strong>: move both closest servers closer to the target until one hits it.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Double coverage is <span class="math inline">\(k\)</span> competitive.</p>
+</div>
+<p>We use the following potential function: <span class="math display">\[\phi = k\cdot M + \sum_{ij}d(s_i,s_j)\]</span> where <span class="math inline">\(M\)</span> denotes the min-cost matching between our servers <span class="math inline">\(s_i\)</span> and OPT’s servers <span class="math inline">\(o_i\)</span>.</p>
+<p>Imagine stuff happening with OPT moving first and then us moving for each request.</p>
+<div class="clm envbox">
+<p><strong>Claim.</strong> Whenever opt moves by <span class="math inline">\(d\)</span> potential increases by at most <span class="math inline">\(kd\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This is immediate.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Whenever double coverage moves by <span class="math inline">\(d\)</span> potential decreases by at least <span class="math inline">\(d\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> If the request is to the right/left of <em>all</em> servers: matching cost decreases by <span class="math inline">\(d\)</span> because we are moving on to the opt server, and the <span class="math inline">\(\sum d(s_i,s_j)\)</span> thing increases by <span class="math inline">\((k-1)d\)</span>. Overall potential decreases by <span class="math inline">\(d\)</span>.</p>
+<p>If the request is in the middle of stuff then matching cost doesn’t increase, and most of the <span class="math inline">\(\sum d(s_i,s_j)\)</span> changes cancel, just the two dudes that we are moving get closer, by <span class="math inline">\(2d\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Double coverage is <span class="math inline">\(k\)</span>-competitive.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> opt total dist <span class="math inline">\(-\)</span> our total dist <span class="math inline">\(*1/k\)</span> is <span class="math inline">\(\phi\)</span>. But <span class="math inline">\(\phi\)</span> never goes crazy or anything so this is fine.</p>
+</div>
