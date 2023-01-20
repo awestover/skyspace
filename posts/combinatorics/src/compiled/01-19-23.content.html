@@ -1,0 +1,32 @@
+<p>We aim to bound <span class="math display">\[\sum_{i\leq \epsilon n} \binom{n}{i}\]</span></p>
+<p>The answer, roughly speaking, should be <span class="math inline">\(c(\epsilon)^n\)</span> for some <span class="math inline">\(1 \leq c(\epsilon) \leq 2\)</span>.</p>
+<p>We can think of this probabilistically as being related to the following problem: Let <span class="math inline">\(X_1,\ldots, X_n\)</span> be independent random variables with probabilty <span class="math inline">\(1/2\)</span> of occuring. These random variables represent taking a subset of <span class="math inline">\([n]\)</span>. Then we are concerned with <span class="math display">\[\Pr[\sum X_i \leq \epsilon n].\]</span></p>
+<p>In particular, <span class="math display">\[\Pr[\sum X_i \leq \epsilon n] = 2^{-n} \sum_{i\leq \epsilon
+n}\binom{n}{i}.\]</span></p>
+<p>Applying one form of the Chernoff bound listed on wikipedia we can bound our sum by</p>
+<p><span class="math display">\[\Pr[\sum X_i \leq \epsilon n] \leq
+\left(\frac{2}{\sqrt{e}}\left(\frac{e}{2\epsilon}\right)^\epsilon\right)^n.\]</span></p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> This is basically tight for <span class="math inline">\(\epsilon \approx 1/2\)</span>, and pretty decent for e.g. <span class="math inline">\(\epsilon\in (.1,.5)\)</span>.</p>
+</div>
+<figure>
+<img src="src/images/combo_dude.png" alt="" /><figcaption>ratio</figcaption>
+</figure>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="im">from</span> math <span class="im">import</span> comb, sqrt, log2, e</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>n <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>idxs <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(n<span class="op">//</span><span class="dv">10</span>,n<span class="op">//</span><span class="dv">2</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>actual <span class="op">=</span> [<span class="dv">1</span> <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>log_estimate <span class="op">=</span> []</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,n):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  actual[k] <span class="op">=</span> actual[k<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> comb(n, k)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>  eps <span class="op">=</span> k<span class="op">/</span>n</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  log_estimate.append( log2(<span class="dv">2</span><span class="op">/</span>sqrt(e)) <span class="op">+</span> eps<span class="op">*</span>log2(e<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>eps)) ) </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>log_actual <span class="op">=</span> [log2(a)<span class="op">/</span>n <span class="cf">for</span> a <span class="kw">in</span> actual]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>ratio <span class="op">=</span> [log_estimate[i]<span class="op">/</span>log_actual[i] <span class="cf">for</span> i <span class="kw">in</span> idxs]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>plt.plot(idxs, ratio)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>plt.show()</span></code></pre></div>

@@ -1,1 +1,1 @@
-/home/alek/Desktop/art/skyspace/posts/cool-algorithms/src
+/home/alek/Desktop/art/skyspace/posts/combinatorics/src
