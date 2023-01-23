@@ -59,6 +59,10 @@
 </div>
 <p><img src="src/images/ev2.png" /></p>
 <p>What’s next? I think trying <span class="math inline">\(\ell_1\)</span>-norm as an objective function, also known as mean response time, would be a next good step. Another good step would be realizing teleportation in the physical world.</p>
+<p><strong>update</strong> Here is a <span class="math inline">\(2\)</span>-approx for <span class="math inline">\(\ell_1\)</span>-norm: Let the number of people on the floors be <span class="math inline">\(c_1\geq c_2\geq \cdots.\)</span> <em>Strategy</em>: pick up the floor that has the most people on it, then drop that off. repeat! <em>performance:</em> <span class="math inline">\(\sum c_j 2j\)</span> worst case.</p>
+<p>How good is this?</p>
+<p><em>Lower bound for OPT:</em> <span class="math inline">\(\sum c_j (1+j)\)</span></p>
+<p>So we are definitely <span class="math inline">\(2\)</span> competitive.</p>
 
       </div>
     </div>
