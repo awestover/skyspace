@@ -1,0 +1,17 @@
+<p>Imagine you had <span class="math inline">\(p\)</span> elevators, which took time <span class="math inline">\(1\)</span> to move between floors and time <span class="math inline">\(W\)</span> to stop at a floor, and had capacity <span class="math inline">\(L\)</span>. People arrive at times <span class="math inline">\(t_i\)</span> and you want to optimize some objective function.</p>
+<p>To start we take the goal of minimizing the total time that is required to transport all of the people assuming that they all arrive at time <span class="math inline">\(0\)</span>.</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> For <span class="math inline">\(p=1,W=0,L=\infty\)</span> there is a simple linear time algorithm to compute an optimal schedule</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The best thing to do is to go up, zig-zagging on some levels, and then at some point just commiting to going to the top of the elevator and then coming back down.</p>
+</div>
+<p><img src="src/images/ev1.png" /></p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For <span class="math inline">\(p=1,W\gg 1,L=\infty\)</span> the problem reduces to computing “minimum feedback vertex set” i.e. a minimal set of vertices whose removal leaves a cycle-free graph. Unfortunately this problem is NP-hard, even to get a constant approximation to. However, for our application we can still do a <span class="math inline">\(2\)</span>-approximation to the best elevator schedule by just visiting each node in the SCCs twice. Alteranteively we can get an exact solution in time <span class="math inline">\(n^2 2^n.\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Compute strongly connected components. We will have some set of vertices that we need to visit twice within each connected component. If we leave out these vertices it should be possible to just visit each of the remaining vertices once.</p>
+</div>
+<p><img src="src/images/ev2.png" /></p>
+<p>What’s next? I think trying <span class="math inline">\(\ell_1\)</span>-norm as an objective function, also known as mean response time, would be a next good step. Another good step would be realizing teleportation in the physical world.</p>

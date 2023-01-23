@@ -1,0 +1,3 @@
+elevator: simple variants
+Analysis of a couple of variants of a novel scheduling problem
+proposed by Nathan.
