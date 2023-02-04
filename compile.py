@@ -34,6 +34,10 @@ def augment_md(body):
 
   out_text = ""
   for row in body:
+    if "@importpdf:" in row:
+      xxx = row.replace("@importpdf: ", "")
+      out_text += f'<iframe src="src/{xxx}.pdf" width="100%" height="700px">\n'
+
     row_handled = False
     if not looking_for_closure:
       for env_type in environment_types:
@@ -115,11 +119,6 @@ for folder in os.listdir(join(BASEDIR,"posts")):
           contents.append(all_rows[i])
         elif stages[stage] == "{description}":
           description += all_rows[i]
-      
-      #  print(title)
-      #  print(toc(contents))
-      #  print(description)
-      #  print(augment_md(body))
     
       aug_loc = join("compiled", real_name+".aug.md")
       with open(aug_loc, "w") as f:
@@ -135,7 +134,7 @@ for folder in os.listdir(join(BASEDIR,"posts")):
       with open(join(BASEDIR, 'formatting/template.html'), "r") as f:
         template = f.read()
 
-      template= template.replace("***CONTENT REPLACE THING 3899259***", compiled_body)
+      template = template.replace("***CONTENT REPLACE THING 3899259***", compiled_body)
       template = template.replace("***TOC REPLACE THING 322946***", toc(contents))
       
       with open(f"../{real_name}.html", "w") as f:
