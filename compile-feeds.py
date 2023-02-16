@@ -19,9 +19,11 @@ for dir in os.listdir():
       title = f_rows[0]
       description = "".join(f_rows[1:])
 
+      this_entry += f"<div class='post-card'>\n"
       this_entry += f"<a href='posts/{dir}/{file}'>{title}</a>\n"
       this_entry += f"<p>[{file.replace('.html', '')}]</p>\n"
       this_entry += f"<p>{description}</p>"
+      this_entry += f"</div>\n"
 
       topics[dir] += this_entry
       all_feeds.append((file.replace(".html", ""), this_entry))
