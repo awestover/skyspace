@@ -31,7 +31,7 @@ IMAGES = [
 ]
 
 def get_thumb_img(bod):
-  indices_object = finditer(pattern='images/.{1,10}[.]png', string=bod)
+  indices_object = finditer(pattern='images/.{1,20}[.]png', string=bod)
   some_imgs = [bod[index.start():index.end()] for index in indices_object]
   if len(some_imgs) == 0:
     return "\n"

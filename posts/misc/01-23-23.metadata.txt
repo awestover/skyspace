@@ -1,5 +1,5 @@
 Some writeups
-
+images/canada.png
 This contains some technical writeups for various projects I've
 worked on, including parallel partition, cup game, canadian
 traveller (this is a survey for a final class project; not
