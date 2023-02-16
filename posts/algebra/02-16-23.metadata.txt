@@ -1,0 +1,6 @@
+group products
+Ever wondered what a semi-direct group  product is?
+what, if anything is the difference between an inner semidirect
+product and an outer semidirect product?
+Yeah. I've wondered these things too. But then I met $\Z_5
+\rtimes \Z_4$. And it became less mysterious.
