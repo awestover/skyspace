@@ -1,6 +1,8 @@
 import os
 from os.path import join
 import sys
+from re import finditer
+from random import choice as rchoice
 
 BASEDIR=os.environ["SKYSPACE"]
 os.chdir(BASEDIR)
@@ -27,6 +29,14 @@ IMAGES = [
   ("<cat>", "<img src='../../images/cat.png' width='25%'>"),
   ("<blob>", "<img src='../../images/blob.png' width='25%'>")
 ]
+
+def get_thumb_img(bod):
+  indices_object = finditer(pattern='images/.{1,10}[.]png', string=bod)
+  some_imgs = [bod[index.start():index.end()] for index in indices_object]
+  if len(some_imgs) == 0:
+    return "\n"
+  else: 
+    return rchoice(some_imgs)+"\n"
 
 def augment_md(body):
   looking_for_closure = False
@@ -125,8 +135,9 @@ for folder in os.listdir(join(BASEDIR,"posts")):
           description += all_rows[i]
     
       aug_loc = join("compiled", real_name+".aug.md")
+      aug_bod = augment_md(body)
       with open(aug_loc, "w") as f:
-        f.write(augment_md(body))
+        f.write(aug_bod)
       #  with open(join("compiled", real_name+".toc.html"), "w") as f:
       #    f.write(toc(contents))
 
@@ -140,11 +151,14 @@ for folder in os.listdir(join(BASEDIR,"posts")):
 
       template = template.replace("***CONTENT REPLACE THING 3899259***", compiled_body)
       template = template.replace("***TOC REPLACE THING 322946***", toc(contents))
+
+      thumb_img = get_thumb_img("\n".join(body))
       
       with open(f"../{real_name}.html", "w") as f:
         f.write(template)
       with open(f"../{real_name}.metadata.txt", "w") as f:
         f.write(title)
+        f.write(thumb_img)
         f.write(description)
 
 

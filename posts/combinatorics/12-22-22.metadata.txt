@@ -1,2 +1,3 @@
 splay trees
+
 brief discussion of splay trees

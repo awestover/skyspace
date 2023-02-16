@@ -120,4 +120,19 @@ body {
     background: #000000;
 }
 
+.post-card {
+	display: in-line;
+	padding-top: 4%;
+	padding-bottom: 4%;
+	width: 100%;
+	overflow: hidden;
+}
+.post-card img {
+	width: 35%;
+	float: left;
+}
+.post-card .p {
+	width: 60%;
+	float: right;
+}
 

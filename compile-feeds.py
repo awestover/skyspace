@@ -2,8 +2,12 @@ import os
 from os.path import join
 import sys
 from datetime import datetime
+from random import choice as rchoice
 
 os.chdir(join(os.environ["SKYSPACE"], "posts"))
+
+
+IMAGES = ["images/rat.png", "images/blob.png", "images/cat.png"]
 
 all_feeds = []
 topics = {}
@@ -17,10 +21,16 @@ for dir in os.listdir():
         for row in f:
           f_rows.append(row)
       title = f_rows[0]
-      description = "".join(f_rows[1:])
+      image = f_rows[1]
+      description = "".join(f_rows[2:])
 
       this_entry += f"<div class='post-card'>\n"
       this_entry += f"<a href='posts/{dir}/{file}'>{title}</a>\n"
+      if len(image) < 3:
+        image = rchoice(IMAGES)
+        this_entry += f"<img class='side-img' src='{image}'/>"
+      else:
+        this_entry += f"<img src='posts/{dir}/src/{image}'/>"
       this_entry += f"<p>[{file.replace('.html', '')}]</p>\n"
       this_entry += f"<p>{description}</p>"
       this_entry += f"</div>\n"
