@@ -37,6 +37,10 @@ def augment_md(body):
     if "@importpdf:" in row:
       xxx = row.replace("@importpdf: ", "")
       out_text += f'<iframe src="src/{xxx}.pdf" width="100%" height="700px">\n'
+    elif "images/ink_img" in row:
+      xxx = row.replace("images/ink_img", "src/images/ink_img")
+      out_text += xxx
+      continue
 
     row_handled = False
     if not looking_for_closure:
