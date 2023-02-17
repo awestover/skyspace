@@ -1,0 +1,4 @@
+trace: what is it really?
+images/ink_img008.png
+a better definition of the trace of a linear operator (which some
+people like to draw as matrices relative to arbitrary bases, sad)
