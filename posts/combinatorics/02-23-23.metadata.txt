@@ -1,0 +1,3 @@
+Chernoff Bounds, a subtelty
+
+a different way to think about Chernoff bounds.
