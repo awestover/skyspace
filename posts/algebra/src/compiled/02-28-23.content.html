@@ -1,0 +1,44 @@
+<p>So what is rep theory? It’s taking a group <span class="math inline">\(G\)</span> and then associating linear maps (also known as matrices if you are willing to fix a basis) to the group elements in a “structure-preserving” way. More specifically, it is a homomorphism <span class="math display">\[\phi: G \to GL(V)\]</span> This means <span class="math inline">\(\phi(gh) \cdot v = \phi(g)\phi(h) \cdot v.\)</span></p>
+<p>IN this blog post I hope to introduce you to some of the important theorems. But really if you want to learn rep theory you gotta work some examples yourself.</p>
+<div class="ex envbox">
+<p><strong>Example.</strong> find all the representations of <span class="math inline">\(S_n\)</span> up to isomorphism.</p>
+<ul>
+<li>For <span class="math inline">\(n=3\)</span>.</li>
+<li>For all <span class="math inline">\(n\)</span></li>
+</ul>
+</div>
+<p>ok so first, some definitions:</p>
+<p>begin def <strong><span class="math inline">\(G\)</span>-invariant subspace</strong>: subspace fixed by action of <span class="math inline">\(G.\)</span> i.e. <span class="math inline">\(W\subset V\)</span> such that <span class="math inline">\(\phi(g) W = W\)</span> for all <span class="math inline">\(g\in G\)</span>. end def</p>
+<p>begin def <strong>irreducible rep</strong>: no proper <span class="math inline">\(G\)</span>-invariant subspace end def</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In this blog post all groups are assumed to be finite, and all vector spaces are over the complex numbers. Some stuff breaks if we don’t have these assumptions.</p>
+</div>
+<h1 id="shur">shur</h1>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(\phi: G\to GL(V), \phi&#39;: G\to GL(V&#39;)\)</span> be irreducible <span class="math inline">\(G\)</span>-representations. Let <span class="math inline">\(T:V\to V&#39;\)</span> be a map that commutes with the reps, i.e. <span class="math inline">\(T\circ \phi = \phi&#39;\circ T.\)</span> Then <span class="math inline">\(T\)</span> is a scalar.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math inline">\(\ker T\)</span> is <span class="math inline">\(G\)</span>-invariant subspace, but not proper subspace (none exist due to the irreducibility of the representations). so the map is the zero-map or an isomorphism.</p>
+<p>Take an eigenvector <span class="math inline">\(\lambda\)</span> of <span class="math inline">\(T\)</span> : this must exist due to us working over the complex numbers. Then we see that <span class="math inline">\(T=\lambda I\)</span>.</p>
+</div>
+<h1 id="maschke">maschke</h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> And representation can be decomposed as a direct sum of irreps</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Define a <span class="math inline">\(G\)</span>-invariant hermetian form on the space. Then, if <span class="math inline">\(W\)</span> is <span class="math inline">\(G\)</span> invariant, <span class="math inline">\(W^\perp\)</span> is also <span class="math inline">\(G\)</span>-invariant. Thus, the rep decomposes into blocks as <span class="math inline">\(W\oplus W^\perp\)</span></p>
+</div>
+<h1 id="main">main</h1>
+<p>character: trace character inner-product: hermetian thing</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> - num irreps (up to iso) is num conj classes - irreps are orthonormal - <span class="math inline">\(\sum d_i^2 = |G|, d_i | |G|\)</span> where <span class="math inline">\(d_{i}\)</span> is the dimension of the <span class="math inline">\(i\)</span>-th irrep.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> class functions: constant on conj classes. characters are basis for class functions.</p>
+<p>bunch of complicated stuff</p>
+<p>regular rep</p>
+</div>
+<h1 id="frobenius">frobenius</h1>
+<p><strong>induction:</strong> build a rep from a rep of a subgroup. To do this you basically make a bunch of copies of the rep on the subgroup and move around between them. <strong>restriction</strong>: build a rep of a subgroup from a rep on the group. you just take the restriction</p>
+<p><span class="math display">\[Hom(Res V, W)^H \cong Hom(V, Ind W)^G\]</span></p>
+<p>And the formula also holds for characters.</p>
