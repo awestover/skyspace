@@ -1,0 +1,3 @@
+hashing
+
+some analsyis of some hashing methods
