@@ -61,8 +61,10 @@
 </ul>
 </div>
 <p>ok so first, some definitions:</p>
-<p>begin def <strong><span class="math inline">\(G\)</span>-invariant subspace</strong>: subspace fixed by action of <span class="math inline">\(G.\)</span> i.e. <span class="math inline">\(W\subset V\)</span> such that <span class="math inline">\(\phi(g) W = W\)</span> for all <span class="math inline">\(g\in G\)</span>. end def</p>
-<p>begin def <strong>irreducible rep</strong>: no proper <span class="math inline">\(G\)</span>-invariant subspace end def</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <strong><span class="math inline">\(G\)</span>-invariant subspace</strong>: subspace fixed by action of <span class="math inline">\(G.\)</span> i.e. <span class="math inline">\(W\subset V\)</span> such that <span class="math inline">\(\phi(g) W = W\)</span> for all <span class="math inline">\(g\in G\)</span>.</p>
+</div>
+<p>begin defin <strong>irreducible rep</strong>: no proper <span class="math inline">\(G\)</span>-invariant subspace end defin</p>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> In this blog post all groups are assumed to be finite, and all vector spaces are over the complex numbers. Some stuff breaks if we don’t have these assumptions.</p>
 </div>
@@ -91,10 +93,38 @@
 <p>bunch of complicated stuff</p>
 <p>regular rep</p>
 </div>
+<h1 id="some-random-facts-that-are-kind-of-cool">some random facts that are kind of cool</h1>
+<blockquote>
+<p>how can we read the normal subgroups of a group off of its character table? good question! one idea is, well normal subgroups are unions of conjugacy classes, so take a bunch of unions of conjugacy classes. Lagrange’s theorem them (subgroups have order dividing order of the group). Then you would really have to check if it’s closed as far as I can tell.</p>
+</blockquote>
+<p>ok but here’s a better way.</p>
+<p>begin theorem Normal subgroups appear as kernels of irreps end theorem</p>
+First we need a lemma:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> For character <span class="math inline">\(\chi_\rho\)</span> of a dimension <span class="math inline">\(d\)</span> irrep <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\chi(g)=\chi(e)=d \iff \rho_g = Id.\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Say that we have a representation <span class="math inline">\(g\mapsto R_g\)</span> where <span class="math inline">\(g^k=e\)</span> and thus of course <span class="math inline">\(R_g^k = I\)</span>. Clearly any eigenvector <span class="math inline">\(v\)</span> for <span class="math inline">\(R_g\)</span> satisfies <span class="math inline">\(R_g v = \lambda \implies R_g^k v = \lambda^k v = v \implies \lambda^k=1.\)</span> so <span class="math inline">\(\lambda\)</span> is a <span class="math inline">\(k\)</span>-th root of unity. The character of a <span class="math inline">\(d\)</span>-dimensional irrep must be the sum of <span class="math inline">\(d\)</span> such eigenvalues.</p>
+<p>In order for the sum to be <span class="math inline">\(d\)</span> it must be the sum of all <span class="math inline">\(1\)</span>’s. Only <span class="math inline">\(Id\)</span> has all eigenvalues being <span class="math inline">\(1\)</span>.</p>
+</div>
+Now we can get the theorem
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(H\)</span> act on <span class="math inline">\(\mathbb{C}\)</span> by the trivial action (doing nothing!). Now, consider the induced representation <span class="math inline">\(\rho\)</span> on <span class="math inline">\(G\)</span> from <span class="math inline">\(H\)</span> (look down to see what this means.)</p>
+<p>We claim that <span class="math inline">\(\ker \rho = H\)</span>. We can see this by Mackey’s formula, and the fact that <span class="math inline">\(H\)</span> is normal so conjugation fixes <span class="math inline">\(H\)</span>. Oh and we are also applying the lemma here.</p>
+<p>Ok, then by Maschke’s theorem, we can write <span class="math inline">\(\rho\)</span> as a direct sum of irreps. But to be in the kernel of a direct sum you must be in the kernel of each (non-zero) summand.</p>
+<p>Hence <span class="math inline">\(H\)</span> is in the kernel of some non-zero number of the irreps.</p>
+</div>
 <h1 id="frobenius">frobenius</h1>
 <p><strong>induction:</strong> build a rep from a rep of a subgroup. To do this you basically make a bunch of copies of the rep on the subgroup and move around between them. <strong>restriction</strong>: build a rep of a subgroup from a rep on the group. you just take the restriction</p>
-<p><span class="math display">\[Hom(Res V, W)^H \cong Hom(V, Ind W)^G\]</span></p>
+<p><span class="math display">\[Hom(\texttt{Res}_H^G V, W)^H \cong Hom(V, \texttt{Ind}_H^G W)^G\]</span></p>
 <p>And the formula also holds for characters.</p>
+<p>Also it is probably equivalent in some sense to Mackey’s formula <span class="math display">\[\chi_{ind}(g) = \frac{1}{|H|}\sum_{x\in G, xgx^{-1}\in H} \chi(xgx^{-1}).\]</span></p>
+<blockquote>
+<p>how many MIT students does it take to prove Frobenius Reciprocity? apparently more than 6.</p>
+</blockquote>
+<h1 id="specht-modules">specht modules</h1>
+<p>ok we can construct the irreps of <span class="math inline">\(S_n\)</span> by defining - young diagram: partition of n arranged into a left justified square diagram - tableux: put numbers in young diagram - tabloid: we don’t care about numbers order within rows - polytabloid: linear combo of tabloids</p>
+<p>and then apparently polytabloids with the obvious group action of <span class="math inline">\(S_n\)</span> corresponds to irreps of <span class="math inline">\(S_n.\)</span> crazy!</p>
 
       </div>
     </div>
