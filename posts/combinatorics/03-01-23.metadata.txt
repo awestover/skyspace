@@ -1,0 +1,3 @@
+generating function for inversion statistic
+
+
