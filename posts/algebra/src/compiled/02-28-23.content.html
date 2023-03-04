@@ -42,10 +42,11 @@
 </div>
 <h1 id="some-random-facts-that-are-kind-of-cool">some random facts that are kind of cool</h1>
 <blockquote>
-<p>how can we read the normal subgroups of a group off of its character table? good question! one idea is, well normal subgroups are unions of conjugacy classes, so take a bunch of unions of conjugacy classes. Lagrange’s theorem them (subgroups have order dividing order of the group). Then you would really have to check if it’s closed as far as I can tell.</p>
+<p>can we read the normal subgroups of a group off of its character table? good question! one idea is, well normal subgroups are unions of conjugacy classes, so take a bunch of unions of conjugacy classes. Lagrange’s theorem them (subgroups have order dividing order of the group). Then you would really have to check if it’s closed as far as I can tell.</p>
 </blockquote>
 <p>ok but here’s a better way.</p>
-<p>begin theorem Normal subgroups appear as kernels of irreps end theorem</p>
+<p>begin theorem Normal subgroups appear as kernels of irreps</p>
+<p><strong>EDIT: this is actually false</strong> Some normal subgroups will appear as kernels of irreps, but in general there may be many more normal subgroups than can possibly occur as kernels of irreps. end theorem</p>
 First we need a lemma:
 <div class="lem envbox">
 <p><strong>Lemma.</strong> For character <span class="math inline">\(\chi_\rho\)</span> of a dimension <span class="math inline">\(d\)</span> irrep <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\chi(g)=\chi(e)=d \iff \rho_g = Id.\)</span></p>
@@ -57,7 +58,7 @@ First we need a lemma:
 Now we can get the theorem
 <div class="pf envbox">
 <p><strong>Proof.</strong> Let <span class="math inline">\(H\)</span> act on <span class="math inline">\(\mathbb{C}\)</span> by the trivial action (doing nothing!). Now, consider the induced representation <span class="math inline">\(\rho\)</span> on <span class="math inline">\(G\)</span> from <span class="math inline">\(H\)</span> (look down to see what this means.)</p>
-<p>We claim that <span class="math inline">\(\ker \rho = H\)</span>. We can see this by Mackey’s formula, and the fact that <span class="math inline">\(H\)</span> is normal so conjugation fixes <span class="math inline">\(H\)</span>. Oh and we are also applying the lemma here.</p>
+<p><strong>the following stuff is kind of false; I have yet to completely understand why</strong> We claim that <span class="math inline">\(\ker \rho = H\)</span>. We can see this by Mackey’s formula, and the fact that <span class="math inline">\(H\)</span> is normal so conjugation fixes <span class="math inline">\(H\)</span>. Oh and we are also applying the lemma here.</p>
 <p>Ok, then by Maschke’s theorem, we can write <span class="math inline">\(\rho\)</span> as a direct sum of irreps. But to be in the kernel of a direct sum you must be in the kernel of each (non-zero) summand.</p>
 <p>Hence <span class="math inline">\(H\)</span> is in the kernel of some non-zero number of the irreps.</p>
 </div>
