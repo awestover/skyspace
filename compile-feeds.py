@@ -25,12 +25,12 @@ for dir in os.listdir():
       description = "".join(f_rows[2:])
 
       this_entry += f"<div class='post-card'>\n"
-      this_entry += f"<a href='posts/{dir}/{file}'>{title}</a>\n"
+      this_entry += f"<a href='/posts/{dir}/{file}'>{title}</a>\n"
       if len(image) < 3:
         image = rchoice(IMAGES)
         this_entry += f"<img class='side-img' src='{image}'/>"
       else:
-        this_entry += f"<img src='posts/{dir}/src/{image}'/>"
+        this_entry += f"<img src='/posts/{dir}/src/{image}'/>"
       this_entry += f"<p>[{file.replace('.html', '')}]</p>\n"
       this_entry += f"<p>{description}</p>"
       this_entry += f"</div>\n"
