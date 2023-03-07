@@ -52,6 +52,24 @@ for dir in os.listdir():
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
     </head>
     <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h4>SkySpace</h4>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px;" src="images/cat.png" alt="cat"/>
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="index.html">Home</a> </li>
+            <li> <a href="about.html">About</a> </li>
+            <li> <a href="topics.html">Topics</a> </li>
+          </ul>
+          <div id="canvas-parent"> </div>
+        </div>
+      </nav>
+      <div id="content">
+
     """
     f.write(blob)
     # TODO: this is just part of what we write, this needs to be injected into something else
@@ -59,7 +77,7 @@ for dir in os.listdir():
     # we really should have a template, and then insert this into that.
 
     f.write(topics[dir])
-    f.write("</body>")
+    f.write("</div></body>")
 
 os.chdir("..")
 with open("topic-elts.html", "w") as f:
