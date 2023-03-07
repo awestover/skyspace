@@ -48,15 +48,19 @@
 <div class="thm envbox">
 <p><strong>Theorem.</strong> For any <span class="math inline">\(t,k\)</span>, there exists <span class="math inline">\(d\)</span> sufficiently large so that any <span class="math inline">\(t\)</span>-coloring of <span class="math inline">\([k]^d\)</span> must contain a monochromatic combinatorial line.</p>
 </div>
+<p>We proceed by induction on <span class="math inline">\(k\)</span>. Assume that we have proved the statement for <span class="math inline">\(k-1\)</span> and all <span class="math inline">\(t\)</span>. Now we aim to establish it for <span class="math inline">\(k, t_0\)</span>, for some fixed <span class="math inline">\(t_0.\)</span> We do so by the following lemma:</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> There is a <span class="math inline">\(d\)</span> such that <span class="math inline">\([k]^d\)</span> either just has a monochromatic combinatorial line, or it has <span class="math inline">\(j\)</span> combinatorial lines that are monochromatic besides their endpoints, and these lines all share an endpoint and all have distinct colors.</p>
+</div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> We proceed by induction on <span class="math inline">\(k\)</span>. Assume that we have proved the statement for <span class="math inline">\(k-1\)</span> and all <span class="math inline">\(t\)</span>. Now we aim to establish it for <span class="math inline">\(k, t_0\)</span>, for some fixed <span class="math inline">\(t_0.\)</span> We do so by the following lemma:</p>
-<p>begin lem There is a <span class="math inline">\(d\)</span> such that <span class="math inline">\([k]^d\)</span> either just has a monochromatic combinatorial line, or it has <span class="math inline">\(j\)</span> combinatorial lines that are monochromatic besides their endpoints, and these lines all share an endpoint and all have distinct colors. end lem begin pf We take <span class="math inline">\(d&#39;\)</span> large enough that the lemma holds for <span class="math inline">\(j-1\)</span>. We take <span class="math inline">\(d&#39;&#39;\)</span> large enough that <span class="math inline">\(t^{k^{n&#39;}}\)</span>-colorings of <span class="math inline">\([k-1]^{d&#39;&#39;}\)</span> have monochromatic combinatorial lines. We claim that <span class="math inline">\(d=d&#39;+d&#39;&#39;\)</span> is large enough to establish the lemma for <span class="math inline">\(j\)</span>. Here is a proof by picture:</p>
+<p><strong>Proof.</strong> We take <span class="math inline">\(d&#39;\)</span> large enough that the lemma holds for <span class="math inline">\(j-1\)</span>. We take <span class="math inline">\(d&#39;&#39;\)</span> large enough that <span class="math inline">\(t^{k^{n&#39;}}\)</span>-colorings of <span class="math inline">\([k-1]^{d&#39;&#39;}\)</span> have monochromatic combinatorial lines. We claim that <span class="math inline">\(d=d&#39;+d&#39;&#39;\)</span> is large enough to establish the lemma for <span class="math inline">\(j\)</span>. Here is a proof by picture:</p>
 <figure>
-<img src="images/ticktacktoe.png" alt="" /><figcaption>ink_img010</figcaption>
+<img src="src/images/ticktacktoe.png" alt="" /><figcaption>ink_img010</figcaption>
 </figure>
 </div>
-<p>We use the lemma until we supposedly get <span class="math inline">\(t_0\)</span> lines each of distinct color with common endpoint. One of them has to have color the same as the endpoint. So we just win.</p>
-<p>end pf</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We use the lemma until we supposedly get <span class="math inline">\(t_0\)</span> lines each of distinct color with common endpoint. One of them has to have color the same as the endpoint. So we just win.</p>
+</div>
 
       </div>
     </div>
