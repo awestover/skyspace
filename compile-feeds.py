@@ -7,7 +7,7 @@ from random import choice as rchoice
 os.chdir(join(os.environ["SKYSPACE"], "posts"))
 
 
-IMAGES = ["images/rat.png", "images/blob.png", "images/cat.png"]
+IMAGES = ["/images/rat.png", "/images/blob.png", "/images/cat.png"]
 
 all_feeds = []
 topics = {}
