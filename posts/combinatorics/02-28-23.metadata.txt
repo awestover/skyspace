@@ -1,4 +1,4 @@
 hales jewett
-images/ink_img001.png
+images/ticktacktoe.png
 finding a monochromatic arithmetic progression in a coloring of
 some numbers. And playing tick tack toe in high dimensions.
