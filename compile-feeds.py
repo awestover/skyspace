@@ -71,6 +71,7 @@ for dir in os.listdir():
       <div id="content">
 
     """
+    f.write("<h1>"+dir+"</h1>")
     f.write(blob)
     # TODO: this is just part of what we write, this needs to be injected into something else
     # UPDATE: This is trash, please just actually do it right.
