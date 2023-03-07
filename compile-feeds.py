@@ -59,7 +59,7 @@ for dir in os.listdir():
             <h4>SkySpace</h4>
           </div>
           <ul class="list-unstyled components">
-            <img style="width:100%; max-width:250px;" src="images/cat.png" alt="cat"/>
+            <img style="width:100%; max-width:250px;" src="/images/cat.png" alt="cat"/>
             <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
             <li> <a href="index.html">Home</a> </li>
             <li> <a href="about.html">About</a> </li>
