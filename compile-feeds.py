@@ -7,7 +7,7 @@ from random import choice as rchoice
 os.chdir(join(os.environ["SKYSPACE"], "posts"))
 
 
-IMAGES = ["/images/rat.png", "/images/blob.png", "/images/cat.png"]
+IMAGES = ["images/rat.png", "images/blob.png", "images/cat.png"]
 
 all_feeds = []
 topics = {}
@@ -25,12 +25,12 @@ for dir in os.listdir():
       description = "".join(f_rows[2:])
 
       this_entry += f"<div class='post-card'>\n"
-      this_entry += f"<a href='/posts/{dir}/{file}'>{title}</a>\n"
+      this_entry += f"<a href='posts/{dir}/{file}'>{title}</a>\n"
       if len(image) < 3:
         image = rchoice(IMAGES)
         this_entry += f"<img class='side-img' src='{image}'/>"
       else:
-        this_entry += f"<img src='/posts/{dir}/src/{image}'/>"
+        this_entry += f"<img src='posts/{dir}/src/{image}'/>"
       this_entry += f"<p>[{file.replace('.html', '')}]</p>\n"
       this_entry += f"<p>{description}</p>"
       this_entry += f"</div>\n"
@@ -41,9 +41,9 @@ for dir in os.listdir():
   with open(join(dir, "index.html"), "w") as f:
     blob = """
     <head>
-    <link href="/formatting/pandoc.css" rel="stylesheet">
-    <link href="/formatting/envbox.css" rel="stylesheet">
-    <link href="/formatting/bars.css" rel="stylesheet">
+    <link href="../formatting/pandoc.css" rel="stylesheet">
+    <link href="../formatting/envbox.css" rel="stylesheet">
+    <link href="../formatting/bars.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
@@ -59,11 +59,11 @@ for dir in os.listdir():
             <h4>SkySpace</h4>
           </div>
           <ul class="list-unstyled components">
-            <img style="width:100%; max-width:250px;" src="/images/cat.png" alt="cat"/>
+            <img style="width:100%; max-width:250px;" src="../images/cat.png" alt="cat"/>
             <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
-            <li> <a href="/index.html">Home</a> </li>
-            <li> <a href="/about.html">About</a> </li>
-            <li> <a href="/topics.html">Topics</a> </li>
+            <li> <a href="../index.html">Home</a> </li>
+            <li> <a href="../about.html">About</a> </li>
+            <li> <a href="../topics.html">Topics</a> </li>
           </ul>
           <div id="canvas-parent"> </div>
         </div>

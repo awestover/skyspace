@@ -1,4 +1,4 @@
 elevator: simple variants
-images/ev2.png
+images/ev1.png
 Analysis of a couple of variants of a novel scheduling problem
 proposed by Nathan.
