@@ -41,9 +41,9 @@ for dir in os.listdir():
   with open(join(dir, "index.html"), "w") as f:
     blob = """
     <head>
-    <link href="formatting/pandoc.css" rel="stylesheet">
-    <link href="formatting/envbox.css" rel="stylesheet">
-    <link href="formatting/bars.css" rel="stylesheet">
+    <link href="/formatting/pandoc.css" rel="stylesheet">
+    <link href="/formatting/envbox.css" rel="stylesheet">
+    <link href="/formatting/bars.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
