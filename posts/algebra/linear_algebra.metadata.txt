@@ -1,3 +1,3 @@
 A Friendly Introduction to Linear Algebra
-images/imgkerstuff.png
+images/lolpic.png
 intro to linear algebra. done a nice way
