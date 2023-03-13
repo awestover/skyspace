@@ -1,0 +1,5 @@
+Binomial coefficients $\mod p$
+images/ink_img011.png
+Have you ever wondered what binomial coefficients look like $\mod
+p$? turns out there is actually a simple answer. Credit to
+Enumerative Combinatorics for the problem
