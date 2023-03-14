@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SkySpace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h4>SkySpace</h4>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>Finite fields are super great. But for some reason it seems that many people regard them as completely mysterious except for <span class="math inline">\(\mathbb{Z}/ p\mathbb{Z}\)</span>.</p>
+<p>Today. I partially fix that. A little bit.</p>
+<p>beg thm Let <span class="math inline">\(\mathbb{F}_q\)</span> be a finite field with <span class="math inline">\(q\)</span> elements. Then <span class="math inline">\(q\)</span> must be a prime power. end thm beg pf Let <span class="math inline">\(p\)</span> be the characterisitc of <span class="math inline">\(\mathbb{F}_q\)</span>, i.e. the smallest <span class="math inline">\(p\in \mathbb{N}\)</span> such that <span class="math inline">\(p\cdot 1 = 1+ \cdots + 1\)</span> <span class="math inline">\(p\)</span> times is <span class="math inline">\(0\)</span>. Note that the characteristic must be prime (because inverses exist in a field so <span class="math inline">\(ab=0\)</span> for <span class="math inline">\(a,b\in \mathbb{Z}\)</span> would imply <span class="math inline">\(a=0\)</span> or <span class="math inline">\(b=0\)</span>.)</p>
+<p>Now, consider the action of <span class="math inline">\(\mathbb{F}_p\)</span> on <span class="math inline">\(\mathbb{F}_q.\)</span> We claim that <span class="math inline">\(\mathbb{F}_q\)</span> is a <span class="math inline">\(\mathbb{F}_p\)</span> vector space. This is clearly true, because check the axioms yourself.</p>
+<p>But then the size of <span class="math inline">\(\mathbb{F}_q\)</span> is <span class="math inline">\(p^{dim \mathbb{F}_q}\)</span>, as claimed. end pf</p>
+<p>beg thm Let <span class="math inline">\(f\)</span> be a degree <span class="math inline">\(k\)</span> irreducible polynomial over <span class="math inline">\(\mathbb{F}_p\)</span> for some prime <span class="math inline">\(p\)</span>. Then <span class="math inline">\(\mathbb{F}_p[x] / (f)\)</span> is a finite field of size <span class="math inline">\(p^{k}.\)</span> end thm beg pf The only suspect part is the existence of inverses really. Bezout’s theorem / euclidean algorithm says that for any polynomials <span class="math inline">\(f,g\)</span> there exists <span class="math inline">\(a,b\)</span> such that <span class="math inline">\(af + bg = gcd(f,g)\)</span>. But for irreducible polynomials this is saying there exists <span class="math inline">\(b\)</span> such that <span class="math inline">\(bg \equiv 1 (f)\)</span>. As desired.</p>
+<p>end pf</p>
+<p>beg rmk Apparently an equivalent characterization can be made by looking at the roots of <span class="math inline">\(x^{p^{n}}-x = 0\)</span> with some appropriate definition of addition end rmk</p>
+<h1 id="todo-later">todo later:</h1>
+<p>In fact, a much stronger result holds: the field we defined above for <span class="math inline">\(p^{n}\)</span> is unique up to isomorphism.</p>
+<p>Supposedly the following Lemma is helpful for establishing this: beg lemma The multiplicative group of a field is cyclic. end lemma</p>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

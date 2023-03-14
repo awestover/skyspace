@@ -141,6 +141,18 @@ weighted AM-GM:
 $$\sum \lambda_i a_i \ge \prod a_i^{\lambda_i}$$
 for weights $\lambda_i\ge 0$ summing to $1$ ($\sum \lambda_i = 1$).
 
+apparently Holder's inequality is pretty good too.
+ Let $1/p+1/q=1.$ Then
+ $$\sum_{k=1}^n|a_kb_k|\le \paren{\sum_{k=1}^n|a_k|^p}^{1/p}\paren{\sum_{k=1}^n|b_k|^q}^{1/q}.$$
+
+
+# stirling's inequality
+
+$$n! \approx \sqrt{2\pi n} (n / e)^n$$
+And relatedly, 
+$$\binom{2n}{n} \approx 4^{n}/\sqrt{\pi n}$$
+
+
 # probability inequalities
 
 - Markov's Inequality
