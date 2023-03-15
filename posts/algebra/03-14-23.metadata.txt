@@ -1,0 +1,3 @@
+duality 
+images/ink_img009.png
+What's the relationship between $A,A^T$? 
