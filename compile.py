@@ -38,7 +38,7 @@ def get_thumb_img(bod):
   else: 
     return rchoice(some_imgs)+"\n"
 
-def augment_md(body):
+def augment_md(body, folder):
   looking_for_closure = False
   start_environment = ""
 
@@ -46,7 +46,9 @@ def augment_md(body):
   for row in body:
     if "@importpdf:" in row:
       xxx = row.replace("@importpdf: ", "")
-      out_text += f'<iframe src="src/{xxx}.pdf" width="100%" height="700px">\n'
+      #  out_text += f'<iframe src="src/{xxx}.pdf" width="100%" height="700px">\n'
+      out_text += f'<iframe title="PDF" src="../../pdf_mwe/web0/viewer.html?file=../../posts/{folder}/src/{xxx}.pdf" width="100%" height="700px" ></iframe>\n'
+
     elif "images/ink_img" in row:
       xxx = row.replace("images/ink_img", "src/images/ink_img")
       out_text += xxx
@@ -135,7 +137,7 @@ for folder in os.listdir(join(BASEDIR,"posts")):
           description += all_rows[i]
     
       aug_loc = join("compiled", real_name+".aug.md")
-      aug_bod = augment_md(body)
+      aug_bod = augment_md(body, folder)
       with open(aug_loc, "w") as f:
         f.write(aug_bod)
       #  with open(join("compiled", real_name+".toc.html"), "w") as f:
