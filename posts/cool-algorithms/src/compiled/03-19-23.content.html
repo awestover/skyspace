@@ -1,0 +1,28 @@
+<p>probably the most common example of a problem with a simple greedy solution is the following:</p>
+<blockquote>
+<p>You have a set of intervals, and want to choose a maximal pairwise disjoint set of intervals.</p>
+</blockquote>
+<p>A pretty similar related problem is</p>
+<blockquote>
+<p>You have a set of intervals, and want to draw a minimal number of lines perpendicular to the segments to stab them all.</p>
+</blockquote>
+<p>These problems both have very straightforward solutions.</p>
+<p>For the maximal set of intervals one, repeatedly take the interval that ends first, and then cross out intervals that overlap with that interval.</p>
+<p>Similarly for the stab version, repeatedly stab at the first endpoint, and remove things that got stabbed.</p>
+<p>ok, now here is a twist:</p>
+<blockquote>
+<p>what if the intervals, rather than being situated in <span class="math inline">\(\mathbb{R}\)</span> are situated in the circle <span class="math inline">\(\mathbb{R}/ \mathbb{Z}\)</span>?</p>
+</blockquote>
+<p>Now, there is no clear starting point. So it seems kind of tough. However, the problem still admits a <span class="math inline">\(n\log n\)</span> solution!</p>
+<p>We will focus on the stabby version, but the other version is quite analogous.</p>
+<p>begin def The greedy successor of an interval <span class="math inline">\(I\)</span> is the interval which ends first among intervals starting after <span class="math inline">\(I\)</span> ends. end def</p>
+<ol start="0" type="1">
+<li>Trivial <span class="math inline">\(+1\)</span> approximation.</li>
+<li>Trivial <span class="math inline">\(n^2\)</span> solution</li>
+<li>First we do some preprocessing, destroy proper containments</li>
+<li>Now we iterate in a circle and compute the greedy successors</li>
+<li>Now we look at the greedy successor cycle-y things</li>
+</ol>
+<p>yay</p>
+<p><strong>TODO: later, actually write this up well</strong></p>
+<p><strong>TODO: what if we have weights? Can we do DP in the circle case?</strong></p>
