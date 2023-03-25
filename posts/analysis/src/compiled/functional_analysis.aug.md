@@ -15,13 +15,11 @@
 \DeclareMathOperator{\Var}{\text{Var}}
 
 
----
 
-> Rand: "The shortest distance from a point to a line is the perpendicular to the line. Right?"  
-> Alek: "Define shortest, distance, point, line and perpendicular."  
+> Rand: "The shortest distance from a point to a line is the perpendicular to the line. Right?" \
+> Alek: "Define shortest, distance, point, line and perpendicular." \
 > Rand: "Fair engouh..."
 
----
 
 # Plan: 
 - Motivating Pictures

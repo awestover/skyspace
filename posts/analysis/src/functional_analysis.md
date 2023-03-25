@@ -12,13 +12,11 @@ Proof of <br>Projection Theorem
 Build up to, and proof of Projection Theorem. Might also talk about general Banach spaces but probably mostly Hilbert spaces.
 {body}
 
----
 
-> Rand: "The shortest distance from a point to a line is the perpendicular to the line. Right?"  
-> Alek: "Define shortest, distance, point, line and perpendicular."  
+> Rand: "The shortest distance from a point to a line is the perpendicular to the line. Right?" \
+> Alek: "Define shortest, distance, point, line and perpendicular." \
 > Rand: "Fair engouh..."
 
----
 
 # Plan: 
 - Motivating Pictures

@@ -1,0 +1,3 @@
+Strongly connected components
+
+SCC are super cool and super useful. but how to compute them?

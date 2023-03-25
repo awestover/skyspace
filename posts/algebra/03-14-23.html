@@ -50,15 +50,19 @@
 <p>The way I like to think about it is like this. Let’s say that we have a vector space <span class="math inline">\(V\)</span>, with some basis <span class="math inline">\(e_1,\ldots, e_n\)</span>. Then, the dual space <span class="math inline">\(V^*\)</span> is the set of linear-functionals on <span class="math inline">\(V\)</span>. <span class="math inline">\(V^{*}\)</span> has a basis <span class="math inline">\(\hat{e_1}, \ldots, \hat{e_n}\)</span> which are the linear functionals that act as follows on vectors <span class="math inline">\(v=c_1 e_1 + c_2 e_2 + \cdots\)</span>: <span class="math display">\[\hat{e_i}(v) = c_i.\]</span></p>
 <p>It’s kinda interesting. Think about it a bit.</p>
 <p>Let’s see this in action, to solve the following problem:</p>
-<p>beg thm <span class="math inline">\(Im A = Im AA^T\)</span> end thm</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(Im A = Im AA^T\)</span></p>
+</div>
 <p>But actually this isn’t the real theorem. The real theorem is:</p>
-<p>beg thm Let <span class="math inline">\(A: \mathbb{R}^n \to \mathbb{R}^m\)</span>, and <span class="math inline">\(A^T : \mathbb{R}^m \to \mathbb{R}^n\)</span>. Then</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(A: \mathbb{R}^n \to \mathbb{R}^m\)</span>, and <span class="math inline">\(A^T : \mathbb{R}^m \to \mathbb{R}^n\)</span>. Then</p>
 <p><span class="math display">\[\ker A^{T} \oplus Im A \cong \mathbb{R}^m\]</span> <span class="math display">\[\ker A \oplus Im A^T \cong \mathbb{R}^n.\]</span></p>
 <p>and in-fact, <span class="math inline">\(\ker A^T\)</span> is the orthogonal complement of <span class="math inline">\(Im A\)</span>; similarly <span class="math inline">\(\ker A\)</span> is the orthogonal complement of <span class="math inline">\(Im A^T\)</span>.</p>
-<p>end thm</p>
+</div>
 <p>This theorem immediately implies the other theorem via the following picture <img src="src/images/ink_img009.png" alt="ink_img009" /></p>
-<p>beg pf Say <span class="math inline">\(A^T y = 0\)</span>. Then <span class="math inline">\(y^T A = 0\)</span>, so <span class="math inline">\(y^T A x = 0\)</span> for all <span class="math inline">\(x\)</span>, i.e. <span class="math inline">\(y \perp Ax\)</span>.</p>
-<p>end pf</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Say <span class="math inline">\(A^T y = 0\)</span>. Then <span class="math inline">\(y^T A = 0\)</span>, so <span class="math inline">\(y^T A x = 0\)</span> for all <span class="math inline">\(x\)</span>, i.e. <span class="math inline">\(y \perp Ax\)</span>.</p>
+</div>
 
       </div>
     </div>

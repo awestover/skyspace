@@ -1,53 +1,26 @@
-<h1 id="measure-theory">Measure Theory</h1>
-<hr />
+<h1 id="measure-theory">Measure Theory:</h1>
+<p>Today I am going to talk about measure theory.</p>
 <blockquote>
-<p>Alek: You know what’s trash?</p>
+<p>Alek: You know what’s trash?<br />
+Rand: What?<br />
+Alek: The Reiman integral.<br />
+Rand: How so?<br />
+Alek: It’s just so <span class="math inline">\(\mathbb{R}^n\)</span>-y yah know? And it can’t even handle integrating really basic functions like the indicator function for <span class="math inline">\(\mathbb{Q}\cap [0,1]\)</span>. Ugh, if only there was a better way.<br />
+Rand: Well what could you do besides partitioning the domain, and summing over function values on each element of the partition?<br />
+Alek: What if you instead <em>partition the codomain</em>, and then see how much of the domain fits into the codomain bins?<br />
+Rand: How do you measure how much of the domain falls into the codomain bins?<br />
+Alek: <strong><em>Measure Theory!!!</em></strong></p>
 </blockquote>
-<blockquote>
-<p>Rand: What?</p>
-</blockquote>
-<blockquote>
-<p>Alek: The Reiman integral.</p>
-</blockquote>
-<blockquote>
-<p>Rand: How so?</p>
-</blockquote>
-<blockquote>
-<p>Alek: It’s just so <span class="math inline">\(\mathbb{R}^n\)</span>-y yah know? And it can’t even handle integrating really basic functions like the indicator function for <span class="math inline">\(\mathbb{Q}\cap [0,1]\)</span>. Ugh, if only there was a better way.</p>
-</blockquote>
-<blockquote>
-<p>Rand: Well what could you do besides partitioning the domain, and summing over function values on each element of the partition?</p>
-</blockquote>
-<blockquote>
-<p>Alek: What if you instead <em>partition the codomain</em>, and then see how much of the domain fits into the codomain bins?</p>
-</blockquote>
-<blockquote>
-<p>Rand: How do you measure how much of the domain falls into the codomain bins?</p>
-</blockquote>
-<blockquote>
-<p>Alek: <strong><em>Measure Theory!!!</em></strong></p>
-</blockquote>
-<hr />
 <h1 id="a-measure-space">A Measure Space</h1>
 <p>OK, before defining a measure space in full generality, I’ll give some super nice motivating examples that are very relatable and stuff to ease you into the topic.</p>
 <p>So one really useful type of measure is a “probability measure” on a space. For simplicity, let’s say that we are trying to assing probabilities to subsets of <span class="math inline">\([0,1]\)</span> “occuring”. Maybe we are chosing a random number at uniform from <span class="math inline">\([0,1]\)</span> and an event <span class="math inline">\(E_S\)</span> corresponding to a set <span class="math inline">\(S\subset [0,1]\)</span> is said to occur if the randomly chosen point lies in <span class="math inline">\(S\)</span>. It would kinda seem like we want to define a function <span class="math inline">\(\mu: \mathcal{P}([0,1]) \to [0,1]\)</span> that maps any subset of <span class="math inline">\([0,1]\)</span> (the powerset is denoted by <span class="math inline">\(\mathcal{P}\)</span>, and is the collection of all subsets of the set) to a probability (which is by convention a number in <span class="math inline">\([0,1]\)</span>. <em>It turns out that this actually</em> <strong>doesn’t work!!!!</strong> (As I will show shortly by constructing a subset of <span class="math inline">\([0,1]\)</span> which isn’t measurable). You need some “<span class="math inline">\(\sigma\)</span>-Algebra” of subsets that the measure is going to be defined on which is not all subsets, just the subsets that we actually care about :).</p>
-<hr />
 <blockquote>
-<p>Rand: so let me get this straight, the first thing you are gonna do once you define a measure is show that it’s broken?</p>
+<p>Rand: so let me get this straight, the first thing you are gonna do once you define a measure is show that it’s broken?<br />
+Alek: Well, I don’t know if the existence of non-lesbegue-measurable sets means “measure theory is broken”<br />
+Rand: lolllll<br />
+Alek: idk bro, just trust me, the construction is pretty epic<br />
+Rand: whatever you say dude…</p>
 </blockquote>
-<blockquote>
-<p>Alek: Well, I don’t know if the existence of non-lesbegue-measurable sets means “measure theory is broken”</p>
-</blockquote>
-<blockquote>
-<p>Rand: lolllll</p>
-</blockquote>
-<blockquote>
-<p>Alek: idk bro, just trust me, the construction is pretty epic</p>
-</blockquote>
-<blockquote>
-<p>Rand: whatever you say dude…</p>
-</blockquote>
-<hr />
 <p>Anyways, back to defining a measure on this space. Beause the point on <span class="math inline">\([0,1]\)</span> is being chosen uniformly at random, we probably want our probability measure function thing to have <span class="math inline">\(\mu((a,b)) = b-a\)</span> for any <span class="math inline">\((a,b) \subset [0,1]\)</span>. Actually we definitely want this, it is saying e.g. that the probability of chosing a number less than <span class="math inline">\(1/2\)</span> is well <span class="math inline">\(1/2\)</span> which is pretty good. We would also like to satisfy some basic probability axioms like</p>
 <ul>
 <li><span class="math inline">\(\mu(\emptyset) = 0\)</span></li>

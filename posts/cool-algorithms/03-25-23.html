@@ -42,36 +42,28 @@
       </nav>
 
       <div id="content"> 
-      <p>probably the most common example of a problem with a simple greedy solution is the following:</p>
-<blockquote>
-<p>You have a set of intervals, and want to choose a maximal pairwise disjoint set of intervals.</p>
-</blockquote>
-<p>A pretty similar related problem is</p>
-<blockquote>
-<p>You have a set of intervals, and want to draw a minimal number of lines perpendicular to the segments to stab them all.</p>
-</blockquote>
-<p>These problems both have very straightforward solutions.</p>
-<p>For the maximal set of intervals one, repeatedly take the interval that ends first, and then cross out intervals that overlap with that interval.</p>
-<p>Similarly for the stab version, repeatedly stab at the first endpoint, and remove things that got stabbed.</p>
-<p>ok, now here is a twist:</p>
-<blockquote>
-<p>what if the intervals, rather than being situated in <span class="math inline">\(\mathbb{R}\)</span> are situated in the circle <span class="math inline">\(\mathbb{R}/ \mathbb{Z}\)</span>?</p>
-</blockquote>
-<p>Now, there is no clear starting point. So it seems kind of tough. However, the problem still admits a <span class="math inline">\(n\log n\)</span> solution!</p>
-<p>We will focus on the stabby version, but the other version is quite analogous.</p>
-<div class="defn envbox">
-<p><strong>Definition.</strong> The greedy successor of an interval <span class="math inline">\(I\)</span> is the interval which ends first among intervals starting after <span class="math inline">\(I\)</span> ends.</p>
+      <div class="defn envbox">
+<p><strong>Definition.</strong> Let <span class="math inline">\(reach(v)\)</span> denote the set of vertices which vertex <span class="math inline">\(v\)</span> can reach, and let <span class="math inline">\(coreach(v)\)</span> denote the set of vertices which can reach <span class="math inline">\(v\)</span>.</p>
 </div>
-<ol start="0" type="1">
-<li>Trivial <span class="math inline">\(+1\)</span> approximation.</li>
-<li>Trivial <span class="math inline">\(n^2\)</span> solution</li>
-<li>First we do some preprocessing, destroy proper containments</li>
-<li>Now we iterate in a circle and compute the greedy successors</li>
-<li>Now we look at the greedy successor cycle-y things</li>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A connected component in a directed graph <span class="math inline">\(G\)</span> is a set of vertices of the form <span class="math inline">\(reach(w)\cap coreach(w)\)</span> for some <span class="math inline">\(w\in V\)</span>. In other words it is a “maximal” set of vertices <span class="math inline">\(W\subseteq V\)</span> with the following property: - For any <span class="math inline">\(w,v\in V\)</span> there is a path from <span class="math inline">\(w\)</span> to <span class="math inline">\(v\)</span> and a path from <span class="math inline">\(v\)</span> to <span class="math inline">\(w\)</span>.</p>
+<p>So what I mean by maximal is, if you think about it a bit “<span class="math inline">\(x,y\)</span> are both reachable from each other” forms an equivalence relation and then the equivalence classes are the strongly connected compoennts (SCCs).</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> SCC graph is a DAG</p>
+</div>
+<p>ok, but how can we compute SCC?</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Let <span class="math inline">\(rev(G)\)</span> denote the graph obtained by flipping all the edges in <span class="math inline">\(G\)</span>. Then a source compoenent in <span class="math inline">\(G\)</span> is a sink component in <span class="math inline">\(rev(G)\)</span> and vice versa.</p>
+</div>
+<ol type="1">
+<li>Compute a post-order of <span class="math inline">\(rev(G)\)</span>.</li>
+<li>Use this to identify a source component in <span class="math inline">\(rev(G)\)</span> i.e. a sink component in <span class="math inline">\(G\)</span></li>
+<li>DFS in the sink component and remove it.</li>
+<li>cross out stuff from the postorder, and then find a new sink component.</li>
+<li>repeat and stuff</li>
 </ol>
-<p>yay</p>
-<p><strong>TODO: later, actually write this up well</strong></p>
-<p><strong>TODO: what if we have weights? Can we do DP in the circle case?</strong></p>
+<p>wow, it;s linear time algorithm!</p>
 
       </div>
     </div>

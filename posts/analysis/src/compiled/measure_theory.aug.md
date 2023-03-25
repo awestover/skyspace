@@ -15,29 +15,19 @@
 \DeclareMathOperator{\Var}{\text{Var}}
 
 
-# Measure Theory
+# Measure Theory:
 
----
+Today I am going to talk about measure theory. 
 
-> Alek: You know what's trash?
-
-> Rand: What?
-
-> Alek: The Reiman integral.
-
-> Rand: How so? 
-
-> Alek: It's just so $\mathbb{R}^n$-y yah know? And it can't even handle integrating really basic functions like the indicator function for $\mathbb{Q}\cap [0,1]$. Ugh, if only there was a better way.
-
-> Rand: Well what could you do besides partitioning the domain, and summing over function values on each element of the partition?
-
-> Alek: What if you instead *partition the codomain*, and then see how much of the domain fits into the codomain bins?
-
-> Rand: How do you measure how much of the domain falls into the codomain bins?
-
-> Alek: ***Measure Theory!!!***
-
---- 
+> Alek: You know what's trash? \
+> Rand: What? \
+> Alek: The Reiman integral. \
+> Rand: How so? \
+> Alek: It's just so $\mathbb{R}^n$-y yah know? And it can't even handle integrating really basic functions like the indicator function for $\mathbb{Q}\cap [0,1]$. Ugh, if only there was a better way. \
+> Rand: Well what could you do besides partitioning the domain, and summing over function values on each element of the partition? \
+> Alek: What if you instead *partition the codomain*, and then see how much of the domain fits into the codomain bins? \
+> Rand: How do you measure how much of the domain falls into the codomain bins? \
+> Alek: ***Measure Theory!!!*** 
 
 # A Measure Space
 
@@ -47,19 +37,12 @@ So one really useful type of measure is a "probability measure" on a space.
 For simplicity, let's say that we are trying to assing probabilities to subsets of $[0,1]$ "occuring". Maybe we are chosing a random number at uniform from $[0,1]$ and an event $E_S$ corresponding to a set $S\subset [0,1]$ is said to occur if the randomly chosen point lies in $S$. 
 It would kinda seem like we want to define a function $\mu: \mathcal{P}([0,1]) \to [0,1]$ that maps any subset of $[0,1]$ (the powerset is denoted by $\mathcal{P}$, and is the collection of all subsets of the set) to a probability (which is by convention a number in $[0,1]$. *It turns out that this actually* **doesn't work!!!!** (As I will show shortly by constructing a subset of $[0,1]$ which isn't measurable). You need some "$\sigma$-Algebra" of subsets that the measure is going to be defined on which is not all subsets, just the subsets that we actually care about :).
 
----
 
-> Rand: so let me get this straight, the first thing you are gonna do once you define a measure is show that it's broken?
-
-> Alek: Well, I don't know if the existence of non-lesbegue-measurable sets means "measure theory is broken"
-
-> Rand: lolllll
-
-> Alek: idk bro, just trust me, the construction is pretty epic
-
+> Rand: so let me get this straight, the first thing you are gonna do once you define a measure is show that it's broken? \
+> Alek: Well, I don't know if the existence of non-lesbegue-measurable sets means "measure theory is broken" \
+> Rand: lolllll \
+> Alek: idk bro, just trust me, the construction is pretty epic \
 > Rand: whatever you say dude...
-
----
 
 Anyways, back to defining a measure on this space.
 Beause the point on $[0,1]$ is being chosen uniformly at random, we probably want our probability measure function thing to have 

@@ -1,0 +1,22 @@
+<div class="defn envbox">
+<p><strong>Definition.</strong> Let <span class="math inline">\(reach(v)\)</span> denote the set of vertices which vertex <span class="math inline">\(v\)</span> can reach, and let <span class="math inline">\(coreach(v)\)</span> denote the set of vertices which can reach <span class="math inline">\(v\)</span>.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A connected component in a directed graph <span class="math inline">\(G\)</span> is a set of vertices of the form <span class="math inline">\(reach(w)\cap coreach(w)\)</span> for some <span class="math inline">\(w\in V\)</span>. In other words it is a “maximal” set of vertices <span class="math inline">\(W\subseteq V\)</span> with the following property: - For any <span class="math inline">\(w,v\in V\)</span> there is a path from <span class="math inline">\(w\)</span> to <span class="math inline">\(v\)</span> and a path from <span class="math inline">\(v\)</span> to <span class="math inline">\(w\)</span>.</p>
+<p>So what I mean by maximal is, if you think about it a bit “<span class="math inline">\(x,y\)</span> are both reachable from each other” forms an equivalence relation and then the equivalence classes are the strongly connected compoennts (SCCs).</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> SCC graph is a DAG</p>
+</div>
+<p>ok, but how can we compute SCC?</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Let <span class="math inline">\(rev(G)\)</span> denote the graph obtained by flipping all the edges in <span class="math inline">\(G\)</span>. Then a source compoenent in <span class="math inline">\(G\)</span> is a sink component in <span class="math inline">\(rev(G)\)</span> and vice versa.</p>
+</div>
+<ol type="1">
+<li>Compute a post-order of <span class="math inline">\(rev(G)\)</span>.</li>
+<li>Use this to identify a source component in <span class="math inline">\(rev(G)\)</span> i.e. a sink component in <span class="math inline">\(G\)</span></li>
+<li>DFS in the sink component and remove it.</li>
+<li>cross out stuff from the postorder, and then find a new sink component.</li>
+<li>repeat and stuff</li>
+</ol>
+<p>wow, it;s linear time algorithm!</p>

@@ -55,14 +55,18 @@
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Let <span class="math inline">\(f\)</span> be a degree <span class="math inline">\(k\)</span> irreducible polynomial over <span class="math inline">\(\mathbb{F}_p\)</span> for some prime <span class="math inline">\(p\)</span>. Then <span class="math inline">\(\mathbb{F}_p[x] / (f)\)</span> is a finite field of size <span class="math inline">\(p^{k}.\)</span></p>
 </div>
-<p>beg pf The only suspect part is the existence of inverses really. Bezout’s theorem / euclidean algorithm says that for any polynomials <span class="math inline">\(f,g\)</span> there exists <span class="math inline">\(a,b\)</span> such that <span class="math inline">\(af + bg = gcd(f,g)\)</span>. But for irreducible polynomials this is saying there exists <span class="math inline">\(b\)</span> such that <span class="math inline">\(bg \equiv 1 (f)\)</span>. As desired.</p>
-<p>end pf</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The only suspect part is the existence of inverses really. Bezout’s theorem / euclidean algorithm says that for any polynomials <span class="math inline">\(f,g\)</span> there exists <span class="math inline">\(a,b\)</span> such that <span class="math inline">\(af + bg = gcd(f,g)\)</span>. But for irreducible polynomials this is saying there exists <span class="math inline">\(b\)</span> such that <span class="math inline">\(bg \equiv 1 (f)\)</span>. As desired.</p>
+</div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Apparently an equivalent characterization can be made by looking at the roots of <span class="math inline">\(x^{p^{n}}-x = 0\)</span> with some appropriate definition of addition</p>
 </div>
 <h1 id="todo-later">todo later:</h1>
 <p>In fact, a much stronger result holds: the field we defined above for <span class="math inline">\(p^{n}\)</span> is unique up to isomorphism.</p>
-<p>Supposedly the following Lemma is helpful for establishing this: begin lemma The multiplicative group of a field is cyclic. end lemma</p>
+Supposedly the following Lemma is helpful for establishing this:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> The multiplicative group of a field is cyclic.</p>
+</div>
 
       </div>
     </div>

@@ -55,6 +55,10 @@ def augment_md(body, folder):
 
     out_text = ""
     for row in body:
+        if len(row.strip()) == 0:
+            out_text += row
+            continue
+
         if "@importpdf:" in row:
             xxx = row.replace("@importpdf: ", "")
             #  out_text += f'<iframe src="src/{xxx}.pdf" width="100%" height="700px">\n'
@@ -66,12 +70,13 @@ def augment_md(body, folder):
             continue
 
         row_handled = False
-        if not looking_for_closure and "beg" in row:
-            clean_row  = row.strip().lower().replace("{", "").replace("}","")
-            potential_env_type = clean_row.split(" ")[-1]
-            if potential_env_type in synonyms:
-                potential_env_type = synonyms[potential_env_type]
-            if potential_env_type in environment_types
+        clean_row  = row.strip().lower().replace("{", "").replace("}","").split(" ")
+        potential_env_type = clean_row[-1]
+        if potential_env_type in synonyms:
+            potential_env_type = synonyms[potential_env_type]
+
+        if not looking_for_closure:
+            if len(clean_row) == 2 and "beg" in row and potential_env_type in environment_types:
                 looking_for_closure = True
                 start_environment = potential_env_type
 
@@ -81,9 +86,8 @@ def augment_md(body, folder):
                     out_text += f'<div class="{start_environment} envbox">**{long_name[start_environment]}.**\n'
 
                 row_handled = True
-                break
         elif looking_for_closure:
-            if row.strip() == f"end {start_environment}":
+            if len(clean_row) == 2 and "end" in row and potential_env_type in environment_types:
                 looking_for_closure = False
                 if start_environment == "quote":
                     out_text += "\n---\n"
@@ -128,6 +132,7 @@ for folder in os.listdir(join(BASEDIR, "posts")):
     for fname in os.listdir():
         if ".md" in fname:
             real_name = fname.replace(".md", "")
+            print(real_name)
             with open(fname, "r") as f:
                 all_rows = []
                 for row in f:
@@ -183,3 +188,5 @@ for folder in os.listdir(join(BASEDIR, "posts")):
                 f.write(title)
                 f.write(thumb_img)
                 f.write(description)
+
+
