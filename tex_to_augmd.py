@@ -16,8 +16,8 @@ with open(input_file, 'r') as f:
     content = f.read()
 
 rules = {
-    "\\begin": "begin",
-    "\\end": "end",
+    "\\begin": "beg ",
+    "\\end": "end ",
     "\\section": "#",
     "`": "\""
 }
@@ -25,14 +25,8 @@ rules = {
 for rule in rules:
     content = content.replace(rule, rules[rule])
 
-"""
-with this scheme we would need to allow the following things in augmd:
+output_file = input_file.replace(".tex", ".md")
+with open(output_file, "w") as f:
+    f.write(content)
 
-begin {lemma}
-end {lemma}
-
-etc
-which I'm fine with. just wanted to lyk
-
-"""
 
