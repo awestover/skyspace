@@ -1,10 +1,28 @@
-<p>Let <span class="math inline">\(p_n\)</span> denote the n-th prime. The prime number theorem states that <span class="math inline">\(p_{n}\approx n\log n\)</span>. Let <span class="math inline">\(p_n\#\)</span> denote the product of the first n primes (the “primorial”). Then, <span class="math inline">\(p_n\# \approx e^{n\lg n}\)</span> [source: wikipedia] <span class="math inline">\(numdivs(n\#) = 2^{n}\)</span> because <span class="math inline">\(n\# = 2\cdot 3 \cdot 5 \cdot \cdots \cdot p_n\)</span>.</p>
+<p>Throughout the article we use <span class="math inline">\(p\)</span> to denote a prime number, and some times will state this but sometimes just leave it implicit.</p>
+<p><strong>question 1:</strong> what are the “most composite numbers?” Well, there are a lot of different classifications of numbers. <img src="src/images/divisordudes.png" alt="src/images/divisordudes.png" /></p>
+<p>But primorials are pretty good as far as having lots of divisors. I guess sticking more <span class="math inline">\(2\)</span>’s into a number can sometimes be cheaper than adding another distinct prime factor though. So primorials aren’t really the best, they’re just a pretty decent example of a number with an outrageous number of divisors. Let <span class="math inline">\(p_n\)</span> denote the n-th prime. The prime number theorem states that <span class="math inline">\(p_{n}\approx n\log n\)</span>. Let <span class="math inline">\(p_n\#\)</span> denote the product of the first n primes (the “primorial”). Then, <span class="math inline">\(p_n\# \approx e^{n\lg n}\)</span> [source: wikipedia] <span class="math inline">\(numdivs(n\#) = 2^{n}\)</span> because <span class="math inline">\(n\# = 2\cdot 3 \cdot 5 \cdot \cdots \cdot p_n\)</span>.</p>
 <p>so I guess <span class="math inline">\(2_{n} \ll e^{n\lg n}\)</span>, but is still exponential.</p>
-<h1 id="a-related-fact">a related fact</h1>
-<p><span class="math inline">\(\phi(n) \geq \Omega(n / \lg\lg n)\)</span>. Ok, so <span class="math inline">\(\phi(n) \geq \Omega(n /\lg n)\)</span> follows immediately from the prime number theorem; but that’s obviously very weak. I’m pretty sure that primorials exhibit the smallest <span class="math inline">\(\phi(n)\)</span> behavior of any numbers.</p>
-<h1 id="something-else">something else</h1>
-<p><span class="math display">\[\prod_{k\leq m} 1- \frac{1}{p_m} = \frac{1}{\Theta(\log p_m)}.\]</span></p>
-<p>ALSO</p>
-<p><span class="math display">\[\sum_{p \text{prime}, p&lt;n} \frac{1}{p} \approx \lg\lg n\]</span></p>
+<p>Sounds like “collosally abundant numbers” are worth looking out for though.</p>
+<h1 id="some-facts-about-phi">Some facts about <span class="math inline">\(\phi\)</span></h1>
+<p>Let <span class="math inline">\(\phi(n)\)</span> denote the number of positive integers <span class="math inline">\(k&lt;n\)</span> which are relatively prime with <span class="math inline">\(n\)</span>. For example, <span class="math inline">\(\phi(p)=p-1\)</span>. This is called the Euler Toitent function.</p>
+<p><span class="math inline">\(\phi(n) \geq \Omega(n / \lg\lg n)\)</span>. Ok, so <span class="math inline">\(\phi(n) \geq \Omega(n /\lg n)\)</span> follows immediately from the prime number theorem; but that’s obviously very weak. I think the stronger bound can maybe be derived from Merten’s theorem?</p>
+<h1 id="mertens-theorems">Merten’s Theorems</h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[\sum_{p&lt;n, p \in\text{prime}} \frac{1}{p} \approx \lg\lg n\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>We use “dyadic decomposition”, a neat strategy. Consider the sum of reciprocals of primes on an interval <span class="math inline">\((e^i,e^{i+1})\)</span>. We can see that, up to a factor of <span class="math inline">\(e\)</span>, all these numbers are about <span class="math inline">\(e^i\)</span>. There are about <span class="math inline">\(\frac{e^i}{i}\)</span> of these numbers (the log in the PNT is a natural log). Thus, their sum is about <span class="math inline">\(\frac{1}{i}\)</span>. This yields <span class="math display">\[\sum_{p&lt;n, p \in\text{prime}} \frac{1}{p} \approx \sum_{i=1}^{\lg n} \frac{1}{i} \approx \int_{1}^{\lg n} \frac{1}{x} dx \approx \lg \lg n.\]</span></p>
+<p>We remark that we don’t need PNT to prove Merten’s theorem, but we use it because it’s easier this way.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> <span class="math display">\[\prod_{p\leq n,p \in\text{prime}} 1- \frac{1}{p} = \frac{1}{\Theta(\log n)}.\]</span> <span class="math display">\[\prod_{p\leq n,p \in\text{prime}} 1+ \frac{1}{p} = \Theta(\log n).\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> These theorems are basically just the same thing, but reciprocalled; thus we will just establish one of them.</p>
+<p>Now, to get these other Merten’s theorems, we can actually just observe that they are the exponentiated version of the other identity we proved. In particular,</p>
+<p><span class="math display">\[\log \prod_{p\leq n, p\in\text{prime}} 1+\frac{1}{p} = \sum
+\log 1+\frac{1}{p} \approx \sum \frac{1}{p} \approx \lg\lg n.\]</span></p>
+</div>
 <h1 id="some-potentially-helpful-resources">some potentially helpful resources:</h1>
-<p><a href="https://math.stackexchange.com/questions/1744016/sum-of-products-of-1-1-p">SO prod</a></p>
+<p><a href="https://math.stackexchange.com/questions/1744016/sum-of-products-of-1-1-p">SO prod</a> Wikipedia!!!</p>
