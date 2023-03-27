@@ -67,7 +67,17 @@
 <p>Now, to get these other Merten’s theorems, we can actually just observe that they are the exponentiated version of the other identity we proved. In particular,</p>
 <p><span class="math display">\[\log \prod_{p\leq n, p\in\text{prime}} 1+\frac{1}{p} = \sum
 \log 1+\frac{1}{p} \approx \sum \frac{1}{p} \approx \lg\lg n.\]</span></p>
+<p>Here we use the <strong>extremely useful</strong> approximation <span class="math inline">\(\log (1+x) \approx x\)</span> when <span class="math inline">\(x\approx 0\)</span>.</p>
 </div>
+<h1 id="some-conjectures">some conjectures:</h1>
+<p><span class="math inline">\(\sum_{j=1}^m \frac{1}{\lg\lg j} = \frac{m}{\lg m}\)</span> <span class="math display">\[\sum_{k\leq n} \frac{\phi(k)}{k^2} = \lg n.\]</span></p>
+<h1 id="some-other-interesting-things">some other interesting things</h1>
+<p><span class="math display">\[\int \frac{1}{\ln x} = li(x) = \Theta(\frac{x}{\log x})\]</span> where <span class="math inline">\(li\)</span> denotes the logarithmic-integral function.</p>
+<p>A super cool and useful fact that I fully believe but do not know a proof of is that <span class="math display">\[\sum_{k\leq n} \phi(k) = \frac{3}{\pi^2} n^2 +O(n\log n).\]</span> <a href="https://oeis.org/A002088#:~:text=Sum%20of%20totient%20function%3A%20a,A000010.&amp;text=For%20n%20%3E%3D%201%3A%20a,generation%20and%20every%20preceding%20generation.">ref:oeis</a> Now, I’m starting to feel really like the natural state of numbers is to be fairly co-prime. So, while this is not necessarily surprising, it is <strong>SUPER COOL</strong>.</p>
+<p>One consequence of this is that it resolves my conjecture which I stated above. In particular, <span class="math display">\[\mathop{\mathrm{\mathbb{E}}}[\phi(k)/k] \geq \sum_{k\leq n}\frac{\phi(k)}{n^2} \geq
+\Omega(1).\]</span> WOW! And for dyadicy-reasons or <span class="math inline">\(e\)</span>yeiy reasons, we get <span class="math inline">\(\sum_{k\leq n} \frac{\phi(k)}{k^2} \geq \Omega(\lg n)\)</span>.</p>
+<p>A remark, for fellows that care about the constants: I had some kind of complicated argument for why <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[\frac{\phi(k)}{k}] = \prod_{p\leq n} 1-\frac{1}{p}+\frac{1}{p^2}\)</span>. Then, I used Euler products to compute this. You factor the dude, and if <span class="math inline">\(\alpha=\frac{1+\sqrt{3}i}{2}\)</span>, we get that the product is equivalent to <span class="math display">\[\prod \alpha-\frac{1}{p} \prod \overline{\alpha}-\frac{1}{p} =
+ \frac{1}{Li_1(\alpha)}\frac{1}{Li_1(\overline{\alpha})} = \frac{9}{\pi^2}.\]</span> But that said, I’m not in it for the constants, so the other one works fine for me :).</p>
 <h1 id="some-potentially-helpful-resources">some potentially helpful resources:</h1>
 <p><a href="https://math.stackexchange.com/questions/1744016/sum-of-products-of-1-1-p">SO prod</a> Wikipedia!!!</p>
 
