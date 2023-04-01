@@ -27,6 +27,7 @@
             <img style="width:100%; max-width:250px;" src="images/cat.png" alt="cat"/>
             <li> <a href="index.html">Home</a> </li>
             <li> <a href="about.html">About</a> </li>
+            <div id="toc"> </div>
             <li> <a href="topics.html">Topics</a> </li>
           </ul>
           <div id="canvas-parent"> </div>
@@ -72,6 +73,11 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script> -->
     <!-- <script src="formatting/bouncyGraphAnimation.js" charset="utf-8"></script> -->
 
+    <script charset="utf-8">
+      $(document).ready(function() {
+        $('#toc').load("topics-toc.html"); 
+      });
+    </script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>

@@ -29,9 +29,9 @@
             <img style="width:100%; max-width:250px;" src="images/cat.png" alt="cat"/>
             <li> <a href="index.html">Home</a> </li>
             <li> <a href="about.html">About</a> </li>
+            <div id="toc"> </div>
             <li> <a href="topics.html">Topics</a> </li>
           </ul>
-          <div id="canvas-parent"> </div>
         </div>
       </nav>
 
@@ -42,6 +42,7 @@
     <script charset="utf-8">
       $(document).ready(function() {
         $('#content').load("compile-feeds.html"); 
+        $('#toc').load("topics-toc.html"); 
       });
     </script>
 
