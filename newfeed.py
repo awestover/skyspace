@@ -27,8 +27,8 @@ else:
         f.write("{description}\n\n")
         f.write("{body}\n\n")
 
-    with open("most_recent_feed_dir.txt", "w") as f:
+    with open(".most_recent_feed_dir.txt", "w") as f:
         f.write(join(os.environ["SKYSPACE"], new_feed))
-        with open("most_recent_feed.txt", "w") as f:
+        with open(".most_recent_feed.txt", "w") as f:
             f.write(today)
 

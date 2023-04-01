@@ -6,6 +6,8 @@ from random import choice as rchoice
 
 os.chdir(join(os.environ["SKYSPACE"], "posts"))
 
+with open("../formatting/template_minusdisquss.html", "r") as f:
+  TEMPLATE = f.read()
 
 #  IMAGES = ["images/rat.png", "images/blob.png", "images/cat.png"]
 IMAGES = [join("images", img) for img in os.listdir("../images")]
@@ -26,7 +28,8 @@ for dir in os.listdir():
       description = "".join(f_rows[2:])
 
       this_entry += f"<div class='post-card'>\n"
-      this_entry += f"<a href='posts/{dir}/{file}'>{title}</a>\n"
+      escaped_title = title.replace(" ", "-").strip()
+      this_entry += f"<h5 id='{escaped_title}'><a href='posts/{dir}/{file}' class='blog-title'>{title}</a></h5>\n"
       if len(image) < 3:
         image = rchoice(IMAGES)
         this_entry += f"<img class='side-img' src='{image}'/>"
@@ -40,50 +43,26 @@ for dir in os.listdir():
       all_feeds.append((file.replace(".html", ""), this_entry))
 
   with open(join(dir, "index.html"), "w") as f:
-    blob = """
-    <head>
-    <link href="../../formatting/pandoc.css" rel="stylesheet">
-    <link href="../../formatting/envbox.css" rel="stylesheet">
-    <link href="../../formatting/bars.css" rel="stylesheet">
+    blob = TEMPLATE
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
-    </head>
-    <body>
-    <div class="wrapper">
-      <nav id="sidebar">
-        <div id="sidebar-content">
-          <div class="sidebar-header">
-            <h4>SkySpace</h4>
-          </div>
-          <ul class="list-unstyled components">
-            <img style="width:100%; max-width:250px;" src="../../images/cat.png" alt="cat"/>
-            <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
-            <li> <a href="../../index.html">Home</a> </li>
-            <li> <a href="../../about.html">About</a> </li>
-            <li> <a href="../../topics.html">Topics</a> </li>
-          </ul>
-          <div id="canvas-parent"> </div>
-        </div>
-      </nav>
-      <div id="content">
+    other_bad_images = "<img class='side-img' src='images/"
+    fix_other_bad_images = "<img class='side-img' src='../../images/"
 
-    """
+    dude = topics[dir]
+    dude = dude.replace(other_bad_images, fix_other_bad_images)
+
+    bad_image_thing  = f'posts/{dir}/'
+    good_image_thing = ''
+    fix_images = dude.replace(bad_image_thing, good_image_thing)
+
+    blob = blob.replace( "***CONTENT REPLACE THING 3899259***", fix_images)
+    #  blob = blob.replace("***TOC REPLACE THING 322946***", "")
     f.write(blob)
-    # TODO: this is just part of what we write, this needs to be injected into something else
-    # UPDATE: This is trash, please just actually do it right.
-    # we really should have a template, and then insert this into that.
-
-    f.write(topics[dir])
-    f.write("</div></body>")
 
 os.chdir("..")
 with open("topic-elts.html", "w") as f:
   for dir in topics:
-    f.write(f"<h1>{dir}</h1>")
+    f.write(f"<h1 class='topic-title'>{dir}</h1>")
     f.write(f"<a href='posts/{dir}'>zoom</a>")
     f.write(topics[dir])
 

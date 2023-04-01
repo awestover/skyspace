@@ -1,5 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
 
-    <head>
     <link href="../../formatting/pandoc.css" rel="stylesheet">
     <link href="../../formatting/envbox.css" rel="stylesheet">
     <link href="../../formatting/bars.css" rel="stylesheet">
@@ -8,51 +13,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
-    </head>
-    <body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
     <div class="wrapper">
       <nav id="sidebar">
         <div id="sidebar-content">
           <div class="sidebar-header">
-            <h4>SkySpace</h4>
+            <h5>skyspace</h5>
           </div>
           <ul class="list-unstyled components">
-            <img style="width:100%; max-width:250px;" src="../../images/cat.png" alt="cat"/>
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
             <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
             <li> <a href="../../index.html">Home</a> </li>
             <li> <a href="../../about.html">About</a> </li>
             <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
           </ul>
-          <div id="canvas-parent"> </div>
         </div>
       </nav>
-      <div id="content">
-
-    <div class='post-card'>
-<a href='posts/analysis/03-06-23.html'>density of primes / factors
-</a>
-<img src='posts/analysis/src/images/divisordudes.png
+      <div id="content"> 
+      <div class='post-card'>
+<h5 id='density-of-primes-/-factors'><a href='03-06-23.html' class='blog-title'>density of primes / factors
+</a></h5>
+<img src='src/images/divisordudes.png
 '/><p>[03-06-23]</p>
 <p>how dense can a numbers factors be? and how dense are primes?
 </p></div>
 <div class='post-card'>
-<a href='posts/analysis/measure_theory.html'>Measure Theory
-</a>
-<img class='side-img' src='images/dino1.png'/><p>[measure_theory]</p>
+<h5 id='Measure-Theory'><a href='measure_theory.html' class='blog-title'>Measure Theory
+</a></h5>
+<img class='side-img' src='../../images/dog2.png'/><p>[measure_theory]</p>
 <p>Read this if you are interested in any of the following questions: "what is a meausre space?", "what's a set in R that has no well defined inner-measure?" / why do measure spaces need sigma-Algebra's defined on them?", "what's a Lesbegue integral?", "what's Lesbegue's dominated convergence theorem?" (note: work in progress) 
 </p></div>
 <div class='post-card'>
-<a href='posts/analysis/functional_analysis.html'>Functional Analysis
-</a>
-<img src='posts/analysis/src/images/unitballs.png
+<h5 id='Functional-Analysis'><a href='functional_analysis.html' class='blog-title'>Functional Analysis
+</a></h5>
+<img src='src/images/defnVectorSpace.png
 '/><p>[functional_analysis]</p>
 <p>Build up to, and proof of Projection Theorem. Might also talk about general Banach spaces but probably mostly Hilbert spaces.
 </p></div>
 <div class='post-card'>
-<a href='posts/analysis/countable.html'>countable
-</a>
-<img class='side-img' src='images/shark-original2.png'/><p>[countable]</p>
+<h5 id='countable'><a href='countable.html' class='blog-title'>countable
+</a></h5>
+<img class='side-img' src='../../images/shark-original2.png'/><p>[countable]</p>
 <p>why is Q countable
 </p></div>
-</div></body>
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

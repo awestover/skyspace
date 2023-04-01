@@ -1,5 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
 
-    <head>
     <link href="../../formatting/pandoc.css" rel="stylesheet">
     <link href="../../formatting/envbox.css" rel="stylesheet">
     <link href="../../formatting/bars.css" rel="stylesheet">
@@ -8,39 +13,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
-    </head>
-    <body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
     <div class="wrapper">
       <nav id="sidebar">
         <div id="sidebar-content">
           <div class="sidebar-header">
-            <h4>SkySpace</h4>
+            <h5>skyspace</h5>
           </div>
           <ul class="list-unstyled components">
-            <img style="width:100%; max-width:250px;" src="../../images/cat.png" alt="cat"/>
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
             <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
             <li> <a href="../../index.html">Home</a> </li>
             <li> <a href="../../about.html">About</a> </li>
             <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
           </ul>
-          <div id="canvas-parent"> </div>
         </div>
       </nav>
-      <div id="content">
-
-    <div class='post-card'>
-<a href='posts/algebra/02-17-23.html'>trace: what is it really?
-</a>
-<img src='posts/algebra/src/images/ink_img008.png
+      <div id="content"> 
+      <div class='post-card'>
+<h5 id='trace:-what-is-it-really?'><a href='02-17-23.html' class='blog-title'>trace: what is it really?
+</a></h5>
+<img src='src/images/ink_img008.png
 '/><p>[02-17-23]</p>
 <p>a better definition of the trace of a linear operator (which some
 people like to draw as matrices relative to arbitrary bases, sad)
 </p></div>
 <div class='post-card'>
-<a href='posts/algebra/02-16-23.html'>group products
-</a>
-<img src='posts/algebra/src/images/ink_img005.png
+<h5 id='group-products'><a href='02-16-23.html' class='blog-title'>group products
+</a></h5>
+<img src='src/images/ink_img006.png
 '/><p>[02-16-23]</p>
 <p>Ever wondered what a semi-direct group  product is?
 what, if anything is the difference between an inner semidirect
@@ -49,48 +56,74 @@ Yeah. I've wondered these things too. But then I met $\Z_5
 \rtimes \Z_4$. And it became less mysterious.
 </p></div>
 <div class='post-card'>
-<a href='posts/algebra/03-13-23.html'>classification of finite fields. mostly
-</a>
-<img class='side-img' src='images/rat.png'/><p>[03-13-23]</p>
+<h5 id='classification-of-finite-fields.-mostly'><a href='03-13-23.html' class='blog-title'>classification of finite fields. mostly
+</a></h5>
+<img class='side-img' src='../../images/blob.png'/><p>[03-13-23]</p>
 <p>
 </p></div>
 <div class='post-card'>
-<a href='posts/algebra/03-20-23.html'>linear-independence in Z and R
-</a>
-<img class='side-img' src='images/bear1.png'/><p>[03-20-23]</p>
+<h5 id='linear-independence-in-Z-and-R'><a href='03-20-23.html' class='blog-title'>linear-independence in Z and R
+</a></h5>
+<img class='side-img' src='../../images/bear2.png'/><p>[03-20-23]</p>
 <p>
 </p></div>
 <div class='post-card'>
-<a href='posts/algebra/vector_calculus.html'>Vector Calculus
-</a>
-<img src='posts/algebra/src/images/curlcounter.png
+<h5 id='Vector-Calculus'><a href='vector_calculus.html' class='blog-title'>Vector Calculus
+</a></h5>
+<img src='src/images/curlcounter.png
 '/><p>[vector_calculus]</p>
 <p></p></div>
 <div class='post-card'>
-<a href='posts/algebra/03-14-23.html'>duality 
-</a>
-<img src='posts/algebra/src/images/ink_img009.png
+<h5 id='duality-'><a href='03-14-23.html' class='blog-title'>duality 
+</a></h5>
+<img src='src/images/ink_img009.png
 '/><p>[03-14-23]</p>
 <p>What's the relationship between $A,A^T$? 
 </p></div>
 <div class='post-card'>
-<a href='posts/algebra/linear_algebra.html'>A Friendly Introduction to Linear Algebra
-</a>
-<img src='posts/algebra/src/images/imgkerstuff.png
+<h5 id='A-Friendly-Introduction-to-Linear-Algebra'><a href='linear_algebra.html' class='blog-title'>A Friendly Introduction to Linear Algebra
+</a></h5>
+<img src='src/images/imgkerstuff.png
 '/><p>[linear_algebra]</p>
 <p>intro to linear algebra. done a nice way
 </p></div>
 <div class='post-card'>
-<a href='posts/algebra/02-28-23.html'>basic rep theory
-</a>
-<img class='side-img' src='images/shark1.png'/><p>[02-28-23]</p>
+<h5 id='basic-rep-theory'><a href='02-28-23.html' class='blog-title'>basic rep theory
+</a></h5>
+<img class='side-img' src='../../images/cat.png'/><p>[02-28-23]</p>
 <p>some basic rep theory
 </p></div>
 <div class='post-card'>
-<a href='posts/algebra/01-14-23.html'>A little bit of spectral graph theory
-</a>
-<img src='posts/algebra/src/images/ink_img007.png
+<h5 id='A-little-bit-of-spectral-graph-theory'><a href='01-14-23.html' class='blog-title'>A little bit of spectral graph theory
+</a></h5>
+<img src='src/images/ink_img007.png
 '/><p>[01-14-23]</p>
 <p>
 </p></div>
-</div></body>
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

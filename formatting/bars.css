@@ -93,7 +93,7 @@ body {
     padding: 20px;
     background: #000000;
 }
-#sidebar h4,h3 {
+#sidebar h5,h4,h3 {
   color: #ffffff;
 }
 
@@ -128,8 +128,9 @@ body {
 	overflow: hidden;
 }
 .post-card img {
-	width: 35%;
-	float: left;
+	width: 30%;
+  padding-right: 5%;
+  float: left;
 }
 .post-card .p {
 	width: 60%;

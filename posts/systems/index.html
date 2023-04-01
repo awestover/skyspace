@@ -1,5 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
 
-    <head>
     <link href="../../formatting/pandoc.css" rel="stylesheet">
     <link href="../../formatting/envbox.css" rel="stylesheet">
     <link href="../../formatting/bars.css" rel="stylesheet">
@@ -8,38 +13,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
-    </head>
-    <body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
     <div class="wrapper">
       <nav id="sidebar">
         <div id="sidebar-content">
           <div class="sidebar-header">
-            <h4>SkySpace</h4>
+            <h5>skyspace</h5>
           </div>
           <ul class="list-unstyled components">
-            <img style="width:100%; max-width:250px;" src="../../images/cat.png" alt="cat"/>
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
             <li> <a href="https://awestover.github.io">awestover.github.io</a> </li>
             <li> <a href="../../index.html">Home</a> </li>
             <li> <a href="../../about.html">About</a> </li>
             <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
           </ul>
-          <div id="canvas-parent"> </div>
         </div>
       </nav>
-      <div id="content">
-
-    <div class='post-card'>
-<a href='posts/systems/cache_behavior.html'>Cache behavior
-</a>
-<img src='posts/systems/src/images/naiveSquare.png
+      <div id="content"> 
+      <div class='post-card'>
+<h5 id='Cache-behavior'><a href='cache_behavior.html' class='blog-title'>Cache behavior
+</a></h5>
+<img src='src/images/coolMatrixMultiply.png
 '/><p>[cache_behavior]</p>
 <p>cache
 </p></div>
 <div class='post-card'>
-<a href='posts/systems/fast_integer_multiplication.html'>fast multiply integers
-</a>
-<img class='side-img' src='images/blob.png'/><p>[fast_integer_multiplication]</p>
+<h5 id='fast-multiply-integers'><a href='fast_integer_multiplication.html' class='blog-title'>fast multiply integers
+</a></h5>
+<img class='side-img' src='../../images/cat.png'/><p>[fast_integer_multiplication]</p>
 <p>fft
 </p></div>
-</div></body>
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
