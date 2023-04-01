@@ -1,3 +1,5 @@
+# TODO: make an option to only compile a single directory rather than everything 
+
 import os
 from os.path import join
 import sys

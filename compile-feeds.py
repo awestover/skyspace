@@ -63,7 +63,7 @@ os.chdir("..")
 with open("topic-elts.html", "w") as f:
   for dir in topics:
     f.write(f"<h1 class='topic-title'>{dir}</h1>")
-    f.write(f"<a href='posts/{dir}'>zoom</a>")
+    f.write(f"<a href='posts/{dir}'>just {dir}</a>")
     f.write(topics[dir])
 
 def weird(x):

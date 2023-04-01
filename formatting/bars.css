@@ -127,6 +127,13 @@ body {
 	width: 100%;
 	overflow: hidden;
 }
+
+.post-card a:hover {
+  color: #00ffff;
+  background: #000;
+  text-decoration: none; 
+}
+
 .post-card img {
 	width: 30%;
   padding-right: 5%;
