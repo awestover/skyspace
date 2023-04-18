@@ -1,0 +1,4 @@
+LCA = RMQ
+
+LCA and RMQ are some pretty fundamental problems. Can we solve in
+constant time with linear preprocessing? yes.

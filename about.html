@@ -65,6 +65,9 @@
         <a href="https://awestover.github.io">awestover.github.io</a>
         </p>
 
+        <h3 style="color:white" onclick="launchPhil()">作者想法</h3>
+        <p id="phil"></p>
+
         <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfJWqMuTy26zfP4nZ9VptFJQKJysWeJHuHC0huhP9F_7AE3LQ/viewform?embedded=true" width="640" height="479" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
         <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScMem2fKd2Qtsj_6QBmWDCEjV9t9EmpDlvcd02J2GSBz2guvg/viewform?embedded=true" width="640" height="967" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
       </div>
@@ -77,6 +80,9 @@
       $(document).ready(function() {
         $('#toc').load("topics-toc.html"); 
       });
+      function launchPhil(){
+        $('#phil').load("philosophy.html"); 
+      }
     </script>
 
 <!-- Google tag (gtag.js) -->

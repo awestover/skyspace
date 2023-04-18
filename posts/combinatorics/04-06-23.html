@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>So I think there is some really deep duality between chains and anti-chains in posets.</p>
+<p><strong>Green’s theorem</strong> says that if you look at how many more elements you can cover if you are allowed an extra chain, and you look at that same sequence for anti chains, then these form conjugate partitions, i.e. their corresponding young diagrams are flipped versions of one another.</p>
+<p>Now, that sounds really deep. For today, we are definitely not going to prove that. But what we are going to prove is that the size of the largest anti-chain (which can be interpretted as the size of the first row in one of the young diagrams I was discussing) is the same as the minimum number of chains required to cover the poset (which can be interpreted as the size of the first columns in the other young diagram).</p>
+<p>Here goes:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> max anti-chain size = min chain-cover size</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We will prove the equality via establishing <span class="math inline">\(\leq, \geq\)</span>. One inequality is immediate: any cover of the poset with chains contains at least one chain per element in the max size anti-chain.</p>
+<p>Now, we want to show that there is some chain-cover which has exactly one chain per element in a max anti-chain. We do so by induction.</p>
+<p>Our inductive hypothesis is that for any poset <span class="math inline">\(P_0\)</span> on <span class="math inline">\(n-1\)</span> elements which has maximal anti-chain of size <span class="math inline">\(d\)</span> there is a cover of <span class="math inline">\(P\)</span> using <span class="math inline">\(d\)</span> chains. Now we consider a poset <span class="math inline">\(P\)</span> with <span class="math inline">\(n\)</span> elements, and maximal anti-chain size of <span class="math inline">\(d\)</span>. We want to exhibit a chain cover of <span class="math inline">\(P\)</span> with <span class="math inline">\(d\)</span> chains.</p>
+<p>First, we note that if there are any elements that are just completely incomparable to everything then we just win, because those certainly are involved in any anti-chain of maximal length. Assume this is not the case. Take <span class="math inline">\(m\)</span> to be a minimal element, and <span class="math inline">\(M\)</span> to be a maximal element, in particular a maximum element among elements which are comparable to (i.e. larger than) <span class="math inline">\(m\)</span>.</p>
+<p>If <span class="math inline">\(P-\{m,M\}\)</span> has maximal anti-chain of size <span class="math inline">\(d-1\)</span> then we just win, by computing a chain cover of it with <span class="math inline">\(d-1\)</span> chains and then adding <span class="math inline">\(\{m,M\}\)</span> as the final chain. So, assume that this is not the case, i.e. that <span class="math inline">\(P-\{m,M\}\)</span> has an anti-chain <span class="math inline">\(A\)</span> with <span class="math inline">\(d\)</span> elements. Now let <span class="math inline">\(P^+=\{x\in P \mid \exists a\in A st x\ge a\},P^- = \{x\in P \mid \exists a \in A st x\le a\}\)</span> be the stuff below the anti-chain and the stuff above the anti-chain. Note that <span class="math inline">\(P^-\cap P^+ = A\)</span> because if we had an element that was below <span class="math inline">\(a_1\in A\)</span> while being above <span class="math inline">\(a_2\in A\)</span> then <span class="math inline">\(a_1,a_2\)</span> would be comparable, violating their anti-chain-ness! Furthermore, <span class="math inline">\(P^- \cup P^+ = P\)</span> or we could build a longer anti-chain out of whatever element is incomparable to every element of the anti-chain. <span class="math inline">\(m\in P^-, M\in P^+\)</span> because by construction <span class="math inline">\(m,M\notin A\)</span> which means that <span class="math inline">\(P^+,P^-\)</span> are strictly smaller than <span class="math inline">\(P\)</span> and we can use the inductive hypothesis on them. This results in <span class="math inline">\(d\)</span>-chain covers of <span class="math inline">\(P^+,P^-\)</span>. But of course we can glue these together via the anti-chain elements, yielding a <span class="math inline">\(d\)</span>-chain cover of <span class="math inline">\(P\)</span>, as desired.</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

@@ -11,7 +11,7 @@ body {
   #sidebar-content {
     position: fixed;
     height: 100vh;
-    width: 150px;
+    width: 175px;
     overflow-y: auto;
     overflow-wrap: break-word;
     background: #000000;
@@ -31,6 +31,11 @@ body {
     padding: 20px 0;
     border-bottom: 1px solid #000000;
   }
+
+  #sidebar-content::-webkit-scrollbar {
+    display: none;
+  }
+
 }
 
 @media (max-width: 500px) {
@@ -95,6 +100,9 @@ body {
 }
 #sidebar h5,h4,h3 {
   color: #ffffff;
+}
+div#content h3 {
+  color: #000;
 }
 
 #sidebar ul p {

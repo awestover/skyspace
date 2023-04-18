@@ -1,0 +1,3 @@
+max-anti-chain vs min-chain-cover
+
+A hint of duality between chains and anti-chains in posets.

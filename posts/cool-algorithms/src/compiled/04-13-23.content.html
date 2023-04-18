@@ -1,0 +1,24 @@
+<p>Due to Micahel bender and martin Colton</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Given a tree (not necessarily balanced) LCA(x,y) means the least common ancestor.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Given an array RMQ(i,j) means the smallest element that occurs in the array between indices <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Say we write down the nodes and depths of nodes as they occur in a DFS traversal of a tree. then the shalowest node that we encounter on the DFS between two vertices <span class="math inline">\(x,y\)</span> is their LCA.</p>
+</div>
+<p>beg pf yes end pf</p>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> Thus, LCA is reduced to RMQ. But actually a very special RMQ: RMQ on an array where adjacent elements differ by <span class="math inline">\(\pm 1\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> we can solve RMQ pretty easily in <span class="math inline">\(O(n\log n)\)</span> prep, <span class="math inline">\(O(1)\)</span> query. But <span class="math inline">\(\pm 1\)</span> RMQ we can do in <span class="math inline">\(O(n)\)</span> prep, <span class="math inline">\(O(1)\)</span> query. by four russians.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> We can reduce general RMQ to LCA, by constructing a cartesian tree thing in linear time.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> cartesian tree thing: root is min element. that splits the array into two parts, left and right. then recursively construct those.</p>
+<p>note : if you build one node at a time you can build this in linear time.</p>
+</div>
