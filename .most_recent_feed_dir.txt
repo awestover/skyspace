@@ -1,1 +1,1 @@
-/home/alek/Dropbox (MIT)/skyspace/posts/cool-algorithms/src
+/home/alek/Dropbox (MIT)/skyspace/posts/randomized-algorithms/src
