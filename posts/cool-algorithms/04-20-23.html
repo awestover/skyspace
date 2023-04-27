@@ -41,11 +41,13 @@
       </nav>
 
       <div id="content"> 
-      <p><span class="math display">\[\Pr[X\ge m]\le \frac{G_X(a)}{a^m}\]</span> for any <span class="math inline">\(a&gt;1\)</span> where <span class="math inline">\(G_X\)</span> is the generating function for the probability distribution of <span class="math inline">\(X.\)</span></p>
-<p>Similarly, <span class="math display">\[\Pr[X\ge m] \le \Pr[a^X \ge a^m] \le \mathop{\mathrm{\mathbb{E}}}[a^X]/a^m.\]</span></p>
-<p>These are basically how you can get Chernoff bounds I guess.</p>
-<h1 id="something-else">something else</h1>
-<p>For a non-negative ranvom variable <span class="math inline">\(X\)</span> <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[X | Y] \le \mathop{\mathrm{\mathbb{E}}}[X] / \Pr[Y]\)</span></p>
+      <p>for <span class="math inline">\(d|n\)</span>, for <span class="math inline">\(x\in \{0,1\}^d\)</span>, make sure <span class="math inline">\(x\)</span> isn’t <span class="math inline">\(k\)</span>-periodic for any <span class="math inline">\(k|d, k&lt; d\)</span>; this can be done in linearithmic time because it suffices to check for <span class="math inline">\(p|d\)</span> which is distinct prime divisors, and each such check requires linear time.</p>
+<p>Now, you might ask, what the running time is. It is of course <span class="math display">\[\sum_{d|n} 2^d d\log d\]</span></p>
+<p>Now, is this actually better than just generating all binary strings of length <span class="math inline">\(n\)</span> and then for each pair, checking if they are rotated copies of one another? of course! that’s like <span class="math inline">\(\Omega(4^n)\)</span>. This should be more like <span class="math inline">\(O(2^n n^2)\)</span> or something… (I haven’t been able to do the sum yet, but whateves.)</p>
+<p><strong>it has been noted that it is possible to do this much faster and simpler with using hash tables; but can we beat</strong> <span class="math inline">\(O(2^n)\)</span>? i kind of doubt it</p>
+<p>Now you might ask, what if I want to also rule out reflectional symmetry and rotoation + reflectional symmetry ?</p>
+<p>you might also ask is it possible to check rotational / roto-reflectional symmetry faster than <span class="math inline">\(n^2\)</span> time?</p>
+<p>to be continued after pickelball</p>
 
       </div>
     </div>

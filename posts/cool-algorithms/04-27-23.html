@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>Let S be a search data structure (such as a red-black tree) that performs insert, delete and search in <span class="math inline">\(O(\log n)\)</span> time, where <span class="math inline">\(n\)</span> is the number of elements stored. An empty data structure S can be created in <span class="math inline">\(O(1)\)</span> time. We would like to construct a static data structure with <span class="math inline">\(n\)</span> elements that is statically optimal in total access time, given the number of times an element is accessed in an access sequence. Recall that if item <span class="math inline">\(i\)</span> is accessed <span class="math inline">\(p_i m\)</span> times in a sequence of <span class="math inline">\(m\)</span> operations then the static- optimal access time is <span class="math inline">\(O(m \sum p_i \log 1/p_i )\)</span>.</p>
+<p>The data structure is constructed as follows. Search data structure <span class="math inline">\(S_k\)</span> holds the <span class="math inline">\(2^{2^k}\)</span> most frequently occurring items in the access sequence (note this means items may be in multiple trees). A search on <span class="math inline">\(v\)</span> is done on <span class="math inline">\(S_0 , S_1,\ldots,\)</span> until an <span class="math inline">\(S_i\)</span> holding <span class="math inline">\(v\)</span> is encountered. Notice that all elements in <span class="math inline">\(S_i\)</span> are held in <span class="math inline">\(S_{i+1}\)</span>. (a) Show that the above data structure is asymptotically comparable to the optimal static tree in terms of the total time to process the access sequence. (b) Make the data structure capable of insert operations. Assume that the number of searches to be done on v is provided when v is inserted. The cost of insert should be <span class="math inline">\(O(\log n)\)</span> amortized time, and total cost of searches should still be optimal (non-amortized). (c) Improve your solution to work even if the frequency of access is not given during the insert. Your data structure now matches the static optimality theorem of splay trees (but of course, had to be built special case). (d) Make your data structure satisfy the working set theorem on splay trees. Ignore the static optimality condition.</p>
+<h1 id="data-structures-to-get-static-optimality">data structures to get static optimality</h1>
+<h2 id="a">(a)</h2>
+<p>Consider the items indexed in order of decreasing frequency, i.e. such that <span class="math inline">\(p_1\geq p_2\geq \cdots \geq p_n.\)</span> We see that <span class="math inline">\(p_i \leq 1/i\)</span>, so <span class="math inline">\(\log i \leq \log 1/p_i\)</span>. The run time of a search for element <span class="math inline">\(i\)</span> is <span class="math display">\[\sum_{k\leq
+\ceil{\lg\lg i}} \log 2^{2^k} \leq 2\cdot 2^{\ceil{\lg\lg i}}
+\leq 4\cdot \log i \leq 4\log 1/p_i.\]</span> We search for element <span class="math inline">\(i\)</span> <span class="math inline">\(mp_i\)</span> times. Overall, the time for performing all the necessary searches is <span class="math display">\[\sum_{i=1}^n mp_i \cdot 4\log 1/p_i,\]</span> which is asymptotically optimal.</p>
+<h2 id="b">(b)</h2>
+<p>First, we add to our data-structure trees <span class="math inline">\(F_i\)</span>, which contains the elements of <span class="math inline">\(S_i\)</span> keyed by the number of searches which must be performed on them. <span class="math inline">\(F_i\)</span> will support insert, delete, but also <span class="math inline">\((i)\)</span>, which returns the <span class="math inline">\(i\)</span>-th most frequent element in <span class="math inline">\(F_i\)</span>. This “in-order element <span class="math inline">\(i\)</span>” query is supported in time <span class="math inline">\(O(\log |F_i|)\)</span> by many types of trees, it just requires augmenting the nodes in a balanced tree with the subtree sizes. Note that such trees also can support a <strong>getminfreqelt</strong> opperation to return the element of minimum frequency out of all elements in <span class="math inline">\(F_i\)</span> by simply running <strong>getfreqidx</strong><span class="math inline">\((|F_i|)\)</span>. <span class="math inline">\(F_i\)</span> also supports a  opperation which returns the frequency of the minimum frequency element in <span class="math inline">\(F_i\)</span>.</p>
+<p>When we insert an element <span class="math inline">\(v\)</span> with frequency <span class="math inline">\(freq(v)\)</span>, we first check to find the lowest <span class="math inline">\(i\)</span> such that <span class="math inline">\(freq(v) \geq \text{\textbf{getminfreq}}(F_i)\)</span>. Next, we itterate over <span class="math inline">\(j\geq i\)</span> and repeatedly insert <span class="math inline">\(v\)</span> into <span class="math inline">\(S_j, F_j\)</span> and then find <span class="math inline">\(w\gets \text{\textbf{getminfreqelt}}(F_j)\)</span> and then deletes <span class="math inline">\(w\)</span> from both <span class="math inline">\(S_j\)</span> and <span class="math inline">\(F_j\)</span>. We keep increasing <span class="math inline">\(j\)</span> until the last group. If the last group is full, we will then need to create a new group. Otherwise, on this last step we skip the deletion of <span class="math inline">\(w\)</span> step, because there is extra space in the final <span class="math inline">\(S_j\)</span>. This chain of insertions and deletions has total cost of<br />
+<span class="math display">\[\sum_{j\leq \floor{\lg\lg n}} O(2^j) \leq O(\log n).\]</span></p>
+<p>Very rarely, we have to create a new <span class="math inline">\(S_i, F_i\)</span>. This is  expensive, it takes time <span class="math inline">\(n\log n\)</span>. However, it also happens very rarely. If a total of <span class="math inline">\(n\)</span> elements are inserted into the data-structure then the total cost of building all the <span class="math inline">\(S_i\)</span> and <span class="math inline">\(F_i\)</span> is <span class="math display">\[O(n\lg n) + \sum_{j &lt; \floor{\lg\lg n}} 2^{2^j} 2^j \leq O(n\lg n).\]</span> So, while individual inserts may be  expensive, e.g. <span class="math inline">\(\Omega(n\log n)\)</span>, in an ammortized sense, inserts are still only <span class="math inline">\(O(\log n)\)</span> time.</p>
+<p>On the other hand, we are always maintaining the data-structure with <span class="math inline">\(S_i\)</span> containing the <span class="math inline">\(2^{2^i}\)</span> most common elements. We have shown in (a) that such a data-structure has an asymptotically optimal cost for searches.</p>
+<h2 id="c">(c)</h2>
+<p>Insert works much as before, we simply insert an element with only <span class="math inline">\(1\)</span> as its frequency; in fact insert is easier: we don’t have to do the chain of insertions and deletions, it suffices to insert at the largest <span class="math inline">\(S_i\)</span>.</p>
+<p>But now, each time a  opperation is performed on an element <span class="math inline">\(x\)</span>, we must increase the observed frequency of <span class="math inline">\(x\)</span>, which may necessitate moving <span class="math inline">\(x\)</span> to a smaller <span class="math inline">\(S_i\)</span>, and then also removing other elements from the smaller <span class="math inline">\(S_i\)</span>’s to make space for <span class="math inline">\(x\)</span>. This is accomplished in essentially the same way as chains of insertion and deletion were handled for inserts: we identify the new <span class="math inline">\(S_i\)</span> where our element <span class="math inline">\(x\)</span> must end up, and then we have a chain of insertions and deletions as we bring <span class="math inline">\(x\)</span> to smaller <span class="math inline">\(S_i\)</span>’s and delete these <span class="math inline">\(S_i\)</span>’s least frequent elements to make room for <span class="math inline">\(x\)</span>. By the same analysis as the previous problem, each such opperation has work <span class="math inline">\(O(\log n)\)</span>. However, we aim to show something stronger: namely that the total cost of the find opperations is within a constant factor of that of the optimal static data-structure for this problem! We can tighten our analysis as follows: Consider a time in the opperation when <span class="math inline">\(M\)</span> accesses have been and we must perform a search on an element <span class="math inline">\(x\)</span> which has been searched for <span class="math inline">\(f\)</span> times in the past. Consider the rank of <span class="math inline">\(x\)</span>: there are at most <span class="math inline">\(M/f\)</span> elements which have been accessed more than <span class="math inline">\(x\)</span>. Thus, we can actually achieve a tighter bound on the cost of the updates that we perform when searching for <span class="math inline">\(x\)</span>: namely, <span class="math display">\[\sum_{j \leq \ceil{\lg\lg M/f}}O(2^j) \leq O(\lg M/f).\]</span></p>
+<p>Now we consider the total cost of all the accesses on elements <span class="math inline">\(1,\ldots, n\)</span>: say that by the end we have accessed elements <span class="math inline">\(x_1,\ldots, x_n\)</span> times, with <span class="math inline">\(m = \sum x_i\)</span>. Let <span class="math inline">\(m_{i,j}\)</span> be the number of accesses that have been performed before the <span class="math inline">\(j\)</span>-th access to the <span class="math inline">\(i\)</span>-th element. The cost of this access will then be <span class="math inline">\(O(\log m_{i,j}/j).\)</span> Now, let <span class="math display">\[T = \sum_{i=1}^n \sum_{j=1}^{x_i} \lg m_{i,j}/j.\]</span> The total cost will be <span class="math inline">\(O(T)\)</span>. We proceed to bound <span class="math inline">\(T\)</span>.</p>
+<p>We notice that <span class="math inline">\(m_{i,j}\)</span> will achieve each value on <span class="math inline">\(\{1,\ldots, m\}\)</span> exactly once. Re-arranging our expression for <span class="math inline">\(T\)</span>, we get: <span class="math display">\[T = \sum_{i=1}^m \lg i - \sum_{i=1}^n \sum_{j=1}^{x_i} \lg j.\]</span> Using Stirling’s approximation, which says that <span class="math display">\[N\lg N/2 \leq \sum_{i=1}^N\lg i = \lg N! \leq N\log N,\]</span> we upper bound <span class="math inline">\(T\)</span> as <span class="math display">\[T \leq m\lg m - \sum_{i=1}^n x_i (\lg x_i -1).\]</span> Re-arranging some more we have: <span class="math display">\[T \leq \sum_{i=1}^n x_i \cdot (\lg m /x_i +1).\]</span> Now, we substitute <span class="math inline">\(p_i = x_i/m\)</span>, and accept a factor of <span class="math inline">\(2\)</span> to pay for the <span class="math inline">\(+1\)</span>, to get <span class="math display">\[T \leq \sum_{i=1}^n mp_i \cdot 2 \lg 1/p_i.\]</span> As <span class="math inline">\(T\)</span> is asymptotically optimal and the total cost is <span class="math inline">\(O(T)\)</span>, we have that this data-structure, despite not knowing the search frequencies in advance, still is within <span class="math inline">\(O(1)\)</span> multiple of the optimal access time based on element frequencies.</p>
+<h2 id="d">(d)</h2>
+<p>We build a very similar data-structure. But now, instead of being arranged based on access frequencies, the elements are arranged based on how recently they have been accessed. That is, sets <span class="math inline">\(S_i,F_i\)</span> will now contain the <span class="math inline">\(2^{2^i}\)</span> most recently accessed elements. Instead of being keyed by access frequency, <span class="math inline">\(F_i\)</span> is keyed by how recently the element was accessed. Now, when an element is inserted we place it in all <span class="math inline">\(S_i\)</span>’s and “make room” for this new element by removing the least recent element from each <span class="math inline">\(S_i\)</span> (except the last). Again, every once and a while inserting will necessitate creating a new <span class="math inline">\(S_i\)</span>. But again, this happens very infrequently and will not affect the ammortized costs of opperations. Very similarly, whenever a  is performed we move the searched element to the front, and perform a chain of inserts and deletes. Precisely, if the element <span class="math inline">\(x\)</span> searched for started in <span class="math inline">\(S_i\)</span>, then for all <span class="math inline">\(S_j\)</span> with <span class="math inline">\(j &lt; i\)</span> we must insert <span class="math inline">\(x\)</span> into <span class="math inline">\(S_j\)</span> and delete the least recently accessed element in <span class="math inline">\(S_j\)</span> to make room for <span class="math inline">\(x\)</span>.</p>
+<p>With identical analysis to the previous part, we see that the ammortized costs of the insert opperations will be <span class="math inline">\(O(\log n).\)</span></p>
+<p>Now, we consider the cost of executing a sequence of searches and inserts for elements <span class="math inline">\(x_1,\ldots, x_n\)</span>, where <span class="math inline">\(t_i\)</span> reffers to the numer of elements since the last time that <span class="math inline">\(x_i\)</span> was accessed. We see that the cost of searching for an element that was searched among the last <span class="math inline">\(t_i\)</span> searches is at most <span class="math display">\[\sum_{j\leq \ceil{\log\log t_i}} 2^j \leq O(\log
+t_i).\]</span> Thus, our sequences of accesses and inserts will have cost bounded by <span class="math inline">\(O\paren{n\log n + \sum \log t_i}\)</span>, as desired.</p>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
