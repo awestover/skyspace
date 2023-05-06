@@ -1,0 +1,3 @@
+<p>Imagine you have two cycles that share an edge, and you have edge weights that sum to zero on both of the lil cycles. Then by physics or whatever, if you sum the edge weights along the big cycle you get zero as well.</p>
+<p>imagine you had voltages assigned to a graph. then you can assign potentials as follows: arbitrarily ground one of the vertices. now, go “BFS” out and if you go from vertex with potential <span class="math inline">\(u\)</span> to another vertex via a voltage <span class="math inline">\(v\)</span> edge, the potential of the new vertex is defined as, you guessed it, <span class="math inline">\(v+u\)</span>.</p>
+<p>Also you can of course recover the voltages from the potential function by subtraction.</p>

@@ -1,0 +1,15 @@
+<p>If you know a better proof of this result, please contact me.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math display">\[\sum_{d|n} \phi(d) = n.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> By induction: <span class="math display">\[\sum_{d|p^{k}m}\phi(d) = \sum_{i=0}^{k}\sum_{d|m}\phi(p^{i}d)
+= \sum_{i=0}^{k}\sum_{d|m}\phi(d) \phi(p^{i}).\]</span> But this is telescoping because <span class="math inline">\(\phi(p^{i})=p^{i}-p^{i-1}\)</span>. It tellescopes to <span class="math display">\[p^{k}\sum_{d|m}\phi(d) = p^{k}m,\]</span> by induction.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> The multiplicative group of <span class="math inline">\(\mathbb{F}_p\)</span> is cyclic.</p>
+<p>In fact, this is true of any finite field by a similar proof.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> For each <span class="math inline">\(d|p-1\)</span>, there are at most <span class="math inline">\(\phi(d)\)</span> elements of <span class="math inline">\(\mathbb{F}_p\)</span> which have order <span class="math inline">\(d\)</span>. Thus, by the lemma above, for each <span class="math inline">\(d|p-1\)</span> there are exactly <span class="math inline">\(\phi(d)\)</span> elements of <span class="math inline">\(\mathbb{F}_p\)</span> with order <span class="math inline">\(d\)</span>. In particular, <span class="math inline">\(\phi(p-1)&gt;0\)</span>, so there is some element with order <span class="math inline">\(p-1\)</span>, i.e. a generator.</p>
+</div>
