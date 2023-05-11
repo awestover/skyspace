@@ -1,2 +1,2 @@
 Vector Calculus
-images/divneg1.png
+images/div1.png
