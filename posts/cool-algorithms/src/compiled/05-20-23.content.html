@@ -1,0 +1,6 @@
+<p><strong>problem</strong>: find the largest common isomorphic subtree of two trees.</p>
+<p>Let’s call the trees vertex sets <span class="math inline">\(A,B\)</span>. If all the trees in question were binary trees, the simple DP solution would be: for each pair of vertices <span class="math inline">\(a,b\in A \times B\)</span>, store the largest common subtree of <span class="math inline">\(T_a, T_b\)</span> rooted at <span class="math inline">\(a,b\)</span> respectively, where <span class="math inline">\(T_a,T_b\)</span> are the subtrees rooted at <span class="math inline">\(a,b\)</span>. Then, to compute a DP-value for a new pair <span class="math inline">\(x,y\)</span>, given the value for all of their children, we simply take the max over both ways of pairing their children.</p>
+<p>Then, at the end, we can scan the vertices to find which vertex we should root the tree at. This solution is great! It runs in time <span class="math inline">\(|A||B|.\)</span></p>
+<p>But this isn’t the problem we want to solve. We want to solve it for arbitrary trees. Which can have large degree on some vertices.</p>
+<p>Now a naive DP will use <span class="math inline">\(d!\)</span> time per DP update by trying all the permutations.</p>
+<p>But there is a clever save! We can do a flow-based maximum matching instead of checking all permutations. This is super cool</p>
