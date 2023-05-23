@@ -1,0 +1,6 @@
+how many edges to guarantee ham-cycle?
+
+A common question in extremal graph theory is "what conditions do
+I have to put on my graph to get property X"
+In this blog post, we investigate the question: 
+how many edges to guarantee hamiltonian-cycle?

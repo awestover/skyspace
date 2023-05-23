@@ -1,0 +1,16 @@
+<div class="defn envbox">
+<p><strong>Definition.</strong> <strong>ham cycle</strong>: a cycle consisting of all the vertices.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> There is a graph on <span class="math inline">\(n\)</span> vertices with <span class="math inline">\(\binom{n-1}{2}+1\)</span> edges that does not contain a ham-cycle</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math inline">\(n-1\)</span>-clique adjoin a vertex with a single edge to the clique.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Any graph on <span class="math inline">\(n\)</span> vertices with at least <span class="math inline">\(\binom{n-1}{2}+2\)</span> edges contains a ham-cycle.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> If the graph is <span class="math inline">\(K_n\)</span> we are done. Assume the graph is not <span class="math inline">\(K_n\)</span>. Let <span class="math inline">\(v_0\)</span> be the minimal degree vertex. We have <span class="math inline">\(\deg(v_0)\ge 2, \deg(v_0)\le n-2\)</span>.</p>
+<p>We consider two cases: - <strong>Case 1</strong>: <span class="math inline">\(G[V\setminus v_0]\)</span> has at least <span class="math inline">\(\binom{n-2}{2}+2\)</span> edges. Then we are done by recursion, and splicing <span class="math inline">\(v_0\)</span> into whatever cycle we find in <span class="math inline">\(G[V\setminus v_0]\)</span>. - <strong>Case 2</strong>: <span class="math inline">\(G[V\setminus v_0]\)</span> has at most <span class="math inline">\(\binom{n-2}{2}+1\)</span> edges. Actually, this is impossible, because it would imply that <span class="math display">\[\deg(v_0) \ge \binom{n-1}{2}-\binom{n-2}{2}+1 = n-1,\]</span> but we assumed that <span class="math inline">\(G\neq K_n\)</span>.</p>
+</div>
