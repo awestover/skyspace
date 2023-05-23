@@ -1,10 +1,12 @@
-<p>If you know a better proof of this result, please contact me.</p>
 <div class="lem envbox">
 <p><strong>Lemma.</strong> <span class="math display">\[\sum_{d|n} \phi(d) = n.\]</span></p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> By induction: <span class="math display">\[\sum_{d|p^{k}m}\phi(d) = \sum_{i=0}^{k}\sum_{d|m}\phi(p^{i}d)
 = \sum_{i=0}^{k}\sum_{d|m}\phi(d) \phi(p^{i}).\]</span> But this is telescoping because <span class="math inline">\(\phi(p^{i})=p^{i}-p^{i-1}\)</span>. It tellescopes to <span class="math display">\[p^{k}\sum_{d|m}\phi(d) = p^{k}m,\]</span> by induction.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> <strong>Actually</strong>, we can prove this a nicer way. Partition <span class="math inline">\([n]\)</span> based on <span class="math inline">\(\gcd(x,n)\)</span>. For each <span class="math inline">\(d\mid n,\)</span> the number of <span class="math inline">\(x\)</span> with <span class="math inline">\(\gcd(x,n) = d\)</span> is <span class="math inline">\(\phi(n/d)\)</span>. Thus we have <span class="math display">\[n = \sum_{d\mid n}\phi(n/d)=\sum_{d\mid n}\phi(d).\]</span></p>
 </div>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> The multiplicative group of <span class="math inline">\(\mathbb{F}_p\)</span> is cyclic.</p>
