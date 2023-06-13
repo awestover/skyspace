@@ -1,0 +1,13 @@
+<figure>
+<img src="src/images/rain.png" alt="" /><figcaption>rain</figcaption>
+</figure>
+<p>Lately, my favorite “fact”, (I’m at least 95% true that I have a correct proof of this statement, although have not writting it up super carefully) is the following:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(x\in [p]\)</span>. Then there exist <span class="math inline">\(m\le n\)</span> and <span class="math inline">\(k\)</span> with <span class="math inline">\(|k| \le \frac{p}{n}\)</span> (where by <span class="math inline">\(|k|\)</span> I mean <span class="math inline">\(\min(p-k, k)\)</span>) such that</p>
+<p><span class="math display">\[x \equiv m^{-1}k \mod p.\]</span></p>
+</div>
+<p>What this means is, you can take any <span class="math inline">\(x\in [p]\)</span> and break it down into two parts: a part of size in <span class="math inline">\([n]\)</span> and a part of size in <span class="math inline">\([\frac{p}{n}]\)</span>.</p>
+<p>I think this is super cool.</p>
+<p>PS: If it’s not true, or if it is well known and you have a citation for it, please let me know.</p>
+<p>The proof sketch is as follows: - for concreteness think of <span class="math inline">\(x\)</span> as being some size, like maybe <span class="math inline">\(\approx \frac{p}{i}\)</span> . - So like after <span class="math inline">\(i\)</span> steps you wrap around once. And (assuming <span class="math inline">\(x\)</span> didn’t already start super small), this wrap around thing will be pretty small, like less than <span class="math inline">\(\frac{x}{2}\)</span> say. - keep going for a bit and you can get it down to <span class="math inline">\(\frac{x}{3}\)</span>. - You just do a bunch of balancing arguments to say that you’re making progress.</p>
+<p>Anyways, this blog isn’t about a proof. It’s just because I made a cool picture of <span class="math inline">\(x(m,k)\)</span>, see the heatmap above. Enjoy!</p>
