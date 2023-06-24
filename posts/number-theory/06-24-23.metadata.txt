@@ -1,0 +1,6 @@
+num $a$ with $ax<p/2$: some notes on a personal conjecture
+images/log2n.png
+This blog post is a bunch of very half baked thoughts / attempts
+at proving a certain number theoretical conjecture of mine that
+arose in the study of the maxload of a linear hashing variant
+with n objects to 2 bins. 
