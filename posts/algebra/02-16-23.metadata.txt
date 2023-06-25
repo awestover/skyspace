@@ -1,5 +1,5 @@
 group products
-images/ink_img004.png
+images/ink_img003.png
 Ever wondered what a semi-direct group  product is?
 what, if anything is the difference between an inner semidirect
 product and an outer semidirect product?
