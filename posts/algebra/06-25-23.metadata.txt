@@ -1,0 +1,4 @@
+Cauchy Shwarz almost equality
+
+This is part of my series of doing problems from the book "problems from the book" (by Titu
+Adnreescu Gabriel Dospinescu). Today is about an interesting variant of Cauchy Schwarz.

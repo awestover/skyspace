@@ -1,0 +1,21 @@
+<p>Cauchy-Shwarz inequality is as follows:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[\left(\sum a_i^2\right) \left(\sum b_i^2\right) \ge \left(\sum
+a_i b_i \right)^2\]</span> with equality iff all <span class="math inline">\(a_i\)</span> are identical, and all <span class="math inline">\(b_i\)</span> are also identical.</p>
+</div>
+<p>To see why this is true, first note that equality indeed holds if there are <span class="math inline">\(a,b\)</span> so that all <span class="math inline">\(a_i = a\)</span> and all <span class="math inline">\(b_i = b\)</span>. Then, note that perturbations from this equality case increase the left hand side more.</p>
+<p>ok, but now here’s the question from the book:</p>
+<blockquote>
+<p>If we are only a little bit away from the equality case, can we give some sort of statement of the form “all <span class="math inline">\(a_i\)</span>’s and <span class="math inline">\(b_i\)</span>’s are pretty close to each other”?</p>
+</blockquote>
+<p>More formally this is the problem:</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Fix <span class="math inline">\(n\ge 2\)</span>. Let <span class="math inline">\(a_1,\ldots, a_n\)</span> be positive numbers satisfying <span class="math display">\[\sum a_i \sum \frac{1}{a_i} \le (n+1 / 2)^2.\]</span> Then, <span class="math inline">\(\max a_i \le 4 \min a_i\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Assume for sake of contradiction that the proposition is false. Fix <span class="math inline">\(a_i\)</span> constituting a counter example. Let <span class="math inline">\(x=\min a_i\)</span> and let <span class="math inline">\(\eps\)</span> be such that <span class="math inline">\(\max a_i = (4+\eps)x\)</span>.</p>
+<p>For notational convenience let <span class="math inline">\(a_{n-1}=x, a_{n} =(4+\eps)x\)</span>.</p>
+<p>Note that Cauchy shwarz says <span class="math display">\[\left(\sum a_i\right \sum \frac{1}{a_i} \ge n^{2},\]</span> so we are pretty darn close to the equality case. This is why we suspect it is reasonable to find a bound on the multiplicative size of the range of <span class="math inline">\(a_i\)</span>.</p>
+<p>We have <span class="math display">\[\left(\sum a_i\right \left(\sum \frac{1}{a_i}\right) = \left((5+\eps)x+ \sum_{i=1}^{n-2} a_i\right \left(\frac{1}{x} + \frac{1}{(4+\eps)x} + \sum_{i=1}^{n-2} \frac{1}{a_i}\right)\]</span></p>
+<p>By Cauchy Shwarz: <span class="math display">\[\left((5+\eps)x+ \sum_{i=1}^{n-2} a_i\right \left(\frac{1}{x} + \frac{1}{(4+\eps)x} + \sum_{i=1}^{n-2} \frac{1}{a_i}\right) \ge \left(n-2 + \sqrt{(5+\eps)(1+\frac{1}{4+\eps})}\right)^{2}.\]</span> Optimizing the quadratic, we find that for apporpriately chosen <span class="math inline">\(\eps\)</span> the expression would be larger than <span class="math inline">\((n+ 1/2)^{2}\)</span>, a contradiction.</p>
+</div>
