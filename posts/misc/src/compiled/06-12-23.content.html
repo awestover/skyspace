@@ -11,4 +11,16 @@
 <p>PS: If it’s not true, or if it is well known and you have a citation for it, please let me know.</p>
 <p>The proof sketch is as follows: - for concreteness think of <span class="math inline">\(x\)</span> as being some size, like maybe <span class="math inline">\(\approx \frac{p}{i}\)</span> . - So like after <span class="math inline">\(i\)</span> steps you wrap around once. And (assuming <span class="math inline">\(x\)</span> didn’t already start super small), this wrap around thing will be pretty small, like less than <span class="math inline">\(\frac{x}{2}\)</span> say. - keep going for a bit and you can get it down to <span class="math inline">\(\frac{x}{3}\)</span>. - You just do a bunch of balancing arguments to say that you’re making progress.</p>
 <p>Anyways, this blog isn’t about a proof. It’s just because I made a cool picture of <span class="math inline">\(x(m,k)\)</span>, see the heatmap above. Enjoy!</p>
-<p><strong>EDIT 1</strong>: oops the picture literally proves that my above “theorem” is somewhat false. well, sigh, happens. <strong>EDIT 2</strong>: ok I modified the “theorem” to say <span class="math inline">\(x\in [\frac{p}{2}]\)</span> is uniquely represented by <span class="math inline">\(m,k\)</span>. Now, this is not in contradication with any observed data. Still worth being cautious though.</p>
+<ul>
+<li><strong>EDIT 1</strong>: oops the picture literally proves that my above “theorem” is somewhat false. well, sigh, happens.</li>
+<li><strong>EDIT 2</strong>: ok I modified the “theorem” to say <span class="math inline">\(x\in [\frac{p}{2}]\)</span> is uniquely represented by <span class="math inline">\(m,k\)</span>. Now, this is not in contradication with any observed data. Still worth being cautious though.</li>
+<li><strong>Edit 3</strong>: ok here’s what is actually the case:</li>
+</ul>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For each <span class="math inline">\(x\in [p]\)</span>, there exists <span class="math inline">\(m\le n, k\le \frac{p}{n}, \sigma \in \pm 1\)</span> such that <span class="math display">\[x \equiv \sigma m^{-1}k \mod p.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This is true by the pidgeon hole principle:</p>
+<p>It you look at <span class="math inline">\([n]x\)</span> it must have two poitns <span class="math inline">\(i,j\)</span> with <span class="math inline">\(xi,xj\)</span> close. So then if we define <span class="math inline">\(k=|i-j|\)</span> we have the desired property.</p>
+</div>
+<p>So basically, above I was on the right track, but I got side-tracked by trying to say that the representation was unique, which doesn’t make any sense and is also false.</p>
