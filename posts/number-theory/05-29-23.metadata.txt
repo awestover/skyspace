@@ -2,6 +2,6 @@ overlap of simply periodic binary functions
 
 Let $f_a(x)$ denote a binary string consisting of  $a$ $0$'s
 followed by $a$ $1$'s  and then repeating these $2a$ symbols.
-We can equivalently describe $f_a$ as $f_a(x)\defeq \floor{x/a}\bmod 2$.
+We can equivalently describe $f_a$ as $f_a(x)= \floor{x/a}\bmod 2$.
 We study $\sum_{x\in [ab]} f_a(x)\oplus f_b(x)$, in particular
 bounding the difference of the sum from $\frac{ab}{2}$.
