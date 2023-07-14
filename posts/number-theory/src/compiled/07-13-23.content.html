@@ -1,0 +1,15 @@
+<p>Can’t believe I don’t have more NT blog posts smh. Plan to fix this dirth of quality content.</p>
+Today, we discuss the following question:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[\lcm \binom{n}{0}, \binom{n}{1}, \binom{n}{2},\ldots, \binom{n}{n} = \frac{1}{n+1} \lcm(1,2,\ldots, n+1).\]</span></p>
+</div>
+<p>Credit to “problem’s from the book” for this question.</p>
+<p>So, ok let’s do it</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We do it by <span class="math inline">\(\nu_p\)</span>’ing. First, notice that <span class="math inline">\(\nu_p(\lcm(1,2,\ldots,n+1)) = \left\lfloor  \log_p n+1 \right\rfloor.\)</span> Ok, great.</p>
+<p>Now, treat <span class="math inline">\(n=a\cdot p^k-1\)</span> for <span class="math inline">\(a\perp p\)</span> as a separate case.</p>
+<p>For the binomial coefficients we have <span class="math display">\[\nu_p( (n+1)(n+0)(n-1)\cdots (n-i+1) ) - \nu_p(i!).\]</span> We can think of this like a game! You get dropped into the natural numbers, and get to walk forward <span class="math inline">\(i\)</span> steps. You collect <span class="math inline">\(\nu_p(x)\)</span> points for walking on tile <span class="math inline">\(x\)</span>. How many points can you get compared to someone else who is playing the same game?</p>
+<p>Well, it turns out the following fact is useful for analyzing the game:</p>
+<p><span class="math display">\[\nu_p(w!) \le \nu_p((n+w)!) - \nu_p(n!).\]</span> In fact, this is an immediate consequence of the inequality: <span class="math display">\[\left\lfloor x-y \right\rfloor \le \left\lfloor x \right\rfloor-\left\lfloor y \right\rfloor.\]</span> Because we use the formula: <span class="math display">\[\nu_p(n!) = \sum_{i\ge 1} \left\lfloor n/p^i \right\rfloor.\]</span></p>
+<p>So, now that we understand the game, how does the game help? Let’s call the players “top” and “bottom” for numerator and denominator. Well, then once top gets a good point thing, he resets to the start basically, and doesn’t get any further ahead, until bottom also gets the good point thing that top got. So, top is only ever ahead by at most once. And it will be ahead at least once too because just think about it.</p>
+</div>

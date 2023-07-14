@@ -1,0 +1,3 @@
+lcm of binomial coefficients
+
+A fun number theoretic game

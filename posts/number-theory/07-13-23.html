@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>Can’t believe I don’t have more NT blog posts smh. Plan to fix this dirth of quality content.</p>
+Today, we discuss the following question:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[\lcm \binom{n}{0}, \binom{n}{1}, \binom{n}{2},\ldots, \binom{n}{n} = \frac{1}{n+1} \lcm(1,2,\ldots, n+1).\]</span></p>
+</div>
+<p>Credit to “problem’s from the book” for this question.</p>
+<p>So, ok let’s do it</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We do it by <span class="math inline">\(\nu_p\)</span>’ing. First, notice that <span class="math inline">\(\nu_p(\lcm(1,2,\ldots,n+1)) = \left\lfloor  \log_p n+1 \right\rfloor.\)</span> Ok, great.</p>
+<p>Now, treat <span class="math inline">\(n=a\cdot p^k-1\)</span> for <span class="math inline">\(a\perp p\)</span> as a separate case.</p>
+<p>For the binomial coefficients we have <span class="math display">\[\nu_p( (n+1)(n+0)(n-1)\cdots (n-i+1) ) - \nu_p(i!).\]</span> We can think of this like a game! You get dropped into the natural numbers, and get to walk forward <span class="math inline">\(i\)</span> steps. You collect <span class="math inline">\(\nu_p(x)\)</span> points for walking on tile <span class="math inline">\(x\)</span>. How many points can you get compared to someone else who is playing the same game?</p>
+<p>Well, it turns out the following fact is useful for analyzing the game:</p>
+<p><span class="math display">\[\nu_p(w!) \le \nu_p((n+w)!) - \nu_p(n!).\]</span> In fact, this is an immediate consequence of the inequality: <span class="math display">\[\left\lfloor x-y \right\rfloor \le \left\lfloor x \right\rfloor-\left\lfloor y \right\rfloor.\]</span> Because we use the formula: <span class="math display">\[\nu_p(n!) = \sum_{i\ge 1} \left\lfloor n/p^i \right\rfloor.\]</span></p>
+<p>So, now that we understand the game, how does the game help? Let’s call the players “top” and “bottom” for numerator and denominator. Well, then once top gets a good point thing, he resets to the start basically, and doesn’t get any further ahead, until bottom also gets the good point thing that top got. So, top is only ever ahead by at most once. And it will be ahead at least once too because just think about it.</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
