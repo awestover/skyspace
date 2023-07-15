@@ -1,0 +1,3 @@
+n-s_2(n) is whatever you want it to (mod) b
+
+Yet another NT problem from the book

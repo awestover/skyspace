@@ -1,0 +1,20 @@
+Problem:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(\forall a\in \mathbb{Z}, b\in \mathbb{N}\exists n \in \mathbb{N}\)</span> such that <span class="math display">\[\nu_2(n!) \equiv a \mod b.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> For integers <span class="math inline">\(x,y\)</span> we write <span class="math inline">\(x\perp y\)</span> to denote that <span class="math inline">\(x,y\)</span> are coprime. Let <span class="math inline">\(s(n)\)</span> denotote the digit sum of <span class="math inline">\(n\)</span> when written in binary, and <span class="math inline">\(f(n)\)</span> denote <span class="math inline">\(\nu_2(n!)\)</span>. Without loss of generality, assume <span class="math inline">\(a\in [0, b).\)</span></p>
+<p>The following relationship between <span class="math inline">\(s,f\)</span> is well-known: <span class="math display">\[f(n) = n-s(n).\]</span></p>
+<p>We break our problem into 3 cases.</p>
+<p><strong>Case 0:</strong> <span class="math inline">\(b=1\)</span> This is trivial.</p>
+<p><strong>Case 1:</strong> <span class="math inline">\(b\perp 2\)</span>.</p>
+<p>Then, Euler’s theorem says <span class="math inline">\(2^{\phi(b)} \equiv 1 \mod b.\)</span> Thus, <span class="math display">\[f(2^{\phi(b)}x) = 2^{\phi(b)}x - s(x) \equiv x-s(x) \mod b
+\equiv f(x).\]</span> Of course, <span class="math inline">\(f(2) = 1.\)</span> Thus, <span class="math display">\[f(\sum_{i=1}^{a} 2^{i\phi(b)}\cdot 2) \equiv a \mod b.\]</span></p>
+<p><strong>Case 2:</strong> <span class="math inline">\(b=2^{k}\)</span>.</p>
+<p>Then <span class="math inline">\(f(2^{k}m) \equiv s(m) \mod b.\)</span> So <span class="math display">\[f(2^{k}\sum_{i=1}^{a}2^{i}) \equiv a \mod b.\]</span></p>
+<p><strong>Case 3:</strong> <span class="math inline">\(b=c \cdot 2^{k}\)</span> for <span class="math inline">\(c\perp 2\)</span>.</p>
+<p>By Case 1, <span class="math inline">\(\exists n_1\)</span> such that <span class="math display">\[f(n_1)\equiv a \mod c.\]</span></p>
+<p>Clearly <span class="math inline">\(2^{\ell}\bmod 2^{k}c\)</span> cycles through multiples of <span class="math inline">\(2^{k}\)</span>.</p>
+<p>Thus, there are integers <span class="math inline">\(m_1&lt;m_2&lt;\cdots, &lt;m_{\beta c}\)</span> such that <span class="math display">\[\forall i, 2^{m_i}\equiv 2^{k}\mod 2^{k}.\]</span> But then <span class="math display">\[f(\sum_{i=1}^{\beta c} 2^{m_i}) \equiv \beta c 2^{k} -\beta c \eqquiv -\beta c \mod 2^{k}c.\]</span> In other words, we can get any multiple of <span class="math inline">\(c\)</span> we want, and we can have an arbirary number of zeros on the right of this number.</p>
+<p>Thus, we can nicely compose <span class="math inline">\(n_1\)</span> with <span class="math inline">\(f(n_1)\equiv a \mod c\)</span> satisfying <span class="math inline">\(f(n_1)\equiv a + \beta c \mod 2^{k}c\)</span> with <span class="math inline">\(n_2\)</span> satisfying <span class="math inline">\(f(n_2) \equiv -\beta c \mod 2^{k}c\)</span> and <span class="math inline">\(n_2\)</span> has zeros on all the slots that <span class="math inline">\(n_1\)</span> would occupy. Therefore, <span class="math display">\[f(n_1+n_2)\equiv a \mod 2^{k}c,\]</span> concluding the proof.</p>
+</div>
