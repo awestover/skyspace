@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>Imagnie I have a postgres database with ~3000 columns storing boolean “flags” for ~1 billion rows. The “on” flag (1) is quite sparse, say occuring less than 0.1% of the time in each column. Now, I want to execute a query of the form “select all rows with flags 1,2, 5 and 101” 1. How much space would it take to store such a database? That is, will postgres by default do any sort of compression because of how sparse the “on” flag is? 2. Does postgres by default make queries of this form “fast”? If not, are there well known postgres extensions for this type of query? If not I might write my own, but just want to know if this has already been done.</p>
+<p>This blog post contains my thoughts on this. First, we parameterize some things:</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> - <span class="math inline">\(n\)</span> number of rows - <span class="math inline">\(L\)</span> number of columns (categories) - <span class="math inline">\(\delta\)</span> density in each column - <span class="math inline">\(q\)</span> query size - <span class="math inline">\(w\)</span> word size (we can do <span class="math inline">\(O(1)\)</span>-time operations on words) - <span class="math inline">\(p\)</span> number of processors available (we can do <span class="math inline">\(p\)</span> units of work per a single unit of time.)</p>
+</div>
+<h2 id="storage">Storage</h2>
+<p><strong>Way 1:</strong> Have <span class="math inline">\(n\)</span> rows, with <span class="math inline">\(L\)</span> bits, and thus <span class="math inline">\(L/w\)</span> words, per row. Space: <span class="math inline">\(\frac{nL}{w}\)</span>.</p>
+<p><strong>Way 2:</strong> For each of the <span class="math inline">\(L\)</span> categories, store the row-indices of the <span class="math inline">\(\sim \delta n\)</span> rows in this category. Overall this requires <span class="math display">\[\sim \delta n L \frac{\log n}{w}\]</span> space.</p>
+<p>Comparison: as long as the density (or should I say sparsity?) is <span class="math inline">\(\delta &lt; \frac{1}{\log n}\)</span> way 2 is the clear winner here. For instance, if <span class="math inline">\(n\sim 10^{9}\)</span>, the required sparsity for way 2 to win is about <span class="math inline">\(\delta &lt; \frac{1}{30}\)</span>.</p>
+<h2 id="query">Query</h2>
+<p>With “way 1” the query can be handled by partitioning the rows into <span class="math inline">\(p\)</span> groups and summing the bit-masked numbers.</p>
+<p>This requires time: <span class="math display">\[\frac{n}{p} \cdot \frac{L}{w}.\]</span></p>
+<p>With “way 2” the query can be handled by partitioning the rows again into <span class="math inline">\(p\)</span> groups. But this time we should be careful to “randomly” partition the rows somehow. It probably doesn’t need to be completely a random partition, because that sounds expensive. Should suffice to, e.g., assign each row to that processor iid with probability <span class="math inline">\(\frac{1}{p}\)</span>. Note: this must be done before the query. You modify the storage structure so that each processor has a list of <span class="math inline">\(\sim n\delta/p\)</span> elements per each category. Now, each processor can do its stuff in time <span class="math display">\[\approx  q n\delta / p \frac{\log n}{w}\]</span></p>
+<p>So as long as <span class="math display">\[\frac{q}{L / \log n} &lt; \frac{1}{\delta}\]</span> way 2 is better. Which kind of makes sense.</p>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

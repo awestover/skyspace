@@ -1,0 +1,6 @@
+a database question
+
+Imagnie I have a postgres database with ~3000 columns storing boolean "flags" for ~1 billion rows. The "on" flag (1) is quite sparse, say occuring less than 0.1% of the time in each column.
+Now, I want to execute a query of the form "select all rows with flags 1,2, 5 and 101"
+1. How much space would it take to store such a database? That is, will postgres by default do any sort of compression because of how sparse the "on" flag is?
+2. Does postgres by default make queries of this form "fast"? If not, are there well known postgres extensions for this type of query? If not I might write my own, but just want to know if this has already been done.
