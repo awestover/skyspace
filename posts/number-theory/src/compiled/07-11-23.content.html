@@ -1,0 +1,22 @@
+We consider the product of prime numbers up to <span class="math inline">\(n\)</span>.
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math display">\[\prod_{p\le n}  p \le 4^{n-1}.\]</span></p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In fact, the real answer is closer to <span class="math inline">\(e^{1.000028}\)</span> or something. See wikipedia page for Chebyshev prime function (which is the <span class="math inline">\(\ln\)</span> of this function).</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> proof of lemma is by induction. We use the almost-central binomial coefficient: <span class="math display">\[\binom{2k+1}{k}\le 4^{k},\]</span> because note that <span class="math display">\[\prod_{p\in (k,2k+1]} p \le \binom{2k+1}{k}.\]</span> That is, primes <span class="math inline">\(p\in (k,2k+1]\)</span> show up exactly once in <span class="math inline">\(\binom{2k+1}{k}\)</span> because they can’t be cancelled by the denominator. Wow that’s neat. Anyways, then you do the induction and it works.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There are at least <span class="math inline">\((\frac{2}{3}-o(1)) \frac{n}{\log n}\)</span> primes between <span class="math inline">\([n,2n]\)</span> for large enough <span class="math inline">\(n\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Now we use central binomial coefficient for our bound <strong>so cool</strong>. key observation 1: <span class="math display">\[\nu_p(\binom{2n}{n}) \le \log_p n\]</span> I have another blog post about this fact. Key observation 2: for <span class="math inline">\(p\in (\frac{2n}{3}, n)\)</span> <span class="math display">\[\nu_p(\binom{2n}{n}) = 0.\]</span> Key observation 3: For <span class="math inline">\(p&gt; \sqrt{2n}\)</span> <span class="math display">\[\nu_p(\binom{2n}{n}) \le 1.\]</span></p>
+<p>Let <span class="math inline">\(f(n)\)</span> be the number of primes <span class="math inline">\(p\in [n,2n]\)</span>. We have the bound</p>
+<p><span class="math display">\[\frac{4^{n}}{n} \le \binom{2n}{n} \le \prod_{p\le \sqrt{2n}}2n
+\prod_{p\in (\sqrt{2n}, 2n / 3)} p \prod_{p\in [n,2n]}p\]</span></p>
+<p>Using the lemma from the beginning of this blog post we get</p>
+<p><span class="math display">\[\frac{4^{n}}{n} \le (2n)^{\sqrt{2n}} 4^{\frac{2n}{3}}
+(2n)^{f(n)}.\]</span> Taking logs and stuff gives the desired bound.</p>
+</div>

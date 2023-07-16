@@ -1,0 +1,3 @@
+Counting primes with binomial coefficients
+
+Again #probfromthebook, thanks Erdos

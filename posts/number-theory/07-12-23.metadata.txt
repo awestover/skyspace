@@ -1,0 +1,4 @@
+Basic properties of primes based on residue mod 4
+
+Again #probfromthebook, this time discussing the classes of
+primes congruent to $1,3 \mod 4$.
