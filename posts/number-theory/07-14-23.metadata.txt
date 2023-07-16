@@ -1,0 +1,3 @@
+Divisors of n!
+
+yet another NT problem from the book #probfromthebook

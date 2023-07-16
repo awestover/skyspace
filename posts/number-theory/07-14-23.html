@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      Let <span class="math inline">\(\tau(n)\)</span> denote the number of divisors of <span class="math inline">\(n\)</span>.
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For all <span class="math inline">\(n\)</span> except <span class="math inline">\(3, 5\)</span> we have <span class="math display">\[\tau(n!) \mid n!.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math display">\[\tau(n!) = \prod_p 1+\nu_p(n!) = \prod_p 1+ \frac{n-s_p(n)}{p-1}.\]</span> So, if we knew that these numbers were all distinct, we would be supa-chilling. However, for small <span class="math inline">\(n\)</span> they actually might not be distinct (e.g., <span class="math inline">\(n=3,5\)</span>). So we should be careful.</p>
+<p>So, we can upper bound these guys using <span class="math display">\[\frac{n-s_p(n)}{p-1} \le \frac{n-1}{p-1},\]</span> which gives upper bounds <span class="math display">\[1+\frac{n-1}{2-1}, 1+\frac{n-1}{3-1}, 1+\frac{n-1}{5-1}, 1+\frac{n-1}{7-1}\]</span> and lower bound using <span class="math display">\[\frac{n-s_p(n)}{p-1} \ge \frac{n}{p-1} - \left\lceil \log_p n \right\rceil,\]</span> which gives lower bounds <span class="math display">\[1+ \frac{n}{2-1}-\left\lceil \log_2 n \right\rceil, 1+\frac{n}{3-1}-\left\lceil \log_3 n \right\rceil, 1+\frac{n}{5-1}-\left\lceil \log_5 n \right\rceil.\]</span></p>
+<p>So, can we assert something about distinctness? Let’s compare the bounds on the first two terms; those seem to be a weaker point.</p>
+<p>The first factor is at least <span class="math inline">\(n-\left\lceil \log_2 n \right\rceil + 1\)</span>, whereas the second factor is at most <span class="math inline">\(\frac{n-1}{2}+1.\)</span></p>
+<p><span class="math display">\[\frac{n-1}{2} &lt; n-\left\lceil \log_2 n \right\rceil \iff \left\lceil \log_2 n \right\rceil &lt; \frac{n+1}{2}.\]</span> This is true as long as <span class="math inline">\(n&gt; 5\)</span>.</p>
+<p>By similar analysis you can show that for <span class="math inline">\(n&gt;5\)</span> none of the other terms collide. lit, we win.</p>
+<p>Note: just manually verify the <span class="math inline">\(n\le 5\)</span> stuff.</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
