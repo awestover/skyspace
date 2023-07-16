@@ -1,0 +1,14 @@
+<p>There are lot’s of prime conjectures that are unsolved. - Are there infinitely many primes of the form <span class="math inline">\(n^{2}+1\)</span>? - Are there infinitely many primes of the form <span class="math inline">\(2^{n}-1\)</span>? (Mersenne primes) - Are there infinitely many primes <span class="math inline">\(p\)</span> where <span class="math inline">\(2p+1\)</span> is also prime? (Sophie Germaine primes)</p>
+<p>All of these are open questions. But here’s a solved question:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(p\)</span> be prime. There are infinitely many primes <span class="math inline">\(q\)</span> for which <span class="math inline">\(p\mid q-1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Oh actually the proof is kind of tricky. here goes.</p>
+<p>Define the cylotomic polynomial <span class="math display">\[f_p(x) = 1+x+x^{2}+\cdots + x^{p-1}.\]</span></p>
+<p>Observation 1: <span class="math display">\[f_p(pk) \perp pk(pk-1)\]</span> this is pretty clear.</p>
+<p>Observation 2: Say that prime <span class="math inline">\(q\mid f_p(pk)\)</span>. Well, we know that <span class="math display">\[q \mid (pk)^{p}-1.\]</span> Therefore the order <span class="math inline">\(\mod q\)</span> of <span class="math inline">\(pk\)</span> satisfies <span class="math inline">\(o_q(pk) \mid p\)</span>. But the divisors of <span class="math inline">\(p\)</span> are <span class="math inline">\(\{1,p\}\)</span>, and the order is not <span class="math inline">\(1\)</span>. Hence, <span class="math display">\[o_q(pk) = p.\]</span> On the other hand, FLT says <span class="math inline">\(o_q(pk) \mid \phi(q)=q-1\)</span>.</p>
+<p>Putting it all together gives <span class="math inline">\(q\equiv 1 \mod p\)</span>.</p>
+<p>Ok, so we’re almost done. It will suffice to find an infinite set <span class="math inline">\(k_1,k_2,k_3,\ldots\)</span> such that <span class="math inline">\(f_p(pk_i)\)</span> are all pairwise coprime.</p>
+<p>One way of doing that is the following: <span class="math display">\[m_1=p, m_k=pf(m_1)f(m_2)f(m_3)\cdots f(m_{k-1}).\]</span> Then, <span class="math inline">\(f(m_i)\)</span> and <span class="math inline">\(f(m_j)\)</span> have completely disjoint sets of prime factors, and at least one of each of their prime factors is one more than a multiple of <span class="math inline">\(p\)</span> as desired.</p>
+</div>

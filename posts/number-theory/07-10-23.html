@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>There are lot’s of prime conjectures that are unsolved. - Are there infinitely many primes of the form <span class="math inline">\(n^{2}+1\)</span>? - Are there infinitely many primes of the form <span class="math inline">\(2^{n}-1\)</span>? (Mersenne primes) - Are there infinitely many primes <span class="math inline">\(p\)</span> where <span class="math inline">\(2p+1\)</span> is also prime? (Sophie Germaine primes)</p>
+<p>All of these are open questions. But here’s a solved question:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(p\)</span> be prime. There are infinitely many primes <span class="math inline">\(q\)</span> for which <span class="math inline">\(p\mid q-1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Oh actually the proof is kind of tricky. here goes.</p>
+<p>Define the cylotomic polynomial <span class="math display">\[f_p(x) = 1+x+x^{2}+\cdots + x^{p-1}.\]</span></p>
+<p>Observation 1: <span class="math display">\[f_p(pk) \perp pk(pk-1)\]</span> this is pretty clear.</p>
+<p>Observation 2: Say that prime <span class="math inline">\(q\mid f_p(pk)\)</span>. Well, we know that <span class="math display">\[q \mid (pk)^{p}-1.\]</span> Therefore the order <span class="math inline">\(\mod q\)</span> of <span class="math inline">\(pk\)</span> satisfies <span class="math inline">\(o_q(pk) \mid p\)</span>. But the divisors of <span class="math inline">\(p\)</span> are <span class="math inline">\(\{1,p\}\)</span>, and the order is not <span class="math inline">\(1\)</span>. Hence, <span class="math display">\[o_q(pk) = p.\]</span> On the other hand, FLT says <span class="math inline">\(o_q(pk) \mid \phi(q)=q-1\)</span>.</p>
+<p>Putting it all together gives <span class="math inline">\(q\equiv 1 \mod p\)</span>.</p>
+<p>Ok, so we’re almost done. It will suffice to find an infinite set <span class="math inline">\(k_1,k_2,k_3,\ldots\)</span> such that <span class="math inline">\(f_p(pk_i)\)</span> are all pairwise coprime.</p>
+<p>One way of doing that is the following: <span class="math display">\[m_1=p, m_k=pf(m_1)f(m_2)f(m_3)\cdots f(m_{k-1}).\]</span> Then, <span class="math inline">\(f(m_i)\)</span> and <span class="math inline">\(f(m_j)\)</span> have completely disjoint sets of prime factors, and at least one of each of their prime factors is one more than a multiple of <span class="math inline">\(p\)</span> as desired.</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

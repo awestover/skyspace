@@ -1,0 +1,4 @@
+infinitely many primes one more than a multiple of p
+
+Again #probfromthebook, this time discussing the infinitude of
+some classes of primes.
