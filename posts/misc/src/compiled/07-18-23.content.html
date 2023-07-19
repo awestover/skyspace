@@ -1,0 +1,43 @@
+<h1 id="coloring-problem">coloring problem</h1>
+<p><strong>mono trio</strong>: three collinear points spaced out by distance 1, all with the same color (wrt some coloring)</p>
+<p>A cool question: Fix <span class="math inline">\(t\in [5]\)</span>. - can you color <span class="math inline">\(\mathbb{R}^2\)</span> with <span class="math inline">\(t\)</span> colors and avoid mono trios?</p>
+<p>Turns out: There is a <span class="math inline">\(3\)</span> coloring based on a plane tiling with hexagons + do weird stuff to the boundaries (appropriately assign them) that avoids mono trios!</p>
+<p>A special class of colorings: “circly” colorings: all points at a fixed distance from the origin have the same color.</p>
+<blockquote>
+<p>Question: is there some nice color reduction thing that you can do in higher dimensions?</p>
+</blockquote>
+<p>Anyways, let’s think about circly colorings a bit.</p>
+<p>It turns out we get the following formulas:</p>
+<p>If you have a circle of radius <span class="math inline">\(r\)</span>, then the following two other circles must have different colors: - <span class="math display">\[r\mapsto \sqrt{r^{2}+2}\]</span> - <span class="math display">\[r\mapsto \sqrt{r^{2}-1}\]</span> (note that your circle must have <span class="math inline">\(r\ge 1\)</span> to apply this rule)</p>
+<p>If you have circles of radii <span class="math inline">\(a,b\)</span> of the same color, then we find a circle of this radius that must have a different color: - <span class="math display">\[a,b \mapsto \sqrt{\frac{a^{2}+b^{2}}{2} - 1}\]</span> - <span class="math display">\[a,b \mapsto \sqrt{2b^{2}-a^{2}- 1}\]</span></p>
+<p>Using these rules with the seed that <span class="math inline">\(0,1\)</span> are different colors, it’s pretty easy to show that any circly two coloring of <span class="math inline">\(\mathbb{R}^2\)</span> has a mono trio.</p>
+<p>Ok, but three colors? This is tricky. You could try to make an algorithm that - repeatedly applies these rules - by doing so you generate some graph - then you need to check if that graph is <span class="math inline">\(3\)</span>-colorable - if the graph ever ends up having chromatic number at least <span class="math inline">\(4\)</span> then we have found out that it is impossible to avoid mono trio in a <span class="math inline">\(3\)</span> coloring - in fact, this would kind of work generally. we just converted this into a graph problem from a geometry problem.</p>
+<ul>
+<li><p>caveat! you can’t just start from a single seed, e.g., the origin, and generate everything</p></li>
+<li><p>because many irrational things live in different universes that you would never explore within your tame square-roots of finite binary decimal universe.</p></li>
+<li><p>so you must branch all the universes.</p></li>
+<li><p>oops its too much. will probably explode your computer. unless quantum.</p></li>
+</ul>
+<blockquote>
+<p>question: does this algorithm terminate in &lt;5 minutes?</p>
+</blockquote>
+<h1 id="coloring">3 coloring</h1>
+<blockquote>
+<p>But now, maybe a question you could ask is “what graphs are 3-colorable.”</p>
+</blockquote>
+<p>well, here’s an easier question: In an Erdos-Renyi graph with parameter <span class="math inline">\(p\)</span> what is the probability that it is <span class="math inline">\(K_4\)</span> free? Or really, what value of <span class="math inline">\(p\)</span> makes this probability constant?</p>
+<p>Expected number of <span class="math inline">\(K_4\)</span>’s is a good indicator, especially because variance is likely quite small. And the expected number is <span class="math inline">\(\Theta(p^{6} n^{4})\)</span>. So this would be <span class="math inline">\(p=\frac{1}{n^{\frac{2}{3}}}\)</span> to get <span class="math inline">\(\Theta(1)\)</span> probability probably probabbly of <span class="math inline">\(K_4\)</span> or no <span class="math inline">\(K_4\)</span>. probably didnt actually calculate variance plz forgive.</p>
+<p>But now back to some harder questions.</p>
+<blockquote>
+<p>question: if <span class="math inline">\(p=100/n\)</span> then how likely is it to be <span class="math inline">\(3\)</span>-colorable? Maybe feels good because it is locally looking like trees?</p>
+</blockquote>
+<blockquote>
+<p>question: what is relationship between max-degree and chromatic number?</p>
+</blockquote>
+<p>observation: the <span class="math inline">\(p=\frac{100}{n}\)</span> dude has <span class="math inline">\(O(1)\)</span> triangles in expectation.</p>
+<blockquote>
+<p>question: does this help us with <span class="math inline">\(3\)</span>-coloring-ness?</p>
+</blockquote>
+<blockquote>
+<p>question: is there a relationship between average degree and chromatic number?</p>
+</blockquote>

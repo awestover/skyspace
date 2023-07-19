@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <h1 id="coloring-problem">coloring problem</h1>
+<p><strong>mono trio</strong>: three collinear points spaced out by distance 1, all with the same color (wrt some coloring)</p>
+<p>A cool question: Fix <span class="math inline">\(t\in [5]\)</span>. - can you color <span class="math inline">\(\mathbb{R}^2\)</span> with <span class="math inline">\(t\)</span> colors and avoid mono trios?</p>
+<p>Turns out: There is a <span class="math inline">\(3\)</span> coloring based on a plane tiling with hexagons + do weird stuff to the boundaries (appropriately assign them) that avoids mono trios!</p>
+<p>A special class of colorings: “circly” colorings: all points at a fixed distance from the origin have the same color.</p>
+<blockquote>
+<p>Question: is there some nice color reduction thing that you can do in higher dimensions?</p>
+</blockquote>
+<p>Anyways, let’s think about circly colorings a bit.</p>
+<p>It turns out we get the following formulas:</p>
+<p>If you have a circle of radius <span class="math inline">\(r\)</span>, then the following two other circles must have different colors: - <span class="math display">\[r\mapsto \sqrt{r^{2}+2}\]</span> - <span class="math display">\[r\mapsto \sqrt{r^{2}-1}\]</span> (note that your circle must have <span class="math inline">\(r\ge 1\)</span> to apply this rule)</p>
+<p>If you have circles of radii <span class="math inline">\(a,b\)</span> of the same color, then we find a circle of this radius that must have a different color: - <span class="math display">\[a,b \mapsto \sqrt{\frac{a^{2}+b^{2}}{2} - 1}\]</span> - <span class="math display">\[a,b \mapsto \sqrt{2b^{2}-a^{2}- 1}\]</span></p>
+<p>Using these rules with the seed that <span class="math inline">\(0,1\)</span> are different colors, it’s pretty easy to show that any circly two coloring of <span class="math inline">\(\mathbb{R}^2\)</span> has a mono trio.</p>
+<p>Ok, but three colors? This is tricky. You could try to make an algorithm that - repeatedly applies these rules - by doing so you generate some graph - then you need to check if that graph is <span class="math inline">\(3\)</span>-colorable - if the graph ever ends up having chromatic number at least <span class="math inline">\(4\)</span> then we have found out that it is impossible to avoid mono trio in a <span class="math inline">\(3\)</span> coloring - in fact, this would kind of work generally. we just converted this into a graph problem from a geometry problem.</p>
+<ul>
+<li><p>caveat! you can’t just start from a single seed, e.g., the origin, and generate everything</p></li>
+<li><p>because many irrational things live in different universes that you would never explore within your tame square-roots of finite binary decimal universe.</p></li>
+<li><p>so you must branch all the universes.</p></li>
+<li><p>oops its too much. will probably explode your computer. unless quantum.</p></li>
+</ul>
+<blockquote>
+<p>question: does this algorithm terminate in &lt;5 minutes?</p>
+</blockquote>
+<h1 id="coloring">3 coloring</h1>
+<blockquote>
+<p>But now, maybe a question you could ask is “what graphs are 3-colorable.”</p>
+</blockquote>
+<p>well, here’s an easier question: In an Erdos-Renyi graph with parameter <span class="math inline">\(p\)</span> what is the probability that it is <span class="math inline">\(K_4\)</span> free? Or really, what value of <span class="math inline">\(p\)</span> makes this probability constant?</p>
+<p>Expected number of <span class="math inline">\(K_4\)</span>’s is a good indicator, especially because variance is likely quite small. And the expected number is <span class="math inline">\(\Theta(p^{6} n^{4})\)</span>. So this would be <span class="math inline">\(p=\frac{1}{n^{\frac{2}{3}}}\)</span> to get <span class="math inline">\(\Theta(1)\)</span> probability probably probabbly of <span class="math inline">\(K_4\)</span> or no <span class="math inline">\(K_4\)</span>. probably didnt actually calculate variance plz forgive.</p>
+<p>But now back to some harder questions.</p>
+<blockquote>
+<p>question: if <span class="math inline">\(p=100/n\)</span> then how likely is it to be <span class="math inline">\(3\)</span>-colorable? Maybe feels good because it is locally looking like trees?</p>
+</blockquote>
+<blockquote>
+<p>question: what is relationship between max-degree and chromatic number?</p>
+</blockquote>
+<p>observation: the <span class="math inline">\(p=\frac{100}{n}\)</span> dude has <span class="math inline">\(O(1)\)</span> triangles in expectation.</p>
+<blockquote>
+<p>question: does this help us with <span class="math inline">\(3\)</span>-coloring-ness?</p>
+</blockquote>
+<blockquote>
+<p>question: is there a relationship between average degree and chromatic number?</p>
+</blockquote>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
