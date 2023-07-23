@@ -1,0 +1,5 @@
+Farey Numbers
+
+The $k$-Farey numbers are reduced fractions of denominator at
+most $k$. They have several very interesting properties and are
+super useful. We investigate some of these properties.
