@@ -1,0 +1,3 @@
+quadratic reciprocity
+images/quadrecip.png
+a little bit about quadratic residues 

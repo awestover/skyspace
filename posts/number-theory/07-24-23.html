@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>The legendre symbol <span class="math inline">\(\left( \frac{a}{p} \right) \)</span> is just <span class="math inline">\(\pm 1\)</span> : <span class="math inline">\(+1\)</span> if <span class="math inline">\(a\)</span> is a quadratic residue <span class="math inline">\(\mod p\)</span> and <span class="math inline">\(-1\)</span> if <span class="math inline">\(a\)</span> is a quadratic non-residue.</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> <span class="math display">\[\left( \frac{a}{p} \right)  \equiv a^{\frac{p-1}{2}} \bmod p\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> If <span class="math inline">\(a\)</span> is a quadratic residue then <span class="math inline">\(a^{\frac{p-1}{2}}\equiv 1 \mod p\)</span> by FLT. In fact this is iff.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> There are <span class="math inline">\(\frac{p-1}{2}\)</span> quadratic residues <span class="math inline">\(\mod p\)</span>. They are the roots of the poly <span class="math inline">\(X^{\frac{p-1}{2}}-1\)</span> and the non-residues are roots of <span class="math inline">\(X^{\frac{p-1}{2}}+1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> by FLT <span class="math inline">\(X^{p-1}-1\)</span> has <span class="math inline">\(p-1\)</span> roots. Factor the poly. factors num roots is same as its degree. Observe that <span class="math inline">\(i^{2}\)</span> for <span class="math inline">\(i\le \frac{p-1}{2}\)</span> is a set of distinct numbers which are all quad residues.</p>
+<p>Ok the reason they are distinct is because if <span class="math inline">\(i^{2}-j^{2} \equiv 0\)</span> then basically we need <span class="math inline">\(i+j =p\)</span> but that wont happen by virtue of <span class="math inline">\(i\neq j\)</span> and the range we chose them in.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Legendre symbol plays nicely with multiplication</p>
+</div>
+<h1 id="really-understanding-it">really understanding it</h1>
+<p>To really understand it we need some lattice geometry stuff.</p>
+Let <span class="math inline">\(\eta_n(a)\)</span> denote the unique <span class="math inline">\(a&#39;\equiv a \mod n\)</span> such that <span class="math inline">\(a&#39;\in (-\frac{n}{2}, \frac{n}{2}]\)</span>.
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(k\)</span> count the number of <span class="math inline">\(j\in [\frac{p-1}{2}]\)</span> such that <span class="math inline">\(\eta_n(ja) &lt;0\)</span>. Then <span class="math display">\[\left( \frac{a}{p} \right)  = (-1)^{k}.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <strong>Hmm. I dont quite get this yet</strong> But here’s a proof anyways Observe that <span class="math inline">\(\{|\eta_n(aj)| \mid j\in [\frac{p-1}{2}]\}\)</span> contains each element of <span class="math inline">\([\frac{p-1}{2}]\)</span>. This is because <span class="math display">\[|aj|\equiv |ai| \implies i\pm j \equiv 0\]</span> which is impossible for distinct <span class="math inline">\(i,j\in [\frac{p-1}{2}]\)</span>.</p>
+<p>But then <span class="math display">\[(-1)^{\ell}\equiv a^{\frac{p-1}{2}} =
+\left( \frac{a}{p} \right) .\]</span></p>
+</div>
+But now we have the famous result, quadratic reciprocity
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[\left( \frac{p}{q} \right) \left( \frac{q}{p} \right)  = (-1)^{\frac{p-1}{2}\frac{q-1}{2}}.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Using our condition above this actually becomes a geometric problem. Basically there is a rectangle <span class="math inline">\([\frac{q-1}{2}]\times[\frac{p-1}{2}]\)</span> and we are concerned with certain lattice points in it. Let <span class="math inline">\(k_p,k_q\)</span> be the number from the lemma above. In the end we end up wanting to show that <span class="math display">\[\frac{p-1}{2}\frac{q-1}{2} - (k_p+k_q)\]</span> is even. This counts lattice points in the rectangle which are not of some certain form. We break it into two regions and show a bijection between them to conclude. Here’s a visualization: <img src="src/images/quadrecip.png" alt="quadrep" /></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> matplotlib.pyplot  <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>p <span class="op">=</span> <span class="dv">101</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>q <span class="op">=</span> <span class="dv">223</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">def</span> typeRed(x,y):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="cf">return</span> q<span class="op">*</span>y<span class="op">-</span>p<span class="op">*</span>x <span class="op">&gt;=</span> q<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="kw">def</span> typeBlue(x,y):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="cf">return</span> q<span class="op">*</span>y<span class="op">-</span>p<span class="op">*</span>x <span class="op">&lt;=</span> <span class="op">-</span>p<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="kw">def</span> typeBlack(x,y):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="cf">return</span> <span class="kw">not</span> typeRed(x,y) <span class="kw">and</span> <span class="kw">not</span> typeBlue(x,y)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">def</span> unpack(array):</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    flat <span class="op">=</span> []</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="cf">for</span> L <span class="kw">in</span> array:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>        flat <span class="op">+=</span> L</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    xs <span class="op">=</span> [pair[<span class="dv">0</span>] <span class="cf">for</span> pair <span class="kw">in</span> flat]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    ys <span class="op">=</span> [pair[<span class="dv">1</span>] <span class="cf">for</span> pair <span class="kw">in</span> flat]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    <span class="cf">return</span> xs, ys</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="kw">def</span> typeXs(typeFn):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    type_matrix <span class="op">=</span> [[(x,y) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(q<span class="op">//</span><span class="dv">2</span>) <span class="cf">if</span> typeFn(x,y)] <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(p<span class="op">//</span><span class="dv">2</span>)]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    <span class="cf">return</span> unpack(type_matrix)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>plt.scatter(<span class="op">*</span>typeXs(typeRed), c<span class="op">=</span><span class="st">&#39;r&#39;</span>, alpha<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>plt.scatter(<span class="op">*</span>typeXs(typeBlue), c<span class="op">=</span><span class="st">&#39;b&#39;</span>, alpha<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>plt.scatter(<span class="op">*</span>typeXs(typeBlack), c<span class="op">=</span><span class="st">&#39;k&#39;</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>plt.show()</span></code></pre></div>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
