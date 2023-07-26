@@ -1,0 +1,15 @@
+<p>In the k-server problem you have k “servers” located in some topological space. You recieve a series of “requests”, which are points in the topological space. You must respond to the request by moving some subset of your servers so that at least one server goes to the request. We will consider this problem in a metric space. You objective is to minimize the total distance travelled by all your servers. More precisely, our objective is to create a strategy that achieves bounded competitive ratio. We consider this problem with k=2 and set on a circle, where distance is measured along the circle.</p>
+<p>A lot of obvious strategies that you might try fail to have bounded competitive ratio:</p>
+<ul>
+<li>“double cover” (move both servers closer to the request until one reaches it). This is bad: imagine the requests alternated between poles of the circle, and the servers started at anti-poles.</li>
+<li>“decayed double cover” (move closer server distance <span class="math inline">\(d\)</span> to the request, and the other server distance <span class="math inline">\(\frac{d}{2}\)</span> towards the request). Imagine there is a series of requests near one of the servers, and the other server is on the opposite side of the circle. We can make it oscilate and never reach</li>
+<li>“just move the closest one”. The same example as above shows that this is bad.</li>
+</ul>
+<p>At this point one might despair of finding any strategy that achieves bounded competitive ratio. But there is this other problem called ski-rental. The idea there is “rent skis until you’ve payed the cost of skis and then buy skis.” This is two competitive, because an adversary always breaks your legs after you buy skis.</p>
+<p>Anyways, what does that have to do with this problem?</p>
+<p>I propose the following strategy</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Name the servers server <span class="math inline">\(1\)</span> and server <span class="math inline">\(2\)</span>. Let <span class="math inline">\(w_i\)</span> denote the distance travelled so far by server <span class="math inline">\(i\)</span> and let <span class="math inline">\(d_i\)</span> denote the distance from server <span class="math inline">\(i\)</span> to the request.</p>
+<p>Then, we send whichever server minimizes <span class="math inline">\(d_i + w_i\)</span> to cover the request.</p>
+</div>
+<p><strong>TODO</strong>: - show that this has bounded competitive ratio - or that it does not</p>
