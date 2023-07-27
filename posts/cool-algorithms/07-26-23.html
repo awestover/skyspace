@@ -32,8 +32,17 @@
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
             <div id="toc">
-            <li> <a href="#
-" class="js-scroll-trigger">
+            <li> <a href="#intro
+" class="js-scroll-trigger">intro
+</a> </li>
+<li> <a href="#try1
+" class="js-scroll-trigger">try1
+</a> </li>
+<li> <a href="#try2
+" class="js-scroll-trigger">try2
+</a> </li>
+<li> <a href="#try3
+" class="js-scroll-trigger">try3
 </a> </li>
             </div>
           </ul>
@@ -50,12 +59,14 @@
 </ul>
 <p>At this point one might despair of finding any strategy that achieves bounded competitive ratio. But there is this other problem called ski-rental. The idea there is “rent skis until you’ve payed the cost of skis and then buy skis.” This is two competitive, because an adversary always breaks your legs after you buy skis.</p>
 <p>Anyways, what does that have to do with this problem?</p>
+<h1 id="try1">try1</h1>
 <p>I propose the following strategy</p>
 <div class="prop envbox">
 <p><strong>Proposition.</strong> Name the servers server <span class="math inline">\(1\)</span> and server <span class="math inline">\(2\)</span>. Let <span class="math inline">\(w_i\)</span> denote the distance travelled so far by server <span class="math inline">\(i\)</span> and let <span class="math inline">\(d_i\)</span> denote the distance from server <span class="math inline">\(i\)</span> to the request.</p>
 <p>Then, we send whichever server minimizes <span class="math inline">\(d_i + w_i\)</span> to cover the request.</p>
 </div>
 <p><strong>TODO</strong>: - show that this has bounded competitive ratio - or that it does not</p>
+<h1 id="try2">try2</h1>
 <p><strong>update:</strong> I have not been able to analyze the above proposed algorithm yet. However, I have another algorithm that might work, by which I mean get bounded competitive ratio and imply nothing about how good the constants are going to be. Actually, in writing this disclaimer, I am preparing you for some terrible constants.</p>
 Ok here’s a rough sketch of a picture of a picture of the idea:
 <div class="prop envbox">
@@ -70,6 +81,20 @@ Ok here’s a rough sketch of a picture of a picture of the idea:
 <p>But basically once they’ve travelled distance <span class="math inline">\(1\)</span> appart (or maybe this should be once one of them has travelled <span class="math inline">\(+1\)</span> more than the other, but I think it might not matter), they teleport back together and hopefully start another small world phase.</p>
 <p>But the “return” teleportation is fine because we ammortize it against all the time they spent apppart.</p>
 <p>so, this is not actually a formal proof yet. but it’s a fun story at least.</p>
+</div>
+<h1 id="try3">try3</h1>
+<p>ok, third try is the charm. albiet a somewhat gross charm.</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> We define some terminology</p>
+<ul>
+<li>Single Small world sequence: a series of requests all within a single interval of length <span class="math inline">\(\frac{1}{32}\)</span>, starting from the servers being at a single location</li>
+<li>Two Small world sequence: a series of requests fitting within two intervals of size <span class="math inline">\(\frac{1}{32}\)</span> arround the two starting locations which are spaced out by at least <span class="math inline">\(\frac{1}{32}\)</span></li>
+<li>Break One: you were living in a single small world and then a request came far away.</li>
+<li>Break Two: you were living in two small worlds and a request came outside of both of them</li>
+</ul>
+<p>Strategy: - when in single small world double cover - when in two small worlds each person deals with their own world, but they save up money together to teleport back together - when a break one happens one dude teleports to the request and the other dude is allowed to go to an arbitrary location within the small world - when a break two happens they both are allowed to go to arbirarty locations (namely the next two requests) Note that actually break one and break two are the same thing. ok. shrug.</p>
+<p>Anyways here’s the story - single small world: double cover is nice - “breaks”: we can do whatever because OPT had to pay as well - two small worlds - Case 1: OPT is also living in two small worlds. Then we are matching opt until we save up enough to teleport back together. and the matching opt stuff pays for the teleport back together - Case 2: OPT actually is living in a single smalll world. i.e., it teleported out of one of the small worlds. But that teleport pays for our teleport and the work we do when in two small worlds</p>
+<p>Overall, this is certainly <span class="math inline">\(1024\)</span> competitive.</p>
 </div>
 
       </div>
