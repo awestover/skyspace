@@ -1,7 +1,5 @@
 2-server on a circle
 
-
-# intro
 In the k-server problem you have k "servers" located in some
 topological space. You recieve a series of "requests", which are
 points in the topological space. You must respond to the request

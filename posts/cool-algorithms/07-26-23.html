@@ -50,7 +50,8 @@
       </nav>
 
       <div id="content"> 
-      <p>In the k-server problem you have k “servers” located in some topological space. You recieve a series of “requests”, which are points in the topological space. You must respond to the request by moving some subset of your servers so that at least one server goes to the request. We will consider this problem in a metric space. You objective is to minimize the total distance travelled by all your servers. More precisely, our objective is to create a strategy that achieves bounded competitive ratio. We consider this problem with k=2 and set on a circle, where distance is measured along the circle.</p>
+      <h1 id="intro">intro</h1>
+<p>In the k-server problem you have k “servers” located in some topological space. You recieve a series of “requests”, which are points in the topological space. You must respond to the request by moving some subset of your servers so that at least one server goes to the request. We will consider this problem in a metric space. You objective is to minimize the total distance travelled by all your servers. More precisely, our objective is to create a strategy that achieves bounded competitive ratio. We consider this problem with k=2 and set on a circle, where distance is measured along the circle.</p>
 <p>A lot of obvious strategies that you might try fail to have bounded competitive ratio:</p>
 <ul>
 <li>“double cover” (move both servers closer to the request until one reaches it). This is bad: imagine the requests alternated between poles of the circle, and the servers started at anti-poles.</li>
