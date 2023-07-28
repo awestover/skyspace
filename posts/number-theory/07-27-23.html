@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>Again, this is a Problem From the Book</p>
+<p>Say that <span class="math inline">\(f,g : \mathbb{N}\to \mathbb{N}\)</span> satisfy the following properties:</p>
+<ol type="1">
+<li><span class="math inline">\(g\)</span> is surjective</li>
+<li><span class="math inline">\(2f(n)^2 = n^2 + g(n)^2\)</span> for all <span class="math inline">\(n\in \mathbb{N}\)</span></li>
+<li><span class="math inline">\(|f(n)-n|\le 2004 \sqrt{n}\)</span> for all <span class="math inline">\(n\)</span></li>
+</ol>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(f\)</span> has infinitely many fixed points.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(p_n\)</span> be the primes in <span class="math inline">\((8)+3\)</span>, of which there are infinitely many. Note that <span class="math inline">\(2\)</span> is not a quadratic residue modulo such a prime. So I guess property (2) kind of hints that we can do something with quadratic residue business. Anyways, this set of primes is going to be our angle.</p>
+<p>Using (1) we find that there exists <span class="math inline">\(x_n\)</span> with <span class="math inline">\(g(x_n) = p_n\)</span>. Taking (2) <span class="math inline">\(\mod p_n\)</span> we find <span class="math display">\[2f(x_n)^2 \equiv g(x_n)^2 \mod p_n.\]</span> But <span class="math inline">\(2\)</span> is not a quadratic resiude. So <span class="math inline">\(f(x_n)\)</span> cannot be invertable. In other words, <span class="math inline">\(f(x_n) \equiv 0\mod p_n\)</span> and thus <span class="math inline">\(g(x_n) \equiv 0 \mod p_n\)</span>. Then, there are integer sequences <span class="math inline">\(c_n,k_n\)</span> so that</p>
+<ul>
+<li><span class="math inline">\(g(k_n p_n) = p_n\)</span></li>
+<li><span class="math inline">\(f(k_n p_n) = c_n p_n\)</span></li>
+</ul>
+<p>Now we use (3) with some analysis-y tools. In particular, (3) can be re-expressed as: <span class="math display">\[| \frac{f(x_n)}{x_n} - 1| \le \frac{2004}{\sqrt{x_n}}\]</span> Hence, <span class="math display">\[\lim_{n\to \infty} \frac{f(x_n)}{x_n} = 1.\]</span> But recalling (2) <span class="math display">\[2(c_np_n)^2  = (k_n p_n)^2 + p_n^2.\]</span> Then, <span class="math display">\[c_n = \sqrt{\frac{k_n^2  + 1}{2}}.\]</span></p>
+<p>But then we have <span class="math display">\[\lim_{n\to \infty} \frac{\sqrt{k_n^2+1}}{k_n} = \sqrt{2}\]</span> From which we deduce: <span class="math display">\[\lim_{n} k_n = 1.\]</span> But it is an integer sequence, so this means that eventually all <span class="math inline">\(k_n\)</span> are <span class="math inline">\(1\)</span>. Then <span class="math inline">\(f(p_n) = p_n\)</span> for all sufficiently large <span class="math inline">\(n\)</span>, and we are done.</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<p>Again, this is a Problem From the Book</p>
+<p>Say that <span class="math inline">\(f,g : \mathbb{N}\to \mathbb{N}\)</span> satisfy the following properties:</p>
+<ol type="1">
+<li><span class="math inline">\(g\)</span> is surjective</li>
+<li><span class="math inline">\(2f(n)^2 = n^2 + g(n)^2\)</span> for all <span class="math inline">\(n\in \mathbb{N}\)</span></li>
+<li><span class="math inline">\(|f(n)-n|\le 2004 \sqrt{n}\)</span> for all <span class="math inline">\(n\)</span></li>
+</ol>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(f\)</span> has infinitely many fixed points.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(p_n\)</span> be the primes in <span class="math inline">\((8)+3\)</span>, of which there are infinitely many. Note that <span class="math inline">\(2\)</span> is not a quadratic residue modulo such a prime. So I guess property (2) kind of hints that we can do something with quadratic residue business. Anyways, this set of primes is going to be our angle.</p>
+<p>Using (1) we find that there exists <span class="math inline">\(x_n\)</span> with <span class="math inline">\(g(x_n) = p_n\)</span>. Taking (2) <span class="math inline">\(\mod p_n\)</span> we find <span class="math display">\[2f(x_n)^2 \equiv g(x_n)^2 \mod p_n.\]</span> But <span class="math inline">\(2\)</span> is not a quadratic resiude. So <span class="math inline">\(f(x_n)\)</span> cannot be invertable. In other words, <span class="math inline">\(f(x_n) \equiv 0\mod p_n\)</span> and thus <span class="math inline">\(g(x_n) \equiv 0 \mod p_n\)</span>. Then, there are integer sequences <span class="math inline">\(c_n,k_n\)</span> so that</p>
+<ul>
+<li><span class="math inline">\(g(k_n p_n) = p_n\)</span></li>
+<li><span class="math inline">\(f(k_n p_n) = c_n p_n\)</span></li>
+</ul>
+<p>Now we use (3) with some analysis-y tools. In particular, (3) can be re-expressed as: <span class="math display">\[| \frac{f(x_n)}{x_n} - 1| \le \frac{2004}{\sqrt{x_n}}\]</span> Hence, <span class="math display">\[\lim_{n\to \infty} \frac{f(x_n)}{x_n} = 1.\]</span> But recalling (2) <span class="math display">\[2(c_np_n)^2  = (k_n p_n)^2 + p_n^2.\]</span> Then, <span class="math display">\[c_n = \sqrt{\frac{k_n^2  + 1}{2}}.\]</span></p>
+<p>But then we have <span class="math display">\[\lim_{n\to \infty} \frac{\sqrt{k_n^2+1}}{k_n} = \sqrt{2}\]</span> From which we deduce: <span class="math display">\[\lim_{n} k_n = 1.\]</span> But it is an integer sequence, so this means that eventually all <span class="math inline">\(k_n\)</span> are <span class="math inline">\(1\)</span>. Then <span class="math inline">\(f(p_n) = p_n\)</span> for all sufficiently large <span class="math inline">\(n\)</span>, and we are done.</p>
+</div>
