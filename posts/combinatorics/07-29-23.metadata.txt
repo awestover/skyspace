@@ -1,0 +1,4 @@
+mono rectangle
+
+In any finite coloring of $\Z^2$ there is a monochromatic axis
+aligned rectangle.
