@@ -1,3 +1,3 @@
 Cache behavior
-images/coolMatrixMultiply.png
+images/naiveSquare.png
 cache

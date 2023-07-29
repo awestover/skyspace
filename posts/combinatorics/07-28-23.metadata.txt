@@ -1,0 +1,3 @@
+pidgeon lattice equation
+
+Showing that an equation has many lattice solutions
