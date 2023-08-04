@@ -1,0 +1,16 @@
+<p>In  <span class="math inline">\(\LH\)</span> (<span class="math inline">\(\ULH\)</span>) we hash <span class="math inline">\(x\in [p]\)</span> via functions parameterized by <span class="math inline">\(a\in \pnozero,b\in[p]\)</span> defined as <span class="math display">\[h_{a,b}(x) = \left\lfloor \frac{\posmod_p(ax+b)}{p/2} \right\rfloor \in \{0,1\}.\]</span></p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong>  <span class="math inline">\(\ULH\)</span> has expected maxload at most <span class="math display">\[n/2+\sqrt{n/2}.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We say that <span class="math inline">\(x,y\in X\)</span>  if they hash to the same bin. Let random variable <span class="math inline">\(C\)</span> denote the number of collisions, and random variable <span class="math inline">\(M\)</span> denote the maxload. The bins to which distinct <span class="math inline">\(x,y\in X\)</span> map to under <span class="math inline">\(\ULH\)</span> are pairwise-independent, so <span class="math display">\[\begin{equation}\label{eq:lhs7ez}
+  \mathop{\mathrm{\mathbb{E}}}[C] = \frac{1}{2}\binom{n}{2}.
+\end{equation}\]</span> On the other hand <span class="math display">\[\begin{equation}\label{eq:rhs7ez}
+  \mathop{\mathrm{\mathbb{E}}}[C\mid M=m] = \binom{m}{2}+\binom{n-m}{2}.
+\end{equation}\]</span> Observe that  is a quadratic in <span class="math inline">\(m\)</span>, and in particular convex as a function of <span class="math inline">\(m\)</span>. Combining , and applying Jensen’s Inequality gives: <span class="math display">\[\begin{align}
+  \frac{1}{2} \binom{n}{2}&amp;\ge
+  \mathop{\mathrm{\mathbb{E}}}\left[\binom{M}{2}+\binom{n-M}{2}\right]\label{eq:RHSthing}\\
+                  &amp;\ge
+                  \binom{\mathop{\mathrm{\mathbb{E}}}[M]}{2}+\binom{n-\mathop{\mathrm{\mathbb{E}}}[M]}{2}\label{eq:jensen}.
+\end{align}\]</span> Let <span class="math inline">\(\mu\)</span> denote <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[M]\)</span>. Simplifying  gives <span class="math display">\[\mu^2-\mu n+n^2/4-n/2\le 0.\]</span> Applying the quadratic formula gives <span class="math display">\[\mu \le n/2  + \sqrt{n/2}.\]</span></p>
+</div>
