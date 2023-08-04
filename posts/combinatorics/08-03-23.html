@@ -31,32 +31,31 @@
             <li> <a href="../../about.html">About</a> </li>
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
           </ul>
         </div>
       </nav>
+
       <div id="content"> 
-      <div class='post-card'>
-<h5 id='quicksort'><a href='quicksort.html' class='blog-title'>quicksort
-</a></h5>
-<img src='src/images/g2.png
-'/><p>[quicksort]</p>
-<p>fast
-</p></div>
-<div class='post-card'>
-<h5 id='probability-bounds'><a href='04-19-23.html' class='blog-title'>probability bounds
-</a></h5>
-<img class='side-img' src='../../images/bear1.png'/><p>[04-19-23]</p>
-<p>
-</p></div>
-<div class='post-card'>
-<h5 id='hashing'><a href='02-28-23.html' class='blog-title'>hashing
-</a></h5>
-<img class='side-img' src='../../images/sheep2.png'/><p>[02-28-23]</p>
-<p>some analsyis of some hashing methods
-</p></div>
+      <p>More than <span class="math inline">\(1-\frac{1}{n}\)</span> of the circumference of a circle is colored black. Can you draw a regular <span class="math inline">\(n\)</span>-gon on the circle with all vertices in black regions?</p>
+<p>this is yet again problem from the book.</p>
+<ol type="1">
+<li>solve assuming the black area is in finitely many disjoint intervals</li>
+<li>solve assuming the axiom of choice and not assuming anything beyond the measure of the set of black points being larger than <span class="math inline">\(1-\frac{1}{n}\)</span>.</li>
+</ol>
+<p>um. I’m going to pretend like I didn’t think up question 2. but I’m kind of curious. could it really be different? anyways, here’s my solve for question 1:</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Imagine a discrete version of the problem. It is trivial.</p>
+<p>Now, if we discrete the original problem correctly we get this trivial discretized version.</p>
+</div>
 
       </div>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
     <script src="../../formatting/scrolling-nav.js"></script>
@@ -68,6 +67,27 @@
         }
     </script>
 
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>

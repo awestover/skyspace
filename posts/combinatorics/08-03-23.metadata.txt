@@ -1,0 +1,5 @@
+finding an n-gon
+
+More than $1-\frac{1}{n}$ of the circumference of a circle is colored black.
+Can you draw a regular $n$-gon on the circle with all vertices in
+black regions?
