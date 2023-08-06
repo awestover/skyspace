@@ -31,22 +31,25 @@
             <li> <a href="../../about.html">About</a> </li>
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
           </ul>
         </div>
       </nav>
+
       <div id="content"> 
-      <div class='post-card'>
-<h5 id='approx-tsp'><a href='tsp.html' class='blog-title'>approx tsp
-</a></h5>
-<img class='side-img' src='../../images/bear2.png'/><p>[tsp]</p>
-<p>Travelling Salesman Problem (TSP) is one of the most famous
-NP-hard problems. Today, we are going to solve it really fast!
-(well, really just approximate it to within a factor of 1.5, but
- still).
-</p></div>
+      <p>Consider the following two methods for generating a random graph: 1. start from an empty graph. randomly add edges until you form a triangle. undo the final added edge, and then halt. 2. start from the complete graph. randomly delete edges until you become triangle free and then halt.</p>
+<p>Now, a priori these kind of seem like different things. It turns out they generate the same graphs with the same probabilities.</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> rather than thinking about choosing edges one at a time just number them all up front. then, you can think about going forwards or backwards in a list of all the edges. there is a unique threshold thing when you go from triangle free to having triangles. the two different methods meet in this middle point.</p>
+</div>
 
       </div>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
     <script src="../../formatting/scrolling-nav.js"></script>
@@ -58,6 +61,27 @@ NP-hard problems. Today, we are going to solve it really fast!
         }
     </script>
 
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>

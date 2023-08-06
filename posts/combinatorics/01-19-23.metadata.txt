@@ -1,5 +1,5 @@
 prefix sum of binomial coefficients
-images/combo_dude.png
+images/entropy_curve.png
 Binomial coefficients come up all over the place in
 combinatorics. This article gives a decent bound on the sum of a
 prefix of binomial coefficients. The bound get's pretty tight
