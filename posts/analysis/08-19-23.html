@@ -31,35 +31,24 @@
             <li> <a href="../../about.html">About</a> </li>
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
           </ul>
         </div>
       </nav>
+
       <div id="content"> 
-      <div class='post-card'>
-<h5 id='a-database-question'><a href='07-15-23.html' class='blog-title'>a database question
-</a></h5>
-<img class='side-img' src='../../images/dino1.png'/><p>[07-15-23]</p>
-<p>Imagnie I have a postgres database with ~3000 columns storing boolean "flags" for ~1 billion rows. The "on" flag (1) is quite sparse, say occuring less than 0.1% of the time in each column.
-Now, I want to execute a query of the form "select all rows with flags 1,2, 5 and 101"
-1. How much space would it take to store such a database? That is, will postgres by default do any sort of compression because of how sparse the "on" flag is?
-2. Does postgres by default make queries of this form "fast"? If not, are there well known postgres extensions for this type of query? If not I might write my own, but just want to know if this has already been done.
-</p></div>
-<div class='post-card'>
-<h5 id='Cache-behavior'><a href='cache_behavior.html' class='blog-title'>Cache behavior
-</a></h5>
-<img src='src/images/ptrsPic.png
-'/><p>[cache_behavior]</p>
-<p>cache
-</p></div>
-<div class='post-card'>
-<h5 id='fast-multiply-integers'><a href='fast_integer_multiplication.html' class='blog-title'>fast multiply integers
-</a></h5>
-<img class='side-img' src='../../images/squid-original1.png'/><p>[fast_integer_multiplication]</p>
-<p>fft
-</p></div>
+      <p>Recurrences pop up a lot. I quite like them for the following reason: - Fairly often you can plot them and guess an approximate / asymptotitc closed form - Then you can prove this hopefully</p>
+<p>Sometimes you can hit them with generating functions. But whatever.</p>
+<p>Here’s one:</p>
+<p><span class="math display">\[x_{n+1}= x_n + \frac{1}{x_n}.\]</span> Now, this is not afaik ameneble to gfs. But on the other hand, if we remember calculus, we might realize that this has a striking similarity to the linear approximations to the function <span class="math inline">\(\sqrt{2x}\)</span>. In fact, if you plot this function it basically is just <span class="math inline">\(\sqrt{2x}\)</span>, if you seed with an initial condition of <span class="math inline">\(x_1=2\)</span> or something. Cool.</p>
 
       </div>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
     <script src="../../formatting/scrolling-nav.js"></script>
@@ -71,6 +60,27 @@ Now, I want to execute a query of the form "select all rows with flags 1,2, 5 an
         }
     </script>
 
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
