@@ -1,0 +1,4 @@
+pi^2/6
+
+The fact \sum 1/n^2 = \pi^2/6 is well known and celebrated.
+In this note we present the simple fourier-analytic proof of this fact.
