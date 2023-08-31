@@ -1,0 +1,7 @@
+Lambert-W function Inverse
+
+The lambert-W function $x\mapsto xe^{x}$ turns up surprisingly
+often. For some reason I always have had a hard time
+approximating it. Today I finally found the "inequalities"
+section of the wikipedia page for Lambert-W function, and will
+share it here.
