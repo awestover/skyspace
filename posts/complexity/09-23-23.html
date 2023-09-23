@@ -31,38 +31,31 @@
             <li> <a href="../../about.html">About</a> </li>
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
           </ul>
         </div>
       </nav>
+
       <div id="content"> 
-      <div class='post-card'>
-<h5 id='Some-probabilistic-tools-via-train-tracks'><a href='08-04-23.html' class='blog-title'>Some probabilistic tools via train tracks
-</a></h5>
-<img class='side-img' src='../../images/crab-original1.png'/><p>[08-04-23]</p>
-<p>
-</p></div>
-<div class='post-card'>
-<h5 id='quicksort'><a href='quicksort.html' class='blog-title'>quicksort
-</a></h5>
-<img src='src/images/g1.png
-'/><p>[quicksort]</p>
-<p>fast
-</p></div>
-<div class='post-card'>
-<h5 id='probability-bounds'><a href='04-19-23.html' class='blog-title'>probability bounds
-</a></h5>
-<img class='side-img' src='../../images/dog1.png'/><p>[04-19-23]</p>
-<p>
-</p></div>
-<div class='post-card'>
-<h5 id='hashing'><a href='02-28-23.html' class='blog-title'>hashing
-</a></h5>
-<img class='side-img' src='../../images/dino1.png'/><p>[02-28-23]</p>
-<p>some analsyis of some hashing methods
-</p></div>
+      <iframe title="PDF" src="../../pdf_mwe/web0/viewer.html?file=../../posts/complexity/src/images/SAT
+.pdf" width="100%" height="700px">
+</iframe>
+<p><span class="citation" data-cites="importpdf">@importpdf</span>: images/SAT</p>
+<p>I briefly comment on some intuition for recognizing special cases of SAT which are solvable in polynomial time</p>
+<ul>
+<li>2SAT / Horn SAT : implication following</li>
+<li>clauses can be phrased as linear equations mod 2 can be solved by gaussian elimination</li>
+<li>DP can solve some nested things</li>
+<li>euler tour can solve some weird cases</li>
+</ul>
 
       </div>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
     <script src="../../formatting/scrolling-nav.js"></script>
@@ -74,6 +67,27 @@
         }
     </script>
 
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
