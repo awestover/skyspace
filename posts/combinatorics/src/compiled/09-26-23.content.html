@@ -1,0 +1,11 @@
+<p>Imagine you are taking a random walk and you go up with probability <span class="math inline">\(p\)</span> and down with probability <span class="math inline">\(1-p\)</span> excpet if you are at the origin then you must go up.</p>
+<p>You might ask the following question: in expectation, how long should it take to get distance <span class="math inline">\(n\)</span> away from the origin.</p>
+<p>It turns out there are three regimes.</p>
+<ol type="1">
+<li><p>If <span class="math inline">\(p=\frac{1}{2}+\eps\)</span> for constant <span class="math inline">\(\eps&gt;0\)</span> then you will reach <span class="math inline">\(n\)</span> after about <span class="math inline">\(\frac{n}{\eps}\)</span> steps in expectation or something.</p></li>
+<li><p>If <span class="math inline">\(p=\frac{1}{2}\)</span> then you reach <span class="math inline">\(n\)</span> after about <span class="math inline">\(n^{2}\)</span> steps. You can see this by a chernoff bound or by noting that <span class="math inline">\(n^{2}-t\)</span> is a martingale</p></li>
+<li><p>If <span class="math inline">\(p=\frac{1}{2}-\eps\)</span> then here is an arguemnt for why it will take about <span class="math inline">\((\frac{1+2\eps}{1-2\eps})^n\)</span> steps:</p></li>
+</ol>
+<p>consider walking from some height <span class="math inline">\(h\)</span> either to height <span class="math inline">\(2h\)</span> or back to <span class="math inline">\(0\)</span>. If you have a path going up you can reflect and get a path going down. But that path would have much much higher weight. By exponential factor.</p>
+<p>Let <span class="math display">\[\lambda = \frac{1+2\eps}{1-2\eps}&gt;1.\]</span> Now to get to all the way to <span class="math inline">\(n\)</span> you must do something like <span class="math display">\[\lambda^{1}\lambda^{2}\lambda^{4}\cdots \lambda^{\frac{n}{2}} =\lambda^{n}.\]</span></p>
+<p>Wow thats a lot.</p>
