@@ -27,4 +27,9 @@
 <p><span class="math display">\[e^{-x}\approx 1-x\]</span></p>
 <p>again these are good when the parameters <span class="math inline">\(x,\eps\)</span> are small.</p>
 </div>
-<p><strong>NOTE</strong> This is substantially stronger than what you might guess from inspection of the Chernoff / Hoeffding bounds that you can find on wikipedia. Of course I think those bounds are probably just not quite sharp enough, but this is kind of concerning. I’m going to ask around to see if my proofs here are actually legit.</p>
+<h3 id="how-does-this-compare-with-chernoff-bound">How does this compare with Chernoff Bound?</h3>
+<p>The Chernoff bound says,</p>
+<p><span class="math display">\[\Pr[X &gt; \frac{n}{2} + c\sqrt{n}] \le e^{-c^{2}}.\]</span> or something like this</p>
+<p>In fact we can conclude this from my bound in this blog post:</p>
+<p><span class="math display">\[\frac{1}{\sqrt{n}}\sum_{k=-c\sqrt{n}}^{c\sqrt{n}}\binom{n}{k}\frac{1}{2^{n}} \approx \int_{-c}^{c}e^{-t^{2}}dt\]</span> But <span class="math display">\[\int_{c}^{\infty}e^{-t^{2}}dt \approx e^{-c^{2}}.\]</span></p>
+<p>So <span class="math display">\[\int_{-c}^{c}e^{-t^{2}}dt \approx 1- e^{-c^{2}}.\]</span></p>
