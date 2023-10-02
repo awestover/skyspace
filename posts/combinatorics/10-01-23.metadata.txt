@@ -1,0 +1,5 @@
+useful bounds
+
+today I spent way too long searching for a bunch of common bounds
+that are useful in, e.g., randomized algorithm analysis. 
+Here are the bounds I found, a gift to a future myself.

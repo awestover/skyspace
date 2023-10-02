@@ -1,0 +1,29 @@
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(X\)</span> be the number of heads in <span class="math inline">\(n\)</span> coin tosses. Then <span class="math inline">\(\Pr[X=\left\lfloor \frac{n}{2}+c\sqrt{n} \right\rfloor] = \frac{1}{\sqrt{n}}e^{-\Theta(c^{2})}.\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p><span class="math display">\[\binom{n}{\frac{n}{2}+c\sqrt{n}} = \Theta(\frac{1}{\sqrt{n}})
+2^{nH(\frac{1}{2}+\frac{c}{\sqrt{n})}}.\]</span></p>
+<p><span class="math display">\[H(\frac{1}{2}+\frac{c}{\sqrt{n}}) \approx
+(4(\frac{1}{2}+\frac{c}{\sqrt{n}})(\frac{1}{2}-\frac{c}{\sqrt{n}}))^{\frac{1}{\ln 4}} \approx 1-\frac{4}{\ln 4}\frac{c^{2}}{n}.\]</span></p>
+<p>Combining these bounds we conclude the theorem.</p>
+<p>The bounds used here are:</p>
+<ul>
+<li><span class="math inline">\((1-x)^{\alpha}\approx 1-\alpha x\)</span></li>
+<li><span class="math inline">\(H(x)\approx (4(x)(1-x))^{\frac{1}{\ln 4}}\)</span></li>
+</ul>
+<p>These are pretty darn good for small <span class="math inline">\(x\)</span>.</p>
+</div>
+<p>Here’s another “proof” of the fact:</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math display">\[\int_{x}^{x+1}e^{-t^{2}}dt \approx e^{-x^{2}}.\]</span> + central limit theorem</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> you can also prove these things with just stirlings approx + some taylor series. In particular you will need:</p>
+<p><span class="math display">\[\sqrt{1-x} \approx 1-\frac{x}{2}\]</span></p>
+<p><span class="math display">\[\frac{1}{1-\eps}\approx 1+\eps\]</span></p>
+<p><span class="math display">\[(1-\eps)^{\frac{1}{\eps}}\approx \frac{1}{e}\]</span></p>
+<p><span class="math display">\[e^{-x}\approx 1-x\]</span></p>
+<p>again these are good when the parameters <span class="math inline">\(x,\eps\)</span> are small.</p>
+</div>
