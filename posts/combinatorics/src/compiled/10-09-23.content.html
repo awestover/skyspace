@@ -1,0 +1,27 @@
+<p>Shatar is thinking of selling a pizza and Blobby is thinking of buying a pizza. Shatar and Blobby’s <strong>valuation</strong> of the pizza will both be independently uniformly random on <span class="math inline">\([0,1]\)</span> tomorrow. This fact is common knowledge and everyone knows it is common knolwedge, and everyone knows everyone knows it is common knolwedge etc.</p>
+<p>Shatar and Blobby will play the following game tomorrow:</p>
+<ul>
+<li>Shatar and Blobby discover their own valuations <span class="math inline">\(s\gets [0,1], b\gets  [0,1]\)</span></li>
+<li>Shatar and Blobby report some values <span class="math inline">\(\hat{s}, \hat{b}\)</span>.</li>
+<li>The trade goes through iff <span class="math inline">\(\hat{b} &gt; \hat{s}\)</span></li>
+<li>If the trade goes through then it goes through at price <span class="math inline">\(P = \frac{\hat{b}+\hat{s}}{2}\)</span></li>
+<li>If the trade goes through Shatar gets utility <span class="math inline">\(P-s\)</span> and Blobby gets utility <span class="math inline">\(b-S\)</span></li>
+<li>If the trade doesn’t go through Shatar and Blobby both get <span class="math inline">\(0\)</span> utility.</li>
+</ul>
+<figure>
+<img src="src/images/ink_img014.png" alt="" /><figcaption>ink_img014</figcaption>
+</figure>
+<p>It turns out the Nash equilibrium is as follows:</p>
+<ul>
+<li><span class="math inline">\(\hat{s} = \frac{2}{3}s + \frac{1}{4}\)</span></li>
+<li><span class="math inline">\(\hat{b} = \frac{2}{3}b + \frac{1}{12}\)</span></li>
+</ul>
+<p>This is kind of weird! Luckily the trade never goes through if <span class="math inline">\(b&lt;\frac{1}{4}\)</span> or if <span class="math inline">\(s&gt;\frac{3}{4}\)</span> which makes it make a bit more sense.</p>
+<p>I find the fact that the equilibria is linear lies to be very interesting.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> If you have a simpler rule that the price is <span class="math inline">\(\frac{1}{2}\)</span> and they can accept or reject rather than the whole averaging thing then you get expected net utility of like <span class="math inline">\(\frac{1}{8}\)</span>.</p>
+<p>It turns out that our more complicated rule gets expected net utility of <span class="math display">\[\int_0^{1}\int_0^{x-\frac{1}{4}} x-y dy dx = \frac{13}{96} = \frac{1}{8}+\frac{1}{96}.\]</span> which is a bit better.</p>
+</div>
+<blockquote>
+<p>I guess the moral of the story is sometimes you should lie.</p>
+</blockquote>
