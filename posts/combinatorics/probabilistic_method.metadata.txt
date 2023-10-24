@@ -1,5 +1,5 @@
 Probabilistic Method
-images/chpt2/bigvecsum.png
+images/chpt1/graph0.png
 I am going to try to read "The Probablistic Method" by Noga Alon and Joel H.
 Spencer. The Probablistic Method, pioneered by Erdos, is a really interesting
 way to think about combinatorics problems. Here is a high level overview of how
