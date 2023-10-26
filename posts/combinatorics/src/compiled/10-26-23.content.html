@@ -1,8 +1,23 @@
 <blockquote>
-<p>Shatar: Imagine I had a complete graph and wanted to direct all the edges so that the number of incoming and outgoing edges to each vertex is the same. JJ: You better have an odd number of vertices, or else it’s not going to happen. Shatar: ok, Sure. But how many ways could I do it? JJ: <span class="math inline">\((n-1)!\)</span> Shatar: Hey, no spoilers!</p>
+<p>Shatar: Imagine I had a complete graph and wanted to direct all the edges so that the number of incoming and outgoing edges to each vertex is the same.<br />
+JJ: You better have an odd number of vertices, or else it’s not going to happen.<br />
+Shatar: ok, Sure. But how many ways could I do it?<br />
+JJ: <span class="math inline">\((n-1)!\)</span><br />
+Shatar: Hey, no spoilers!</p>
 </blockquote>
-<p>Bijection: - Take a permutation of <span class="math inline">\(n-1\)</span>. place the numbers on the vertices of your graph, and put the number <span class="math inline">\(0\)</span> on vertex <span class="math inline">\(v_0\)</span>. - Draw an edge if <span class="math inline">\(i\to j\)</span> is shorter walk <span class="math inline">\(\mod n\)</span> than <span class="math inline">\(j\to  i\)</span> - claim: this gets the indegree = outdegree constraint thing to happen</p>
-<p>Now the other direction: - Take a direction of the edges - Let <span class="math inline">\(A\)</span> be the out neighbors of <span class="math inline">\(v_0\)</span>. - Give the number to <span class="math inline">\(v\in A\)</span> based on how many other <span class="math inline">\(w\in A\)</span> <span class="math inline">\(v\)</span> points to - do the same thing for the in-neighbors of <span class="math inline">\(v_0\)</span></p>
+<h1 id="bijection-direction-1">Bijection direction 1:</h1>
+<ul>
+<li>Take a permutation of <span class="math inline">\(n-1\)</span>. place the numbers on the vertices of your graph, and put the number <span class="math inline">\(0\)</span> on vertex <span class="math inline">\(v_0\)</span>.</li>
+<li>Draw an edge if <span class="math inline">\(i\to j\)</span> is shorter walk <span class="math inline">\(\mod n\)</span> than <span class="math inline">\(j\to  i\)</span></li>
+<li>claim: this gets the indegree = outdegree constraint thing to happen</li>
+</ul>
+<h1 id="now-the-other-direction">Now the other direction:</h1>
+<ul>
+<li>Take a direction of the edges</li>
+<li>Let <span class="math inline">\(A\)</span> be the out neighbors of <span class="math inline">\(v_0\)</span>.</li>
+<li>Give the number to <span class="math inline">\(v\in A\)</span> based on how many other <span class="math inline">\(w\in A\)</span> <span class="math inline">\(v\)</span> points to</li>
+<li>do the same thing for the in-neighbors of <span class="math inline">\(v_0\)</span></li>
+</ul>
 <p>So its <span class="math inline">\((n-1)!\)</span></p>
 <p>gotta bounce type this better later?</p>
 <p><img src='../../images/rat.png' width='25%'></p>
