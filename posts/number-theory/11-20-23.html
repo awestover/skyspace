@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>GRH = Generalized Reiman Hypothesis.</p>
+<p>I’ve always kind of had the vibes that “assuming GRH, then any reasonable randomness statement you could want to make about the primes is true”.</p>
+<p>It turns out GRH is a bit more modest then that, which maybe highlights just how little we know about numbers.</p>
+<p>But anyways, I looked around at <a href="https://mathoverflow.net/questions/17209/consequences-of-the-riemann-hypothesis">SO</a> and <a href="https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis">wikipedia</a> and will summarize what I feel seem like some important consequences of GRH.</p>
+<ol type="1">
+<li><p>GRH implies that there is a generator for <span class="math inline">\(\mathbb{Z}_p^{\times}\)</span> of size at most <span class="math inline">\((\ln(p))^{6}\)</span>.</p>
+<p>Also that <span class="math inline">\(\{x&lt; 2(\ln n)^{2}\}\)</span> generates <span class="math inline">\(\mathbb{Z}_n^{\times}\)</span>.</p></li>
+<li><p>GRH implies that prime gap is like <span class="math inline">\(\sqrt{p}\log p\)</span></p></li>
+</ol>
+<p>note that <a href="https://en.wikipedia.org/wiki/Prime_gap">I think we already know</a> this if you replace <span class="math inline">\(\sqrt{p}\)</span> with <span class="math inline">\(p^{\frac{5}{8}}\)</span> so this one feels less important</p>
+<ol start="3" type="1">
+<li>The number of primes in the arithmetic progression $a, a+d, a+2d, , $ (where <span class="math inline">\(a\perp d\)</span>) is like <span class="math inline">\(\frac{1}{\phi(d)} \frac{x}{\ln x} \pm \sqrt{x}\)</span></li>
+</ol>
+<p>Furthermore, the first prime <span class="math inline">\(\equiv a \mod n\)</span> is of size at most <span class="math inline">\(O((n\log n)^{2})\)</span></p>
+<p>note that we already know this for if you replace <span class="math inline">\(n^{2}\)</span> with likke <span class="math inline">\(n^{6}\)</span> so again, doesn’t seem that pressing.</p>
+<ol start="4" type="1">
+<li>if you take a character sum over some interval, e.g., count the number of quadratic residues in some interval of length <span class="math inline">\(N\)</span> then we already know its like bounded by <span class="math inline">\(\sqrt{p}\log p\)</span> but under GRH you can replace the log with loglog. Again, not super impressive.</li>
+</ol>
+<p>So in summary, I think (1) is the only one where assuming GRH really gets you something rather extremely good. huh, that’s really too bad. I wanted to prove hashing conditional on GRH. but this now seems very unlikely to be super helpful.</p>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
