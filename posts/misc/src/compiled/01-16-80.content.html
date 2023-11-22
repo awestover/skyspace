@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>skyspace</title>
-
-    <link href="../../formatting/pandoc.css" rel="stylesheet">
-    <link href="../../formatting/envbox.css" rel="stylesheet">
-    <link href="../../formatting/bars.css" rel="stylesheet">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
-
-  </head>
-  <body>
-    <div class="wrapper">
-      <nav id="sidebar">
-        <div id="sidebar-content">
-          <div class="sidebar-header">
-            <h5>skyspace</h5>
-          </div>
-          <ul class="list-unstyled components">
-            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
-            <li> <a href="../../index.html">Home</a> </li>
-            <li> <a href="../../about.html">About</a> </li>
-            <li> <a href="../../topics.html">Topics</a> </li>
-            <hr>
-            <div id="toc">
-            <li> <a href="#
-" class="js-scroll-trigger">
-</a> </li>
-            </div>
-          </ul>
-        </div>
-      </nav>
-
-      <div id="content"> 
-      <p>I hopefully am going to keep a running log of phi-club happenings and future plans here. Please post comments about any things that I’m missing or any ideas for future agenda items!</p>
+<p>I hopefully am going to keep a running log of phi-club happenings and future plans here. Please post comments about any things that I’m missing or any ideas for future agenda items!</p>
 <h3 id="future">Future</h3>
 <ul>
 <li>finish 2-factor theorem
@@ -51,6 +8,7 @@
 <li>FPT algorithm for “are there k edge-disjoint cycles”?</li>
 </ul>
 <h3 id="nov-21">Nov 21:</h3>
+<p>Also sorry comments deleted because I had to change the date.</p>
 <p>Today we talked about some stuff Alek read in the Parameterized Complexity book, specifically about “kernelization”.</p>
 <p>Then we solved the following problem which is not actually related to FPT stuff, but was in the textbook because it was talking about Konig’s theorem / matching stuff:</p>
 <p>You partition space into <span class="math inline">\(n\)</span> equal-area school-districts and <span class="math inline">\(n\)</span> equal-area military-districts. You want to build <span class="math inline">\(n\)</span> pizza shops such that there is one pizza shop in every school-district and also in every military-district. Is it possible? Turns out the answer is yes. You can think of the problem as having a <span class="math inline">\(2n\)</span>-vertex weighted-bipartite graph, with the vertices corresponding to the school-districts and military-districts. The weight is how much the districts overlap.</p>
@@ -112,52 +70,3 @@
 <ul>
 <li>rational approximations for numbers</li>
 </ul>
-
-      </div>
-    </div>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
-    <script src="../../formatting/scrolling-nav.js"></script>
-
-    <script charset="utf-8">
-        var pres = document.querySelectorAll("pre>code");
-        for (var i = 0; i < pres.length; i++) {
-            hljs.highlightBlock(pres[i]);
-        }
-    </script>
-
-    <div id="disqus_thread"></div>
-    <script>
-      /**
-      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-      /*
-      var disqus_config = function () {
-      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      };
-      */
-      (function() { // DON'T EDIT BELOW THIS LINE
-      var d = document, s = d.createElement('script');
-      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-      })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P9YVJX8W9R');
-</script>
-
-  </body>
-</html>

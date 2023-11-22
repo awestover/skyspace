@@ -48,7 +48,15 @@
 <ul>
 <li>Hall</li>
 </ul></li>
+<li>FPT algorithm for “are there k edge-disjoint cycles”?</li>
 </ul>
+<h3 id="nov-21">Nov 21:</h3>
+<p>Also sorry comments deleted because I had to change the date.</p>
+<p>Today we talked about some stuff Alek read in the Parameterized Complexity book, specifically about “kernelization”.</p>
+<p>Then we solved the following problem which is not actually related to FPT stuff, but was in the textbook because it was talking about Konig’s theorem / matching stuff:</p>
+<p>You partition space into <span class="math inline">\(n\)</span> equal-area school-districts and <span class="math inline">\(n\)</span> equal-area military-districts. You want to build <span class="math inline">\(n\)</span> pizza shops such that there is one pizza shop in every school-district and also in every military-district. Is it possible? Turns out the answer is yes. You can think of the problem as having a <span class="math inline">\(2n\)</span>-vertex weighted-bipartite graph, with the vertices corresponding to the school-districts and military-districts. The weight is how much the districts overlap.</p>
+<p>Then, you can ask the question, what is the minimum vertex cover for this graph? And, the answer is <span class="math inline">\(n\)</span>. Because you cover at most <span class="math inline">\(1\)</span>-unit worth of military area per each selected school district.</p>
+<p>But then by LP duality or something this means that there is a matching in this graph of size <span class="math inline">\(n\)</span>. And that matching corresponds to where you should put the pizza shops.</p>
 <h3 id="nov-14">Nov 14:</h3>
 <ul>
 <li><p>chicken nuggets</p></li>
