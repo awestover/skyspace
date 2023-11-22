@@ -1,0 +1,71 @@
+<p>I hopefully am going to keep a running log of phi-club happenings and future plans here. Please post comments about any things that I’m missing or any ideas for future agenda items!</p>
+<h3 id="future">Future</h3>
+<ul>
+<li>finish 2-factor theorem
+<ul>
+<li>Hall</li>
+</ul></li>
+<li>FPT algorithm for “are there k edge-disjoint cycles”?</li>
+</ul>
+<h3 id="nov-21">Nov 21:</h3>
+<p>Today we talked about some stuff Alek read in the Parameterized Complexity book, specifically about “kernelization”.</p>
+<p>Then we solved the following problem which is not actually related to FPT stuff, but was in the textbook because it was talking about Konig’s theorem / matching stuff:</p>
+<p>You partition space into <span class="math inline">\(n\)</span> equal-area school-districts and <span class="math inline">\(n\)</span> equal-area military-districts. You want to build <span class="math inline">\(n\)</span> pizza shops such that there is one pizza shop in every school-district and also in every military-district. Is it possible? Turns out the answer is yes. You can think of the problem as having a <span class="math inline">\(2n\)</span>-vertex weighted-bipartite graph, with the vertices corresponding to the school-districts and military-districts. The weight is how much the districts overlap.</p>
+<p>Then, you can ask the question, what is the minimum vertex cover for this graph? And, the answer is <span class="math inline">\(n\)</span>. Because you cover at most <span class="math inline">\(1\)</span>-unit worth of military area per each selected school district.</p>
+<p>But then by LP duality or something this means that there is a matching in this graph of size <span class="math inline">\(n\)</span>. And that matching corresponds to where you should put the pizza shops.</p>
+<h3 id="nov-14">Nov 14:</h3>
+<ul>
+<li><p>chicken nuggets</p></li>
+<li><p>quasipoly algorithm for something</p></li>
+<li><p>which random graphs are bipartite?</p>
+<ul>
+<li><span class="math inline">\(p=\frac{\Theta(1)}{n}\)</span> threshold</li>
+<li>TODO: whats the constant dependence</li>
+<li>turns out that <span class="math inline">\(p=\Theta(\frac{1}{n})\)</span> is probably also planar threshold. we were mis-remembering what an induced minor is. seems rather important.</li>
+</ul></li>
+<li><p>we thought about chromatic number of random graphs</p></li>
+<li><p>no ideas for <span class="math inline">\(\chi&gt;2\)</span>.</p></li>
+<li><p>except, some bounds: e.g., if you have a <span class="math inline">\(K_4\)</span> then your chromatic number is at least <span class="math inline">\(3\)</span>.</p></li>
+<li><p>possible conjecture: maybe there’s just a point where you get a really high chromatic number instantly.</p></li>
+</ul>
+<h3 id="nov-7">Nov 7:</h3>
+<ul>
+<li><p>Do PRGs exist? vs 1 bit adversaries?</p></li>
+<li><p>we analyzed the case without a clock.</p></li>
+<li><p>there are a very finite number of 2-state DFAs and also a very small number of functions on 2-state DFAs</p></li>
+<li><p>if you don’t care about run-time buckets is a good idea</p></li>
+<li><p>if you do care about run time then feeding like all 1s and then your random bits is maybe a good idea? it was a little bit subtle I don’t remember what ended up working</p></li>
+<li><p>with a timer seems harder…</p></li>
+</ul>
+<h3 id="nov-1">Nov 1:</h3>
+<ul>
+<li>analyzed chopsticks a bit</li>
+<li>proved that you can do quadratic residosity stuff in some special cases</li>
+</ul>
+<h3 id="oct-21">Oct 21:</h3>
+<ul>
+<li>thought about 2 factor theorem</li>
+<li>maybe proved it for <span class="math inline">\(4\)</span>-regular graphs.</li>
+<li>Konig’s theorem: in a bipartite graph, maximum matching size = minimum vertex cover size</li>
+</ul>
+<h3 id="oct-14">Oct 14:</h3>
+<ul>
+<li>bijection between 7-tuples of trees and trees</li>
+<li>what other numbers work?</li>
+</ul>
+<h3 id="oct-7">Oct 7:</h3>
+<ul>
+<li>union-find tried</li>
+</ul>
+<h3 id="sept-30">Sept 30:</h3>
+<ul>
+<li>triangulation of a triangle, color vertices with 3 colors some color is banned on each of the edges. show that this is equivalent to Brower’s fixed point theorem which says that any function from ball to ball has a fixed point.</li>
+</ul>
+<h3 id="aug-10">Aug 10:</h3>
+<ul>
+<li>2-server on a circle</li>
+</ul>
+<h3 id="aug-1">Aug 1:</h3>
+<ul>
+<li>rational approximations for numbers</li>
+</ul>
