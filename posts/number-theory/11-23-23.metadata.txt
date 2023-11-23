@@ -1,0 +1,3 @@
+quadratic residues and quadratic gauss sums
+
+

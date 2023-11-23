@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>This is a summary of some interesting facts about QRs that I found when thinking about a 18.225 pset star question.</p>
+<p>Throughout the post <span class="math inline">\(QR\)</span> will denote the set of quadratic residues modulo some implicit prime <span class="math inline">\(p\)</span>.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Pólya-Vinogradov inequality</p>
+<p>The number of quadratic residues in the interval <span class="math inline">\(m+[k]\)</span> is <span class="math inline">\(\frac{k}{2} \pm \bigO(\sqrt{p}\log p)\)</span>.</p>
+<p>In fact this is a more general fact about characters.</p>
+<p>https://planetmath.org/PolyaVinogradovInequality</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[|QR \cap (QR + a)| = \frac{p-3}{4}\]</span></p>
+<p>proved at: https://mathoverflow.net/questions/332315/shifting-quadratic-residues</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Quadratic Gauss sum:</p>
+<p><span class="math display">\[\left|\sum_{n=1}^{p} e^{2\pi i \frac{n^{2}}{p}}\right| \le \bigO(\sqrt{p}).\]</span></p>
+<p>proved at: https://en.wikipedia.org/wiki/Quadratic_Gauss_sum</p>
+<p>I also can basically get this estimate except with some polylog factors by using Pólya-Vinogradov inequality</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Weyl’s Criterion</p>
+<p>A sequence <span class="math inline">\(x_1,x_2,\ldots\)</span> is equidistributed iff</p>
+<p><span class="math display">\[\lim_{n\to \infty} \frac{1}{n} \sum_{k=1}^{n} e^{2\pi i k x_k} = 0.\]</span></p>
+<p>This is actually quite powerful. It reduces proving equidistribution to estimating a sum, specifically, showing that the sum is <span class="math inline">\(o(n)\)</span>. But estimating sums is something that seems pretty tractable.</p>
+<p>Terry Tao also says that this is true for multi-dimensional sequences if you replace the one-dimensional <span class="math inline">\(k x_k\)</span> with the dot product <span class="math inline">\(k\cdot x_k\)</span>.</p>
+<p>https://mathworld.wolfram.com/WeylsCriterion.html https://terrytao.wordpress.com/2010/03/28/254b-notes-1-equidistribution-of-polynomial-sequences-in-torii/ https://en.wikipedia.org/wiki/Equidistributed_sequence</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Combining the above results we couuld get that the joint sequence of <span class="math inline">\(x, x^{2}\)</span> is equidistributed in <span class="math inline">\(\mathbb{Z}_p\)</span>.</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
