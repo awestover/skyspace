@@ -41,7 +41,45 @@
       </nav>
 
       <div id="content"> 
-      
+      <p>In this section we use <span class="math inline">\(0\)</span>-indexing, i.e., <span class="math inline">\([n]\)</span> will denote <span class="math inline">\(\{0,1,\ldots,n-1\}\)</span>.</p>
+<p>Let <span class="math inline">\(f_a(x)\)</span> denote a binary string consisting of <span class="math inline">\(a\)</span> <span class="math inline">\(0\)</span>’s followed by <span class="math inline">\(a\)</span> <span class="math inline">\(1\)</span>’s and then repeating these <span class="math inline">\(2a\)</span> symbols. We can equivalently describe <span class="math inline">\(f_a\)</span> as <span class="math inline">\(f_a(x)= \left\lfloor x/a \right\rfloor\bmod 2\)</span>. We study <span class="math inline">\(\sum_{x\in [ab]} f_a(x)\oplus f_b(x)\)</span>, in particular bounding the difference of the sum from <span class="math inline">\(\frac{ab}{2}\)</span>.</p>
+First, we reduce the case of non-coprime <span class="math inline">\(a,b\)</span> to the case of coprime <span class="math inline">\(a,b\)</span>.
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Fix <span class="math inline">\(a,b\in \mathbb{N}\)</span> with <span class="math inline">\(d=\gcd(a,b)&gt;1\)</span>. Let <span class="math inline">\(a_0=a/d,b_0=b/d.\)</span> Then <span class="math display">\[\left|\sum_{x=1}^{ab} f_a(x)\oplus f_b(x)  - \frac{ab}{2}\right|\leq
+  d^2\left|\sum_{x=1}^{a_0b_0}f_{a_0}(x)\oplus f_{b_0}(x) - \frac{a_0b_0}{2}\right|.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We can view the sum in question as follows: Take an <span class="math inline">\(a \times b\)</span> grid. Color even-numbered rows white and odd-numbered rows black. Then invert the color of squares on every other set of <span class="math inline">\(b\)</span> “consecutive” cells, where consecutive allows wrap-around at the border of the square. Now we apply this combinatorial interpretation to prove the desired inequality.</p>
+<p>We transform such an <span class="math inline">\(a_0 \times b_0\)</span> grid and into an <span class="math inline">\(a\times b\)</span> grid as follows: stretch each square into <span class="math inline">\(d\)</span> squares. Then duplicate the grid <span class="math inline">\(d\)</span> times, possibly inverting the colors in even indexed duplicates, and append these duplicates to the bottom of the grid. Thus, we can bound the  – i.e., deviation from half of the grid area – by <span class="math inline">\(d^2\)</span> times the badness before. And in general this is tight. That is, for some <span class="math inline">\(a,b\)</span> it really will be <span class="math inline">\(d^{2}\)</span> times worse.</p>
+</div>
+<p>Now we analyze the main case: when <span class="math inline">\(a,b\)</span> are coprime.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(a,b\)</span> be coprime. <span class="math display">\[ \sum_{x=1}^{ab} f_a(x)\oplus f_b(x) = \left\lfloor ab/2 \right\rfloor.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Define the  of a point <span class="math inline">\(x\in [ab]\)</span> to be <span class="math inline">\(f_a(x)\oplus f_b(x) \in \{0,1\}\)</span>.</p>
+<p>If <span class="math inline">\(ab\)</span> is even, there is a simple involution: <span class="math display">\[x\mapsto
+  ab-1-x.\]</span> We claim that this involution is color flipping, i.e., <span class="math display">\[f_a(x)\oplus
+  f_b(x) = 1 \oplus f_a(ab-1-x)\oplus f_b(ab-1-x).\]</span> To see this, observe that for all integers <span class="math inline">\(x\)</span> we have <span class="math display">\[\left\lfloor \frac{x}{a} \right\rfloor \equiv 1 + \left\lfloor \frac{-1-x}{a} \right\rfloor \mod 2.\]</span> Thus, pairing terms we find that the sum in the lemma statement is exactly <span class="math inline">\(\frac{ab}{2}\)</span>.</p>
+<p>If <span class="math inline">\(ab\)</span> is odd, the situation is slightly more subtle. Let <span class="math inline">\(\lambda\)</span> be the unique solution in <span class="math inline">\([ab]\)</span> to the system <span class="math display">\[\lambda \equiv 1 \bmod a, \;\; \lambda \equiv -1 \bmod b.\]</span> The existence of <span class="math inline">\(\lambda\)</span> is guaranteed by the Chinese remainder theorem. Furthermore, if <span class="math inline">\(\lambda = ka+1=c b -1\)</span> then <span class="math inline">\(k\equiv c \bmod  2\)</span> because <span class="math inline">\(a,b\)</span> are odd. Observe that <span class="math inline">\(\lambda^2\equiv 1\bmod ab\)</span>. This means that <span class="math inline">\(x\mapsto \lambda x\)</span> is an involution.</p>
+<p>We separate the fixed points from the non-fixed points. We have the following useful characterization of fixed points: <span class="math display">\[\lambda x \equiv x \bmod ab \iff \lambda \equiv 0 \bmod
+  b.\]</span> To conclude the proof, we will show that:</p>
+<ul>
+<li>Non-fixed points are sent to points with opposite color.</li>
+<li>Of the <span class="math inline">\(a\)</span> fixed points, <span class="math inline">\(\left\lfloor a/2 \right\rfloor\)</span> are color <span class="math inline">\(1\)</span>.</li>
+</ul>
+<p><strong>CLAIM 1</strong>: Let <span class="math inline">\(x\)</span> be a non-fixed point, i.e., <span class="math inline">\(x\not\equiv 0\bmod b\)</span>. Then <span class="math inline">\(x\)</span> and <span class="math inline">\(\lambda x\)</span> have opposite color.</p>
+<p>This is because <span class="math display">\[\left\lfloor  \lambda x / a \right\rfloor = \left\lfloor x(ka+1) / a \right\rfloor = kx+\left\lfloor x/a \right\rfloor.\]</span> <span class="math display">\[\left\lfloor  \lambda x / b \right\rfloor = \left\lfloor x(cb-1) / b \right\rfloor = cx+\left\lfloor -x/b \right\rfloor.\]</span> But, we showed before <span class="math inline">\(k\equiv c \bmod 2\)</span>. Thus, <span class="math display">\[
+  \left\lfloor  \lambda x / a \right\rfloor + \left\lfloor  \lambda x / b \right\rfloor \equiv
+  \left\lfloor x/a \right\rfloor+\left\lfloor -x/b \right\rfloor 
+ \not\equiv \left\lfloor x/a \right\rfloor + \left\lfloor x/b \right\rfloor \mod 2.
+\]</span> <strong>CLAIM 2:</strong> Of the <span class="math inline">\(a\)</span> fixed points, <span class="math inline">\(\left\lfloor a/2 \right\rfloor\)</span> are color <span class="math inline">\(1\)</span>.</p>
+<p>Let <span class="math inline">\(F = \{b,2b,\ldots, (a-1)b\}\)</span> denote the fixed points except for <span class="math inline">\(0\)</span>. We define a color flipping involution <span class="math inline">\(\phi: F\to F\)</span> by <span class="math display">\[yb \mapsto (a-y)b.\]</span></p>
+<p>To see why this is color-flipping we compute: <span class="math display">\[\left\lfloor \frac{yb}{a} \right\rfloor\oplus \left\lfloor \frac{yb}{b} \right\rfloor \equiv y \oplus
+\left\lfloor \frac{yb}{a} \right\rfloor \mod 2.\]</span> <span class="math display">\[\left\lfloor \frac{(a-y)b }{a} \right\rfloor\oplus \left\lfloor \frac{(a-y)b}{b} \right\rfloor
+\equiv y \oplus \left\lfloor \frac{-yb}{a} \right\rfloor \mod 2,\]</span> and note that <span class="math display">\[\left\lfloor \frac{-yb}{a} \right\rfloor \equiv 1\oplus \left\lfloor \frac{yb}{a} \right\rfloor\mod 2\]</span> for <span class="math inline">\(y\in \{1,2,\ldots, b-1\}.\)</span></p>
+</div>
+<p>end pf</p>
 
       </div>
     </div>
