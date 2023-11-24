@@ -151,10 +151,10 @@
 <h1 id="bases">Bases</h1>
 <p>Given a set, an interesting question to ask is “how big is this set”. For almost all of the vector spaces we’ve discussed though, the set of vectors is infinite (in fact often uncountably infinite!) so this wouldn’t be a very satisfying thing. However, we can define a notion of largeness of a vector space, <strong>dimension</strong> based on the minimal number of vectors required to be able to reach all the vectors in a space. Now I’ll define this more formally.</p>
 <div class="defn envbox">
-<p><strong>Definition.</strong> A linear combination of a set of vectors <span class="math inline">\(\{v_1,\ldots, v_n\}\)</span> is a vector of the form <span class="math display">\[\sum_{i=1}^n \alpha_i v_i\]</span> for some scalars <span class="math inline">\(\alpha_i\)</span>.</p>
+<p><strong>Definition.</strong> A linear combination of a set of vectors <span class="math inline">\(\left\{ v_1,\ldots, v_n\right\}\)</span> is a vector of the form <span class="math display">\[\sum_{i=1}^n \alpha_i v_i\]</span> for some scalars <span class="math inline">\(\alpha_i\)</span>.</p>
 </div>
 <div class="defn envbox">
-<p><strong>Definition.</strong> A set of vectors <span class="math inline">\(\{v_1, \ldots, v_n\}\)</span> is said to <strong>span</strong> a vector space <span class="math inline">\(V\)</span> if any vector <span class="math inline">\(v \in V\)</span> can be expressed as some linear combination of <span class="math inline">\(v_1,\ldots, v_n\)</span>. i.e. there must exist <span class="math inline">\(\alpha_i\)</span> such that <span class="math display">\[v = \sum_{i} \alpha_i v_i.\]</span></p>
+<p><strong>Definition.</strong> A set of vectors <span class="math inline">\(\left\{ v_1, \ldots, v_n\right\}\)</span> is said to <strong>span</strong> a vector space <span class="math inline">\(V\)</span> if any vector <span class="math inline">\(v \in V\)</span> can be expressed as some linear combination of <span class="math inline">\(v_1,\ldots, v_n\)</span>. i.e. there must exist <span class="math inline">\(\alpha_i\)</span> such that <span class="math display">\[v = \sum_{i} \alpha_i v_i.\]</span></p>
 </div>
 <div class="defn envbox">
 <p><strong>Definition.</strong> We write the set of all linear combinations of <span class="math inline">\(v_1,\ldots, v_n\)</span> as <span class="math display">\[[v_1, \ldots, v_n]\]</span> This is the <strong>span</strong> of <span class="math inline">\(v_1, \ldots, v_n\)</span>.</p>
@@ -175,31 +175,31 @@
 <p><strong>Claim.</strong> We claim that the number of elements in a basis for <span class="math inline">\(V\)</span> is unique.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Let <span class="math inline">\(V\)</span> have two bases <span class="math inline">\(\{v_1,\ldots, v_m\}\)</span> and <span class="math inline">\(\{w_1,\ldots, w_n\}\)</span>. We aim to show that <span class="math inline">\(m=n\)</span>.</p>
+<p><strong>Proof.</strong> Let <span class="math inline">\(V\)</span> have two bases <span class="math inline">\(\left\{ v_1,\ldots, v_m\right\}\)</span> and <span class="math inline">\(\left\{ w_1,\ldots, w_n\right\}\)</span>. We aim to show that <span class="math inline">\(m=n\)</span>.</p>
 <p>As <span class="math inline">\(v_i\)</span> spans <span class="math inline">\(V\)</span> we can express each <span class="math inline">\(w_j\)</span> as a linear combination of <span class="math inline">\(v_i\)</span>’s. On the other hand, we can express each <span class="math inline">\(w_j\)</span> as a linear combination of <span class="math inline">\(v_j\)</span>’s.</p>
 <p>Assume for contradiction that <span class="math inline">\(m \neq n\)</span>. Without loss of generality <span class="math inline">\(m &lt; n\)</span>.</p>
 <p>We inductively create a series of spanning sets:</p>
 <ul>
-<li><span class="math inline">\(\{v_1,\ldots, v_m\}\)</span></li>
-<li><span class="math inline">\(\{w_1, v_2, \ldots, v_m\}\)</span> this is possible as the previous set was spanning, hence <span class="math inline">\(w_1\)</span> can be written as a linear combination of <span class="math inline">\(v_i\)</span>’s, and it must have a non-zero coefficient, which is on <span class="math inline">\(v_1\)</span> without loss of generality</li>
-<li><span class="math inline">\(\{w_1, w_2, v_3, \ldots, v_m\}\)</span> by the same logic</li>
+<li><span class="math inline">\(\left\{ v_1,\ldots, v_m\right\}\)</span></li>
+<li><span class="math inline">\(\left\{ w_1, v_2, \ldots, v_m\right\}\)</span> this is possible as the previous set was spanning, hence <span class="math inline">\(w_1\)</span> can be written as a linear combination of <span class="math inline">\(v_i\)</span>’s, and it must have a non-zero coefficient, which is on <span class="math inline">\(v_1\)</span> without loss of generality</li>
+<li><span class="math inline">\(\left\{ w_1, w_2, v_3, \ldots, v_m\right\}\)</span> by the same logic</li>
 <li><span class="math inline">\(\cdots\)</span> (induction or whatever)</li>
-<li><span class="math inline">\(\{w_1,w_2,\ldots, w_m\}\)</span></li>
+<li><span class="math inline">\(\left\{ w_1,w_2,\ldots, w_m\right\}\)</span></li>
 </ul>
-<p>But this can’t be spanning! It contradicts the minimality of the set <span class="math inline">\(\{w_1,\ldots, w_n\}\)</span>, because we shouldn’t be able to remove <span class="math inline">\(w_{m+1},\ldots, w_n\)</span> and still get a spanning set! Hence it is impossible for <span class="math inline">\(m \neq n\)</span>.</p>
+<p>But this can’t be spanning! It contradicts the minimality of the set <span class="math inline">\(\left\{ w_1,\ldots, w_n\right\}\)</span>, because we shouldn’t be able to remove <span class="math inline">\(w_{m+1},\ldots, w_n\)</span> and still get a spanning set! Hence it is impossible for <span class="math inline">\(m \neq n\)</span>.</p>
 <p>And thus the number of elements in a basis is well defined.</p>
 </div>
 <div class="defn envbox">
 <p><strong>Definition.</strong> We call the dimension of a vector space the number of elements in a basis for it.</p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> The so called “standard basis” for <span class="math inline">\(\mathbb{R}^n\)</span> is the set of vectors <span class="math inline">\(\{(1,0,0,\ldots,0), (0,1,0,0,\ldots, 0), \ldots, (0,0,\ldots, 1)\}\)</span> with the <span class="math inline">\(i\)</span>-th standard basis vector <span class="math inline">\(e_i\)</span> containing <span class="math inline">\(0\)</span> in every component except a <span class="math inline">\(1\)</span> in the <span class="math inline">\(i\)</span>-th component.</p>
+<p><strong>Example.</strong> The so called “standard basis” for <span class="math inline">\(\mathbb{R}^n\)</span> is the set of vectors <span class="math inline">\(\left\{ (1,0,0,\ldots,0), (0,1,0,0,\ldots, 0), \ldots, (0,0,\ldots, 1)\right\}\)</span> with the <span class="math inline">\(i\)</span>-th standard basis vector <span class="math inline">\(e_i\)</span> containing <span class="math inline">\(0\)</span> in every component except a <span class="math inline">\(1\)</span> in the <span class="math inline">\(i\)</span>-th component.</p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> A basis for <span class="math inline">\(P_2\)</span> is <span class="math inline">\(\{1, x, x^2\}\)</span></p>
+<p><strong>Example.</strong> A basis for <span class="math inline">\(P_2\)</span> is <span class="math inline">\(\left\{ 1, x, x^2\right\}\)</span></p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> An altenrative basis for <span class="math inline">\(\mathbb{R}^2\)</span> is <span class="math inline">\(\{(1,2), (2,1)\}\)</span>. Clearly this set spans the same space, but it is just a different way of representing points.</p>
+<p><strong>Example.</strong> An altenrative basis for <span class="math inline">\(\mathbb{R}^2\)</span> is <span class="math inline">\(\left\{ (1,2), (2,1)\right\}\)</span>. Clearly this set spans the same space, but it is just a different way of representing points.</p>
 <p>You can represent points like <span class="math inline">\((5,7)\)</span> as <span class="math inline">\((5,7) = 3(1,2) + 1(2,1)\)</span>. Thus you could say that <span class="math inline">\((5,7)\)</span>’s coordinates in the new basis rae <span class="math inline">\((3,1)\)</span>.</p>
 </div>
 <p>beign rmk There are situations in which change of basis can be incredibly helpful. For example, imagine that you are making a 3D game and you have a camera that you want to rotate to look at the player. There is a simple way to represent the camera’s rotation as a linear transformation relative the the camera’s local coordinates. But on the world coordinates this isn’t true. So you’d like to do a change of basis, to the new basis being a vector which is where the camera is looking at, a vector that is up for the camera, and a vector to the right. end rmk</p>
@@ -232,30 +232,30 @@
 </div>
 <p>Now, as promised, I define some really imporant subspaces.</p>
 <div class="defn envbox">
-<p><strong>Definition.</strong> The image of a linear transformation <span class="math inline">\(T : V\to W\)</span> is the set <span class="math inline">\(\mathrm{im}(T) = \{T(x) \mid x\in V\}.\)</span> That is, the set of all vectors “hit” by <span class="math inline">\(T\)</span>; the set of all vectors <span class="math inline">\(y \in W\)</span> so that there exists <span class="math inline">\(x \in V\)</span> with <span class="math inline">\(T(x) = y\)</span>.</p>
+<p><strong>Definition.</strong> The image of a linear transformation <span class="math inline">\(T : V\to W\)</span> is the set <span class="math inline">\(\im(T) = \left\{ T(x)\; : \;x\in V \right\}.\)</span> That is, the set of all vectors “hit” by <span class="math inline">\(T\)</span>; the set of all vectors <span class="math inline">\(y \in W\)</span> so that there exists <span class="math inline">\(x \in V\)</span> with <span class="math inline">\(T(x) = y\)</span>.</p>
 </div>
 <div class="defn envbox">
-<p><strong>Definition.</strong> The kernel of a linear transformation <span class="math inline">\(T: V \to W\)</span> is the set <span class="math inline">\(\ker(T) = \{x \in V \mid T(x)= 0\}.\)</span> That is, the set of vectors sent to the zero vector.</p>
+<p><strong>Definition.</strong> The kernel of a linear transformation <span class="math inline">\(T: V \to W\)</span> is the set <span class="math inline">\(\ker(T) = \left\{ x \in V\; : \;T(x)= 0 \right\}.\)</span> That is, the set of vectors sent to the zero vector.</p>
 </div>
 <p>I really like the following picture, showing graphically these spaces: <img src="src/images/imgkerstuff.png" alt="imgkerstuff.png" /></p>
 <div class="thm envbox">
-<p><strong>Theorem.</strong> Let <span class="math inline">\(T: V\to W\)</span>. <span class="math inline">\(\mathrm{im}(T)\)</span> is a subspace of <span class="math inline">\(W\)</span> and <span class="math inline">\(\ker(T)\)</span> is a subspace of <span class="math inline">\(V\)</span>.</p>
+<p><strong>Theorem.</strong> Let <span class="math inline">\(T: V\to W\)</span>. <span class="math inline">\(\im(T)\)</span> is a subspace of <span class="math inline">\(W\)</span> and <span class="math inline">\(\ker(T)\)</span> is a subspace of <span class="math inline">\(V\)</span>.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Take <span class="math inline">\(x,y \in \mathrm{im}(T)\subset W\)</span>, <span class="math inline">\(c\)</span> a scalar. Then there must be <span class="math inline">\(a,b \in V\)</span> with <span class="math inline">\(T(a) = x, T(b) = y\)</span>. Then <span class="math display">\[T(a+cb) = T(a)+cT(b) = x+cy.\]</span> So <span class="math inline">\(x+cy \in \mathrm{im}(T).\)</span> Hence <span class="math inline">\(\mathrm{im}(T)\)</span> is a subspace of <span class="math inline">\(W\)</span>, as it is closed under both scaling and addition.</p>
+<p><strong>Proof.</strong> Take <span class="math inline">\(x,y \in \im(T)\subset W\)</span>, <span class="math inline">\(c\)</span> a scalar. Then there must be <span class="math inline">\(a,b \in V\)</span> with <span class="math inline">\(T(a) = x, T(b) = y\)</span>. Then <span class="math display">\[T(a+cb) = T(a)+cT(b) = x+cy.\]</span> So <span class="math inline">\(x+cy \in \im(T).\)</span> Hence <span class="math inline">\(\im(T)\)</span> is a subspace of <span class="math inline">\(W\)</span>, as it is closed under both scaling and addition.</p>
 <p>Now take <span class="math inline">\(x, y\in \ker(T) \subset V\)</span>, <span class="math inline">\(c\)</span> a scalar.</p>
 <p><span class="math display">\[T(x+cy) = T(x) + cT(y) = 0+ c0 = 0+0 = 0.\]</span> Hence <span class="math inline">\(\ker(T)\)</span> is a subspace of <span class="math inline">\(V\)</span>, as it is closed under both scaling and addition.</p>
 </div>
 <div class="ex envbox">
 <p><strong>Example.</strong> Consider the linear transformation <span class="math inline">\(T: \mathbb{R}^2 \to \mathbb{R}^3\)</span>, defined by <span class="math inline">\(T(x,y) = (x,0,0).\)</span></p>
-<p><span class="math inline">\(\mathrm{im}(T) = [(1,0,0)]\)</span></p>
+<p><span class="math inline">\(\im(T) = [(1,0,0)]\)</span></p>
 </div>
 <p>The Rank Nullity Theorem is a relationhsip between these subspaces, which I believe is <strong>“deep stuff”</strong>. I’ll state it now, but we’ll need one more idea before the proof.</p>
 <div class="thm envbox">
-<p><strong>Theorem.</strong> Let <span class="math inline">\(T: V \to W\)</span> be a linear map. Then <span class="math display">\[\dim\mathrm{im}(T) + \dim \ker T = \dim V.\]</span></p>
+<p><strong>Theorem.</strong> Let <span class="math inline">\(T: V \to W\)</span> be a linear map. Then <span class="math display">\[\dim\im(T) + \dim \ker T = \dim V.\]</span></p>
 </div>
 <div class="rmk envbox">
-<p><strong>Remark.</strong> <span class="math inline">\(\dim \mathrm{im}T\)</span> is called the “rank” of <span class="math inline">\(T\)</span>, and <span class="math inline">\(\dim \ker T\)</span> is called the “nullity” of <span class="math inline">\(T\)</span>.</p>
+<p><strong>Remark.</strong> <span class="math inline">\(\dim \im T\)</span> is called the “rank” of <span class="math inline">\(T\)</span>, and <span class="math inline">\(\dim \ker T\)</span> is called the “nullity” of <span class="math inline">\(T\)</span>.</p>
 </div>
 <p>Before proving this, we need a really cool idea: Quotient Spaces!!!</p>
 <div class="defn envbox">
@@ -264,12 +264,12 @@
 <p>Now we prove the following key fact:</p>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> (First Isomorphism Theorem)</p>
-<p>Let <span class="math inline">\(T: V\to W\)</span>, then <span class="math display">\[V/\ker T \cong \mathrm{im}T\]</span></p>
+<p>Let <span class="math inline">\(T: V\to W\)</span>, then <span class="math display">\[V/\ker T \cong \im T\]</span></p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Consider <span class="math inline">\(x \in V/\ker T\)</span>. Let <span class="math inline">\(x = z+\ker T\)</span> for arbitrary <span class="math inline">\(z\in x\)</span>. Note that for any <span class="math inline">\(y \in x\)</span>, <span class="math inline">\(T(y) = T(z).\)</span> Hence it makes sense to say <span class="math inline">\(T(x) = T(z)\)</span>. We claim that <span class="math inline">\(\phi(z+\ker T) = T(z)\)</span> is an isomorphism between <span class="math inline">\(V/\ker T\)</span> and <span class="math inline">\(\mathrm{im}(T)\)</span>. First note that <span class="math inline">\(\phi\)</span> is well defined because regardless of the chosen representative <span class="math inline">\(z \in x\)</span>, <span class="math inline">\(T(z)\)</span> is the same.</p>
+<p><strong>Proof.</strong> Consider <span class="math inline">\(x \in V/\ker T\)</span>. Let <span class="math inline">\(x = z+\ker T\)</span> for arbitrary <span class="math inline">\(z\in x\)</span>. Note that for any <span class="math inline">\(y \in x\)</span>, <span class="math inline">\(T(y) = T(z).\)</span> Hence it makes sense to say <span class="math inline">\(T(x) = T(z)\)</span>. We claim that <span class="math inline">\(\phi(z+\ker T) = T(z)\)</span> is an isomorphism between <span class="math inline">\(V/\ker T\)</span> and <span class="math inline">\(\im(T)\)</span>. First note that <span class="math inline">\(\phi\)</span> is well defined because regardless of the chosen representative <span class="math inline">\(z \in x\)</span>, <span class="math inline">\(T(z)\)</span> is the same.</p>
 <p>To show that <span class="math inline">\(\phi\)</span> is invertible we must show that it is one-to-one (doesn’t map different values to the same output) and also that it is onto (maps to each element of the codomain).</p>
-<p>First we show <span class="math inline">\(\phi\)</span> is one-to-one. If <span class="math inline">\(T(x) = T(y)\)</span> then <span class="math inline">\(T(x-y) = 0\)</span> so <span class="math inline">\(x-y \in \ker T\)</span>, as desired. Next, we show <span class="math inline">\(\phi\)</span> is onto. Take any <span class="math inline">\(y \in \mathrm{im}(T)\)</span>. By definition there is some <span class="math inline">\(x \in V\)</span> mapping to <span class="math inline">\(y\)</span>. Then all of the vectors in <span class="math inline">\(x+\ker T\)</span> map to <span class="math inline">\(y\)</span>, as desired.</p>
+<p>First we show <span class="math inline">\(\phi\)</span> is one-to-one. If <span class="math inline">\(T(x) = T(y)\)</span> then <span class="math inline">\(T(x-y) = 0\)</span> so <span class="math inline">\(x-y \in \ker T\)</span>, as desired. Next, we show <span class="math inline">\(\phi\)</span> is onto. Take any <span class="math inline">\(y \in \im(T)\)</span>. By definition there is some <span class="math inline">\(x \in V\)</span> mapping to <span class="math inline">\(y\)</span>. Then all of the vectors in <span class="math inline">\(x+\ker T\)</span> map to <span class="math inline">\(y\)</span>, as desired.</p>
 <p>Hence the vector spaces are isomorphic.</p>
 <p>Here’s a picture showing this:</p>
 <figure>
@@ -277,16 +277,16 @@
 </figure>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> Consider the map <span class="math inline">\(T: P_2 \to P_2\)</span> defined by <span class="math inline">\(ax^2 + bx + c\cdot 1 \mapsto ax+b\)</span>. <span class="math inline">\(\ker T = [1]\)</span>, <span class="math inline">\(\mathrm{im}T = [1, x]\)</span>. In <span class="math inline">\(P_2/\ker T\)</span> we group together polynomials that differ by a constant, so <span class="math inline">\(P_2/\ker T = \{\{ax^2+bx+c \mid c\in \mathbb{R}\} \mid a,b\in\mathbb{R}\}.\)</span> We can write this as <span class="math inline">\(P_2/\ker T = \{ax^2+bx + \mathbb{R}\cdot 1 \mid a,b\in\mathbb{R}\}.\)</span> But this can easily be identified with <span class="math inline">\(\{ax+b \mid a,b\in\mathbb{R}\}\)</span>. Hence <span class="math display">\[P_2/\ker T \cong \mathrm{im}T.\]</span></p>
+<p><strong>Example.</strong> Consider the map <span class="math inline">\(T: P_2 \to P_2\)</span> defined by <span class="math inline">\(ax^2 + bx + c\cdot 1 \mapsto ax+b\)</span>. <span class="math inline">\(\ker T = [1]\)</span>, <span class="math inline">\(\im T = [1, x]\)</span>. In <span class="math inline">\(P_2/\ker T\)</span> we group together polynomials that differ by a constant, so <span class="math inline">\(P_2/\ker T = \left\{ \left\{ ax^2+bx+c\; : \;c\in \mathbb{R} \right\}\; : \;a,b\in\mathbb{R} \right\}.\)</span> We can write this as <span class="math inline">\(P_2/\ker T = \left\{ ax^2+bx + \mathbb{R}\cdot 1\; : \;a,b\in\mathbb{R} \right\}.\)</span> But this can easily be identified with <span class="math inline">\(\left\{ ax+b\; : \;a,b\in\mathbb{R} \right\}\)</span>. Hence <span class="math display">\[P_2/\ker T \cong \im T.\]</span></p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> Consider the map <span class="math inline">\(T: \mathbb{R}^2 \to \mathbb{R}^2\)</span> defined as <span class="math inline">\(T(x,y) = (x, y)\)</span>. <span class="math inline">\(\ker T = \{0\}\)</span>, and <span class="math inline">\(\mathbb{R}^2/\ker T = \{\{(x,y)\} \mid x,y\in \mathbb{R}\}\)</span>. But this is trivially identified with <span class="math inline">\(\mathbb{R}^2 = \mathrm{im}T\)</span>.</p>
+<p><strong>Example.</strong> Consider the map <span class="math inline">\(T: \mathbb{R}^2 \to \mathbb{R}^2\)</span> defined as <span class="math inline">\(T(x,y) = (x, y)\)</span>. <span class="math inline">\(\ker T = \left\{ 0\right\}\)</span>, and <span class="math inline">\(\mathbb{R}^2/\ker T = \left\{ \left\{ (x,y)\right\}\; : \;x,y\in \mathbb{R} \right\}\)</span>. But this is trivially identified with <span class="math inline">\(\mathbb{R}^2 = \im T\)</span>.</p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> Consider the map <span class="math inline">\(T: \mathbb{R}^3 \to \mathbb{R}^2\)</span> defined as <span class="math inline">\(T(x,y,z) = (z, y)\)</span>. <span class="math inline">\(\ker T = [(1,0,0)]\)</span>, and <span class="math inline">\(\mathbb{R}^3/\ker T = \{[(1,0,0)] + (0,y,z) \mid y, z\in \mathbb{R}\}\)</span>. But this is trivially identified with <span class="math inline">\(\mathbb{R}^2 = \mathrm{im}T\)</span>.</p>
+<p><strong>Example.</strong> Consider the map <span class="math inline">\(T: \mathbb{R}^3 \to \mathbb{R}^2\)</span> defined as <span class="math inline">\(T(x,y,z) = (z, y)\)</span>. <span class="math inline">\(\ker T = [(1,0,0)]\)</span>, and <span class="math inline">\(\mathbb{R}^3/\ker T = \left\{ [(1,0,0)] + (0,y,z)\; : \;y, z\in \mathbb{R} \right\}\)</span>. But this is trivially identified with <span class="math inline">\(\mathbb{R}^2 = \im T\)</span>.</p>
 </div>
 <div class="ex envbox">
-<p><strong>Example.</strong> Consider the map <span class="math inline">\(T: \mathbb{R}^3 \to \mathbb{R}^2\)</span> defined as <span class="math inline">\(T(x,y,z) = (0, y)\)</span>. <span class="math inline">\(\ker T = [(1,0,0), (0,0,1)]\)</span>, and <span class="math inline">\(\mathbb{R}^3/\ker T = \{[(1,0,0), (0,0,1)] + (0,y,0) \mid y\in \mathbb{R}\}\)</span>. But this is trivially identified with <span class="math inline">\([(0,1)] = \mathrm{im}T\)</span>.</p>
+<p><strong>Example.</strong> Consider the map <span class="math inline">\(T: \mathbb{R}^3 \to \mathbb{R}^2\)</span> defined as <span class="math inline">\(T(x,y,z) = (0, y)\)</span>. <span class="math inline">\(\ker T = [(1,0,0), (0,0,1)]\)</span>, and <span class="math inline">\(\mathbb{R}^3/\ker T = \left\{ [(1,0,0), (0,0,1)] + (0,y,0)\; : \;y\in \mathbb{R} \right\}\)</span>. But this is trivially identified with <span class="math inline">\([(0,1)] = \im T\)</span>.</p>
 </div>
 <p>I hope you get the point.</p>
 <p>Now rank nullity is evident. We simply need a small Lemma on the dimension of Quotient spaces:</p>
@@ -298,7 +298,7 @@
 </div>
 Now we prove rank nullity
 <div class="pf envbox">
-<p><strong>Proof.</strong> By the first isomorphism theorem <span class="math display">\[V/\ker T = \mathrm{im}T.\]</span> By our lemma this implies <span class="math display">\[\dim V/\ker T = \dim V - \dim \ker T = \dim \mathrm{im}T\]</span> as desired.</p>
+<p><strong>Proof.</strong> By the first isomorphism theorem <span class="math display">\[V/\ker T = \im T.\]</span> By our lemma this implies <span class="math display">\[\dim V/\ker T = \dim V - \dim \ker T = \dim \im T\]</span> as desired.</p>
 </div>
 <h1 id="the-end">The End</h1>
 <p>If you’re interested in Linear Algebra totally learn more about it! It’s pretty awesome IMHO.</p>

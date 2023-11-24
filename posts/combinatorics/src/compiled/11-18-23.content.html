@@ -1,6 +1,6 @@
 <p>I was talking to Peter about the following problem:</p>
 <blockquote>
-<p>What is the largest possible size of a set <span class="math inline">\(X\subset [n]\)</span> where any quadruple <span class="math inline">\(a,b,c,d\in X^4\)</span> with <span class="math inline">\(a+b=c+d\)</span> is just a trivial quadruple, i.e., <span class="math inline">\(\{a,b\} = \{c,d\}\)</span>.</p>
+<p>What is the largest possible size of a set <span class="math inline">\(X\subset [n]\)</span> where any quadruple <span class="math inline">\(a,b,c,d\in X^4\)</span> with <span class="math inline">\(a+b=c+d\)</span> is just a trivial quadruple, i.e., <span class="math inline">\(\left\{ a,b\right\} = \left\{ c,d\right\}\)</span>.</p>
 </blockquote>
 <p>Using the probabilistic method and alterations I think you get <span class="math inline">\(n^{\frac{1}{3}}/100\)</span>. In particular, include each element with probability <span class="math inline">\(\frac{1}{100 n^{\frac{2}{3}}}\)</span>. Then the expected number of bad quadruples <span class="math inline">\(a,b,c,d\)</span> is <span class="math inline">\(\frac{1}{100^{4} n^{\frac{8}{3}}}\cdot n^{3} = n^{\frac{1}{3}}/100^{4}\)</span>. So you can probably wholesale kill all the bad quadruples and you aren’t really losing that much by way of density.</p>
 <p>But for various reasons I wanted a constructive (i.e., non-randomized) algorithm for constructing such a set.</p>

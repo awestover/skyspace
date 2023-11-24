@@ -41,7 +41,7 @@
       </nav>
 
       <div id="content"> 
-      <p>In this section we use <span class="math inline">\(0\)</span>-indexing, i.e., <span class="math inline">\([n]\)</span> will denote <span class="math inline">\(\{0,1,\ldots,n-1\}\)</span>.</p>
+      <p>In this section we use <span class="math inline">\(0\)</span>-indexing, i.e., <span class="math inline">\([n]\)</span> will denote <span class="math inline">\(\left\{ 0,1,\ldots,n-1\right\}\)</span>.</p>
 <p>Let <span class="math inline">\(f_a(x)\)</span> denote a binary string consisting of <span class="math inline">\(a\)</span> <span class="math inline">\(0\)</span>’s followed by <span class="math inline">\(a\)</span> <span class="math inline">\(1\)</span>’s and then repeating these <span class="math inline">\(2a\)</span> symbols. We can equivalently describe <span class="math inline">\(f_a\)</span> as <span class="math inline">\(f_a(x)= \left\lfloor x/a \right\rfloor\bmod 2\)</span>. We study <span class="math inline">\(\sum_{x\in [ab]} f_a(x)\oplus f_b(x)\)</span>, in particular bounding the difference of the sum from <span class="math inline">\(\frac{ab}{2}\)</span>.</p>
 First, we reduce the case of non-coprime <span class="math inline">\(a,b\)</span> to the case of coprime <span class="math inline">\(a,b\)</span>.
 <div class="lem envbox">
@@ -57,7 +57,7 @@ First, we reduce the case of non-coprime <span class="math inline">\(a,b\)</span
 <p><strong>Lemma.</strong> Let <span class="math inline">\(a,b\)</span> be coprime. <span class="math display">\[ \sum_{x=1}^{ab} f_a(x)\oplus f_b(x) = \left\lfloor ab/2 \right\rfloor.\]</span></p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Define the  of a point <span class="math inline">\(x\in [ab]\)</span> to be <span class="math inline">\(f_a(x)\oplus f_b(x) \in \{0,1\}\)</span>.</p>
+<p><strong>Proof.</strong> Define the  of a point <span class="math inline">\(x\in [ab]\)</span> to be <span class="math inline">\(f_a(x)\oplus f_b(x) \in \left\{ 0,1\right\}\)</span>.</p>
 <p>If <span class="math inline">\(ab\)</span> is even, there is a simple involution: <span class="math display">\[x\mapsto
   ab-1-x.\]</span> We claim that this involution is color flipping, i.e., <span class="math display">\[f_a(x)\oplus
   f_b(x) = 1 \oplus f_a(ab-1-x)\oplus f_b(ab-1-x).\]</span> To see this, observe that for all integers <span class="math inline">\(x\)</span> we have <span class="math display">\[\left\lfloor \frac{x}{a} \right\rfloor \equiv 1 + \left\lfloor \frac{-1-x}{a} \right\rfloor \mod 2.\]</span> Thus, pairing terms we find that the sum in the lemma statement is exactly <span class="math inline">\(\frac{ab}{2}\)</span>.</p>
@@ -74,10 +74,10 @@ First, we reduce the case of non-coprime <span class="math inline">\(a,b\)</span
   \left\lfloor x/a \right\rfloor+\left\lfloor -x/b \right\rfloor 
  \not\equiv \left\lfloor x/a \right\rfloor + \left\lfloor x/b \right\rfloor \mod 2.
 \]</span> <strong>CLAIM 2:</strong> Of the <span class="math inline">\(a\)</span> fixed points, <span class="math inline">\(\left\lfloor a/2 \right\rfloor\)</span> are color <span class="math inline">\(1\)</span>.</p>
-<p>Let <span class="math inline">\(F = \{b,2b,\ldots, (a-1)b\}\)</span> denote the fixed points except for <span class="math inline">\(0\)</span>. We define a color flipping involution <span class="math inline">\(\phi: F\to F\)</span> by <span class="math display">\[yb \mapsto (a-y)b.\]</span></p>
+<p>Let <span class="math inline">\(F = \left\{ b,2b,\ldots, (a-1)b\right\}\)</span> denote the fixed points except for <span class="math inline">\(0\)</span>. We define a color flipping involution <span class="math inline">\(\phi: F\to F\)</span> by <span class="math display">\[yb \mapsto (a-y)b.\]</span></p>
 <p>To see why this is color-flipping we compute: <span class="math display">\[\left\lfloor \frac{yb}{a} \right\rfloor\oplus \left\lfloor \frac{yb}{b} \right\rfloor \equiv y \oplus
 \left\lfloor \frac{yb}{a} \right\rfloor \mod 2.\]</span> <span class="math display">\[\left\lfloor \frac{(a-y)b }{a} \right\rfloor\oplus \left\lfloor \frac{(a-y)b}{b} \right\rfloor
-\equiv y \oplus \left\lfloor \frac{-yb}{a} \right\rfloor \mod 2,\]</span> and note that <span class="math display">\[\left\lfloor \frac{-yb}{a} \right\rfloor \equiv 1\oplus \left\lfloor \frac{yb}{a} \right\rfloor\mod 2\]</span> for <span class="math inline">\(y\in \{1,2,\ldots, b-1\}.\)</span></p>
+\equiv y \oplus \left\lfloor \frac{-yb}{a} \right\rfloor \mod 2,\]</span> and note that <span class="math display">\[\left\lfloor \frac{-yb}{a} \right\rfloor \equiv 1\oplus \left\lfloor \frac{yb}{a} \right\rfloor\mod 2\]</span> for <span class="math inline">\(y\in \left\{ 1,2,\ldots, b-1\right\}.\)</span></p>
 </div>
 <p>end pf</p>
 
