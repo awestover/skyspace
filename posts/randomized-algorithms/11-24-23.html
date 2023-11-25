@@ -117,6 +117,7 @@ JJ: In fact, sketching is a quite general tool that can be utilized in a variety
 <p>So what people actually do is solve a related problem: you want to be able to answer queries of the form “how many times have I seen this element before”.</p>
 <p>If you can answer the “how many times have I seen this element before” then you can also solve the “what are the <span class="math inline">\(k\)</span>-heavy hitters” question as follows: just loop over all possible values and ask how many times those get hit.</p>
 <p>Now we describe how to solve the streaming problem of being able to process the “how many times have I seen this element before” query. You choose a bunch of hash functions and you increment a counter in the spots dictated by each of the hash functions. Then at the end you take the <span class="math inline">\(\min\)</span> of all of the hash functions corresponding to your element.</p>
+<p>A pair-wise independent hash-family suffices. We will just chebyshev.</p>
 <p>Here is a depiction of what the profile might look like for one of the elements. <img src="src/images/ink_img001.png" alt="ink_img001" /></p>
 <p>Basically the idea is, in order to get a false positive you need to collide with a bunch of big stuff on <strong>all</strong> of the hash functions. But this is rather unlikely.</p>
 <p>We remark that this is also basically how Bloom filters work, except bloom filters are a boolean version of this. In particular, Bloom filters are for handling the following situation:</p>
