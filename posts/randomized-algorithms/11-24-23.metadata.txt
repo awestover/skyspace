@@ -1,5 +1,5 @@
 basic sketching
-images/ink_img002.png
+images/ink_img001.png
 I skimmed a couple of lecture notes and textbooks about
 sketching. In this blog post I summarize some of the main
 takeaways.
