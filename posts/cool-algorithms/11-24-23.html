@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>Problems (from “Parameterized Algorithms” textbook):</p>
+<blockquote>
+<p>Does a graph <span class="math inline">\(G\)</span> contain <span class="math inline">\(k\)</span> vertex-disjoint triangles?</p>
+</blockquote>
+<blockquote>
+<p>Does a graph <span class="math inline">\(G\)</span> contain a subgraph isomorphic to a <span class="math inline">\(k\)</span>-vertex tree <span class="math inline">\(T\)</span>?</p>
+</blockquote>
+<p><strong>At the moment this blog post is a bit of a failure</strong> because the bound claimed in the textbook is that we can give a <span class="math inline">\(2^{\mathcal{O}(k)}n^{\mathcal{O}(1)}\)</span> algorithm for both of these problems but my algorithms are more like <span class="math inline">\(k^{k}n^{\mathcal{O}(1)}\)</span> flavor. Hopefully I’ll fix this soon! If you have ideas lmk.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a <span class="math inline">\(k^{k}n^{\mathcal{O}(1)}\)</span> algorithm for this problem.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Assume that <span class="math inline">\(G\)</span> is a yes-instance. <!-- We give an algorithm to find $k$ vertex-disjoint triangles in --> <!-- $G$ that succeeds with probability at least $2^{-\bigO(k)}$. --> <!-- By repeating this algorithm $2^{\Omega(k)}$ times we can get an --> <!-- algorithm that successfully finds $k$ such triangles with --> <!-- $\Omega(1)$ probability. --> <!-- In turn, if the algorithm fails to find these triangles then with --> <!-- probability $\Omega(1)$ $G$ is a no-instance.  --></p>
+<!-- Identify a vertex within each triangle. Call the set of these -->
+<!-- vertices $T$, with $|T|=k$. -->
+<!-- Randomly partition the vertices of $G$ into two parts $A\sqcup B -->
+<!-- = V(G)$. With probability $2^{-k}$ all of the vertices in $T$ are -->
+<!-- in $A$; assume that this happens.  -->
+<!-- Randomly color the vertices of $A$ with $k$ colors.  -->
+<!-- With probability at least $k!/k^{k}  \approx e^{-k}$ the vertices of $T$ -->
+<!-- recieve distinct colors; assume that this happens.  -->
+<!-- Now we form a bipartite graph on vertices $L\sqcup R$.  -->
+<!-- The vertices $L$ will be the edges in $G[B]$. -->
+<!-- The vertices $R$ will be the color classes in our coloring of -->
+<!-- $G[A]$. I.e., $|R|=k$ and each vertex of $R$ corresponds to the -->
+<!-- set of all vertices of a single color in $G[A]$. -->
+<!-- Place an edge between edge $e\in L$ and color class $C\in R$ if -->
+<!-- there is any vertex $v\in C$ which is in the common neighborhood -->
+<!-- of $e\in G[B]$. -->
+<!-- Now, using flow or some optimized flow variant determine whether -->
+<!-- there is a matching of size $k$ in the bipartite graph on -->
+<!-- $L\sqcup R$. -->
+<!-- **NO THIS DOESNT WORK I was allowing myself to repeat vertices** -->
+<!-- **some other ideas** -->
+<!-- we can partition into 3 parts.  -->
+<!-- 3DM is pretty tricky but what about k 3DM? -->
+<p><span class="math inline">\(k\)</span>-color the vertices. Hope that your triangles get highlighted. They do with probability <span class="math inline">\(\frac{1}{k^{2k}}\)</span>. If they get highlighted they’re easy to find.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(k!n^{\mathcal{O}(1)}\)</span> algorithm for iso tree</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Number the tree. Color the edges. Hope they got colored in the same way we numbered them. Do a DP: “can I make it so that this vertex is the right place to attach the next edge?”</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
