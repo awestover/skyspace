@@ -1,0 +1,35 @@
+<h2 id="kernelization">Kernelization</h2>
+<div class="ex envbox">
+<p><strong>Example.</strong> <span class="math inline">\(k\)</span>-Vertex cover: is there a set of <span class="math inline">\(k\)</span> vertices “covering” all the edges? (i.e., so that there is a vertex incident to every edge).</p>
+<ol type="1">
+<li>Kill isolated vertices</li>
+<li>Always take vertices of degree larger than <span class="math inline">\(k\)</span></li>
+<li>In a max-degree <span class="math inline">\(d\)</span> graph you can’t hope to cover more than <span class="math inline">\(kd\)</span> edges. So we can instantly identify as no-instances graphs with too many edges.</li>
+</ol>
+<p>By applying these rules we can in <span class="math inline">\(n^{O(1)}\)</span> time reduce <span class="math inline">\(k\)</span>-vertex cover to an instance of size <span class="math inline">\(O(k^{2})\)</span> edges and <span class="math inline">\(O(k^{2})\)</span> vertices.</p>
+<p>Then you can brute force solve the kernel in time <span class="math inline">\(\binom{k^{2}}{k}\)</span>.</p>
+<p>Remark: this is by no means the best kernel for vertex cover.</p>
+</div>
+<h2 id="branching">Branching</h2>
+<div class="ex envbox">
+<p><strong>Example.</strong> <span class="math inline">\(k\)</span>-vertex cover is a good example here too. You can either take a vertex or take all of its neighbors.</p>
+<p>The algorithm is then:</p>
+<ul>
+<li>“base case”: if the max degree ever drops to <span class="math inline">\(2\)</span> then apply a trivial algorithm to determine the vertex cover</li>
+<li>otherwise, branch on the highest degree vertex (i.e., chose it or chose its neighbors).</li>
+</ul>
+<p>The nice part: this search tree can have depth at most <span class="math inline">\(k\)</span>. In fact, you can even say some stronger stuff like the number of leaves of the tree will be at most <span class="math inline">\(\phi^{k}\)</span> where <span class="math inline">\(\phi^{k}\)</span> is the <span class="math inline">\(k\)</span>-th fibonacci number, because you can write a nice reccurrence. I think you maybe even get a better exponential thing.</p>
+</div>
+<h2 id="randomization">Randomization</h2>
+<div class="ex envbox">
+<p><strong>Example.</strong> Longest Path. I.e., is there a path (no repeated vertices) of length <span class="math inline">\(k\)</span>?</p>
+<p>Randomly color vertices with <span class="math inline">\(k\)</span> colors. Probability that your path is rainbow is like <span class="math inline">\(e^{-k}\)</span>.</p>
+<p>We can find rainbow paths with DP.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> isomorphic subgraph given <span class="math inline">\(H,G\)</span> where <span class="math inline">\(H\)</span> is a <span class="math inline">\(k\)</span>-vertex graph and <span class="math inline">\(G\)</span> is a max-degree <span class="math inline">\(d\)</span> graph determine whether <span class="math inline">\(H\)</span> is isomorphic to any subgraph of <span class="math inline">\(G\)</span>.</p>
+<p>For simplicity imagine that <span class="math inline">\(H\)</span> is connected.</p>
+<p>randomly 2-color edges of <span class="math inline">\(G\)</span>. hope that this results in a copy of <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span> being highlighted by the colors.</p>
+<p>Search over connected components in the colorful subgraph for one isomorphic to <span class="math inline">\(H\)</span>.</p>
+</div>
+<p>TODO: - Divide and color - chromatic coloring - derandomization via splitters - other chapters of the textbook</p>

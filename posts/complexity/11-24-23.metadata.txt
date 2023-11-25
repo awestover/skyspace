@@ -1,0 +1,4 @@
+FPT part 1
+
+Sometimes problems are hard. But sometimes they're less hard if
+you parameterize them correctly.
