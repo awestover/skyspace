@@ -1,0 +1,17 @@
+<p>Two choices:</p>
+<p><span class="math inline">\(m\)</span> balls and <span class="math inline">\(n\)</span> bins. Each ball is randomly and fully independently assigned two target bins that it is allowed to be placed in. It chooses the less crowded of the two.</p>
+<p>The <strong>overload</strong> is the fill of the fullest bin minus <span class="math inline">\(\frac{m}{n}\)</span>.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> - Overload is <span class="math inline">\(\mathcal{O}(\log m)\)</span> whp in <span class="math inline">\(m\)</span> - Overload is <span class="math inline">\(\mathcal{O}(\log\log n)\)</span> whp in <span class="math inline">\(n\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Actually this is basically a question that my friend Nathan told me a <a href="https://awestover.github.io/skyspace/posts/combinatorics/09-26-23.html">while ago</a>.</p>
+<p>Here’s a really simple argument: Imagine you’re at overload <span class="math inline">\(h\)</span>. We play the following casino game:</p>
+<p>you keep placing balls until you either hit overload <span class="math inline">\(2h\)</span> or hit <span class="math inline">\(0\)</span>, at which time you lose.</p>
+<p>Observe that the probability that it is like <span class="math inline">\(3^{h}\)</span> times more likely that you will be at <span class="math inline">\(0\)</span> than at <span class="math inline">\(2h\)</span>.</p>
+<p>Now consider the following thought experiment:</p>
+<p>You have a game that you win with probability <span class="math inline">\(n^{-100}\)</span>. You play the game <span class="math inline">\(n\)</span> times. What is the probability that you win? Answer at most <span class="math inline">\(n^{-99}\)</span>.</p>
+<p>So in summary, this proves that overload is <span class="math inline">\(\mathcal{O}(\log m)\)</span>.</p>
+<p>As for the other result I’m not sure, but will think about it sometime.</p>
+</div>
