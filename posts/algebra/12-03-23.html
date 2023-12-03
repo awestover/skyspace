@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <div class="rmk envbox">
+<p><strong>Remark.</strong> A well known fact is that <span class="math inline">\(\mathbb{Z}_p^{*}\)</span>, the multipicative group of the integers modulo <span class="math inline">\(p\)</span>, is cyclic, i.e., has a generator.</p>
+<p>For a short proof, recall that the number of elements of order <span class="math inline">\(d\)</span> in a group is at most the number of solutions to <span class="math display">\[x^{d}\equiv 1 \mod p,\]</span> which is at most <span class="math inline">\(\phi(d)\)</span>. So we have: <span class="math display">\[p\le \sum_{d\mid (p-1)} \phi(d).\]</span></p>
+<p>On the other hand, for any <span class="math inline">\(n\)</span> we have <span class="math display">\[\sum_{d\mid n} \phi(d) = n\]</span> which can be seen by noting that <span class="math inline">\(\Pr_{x\gets[n]}[gcd(n,x) = \frac{n}{d}] = \phi(d)\)</span> which can be seen by listing the things which have <span class="math inline">\(\frac{n}{d} \mid gcd(n,x)\)</span>, namely <span class="math inline">\(\frac{n}{d},\frac{2n}{d},\frac{3n}{d}\ldots, \frac{dn}{d}\)</span> and then crossing out the ones which have additional divisors beyond <span class="math inline">\(d\)</span>. Anyways, this means that the number of elements of order <span class="math inline">\(d\mid (p-1)\)</span> is really <span class="math inline">\(\phi(d)\)</span> for each <span class="math inline">\(d\mid (p-1)\)</span>.</p>
+<p>Anyways, but that’s not what I want to talk about.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Another well-known fact is that for <span class="math inline">\(p\neq q\)</span> odd primes the group <span class="math inline">\(\mathbb{Z}_{pq}^{*}\)</span> is not cyclic.</p>
+<p>proof:</p>
+<p><span class="math inline">\(g^{\lcm(p-1,q-1)}\equiv 1\)</span> for any <span class="math inline">\(g\in \mathbb{Z}_{pq}^{*}\)</span> but <span class="math inline">\(\lcm(p-1,q-1)&lt;(p-1)(q-1)\)</span>.</p>
+<p>Maybe one day I’ll think about even numbers. But for today lets assume they don’t exist.</p>
+</div>
+ok but what I actually wanted to talk about is this:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> The group <span class="math inline">\(Z_{p^{k}}^{*}\)</span> is cyclic.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We proceed by induction. The base case will be <span class="math inline">\(k=2\)</span>. For <span class="math inline">\(k=2\)</span> we have that <span class="math inline">\(|\mathbb{Z}_{p^{2}}^{*}| = p(p-1)\)</span>. Let <span class="math inline">\(\gamma\)</span> be a generator for <span class="math inline">\(\mathbb{Z}_p^{*}\)</span>, we showed above that this exists. Then <span class="math inline">\(p-1 \mid ord_{p^{2}}(\gamma)\)</span>, where <span class="math inline">\(ord_{p^{2}}\)</span> denotes the order of an element in <span class="math inline">\(\mathbb{Z}_{p^{2}}^{*}\)</span>.</p>
+<p>Also observe <span class="math inline">\(ord_{p^{2}}(1+p) \equiv 0 \mod p.\)</span></p>
+<p>But then <span class="math inline">\((1+p)\gamma\)</span> has order <span class="math inline">\(p(p-1)\)</span>. Proof of this claim: imagine <span class="math inline">\(p\mid ord(x),p-1\mid ord(y)\)</span>. Then <span class="math inline">\((xy)^{p}\notequiv 1, (xy)^{p-1}\notequiv 1\)</span>. Hence <span class="math inline">\(ord(xy)= p(p-1)\)</span>.</p>
+<p>Now we consider <span class="math inline">\(k&gt;2\)</span> by induction. To be continued after the semester ends…</p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
