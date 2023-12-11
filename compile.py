@@ -1,4 +1,5 @@
 # TODO: make an option to only compile a single directory rather than everything 
+# TODO: enable latex rendering on the main page
 
 import os
 from os.path import join
