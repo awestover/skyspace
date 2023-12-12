@@ -1,4 +1,8 @@
 
+import os
+BASEDIR = os.environ["SKYSPACE"]
+os.chdir(BASEDIR)
+
 with open (".most_recent_feed.txt", "r") as f:
     FEED = f.read()
 with open (".most_recent_feed_dir.txt", "r") as f:

@@ -119,28 +119,27 @@
 </div>
 <h1 id="girth">Girth</h1>
 <p><strong>GIRTH</strong>: length of shortest cycle</p>
-<h3 id="approx-in-n2-time"><span class="math inline">\(1.5\)</span>-approx in <span class="math inline">\(n^2\)</span> time</h3>
-<p><strong>EDIT: I’ve almost certainly misunderstood this algorithm and what’s written below is likely false. In “Subquadratic time approximation algorithms for the girth” Williams actually claims a <span class="math inline">\(n^{5/3}\)</span> time <span class="math inline">\(2\)</span>-approx that is almost a <span class="math inline">\(1.5\)</span>-approx but bottlenecked by the triangle case.</strong> TODO: read this paper.</p>
+<h3 id="approx-in-n1.5-time"><span class="math inline">\(2\)</span>-approx in <span class="math inline">\(n^{1.5}\)</span> time</h3>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In “New Subquadratic Approximation Algorithms for the Girth” Knudsen talks about Virginia and Roditty’s paper. He observes that her algorithm outputs a cycle of size <span class="math inline">\(2\left\lceil g/2 \right\rceil + 2\left\lceil g/4 \right\rceil\)</span> when the girth is <span class="math inline">\(g\)</span>. So technically for <span class="math inline">\(g=3\)</span> this is a <span class="math inline">\(2\)</span>-approx. But for larger values of <span class="math inline">\(g\)</span> it is essentially a <span class="math inline">\(1.5\)</span>-approx. And her algo is indeed <span class="math inline">\(n^{5/3}\)</span>.</p>
+<p>Note: Knudsen gives a sub-quadratic algorithm that, if the girth is <span class="math inline">\(g\)</span>, returns a cycle with size at most <span class="math display">\[2\left\lceil g/2 \right\rceil+2\left\lceil \frac{g}{2(k-1)} \right\rceil\le (1+\varepsilon)g + 3,\]</span> for suitably large <span class="math inline">\(k\)</span>, although the run time is of course <span class="math inline">\(n^{2-1/k}\)</span>.</p>
+<p>So I feel like the barrier to an <span class="math inline">\(o(n^{2})\)</span> <span class="math inline">\((2-\varepsilon)\)</span>-approx is really “given a graph with girth <span class="math inline">\(3\)</span>, can you find any of a triangle, a square, or a pentagon in subquadratic time?”</p>
+</div>
 <div class="thm envbox">
-<p><strong>Theorem.</strong> <strong>Theorem</strong>: you can <span class="math inline">\(1.5\)</span>-approximate shortest cycle in <span class="math inline">\(n^{2}\)</span> time. That is, you either</p>
-<ul>
-<li>if any cycle of length <span class="math inline">\(\le g\)</span> exists, output a cycle of length <span class="math inline">\(\le 1.5g\)</span></li>
-<li>if no cycle of length <span class="math inline">\(\le g\)</span> exists, no guarantee.</li>
-</ul>
+<p><strong>Theorem.</strong> There is an algorithm that, given an <span class="math inline">\(n\)</span>-vertex graph <span class="math inline">\(G\)</span> with girth <span class="math inline">\(g\ge 3\)</span> outputs a cycle of length at most <span class="math display">\[2\left\lceil g/2 \right\rceil+2\left\lceil g/4 \right\rceil\le 2g,\]</span> in running time <span class="math inline">\(n^{5/3}\)</span>.</p>
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> If you want to turn the decision problem stated above into actually an algorithm for finding the shortest cycle, then you can do the standard binary search trick.</p>
 </div>
 <hr />
 <div class="pf envbox">
-<p><strong>Proof.</strong></p>
-<p>wlog <span class="math inline">\(|E(G)|\le n^{1.5}\)</span> or else we instantly have a <span class="math inline">\(4\)</span>-cycle.</p>
-<p>Let <span class="math inline">\(B\)</span> be the ball of radius <span class="math inline">\(\frac{g}{4}\)</span> aroud some point <span class="math inline">\(x\)</span> on the shortest cycle.</p>
-<p><strong>Case 1</strong>: <span class="math inline">\(|B| \ge \sqrt{n}\)</span> Then, if we randomly sample a subset <span class="math inline">\(S\)</span> of size <span class="math inline">\(\sqrt{n}\log n\)</span> we intersect with <span class="math inline">\(B\)</span> with high probability. Imagine we ran BFS-cycle out of <span class="math inline">\(y\in B\)</span>. Then we would find a cycle of length at most <span class="math inline">\(1.5 g\)</span>. So what we do is run BFS-cycle out of all the points in <span class="math inline">\(S\)</span>. The cost of this is <span class="math inline">\(\sqrt{n} m \le n^{2}\)</span>.</p>
-<p><strong>Case 2:</strong> <span class="math inline">\(B\)</span> is pretty small <span class="math inline">\(|B| &lt; \sqrt{n}\)</span> Run a BFS out of each point for <span class="math inline">\(\frac{g}{4}\)</span> steps.</p>
-<p>Intuitively what you do is basically construct a graph where vertices are connected if they are connected by a length <span class="math inline">\(\frac{g}{4}\)</span> path in the original graph. The way you compute this new graph is you BFS out of each vertex. But now the BFS is better because we know we can quit if the ball gets larger than <span class="math inline">\(\sqrt{n}\)</span> because we are assuming that we aren’t in case 1. Then you could run <span class="math inline">\(4\)</span>-cycle detection on it. Of course that’s not really how life works, because that might accidentally find a path, but apparently this is fixable.</p>
-<p>Constructing this graph costs <span class="math inline">\(n\sqrt{n}\)</span>. Doing the four-cycle detection takes <span class="math inline">\(n^{2}\)</span>.</p>
-<p>By doing both case 1 and case 2 we get a <span class="math inline">\(1.5\)</span>-approximation in <span class="math inline">\(n^{2}\)</span> time.</p>
+<p><strong>Proof.</strong> <strong>CAUTION</strong> I have not been especially careful with the floors and ceilings in this proof. They are really important if you care about small <span class="math inline">\(g\)</span>! Beware.</p>
+<p>Let <span class="math inline">\(C\)</span> be a length <span class="math inline">\(g\)</span> cycle in <span class="math inline">\(G\)</span>. Call a ball <strong>huge</strong> if it has size larger than <span class="math inline">\(n^{1/3}\)</span>.</p>
+<p><strong>Case 1:</strong> Some vertex <span class="math inline">\(v\in C\)</span> has a huge <span class="math inline">\(t\)</span>-radius ball, for some <span class="math inline">\(t\le \left\lceil g/4 \right\rceil\)</span>. Then, if we randomly sample a subset <span class="math inline">\(S\)</span> of size <span class="math inline">\(n^{2/3}\log n\)</span> we intersect with <span class="math inline">\(B\)</span> with high probability. Imagine we ran BFS-cycle out of <span class="math inline">\(y\in B\)</span>. Then we would find a cycle of length at most <span class="math inline">\(g+2t \le 2g\)</span>. So what we do is run BFS-cycle out of all the points in <span class="math inline">\(S\)</span>. The cost of this is <span class="math inline">\(n^{2/3} \cdot n\le n^{5/3}\)</span>.</p>
+<p><strong>Case 2:</strong> No vertices on the cycle have huge <span class="math inline">\(\left\lceil g/4 \right\rceil\)</span>-radius balls. Sort the vertices in the graph as <span class="math inline">\(v_1,v_2,\ldots, v_n\)</span> based on how fast their ball gets huge, i.e., the smallest <span class="math inline">\(k\)</span> such that their radius-<span class="math inline">\(k\)</span> ball is huge. In particular, make it so that <span class="math inline">\(v_1\)</span>’s ball becomes huge the slowest and <span class="math inline">\(v_n\)</span>’s ball becomes huge the fastest. Let <span class="math inline">\(H_k\)</span> denote the induced subgraph on <span class="math inline">\(v_1,v_2,\ldots, v_k\)</span>.</p>
+<p>We do a BFS-Cycle from vertex <span class="math inline">\(k\)</span> in <span class="math inline">\(H_k\)</span> for each <span class="math inline">\(k\)</span>, except we stop once we have visited <span class="math inline">\(n^{2/3}\)</span> vertices. Let <span class="math inline">\(k_0\)</span> be the first index when all vertices of <span class="math inline">\(C\)</span> are contained in <span class="math inline">\(H_{k_0}\)</span>. We claim that doing this limited BFS in <span class="math inline">\(H_{k_0}\)</span> will find a cycle of length at most <span class="math inline">\(2g\)</span>.</p>
+<p>Note that all vertices <span class="math inline">\(v\in H_{k_0}\)</span> satisfy <span class="math inline">\(|B(v, \left\lceil g/4 \right\rceil)| \le n^{1/3}\)</span> and thus <span class="math inline">\(|B(v, 2\left\lceil g/4 \right\rceil)|\le n^{2/3}\)</span>. Thus the BFS-cycle out of <span class="math inline">\(k_0\)</span> will successfully find a cycle of length like at most <span class="math inline">\(4\left\lceil g/4 \right\rceil+1\)</span> ish.</p>
+<p>The run time of doing this is going to be <span class="math inline">\(n\cdot n^{2/3}\le n^{5/3}\)</span>.</p>
 </div>
 <hr />
 <h3 id="a-worse-algorithm">A worse algorithm:</h3>
@@ -155,6 +154,7 @@
 <p><strong>Remark.</strong> this is strictly worse in every way (except maybe simplicity) than the <span class="math inline">\(1.5\)</span>-approx in <span class="math inline">\(n^{2}\)</span> time proved above.</p>
 </div>
 <h3 id="approx-in-n2-19-time"><span class="math inline">\(4\)</span>-approx in <span class="math inline">\(n^{2-1/9}\)</span> time</h3>
+<p><strong>TODO</strong>: understand my high-degree low-degree construction better. in particular, does it give an additive or multiplicative approximation? presumably multiplicative?</p>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> <span class="math inline">\(4\)</span>-approx in <span class="math inline">\(n^{2-1/9}\)</span> time</p>
 </div>
