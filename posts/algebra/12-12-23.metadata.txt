@@ -1,0 +1,7 @@
+Bela Fleck Theorem
+images/ink_img010.png
+The Beck Fiala theorem is a fundamental result in discrepancy
+theory. Basically it says, if you have a collection of subsets of a
+universe and each element of the universe shows up in a limited
+number of the sets in your collection then there is a 2-coloring
+of the universe such that all sets have a roughly equal number of red and blue elements. 

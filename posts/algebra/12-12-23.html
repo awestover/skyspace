@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#introduction
+" class="js-scroll-trigger">introduction
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <h1 id="introduction">introduction</h1>
+<p>The Beck Fiala theorem is a fundamental result in discrepancy theory. Basically it says, if you have a collection of subsets of a universe and each element of the universe shows up in a limited number of the sets in your collection then there is a 2-coloring of the universe such that all sets have a roughly equal number of red and blue elements.</p>
+<p>In fact, it is convenient to think of the colors as <span class="math inline">\(\pm 1\)</span>. We’ll let red be <span class="math inline">\(+1\)</span> and blue be <span class="math inline">\(-1\)</span>. For <span class="math inline">\(x\in U\)</span> let <span class="math inline">\(\chi(x)\)</span> denote the color of <span class="math inline">\(x\)</span> if it has been assigned. For <span class="math inline">\(S\subset U\)</span> let <span class="math inline">\(\chi(S) = \sum_{x\in S}\chi(x)\)</span> be the discrepancy of <span class="math inline">\(S\)</span>.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> My notation is inspired by <a href="https://arxiv.org/abs/1306.6081">this paper</a> which proves a truly insane bound: you can make the discrepency of every set smaller than <span class="math inline">\(2d-\log^* d\)</span>. The classic result is <span class="math inline">\(2d-2\)</span>. Now, to me its not actually clear whether <span class="math inline">\(\log^* d &gt; 2\)</span>. But presumably this is true if you had some really large <span class="math inline">\(d\)</span> like <span class="math inline">\(2^{2^{2}}=16\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Fix “degree” <span class="math inline">\(d\in \mathbb{N}\)</span>. Let <span class="math inline">\(U\)</span> be a universe of size <span class="math inline">\(n\)</span>. Let <span class="math inline">\(S_1,S_2,\ldots, S_m \subset U\)</span> such that each <span class="math inline">\(x\in U\)</span> appears in at most <span class="math inline">\(d\)</span> of the <span class="math inline">\(S_i\)</span>’s. Then there is a two-coloring of <span class="math inline">\(U\)</span> such that <span class="math inline">\(disc(S_i) \le 2d-2\)</span> for all <span class="math inline">\(i\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>We use a really cool “floating colors technique”. The idea is, we are going to start with all the colors being tentatively assigned <span class="math inline">\(\chi(x) = 0\)</span> for all <span class="math inline">\(x\in U\)</span>. Then we will repeatedly change the colors, always maintaining <span class="math inline">\(\chi(x) \in [-1,1]\)</span> for all <span class="math inline">\(x\in U\)</span>. In particular, we will do some change that causes some <span class="math inline">\(x\)</span> to change from <span class="math inline">\(\chi(x)\in (-1,1)\)</span> to <span class="math inline">\(\chi(x) \in \{-1, 1\}\)</span>. We say that <span class="math inline">\(x\)</span>’s color is <strong>frozen</strong> once it is set to <span class="math inline">\(\pm 1\)</span>. After an element’s color is frozen we won’t change it any more. If <span class="math inline">\(\chi(x)\in (-1,1)\)</span> we say that <span class="math inline">\(x\)</span>’s color is <strong>floating</strong>, meaning that it has not yet been chosen.</p>
+<p>Now we argue why it is possible to freeze colors. We say that a set is <strong>dangerous</strong> if it has more than <span class="math inline">\(d\)</span> elements with floating colors in it. Let <span class="math inline">\(D\subset [m]\)</span> be the set of indices <span class="math inline">\(i\)</span> for which <span class="math inline">\(S_i\)</span> is dangerous. Let <span class="math inline">\(n_0\)</span> be the number of elements with floating colors.</p>
+<p>We claim that <span class="math inline">\(|D|&lt; n_0.\)</span> You can think of it like this: each element with a floating color pays one dollar to each set that it is contained in. To be dangerous a set needs more than <span class="math inline">\(t\)</span> dollars. The amount of money distributed is at most <span class="math inline">\(n_0 d\)</span> because each element is in at most <span class="math inline">\(d\)</span> sets. So the number of dangerous sets is certainly smaller than <span class="math inline">\(n_0\)</span>.</p>
+<p>Consider the following set of constraints:</p>
+<ul>
+<li>For all <span class="math inline">\(i\in D\)</span> <span class="math display">\[\chi(S_i) = 0.\]</span> This is a set of <span class="math inline">\(|D|\)</span> constraints, and there are <span class="math inline">\(n_0\)</span> variables. That is, the system is undet-constrained. So there is at least a 1-dimensional space of solutions.</li>
+</ul>
+<p>We start at some solution, which corresponds to a point with all the floating variables <span class="math inline">\(x\)</span> being at points <span class="math inline">\(\chi(x)\in (-1,1)\)</span>. Then we travel along this degree of freedom until one of the floating <span class="math inline">\(x\)</span>’s hits <span class="math inline">\(\chi(x) = \pm 1\)</span>. At this point we stop and freeze this <span class="math inline">\(x\)</span>. Crucially all the remaining floating elements still have <span class="math inline">\(\chi(x) \in [-1,1]\)</span>. So we can repeat this process to neutralize all dangerous sets.</p>
+<p>Note that once a set becomes not-dangerous we are guaranteed that, no-matter what the other <span class="math inline">\(t\)</span> variables in it are set to, they can’t mess with its value by more than <span class="math inline">\(2t\)</span>.</p>
+<p>So at the end the discrepencies will all be at most <span class="math inline">\(2t\)</span> or something as claimed ish.</p>
+<figure>
+<img src="src/images/ink_img010.png" alt="" /><figcaption>ink_img010</figcaption>
+</figure>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
