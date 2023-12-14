@@ -1,0 +1,16 @@
+<h1 id="triangle-detection-to-triangle-finding">triangle detection to triangle finding</h1>
+<p>Randomly split vertices in half. Run detection on both halves. Have to try <span class="math inline">\(O(1)\)</span> times in expectation. The run time would be, in expectation, <span class="math display">\[\sum T(n/2^{i})\le T(n) 2\sum (1-\varepsilon)^{i}\le T(n)2\varepsilon^{-1}.\]</span></p>
+<p>This can be de-randomized as follows: split the set into <span class="math inline">\(6\)</span> equal sized parts. There must be some set of <span class="math inline">\(3\)</span> of them that contains a triangle. Every set of <span class="math inline">\(3\)</span> of them has size <span class="math inline">\(n/2.\)</span></p>
+<h1 id="using-triangle-detection-to-do-bmm">using triangle detection to do BMM</h1>
+<p>BMM is defined as <span class="math display">\[(AB)[i,j] = \bigvee_k (A[i,k]\land B[k,j]).\]</span></p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> You can do BMM via fast MM techniques in <span class="math inline">\(n^{\omega}\)</span> time.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> You can also do BMM via triangle-detection. This is asymptotically slower, but kind of nicer because it doesn’t rely on crazy impractical tensor-decomposition stuff with ridiculous constant factors. More precisely, if there is a <span class="math inline">\(D(n)\)</span> time algorithm for triangle detection then there is an <span class="math inline">\(n^{2}D(n^{1/3})\)</span> time algorithm for BMM. Using BMM to do triangle detection is trivial. Thus, BMM and triangle detection are “sub-cubic equivalent”.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Make a tri-partite graph <span class="math inline">\(X,Y,Z\)</span>. Put all the edges between <span class="math inline">\(X,Z\)</span>. Put edges between <span class="math inline">\(i\in X,j\in Y\)</span> if <span class="math inline">\(A[i,j]=1\)</span> and edges between <span class="math inline">\(j\in Y, k\in Z\)</span> if <span class="math inline">\(B[j,k]=1\)</span>.</p>
+<p>Split each of <span class="math inline">\(X,Y,Z\)</span> into parts of size <span class="math inline">\(t\)</span>. For each tripple of little parts eat all the triangles in it.</p>
+<p>Run time: <span class="math display">\[t^3 D(n/t) + n^{2} D(n/t).\]</span> Set <span class="math inline">\(t=n^{2/3}\)</span>.</p>
+</div>
