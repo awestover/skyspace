@@ -96,6 +96,18 @@
 <p>The run time of doing this is going to be <span class="math inline">\(n\cdot n^{2/3}\le n^{5/3}\)</span>.</p>
 </div>
 <hr />
+<p>beg thm (Due to Knudsen et al, also from the paper “New Subquadratic Approximation Algorithms for the Girth”.)</p>
+There is a (multiplicative) <span class="math inline">\(\mathcal{O}(1)\)</span>-approx for girth with running time <span class="math inline">\(n^{2+1/k}\)</span> for any constant <span class="math inline">\(k\)</span>. end thm
+<div class="pf envbox">
+<p><strong>Proof.</strong> We present it for <span class="math inline">\(k=5\)</span> for simplicity.</p>
+<p>We are going to give a <span class="math inline">\(31\)</span>-approximation or something.</p>
+<p>Do each of the following things: - Sample a set of <span class="math inline">\(n\)</span> vertices, BFS-Cycle for <span class="math inline">\(n^{1/5}\)</span> steps out of each of them. - Sample a set of <span class="math inline">\(n^{4/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{2/5}\)</span> steps out of each of these vertices. - Sample a set of <span class="math inline">\(n^{3/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{3/5}\)</span> steps out of each of these vertices. - Sample a set of <span class="math inline">\(n^{2/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{4/5}\)</span> steps out of each of these vertices. - Sample a set of <span class="math inline">\(n^{1/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{5/5}\)</span> steps out of each of these vertices.</p>
+<pre><code>Let $C$ be a minimum length cycle.</code></pre>
+<p>Let <span class="math inline">\(r_0\)</span> be the minimum <span class="math inline">\(r&gt;0\)</span> such that <span class="math inline">\(|B(C, \left\lceil g/2 \right\rceil(2^{r}-1))| \le n^{r/5}\)</span>. Then we have that <span class="math inline">\(|B(C, \left\lceil g/2 \right\rceil(2^{r_0-1}-1))| &gt; n^{(r_0-1)/5}\)</span>.</p>
+<p>We claim that we will find a pretty short cycle when we run the <span class="math inline">\(r_0\)</span>-th itteration of our for-loop.</p>
+<p>By a calculation we find that we will, with high probability, get some vertex <span class="math inline">\(u \in B(C, \left\lceil g/2 \right\rceil(2^{r_0-1}-1))\)</span> in the set of size <span class="math inline">\(n^{\frac{6-r_0}{5})} \log n\)</span> that we sample. Then if we BFS-cycle out of this dude we get the desired short cycle.</p>
+</div>
+<hr />
 <h3 id="a-worse-algorithm">A worse algorithm:</h3>
 <div class="prop envbox">
 <p><strong>Proposition.</strong> 2-approx in <span class="math inline">\(n^2\)</span> time.</p>
