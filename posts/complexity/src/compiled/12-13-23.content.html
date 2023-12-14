@@ -1,0 +1,35 @@
+<blockquote>
+<p>QUESTION: What is the minimum size formula that computes the PARITY function?</p>
+</blockquote>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Boolean formula: some boolean variabes that you can combine with ANDs and ORs.</p>
+<p>This is distinct from a circuit because you aren’t allowed to re-use values.</p>
+</div>
+Here’s a pretty simple formula for computing parity:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is an <span class="math inline">\(\mathcal{O}(n^{2})\)</span> size formula for computing parity.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math display">\[[x\oplus y \oplus z\oplus w = 0] = ([x\oplus y = 0] \land [z\oplus w = 0]) \lor ([x\oplus y = 1] \land [z\oplus w = 1]). \]</span> So we should get the recurrence <span class="math display">\[T(n) = 4T(n/2)+4\]</span> or something which solves to <span class="math inline">\(O(n^{2}).\)</span></p>
+</div>
+<p>What follows is based on <a href="https://nitinsau.github.io/teaching/BFC19-mpii/lecture3.pdf">some notes I found online</a>.</p>
+The point of this blog post is to prove a lower bound!
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is no boolean formula for XOR of size smaller than <span class="math inline">\(n^{2}\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>We use the notion of a <strong>formal complexity measure</strong>, which is a function mapping formulas to <span class="math inline">\(\mathbb{R}\)</span> satisfying the following properties:</p>
+<ul>
+<li><span class="math inline">\(\mu(x_i),\mu(\overline{x_i}) = 1\)</span>.</li>
+<li><span class="math inline">\(\mu(x\lor y) \le \mu(x)+\mu(y)\)</span>, <span class="math inline">\(\mu(x\land y) \le \mu(x)+\mu(y)\)</span>.</li>
+</ul>
+<p>For <span class="math inline">\(A, B\subset \left\{ 0,1\right\}^{n}\)</span> define <span class="math display">\[H(A, B) = \left\{ (a, b)\in A \times B\; : \;\Delta(a, b)=1 \right\}\]</span> where <span class="math inline">\(\Delta\)</span> measures the hamming distance.</p>
+<p>Define <span class="math display">\[K_{A, B} = \frac{|H(A,B)|^{2}}{|A||B|}.\]</span></p>
+<p>Khrapchenko’s measure: Let <span class="math inline">\(f: \left\{ 0,1\right\}^{n} \to \left\{ 0,1\right\}\)</span> be a circuit. Then we define <span class="math display">\[\mu(f) = \max{K_{A, B}: A\subset f^{-1}(0), B\subset f^{-1}(1)}\]</span></p>
+<p>Turns out this is a formal complexity measure.</p>
+<p>The key fact about formal complexity measures is that they provide lower bounds on the minimum size formula that computes a function.</p>
+<p>For <span class="math inline">\(f\)</span> being PARITY we can compute</p>
+<p><span class="math display">\[\mu(f) \ge n^{2},\]</span> by taking <span class="math inline">\(A,B\)</span> to just be the entire pre-images of <span class="math inline">\(0,1\)</span> respectively. Neat!</p>
+</div>
+<p>Too bad this can’t prove <span class="math inline">\(P\neq NP\)</span>.</p>

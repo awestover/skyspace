@@ -1,0 +1,4 @@
+Formal complexity measure
+
+Saw a cool complexity theory idea today. Quickly jotting it down
+so I don't forget it. 
