@@ -16,12 +16,17 @@ with open(fname, "r") as f:
 
     toc = ""
     everything_else = ""
+    started = False
 
-    for line in f.readlines(): #.strip()?
-        for i in range(2, 5):
-            if line[:i] == (i-1)*"#"+" ":
-                toc += line[i:]
-        everything_else += line
+    for line in f.readlines():
+        if not started:
+            if line.strip() == "{description}":
+                started = True
+        if started:
+            for i in range(2, 5):
+                if line[:i] == (i-1)*"#"+" ":
+                    toc += line[i:]
+            everything_else += line
 
     full = title + toc.strip() + endl + everything_else.strip()
 
