@@ -1,0 +1,5 @@
+min-cost circulation
+
+I feel like I can never remember what min-cost circulation (MCC)
+is, or what the basic facts about it are. So here is a short blog
+post where I remind myself of what MCC is.
