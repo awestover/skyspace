@@ -1,7 +1,12 @@
-<h1 id="triangle-detection-to-triangle-finding">triangle detection to triangle finding</h1>
+<p>Throughout the post I will generally omit log factors. In some places I have written <span class="math inline">\(n^{\omega+o(1)}\)</span>, but really this should probably be written in most places.</p>
+<h1 id="lecture-1">lecture 1</h1>
+<p>Lots of matrix problems, e.g., matrix inversion, are equivalent to MM or at least closely related to MM.</p>
+<h1 id="lecture-2">lecture 2</h1>
+<p>4-russians: shave some logs by lookup tables of size <span class="math inline">\(\log n\)</span></p>
+<h3 id="triangle-detection-to-triangle-finding">triangle detection to triangle finding</h3>
 <p>Randomly split vertices in half. Run detection on both halves. Have to try <span class="math inline">\(O(1)\)</span> times in expectation. The run time would be, in expectation, <span class="math display">\[\sum T(n/2^{i})\le T(n) 2\sum (1-\varepsilon)^{i}\le T(n)2\varepsilon^{-1}.\]</span></p>
 <p>This can be de-randomized as follows: split the set into <span class="math inline">\(6\)</span> equal sized parts. There must be some set of <span class="math inline">\(3\)</span> of them that contains a triangle. Every set of <span class="math inline">\(3\)</span> of them has size <span class="math inline">\(n/2.\)</span></p>
-<h1 id="using-triangle-detection-to-do-bmm">using triangle detection to do BMM</h1>
+<h3 id="using-triangle-detection-to-do-bmm">using triangle detection to do BMM</h3>
 <p>BMM is defined as <span class="math display">\[(AB)[i,j] = \bigvee_k (A[i,k]\land B[k,j]).\]</span></p>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> You can do BMM via fast MM techniques in <span class="math inline">\(n^{\omega}\)</span> time.</p>
@@ -14,3 +19,163 @@
 <p>Split each of <span class="math inline">\(X,Y,Z\)</span> into parts of size <span class="math inline">\(t\)</span>. For each tripple of little parts eat all the triangles in it.</p>
 <p>Run time: <span class="math display">\[t^3 D(n/t) + n^{2} D(n/t).\]</span> Set <span class="math inline">\(t=n^{2/3}\)</span>.</p>
 </div>
+<h3 id="more-notes">more notes</h3>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> transitive closure is sub-cubicly equivalent to BMM</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> One direction is like this:</p>
+<figure>
+<img src="src/images/ink_img003.png" alt="" /><figcaption>ink_img003</figcaption>
+</figure>
+<p>Other direction is like this: compute SCC, topo-sort the SCC DAG Trans-closure of DAG can be done with MM. In the trans-closure, <span class="math inline">\(A+I\)</span> is upper-triangular.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> You can compute strongly connected components in <span class="math inline">\(n^{2}\)</span> time.</p>
+</div>
+<h1 id="lecture-3-intro-to-apsp">lecture 3: intro to APSP</h1>
+<p>APSP: Given a weighted (possibly directed) graph, compute <span class="math inline">\(d(u,v)\)</span> for all vertices <span class="math inline">\(u,v\)</span>.</p>
+<p>Best algorithm as of 2021 (Ryan Williams): <span class="math inline">\(n^{3} / 2^{\Omega(\sqrt{\log n})}\)</span>.</p>
+<p>Observation: <span class="math inline">\(d(u,v)\)</span> is the smallest <span class="math inline">\(k\)</span> for which <span class="math inline">\(A^{k}[u,v]\neq 0\)</span>. This is great if the graph has small diameter. For far away vertices we need another technique</p>
+<h3 id="hitting-set-algorithm">hitting set algorithm</h3>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Hitting sets: Let <span class="math inline">\(S\)</span> be a collection of <span class="math inline">\(m\)</span> sets of size <span class="math inline">\(\ge k\)</span> over <span class="math inline">\(V=[n]\)</span>. Then with high probability in <span class="math inline">\(m\)</span>, a uniformly random subset <span class="math inline">\(T\subset V\)</span> of size <span class="math inline">\(\Omega((n/k) \log m)\)</span> intersects all sets in <span class="math inline">\(S\)</span> non-trivially.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is an <span class="math inline">\(n^{(3+\omega)/2 + o(1)}\)</span> time algorithm for APSP. even in directed graphs.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Take a random set <span class="math inline">\(S\)</span> of size <span class="math inline">\((n/k)\log m\)</span>. It hits all paths of length at least <span class="math inline">\(k\)</span> by the above lemmma.</p>
+<p>Run BFS into and out of each vertex <span class="math inline">\(t\in S\)</span> so that we get <span class="math inline">\(d(u,t), d(t,u)\)</span> for all <span class="math inline">\(u\)</span> in the graph. Then compute <span class="math inline">\(d(u,v)\)</span> for <span class="math inline">\(u,v\)</span> which are distance at least <span class="math inline">\(k\)</span> appart as <span class="math inline">\(\min_{t\in S} d(u,t)+d(t,v)\)</span>.</p>
+<p>Balance this against the <span class="math inline">\(kn^{\omega}\)</span> algorithm for determining <span class="math inline">\(d(u,v)\)</span> in the case that <span class="math inline">\(u,v\)</span> are at most distance <span class="math inline">\(k\)</span> appart.</p>
+</div>
+<h1 id="siedels-apsp-algorithm">Siedel’s APSP Algorithm</h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(n^{\omega + o(1)}\)</span> algo for APSP in undirected unweighted graphs</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Idea:</p>
+<ul>
+<li>If <span class="math inline">\(u,v\)</span> are distance <span class="math inline">\(d\)</span> in <span class="math inline">\(A\)</span>, then they are distance <span class="math inline">\(\left\lceil d/2 \right\rceil\)</span> in <span class="math inline">\(A^{2}\lor A\)</span>.</li>
+<li>if we also had an algo for “parity of distance between <span class="math inline">\(u,v\)</span>” then we would have a simple recursive algorithm for APSP</li>
+<li>observe that if <span class="math inline">\(k\in N(j)\)</span> then <span class="math inline">\(|d(i,k) - d(i,j)| \le 1\)</span>. So <span class="math inline">\(d(i,k)=d(i,j) \iff d(i,k)\equiv d(i,j)\mod 2\)</span>.</li>
+</ul>
+<p>so it turns out that there is some MM stuff that you can do by looking at the neighborhood of a vertex to determine the parity of the distance, based on the above observation.</p>
+</div>
+<h1 id="lecture-4-zwicks-apsp-algorithm">lecture 4: Zwick’s APSP Algorithm</h1>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Dijstra’s algorithm: Given a graph <span class="math inline">\(G\)</span> with non-negative edge weights, there is an algorithm wtih running time <span class="math inline">\(O(m+n\log n)\)</span> to compute SSSP.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> (ok but that’s a little bit overly fancy using Fibonacci heaps, reallly)</p>
+<p>The algorithm is as follows:</p>
+<ul>
+<li>maintain a min-heap of the vertices based on tentative distance estimates</li>
+<li>Repeatedly take the closest vertex from the heap, and update the distance to all vertices through this vertex</li>
+</ul>
+</div>
+<h1 id="lecture-5-weighted-apsp">lecture 5: weighted APSP</h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> You can also do APSP in weighted undirected graphs pretty fast.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We again break into cases for short and long paths. We again sample a large set and compute distances from everything to and from all vertices of this set. Now because stuff is weighted this is a bit more complicated, we can’t just BFS.</p>
+<p>You do SSSP, Johnson’s trick (i.e., adding the results of SSSP from an auxiliary vertex to the weights to get positive weights), and finally Dijkstra’s algorithm.</p>
+<p>For short paths we need a new type of MM: <span class="math inline">\((\min, +)\)</span>-product.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong></p>
+<p><span class="math inline">\((A\star B) [i,j] = \min_k (A[i,k]+B[k,j])\)</span></p>
+<p><span class="math inline">\((\min, +)\)</span>-product is <strong>actually</strong> equivalent to APSP. No “combinatorial algorithm” nonsense.</p>
+<p>However, it turns out you can compute <span class="math inline">\(A\star B\)</span> using fast MM if the entries are all small integers.</p>
+</div>
+<h1 id="lectures-678">lectures 6,7,8</h1>
+<p>At some later point I might read the remaining lecture notes in more detail. For now I want to really quickly familiarize myself with what the problems that people care about in this field are and what are some of the key results.</p>
+<ul>
+<li>earliest arrivals</li>
+<li>all-pairs bottleneck paths</li>
+<li>witness matrix</li>
+</ul>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Minimum vertex weight triangle: vertices are given integer weights. Find the triangle of minimum weight. Can be done in <span class="math inline">\(O(n^{\omega+o(1)})\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>First they give a simple algorithm with sub-optimal running time based on the min-witness product: <span class="math display">\[\min \left\{ k: A[i,k] = B[k,j] = 1\right\}.\]</span> Can be computed in <span class="math inline">\(n^{2.529}\)</span> time using rectangular MM.</p>
+<p>some fancier algorithm does better.</p>
+<p>Seems like some common themes include duplicating vertex set three times, partitioning into vertex subsets arbitrarily and doing stuff on those.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Min edge-weight triangle is sub-cubically equivalent to APSP.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <strong>graph radius</strong>: <span class="math display">\[\min_v \max_u d(u,v)\]</span> May also want to find such a minimizing <span class="math inline">\(v\)</span> called a <strong>center</strong>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> graph radius subcubically equivalent to APSP.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> You can trivially compute the diameter by first computing APSP.</p>
+<p>the other direction is more involved.</p>
+</div>
+<p>big open question: is diameter subcubicaly equiv to APSP?</p>
+<h1 id="lecture-9-subgraph-isomorphism-si">lecture 9: subgraph isomorphism (SI)</h1>
+<p>We have a pattern graph with <span class="math inline">\(k\le O(1)\)</span> vertices.</p>
+<ul>
+<li>induced</li>
+<li>non-induced</li>
+</ul>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> We reduce non-induced SI to induced SI.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Color coding!! Let <span class="math inline">\(V(H) = h_1,h_2,\ldots, h_k\)</span>. Color vertices of graph with <span class="math inline">\(k\)</span> colors. Let <span class="math inline">\(w_1,w_2,\ldots, w_k\)</span> be vertices forming a (not-necessarily induced) <span class="math inline">\(H\)</span> in <span class="math inline">\(G\)</span>. We will hope that <span class="math inline">\(\chi(w_i) = i\)</span>.</p>
+<p>After doing the coloring we cut edges between <span class="math inline">\(u,v\)</span> if <span class="math inline">\(h_{\chi(u)}, h_{\chi(v)}\notin E(H)\)</span>. This turns our non-induced <span class="math inline">\(H\)</span> into an induced <span class="math inline">\(H\)</span>. The coloring succeeds with constant Pr. Can be derandomized.</p>
+<figure>
+<img src="src/images/ink_img004.png" alt="" /><figcaption>ink_img004</figcaption>
+</figure>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For any <span class="math inline">\(k\)</span>-vertex graph <span class="math inline">\(H\)</span>, induced <span class="math inline">\(H\)</span> reduces to induced <span class="math inline">\(K_{k}\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Color code to make a <span class="math inline">\(k\)</span>-partite graph. Delete edges internal to the parts. Flip (i.e., if they are present delete them and if they are no present add them) edges <span class="math inline">\(u,v\)</span> if <span class="math inline">\(h_{\chi(u)}, h_{\chi(v)}\notin E(H)\)</span>.</p>
+<p>Now we are looking for a <span class="math inline">\(k\)</span>-clique.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Best <span class="math inline">\(k\)</span>-clique algorithm [Nestetnice, Poljak. ’85] Let <span class="math inline">\(k\equiv 0 \mod 3\)</span>. Then you can solve <span class="math inline">\(k\)</span>-clique in <span class="math inline">\(n^{k\omega/3}\)</span> time.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We construct a graph on <span class="math inline">\(\frac{k}{3}\)</span>-tuples of vertices. We create a super-node for a <span class="math inline">\(\frac{k}{3}\)</span>-tuple iff it is a <span class="math inline">\(\frac{k}{3}\)</span>-clique. We connect two super-nodes if all edges are present between them. A triangle of super-nodes is a <span class="math inline">\(k\)</span>-clique in the original graph. Finally, do triangle detection on the super-graph with MM.</p>
+</div>
+<p>But some <span class="math inline">\(H\)</span> are faster than <span class="math inline">\(k\)</span>-clique.</p>
+<h3 id="k3"><span class="math inline">\(k=3\)</span></h3>
+<ul>
+<li>triangle can be done in <span class="math inline">\(n^{\omega}\)</span> time</li>
+<li>V can be detected in <span class="math inline">\(n^{2}\)</span> time. I think I have an algorithm:</li>
+</ul>
+<div class="pf envbox">
+<p><strong>Proof.</strong> - Make a list of edges - Maintain sets <span class="math inline">\(A,B\)</span>, where <span class="math inline">\(A\)</span> is initialized to be an edge and <span class="math inline">\(B\)</span> to be empty - loop over all the vertices - if the vertex is connected to all of <span class="math inline">\(A\)</span> add it to <span class="math inline">\(A\)</span>. - if the vertex is connected to none of <span class="math inline">\(A\)</span> add it to <span class="math inline">\(B\)</span> - if neither of the above happened, you can just win using that vertex - At the end of this process, we have sets <span class="math inline">\(A,B\)</span> where <span class="math inline">\(A\)</span> is a clique and no vertices in <span class="math inline">\(B\)</span> have any neighbors in <span class="math inline">\(A\)</span>. - Delete <span class="math inline">\(A\)</span> and repeat the above stuff - should take time <span class="math inline">\(O(n |A|)\)</span> on each iteration, - so total time <span class="math inline">\(O(n^{2})\)</span>.</p>
+</div>
+<h3 id="k4"><span class="math inline">\(k=4\)</span></h3>
+<p>“Finding Four-Node Subgraphs in Triangle Time” -Williams</p>
+<ul>
+<li>Remark: you can also do stuff based on <span class="math inline">\(m\)</span> (i.e. sparse graphs)</li>
+<li>diamond approach:
+<ul>
+<li>solve an even harder problem (counting!)</li>
+<li>Let <span class="math inline">\(A^{2}[i,j]\)</span> denote the number of length-<span class="math inline">\(2\)</span> paths from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span>.</li>
+<li><span class="math inline">\(\sum_{i,j\in E} \binom{A^{2}[i,j]}{2} = 6\cdot \#(K_4) + \#(K_4-e)\)</span></li>
+<li>somehow we will restrict to a random subset so that diamond count is not a multiple of <span class="math inline">\(6\)</span>.</li>
+<li>key lemma: Shwarz-Zippel polynomial identity testing: non-zero degree-<span class="math inline">\(d\)</span> multilinear polynomial has Pr at most <span class="math inline">\(\frac{1}{2^{d}}\)</span> of being <span class="math inline">\(0\)</span> on a random point.</li>
+<li>corollary: if you randomly delete half the vertices then with probability <span class="math inline">\(2^{-|H|}\)</span> the number of <span class="math inline">\(H\)</span>’s in your graph is not <span class="math inline">\(0\mod q\)</span> for some prime <span class="math inline">\(q\)</span>, assuming that your graph had a non-zero number of <span class="math inline">\(H\)</span>’s to begin with.</li>
+</ul></li>
+<li>then they do sparse graphs!</li>
+<li>and some de-randomization</li>
+<li>The best thing people know for <span class="math inline">\(K_4\)</span> is <span class="math inline">\(n^{\omega(1,2,1)}\le n^{3.1}\)</span> (i.e., multiplying <span class="math inline">\(n \times n^{2}\)</span> and <span class="math inline">\(n^{2} \times n\)</span> matrices)</li>
+</ul>
+<p>“there is a combinatorial algo for <span class="math inline">\(H\)</span>-detection where <span class="math inline">\(H\neq K_k\)</span> is a <span class="math inline">\(k\)</span>-vertex pattern with run-time <span class="math inline">\(n^{k-1}\)</span>.”</p>
+<blockquote>
+<p>CONJECTURE: For any <span class="math inline">\(k\)</span>-vertex pattern <span class="math inline">\(H\neq K_k\)</span>, <span class="math inline">\(H\)</span>-detection can be done in <span class="math inline">\(K_{k-1}\)</span>-detection time.</p>
+</blockquote>
+<h1 id="coming-soon-lectures-10-20">coming soon: lectures 10-20</h1>
