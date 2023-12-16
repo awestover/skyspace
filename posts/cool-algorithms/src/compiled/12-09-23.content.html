@@ -25,7 +25,7 @@
 <li>There is an <span class="math inline">\(n^{2}\)</span> time algorithm to find the shortest even cycle.</li>
 </ol>
 </div>
-<p>First I present two simple proofs of the theorem for <span class="math inline">\(k=2\)</span>. Then I present a proof (hopefully correct) that you can do <span class="math inline">\(n^{2+\frac{1}{k+1}}\)</span>. One day I’ll hopefully read their paper and know the proof for general <span class="math inline">\(k\)</span>.</p>
+<p>First I present two simple proofs of the theorem for <span class="math inline">\(k=2\)</span>. Then I’ll present a proof for general <span class="math inline">\(k\)</span>.</p>
 <div class="pf envbox">
 <p><strong>Proof.</strong> 1. Common neighbor(x,y): make an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(A\)</span>. <span class="math inline">\(A[i,j]\)</span> will store whether we have found a common neighbor for <span class="math inline">\(i,j\)</span> so far. If any cell in the matrix ever gets hit twice then we found a <span class="math inline">\(4\)</span>-cycle.</p>
 <p>What we do is, for each vertex <span class="math inline">\(v\)</span>, for each pair of vertices in <span class="math inline">\(N(v)\)</span> mark them as having a common neighbor.</p>
@@ -34,12 +34,12 @@
 <p><strong>Proof.</strong> 2. wlog its bipartite: In particular, take <span class="math inline">\(G=(V,E)\)</span>, and form <span class="math inline">\(G&#39;\)</span> by duplicating the vertex set to <span class="math inline">\(V\sqcup V&#39;\)</span> and put an edge between <span class="math inline">\(uv&#39;\)</span> if <span class="math inline">\(uv\)</span> is an edge in <span class="math inline">\(G\)</span>. Then, if you had a <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(G\)</span> it is converted into a <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(G&#39;\)</span>. But of course <span class="math inline">\(G&#39;\)</span> is bipartite and only a constant-factor larger. Then, run BFS-cycle out of each vertex (for depth <span class="math inline">\(2\)</span>). This must terminate fast. More precisely, for all vertices in the neighbor-set of one of your vertices color their left-neighbors. If a left-neighbor gets colored twice it means you have a <span class="math inline">\(C_4\)</span>.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> goal: check whether our graph contains a <span class="math inline">\(2k\)</span>-cycle Note: wlog <span class="math inline">\(m\le o(n^{1+\frac{1}{k}})\)</span> or else we are guaranteed to have a <span class="math inline">\(2k\)</span>-cycle</p>
-<p><strong>Case 1:</strong> There exists a high degree vertex, say with degree larger than <span class="math inline">\(H\)</span> somewhere on the cycle. There aren’t so many vertices like this. It costs <span class="math inline">\(\frac{m}{H} m\)</span> to just BFS out of all the high degree vertices.</p>
-<p><strong>Case 2</strong>: Negation of case 1. i.e., all vertices on the cycle have degree smaller than <span class="math inline">\(H\)</span>. Then we can do BFS a bit more efficiently, in time <span class="math inline">\(n H^{k}\)</span>.</p>
+<p><strong>Proof.</strong> goal: check whether our graph contains a <span class="math inline">\(2k\)</span>-cycle Note: wlog <span class="math inline">\(m\le 200 n^{1+\frac{1}{k}}\)</span> or else we are guaranteed to have a <span class="math inline">\(2k\)</span>-cycle (even, super-saturation of <span class="math inline">\(2k\)</span>-cycles. anyways, we can find them.)</p>
+<p><strong>Case 1:</strong> There exists a high degree vertex, say with degree larger than <span class="math inline">\(H\)</span> somewhere on the cycle. There aren’t so many vertices like this. It costs <span class="math inline">\(\frac{m}{H} n\)</span> to just BFS-cycle out of all the high degree vertices.</p>
+<p><strong>Case 2</strong>: Negation of case 1. i.e., all vertices on the cycle have degree smaller than <span class="math inline">\(H\)</span>. Then we can do BFS-cycle a bit more efficiently, in time <span class="math inline">\(n H^{k}\)</span>.</p>
 <p>Balancing (1) and (2) gives:</p>
-<p><span class="math display">\[ \frac{m}{H}m = nH^{k} \implies \frac{m^{2}}{n} = H^{k+1}.\]</span> Hence <span class="math inline">\(H=(\frac{m^{2}}{n})^{\frac{1}{k+1}}\)</span> is the right choice.</p>
-<p>This yields running time <span class="math inline">\(n^{2+\frac{1}{k+1}}\)</span>. Humm, not quite <span class="math inline">\(n^{2}.\)</span> On reflection maybe this is why their paper is 14 pages not 1 page.</p>
+<p><span class="math display">\[ \frac{m}{H}n = nH^{k} \implies H = m^{1/(k+1)}.\]</span></p>
+<p>This yields running time <span class="math display">\[n m^{k/(k+1)} \le n n^{(1+1/k)(k/(k+1))} = n^{2}.\]</span></p>
 </div>
 <p>Now I establish that odd cycle detection does require <span class="math inline">\(n^{\omega}\)</span> time. First we prove another interesting result:</p>
 <div class="thm envbox">
@@ -119,17 +119,20 @@ There is a (multiplicative) <span class="math inline">\(\mathcal{O}(1)\)</span>-
 <div class="rmk envbox">
 <p><strong>Remark.</strong> this is strictly worse in every way (except maybe simplicity) than the <span class="math inline">\(1.5\)</span>-approx in <span class="math inline">\(n^{2}\)</span> time proved above.</p>
 </div>
-<h3 id="approx-in-n2-19-time"><span class="math inline">\(4\)</span>-approx in <span class="math inline">\(n^{2-1/9}\)</span> time</h3>
-<p><strong>TODO</strong>: understand my high-degree low-degree construction better. in particular, does it give an additive or multiplicative approximation? presumably multiplicative?</p>
+<h3 id="on2-additive-25-approximation-assuming-g100"><span class="math inline">\(o(n^2)\)</span> additive <span class="math inline">\(+25\)</span> approximation assuming <span class="math inline">\(g&lt;100\)</span></h3>
 <div class="thm envbox">
-<p><strong>Theorem.</strong> <span class="math inline">\(4\)</span>-approx in <span class="math inline">\(n^{2-1/9}\)</span> time</p>
+<p><strong>Theorem.</strong> There is an algorithm that, on graphs of girth <span class="math inline">\(g\le 100\)</span> outputs a cycle of length at most <span class="math inline">\(g+25\)</span> in time <span class="math inline">\(O(n^{1.999})\)</span></p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> PoC: if <span class="math inline">\(G\)</span> contains a triangle we want to output a cycle of length at most <span class="math inline">\(12\)</span>. Else, we provide no guarantees.</p>
-<p>I’ll just do the PoC. But I’m pretty sure stuff should work out strictly better if the min cycle we are worrying about is larger.</p>
-<p>If <span class="math inline">\(m\ge n^{\frac{7}{6}}\)</span> then it’s probably really easy to find a <span class="math inline">\(12\)</span>-cycle. So lets assume this is not the case, i.e., <span class="math inline">\(m\le n^{\frac{7}{6}}\)</span>. Now, we do the high-degree low-degree business. That is, let <span class="math inline">\(H\)</span> be the high-degree threshold. There are at most <span class="math inline">\(\frac{m}{H}\)</span> high-degree vertices, so BFS-ing over all of these costs at most <span class="math inline">\(\frac{m^{2}}{H}\)</span>. For low-degree vertices we do fancy BFS where we ignore high-degree vertices. This costs <span class="math inline">\(nH^{2}\)</span> (two levels of BFS for fiding triangles.) Balancing this gives: <span class="math display">\[\frac{m}{H}m = nH^{2}  \implies H = (m^{2} / n)^{\frac{1}{3}}
- = n^{\frac{4}{9}}.\]</span></p>
-<p>Then the cost is <span class="math inline">\(nH^{2} = n^{2-\frac{1}{9}}.\)</span></p>
+<p><strong>Proof.</strong></p>
+<p>If <span class="math display">\[m \ge \Omega( n^{1+ \frac{1}{\left\lfloor (g+25)/2 \right\rfloor} }) \]</span> then we have super-saturation of <span class="math inline">\(2\left\lfloor (g+25)/2 \right\rfloor\)</span>-cycles. So wlog may assume this is not the case. Now, high-deg low-deg cases.</p>
+<ul>
+<li>High deg cost: <span class="math inline">\(n\cdot m/H\)</span>.</li>
+<li>Low deg cost: <span class="math inline">\(n\cdot H^{\left\lceil g/2 \right\rceil}\)</span>.</li>
+</ul>
+<p>Balancing: <span class="math display">\[H = m^{\frac{1}{\left\lceil g/2 \right\rceil+1}}.\]</span></p>
+<p>So the cost is <span class="math display">\[n m^{ \frac{\left\lceil g/2 \right\rceil}{\left\lceil g/2 \right\rceil+1} } \le n n^{\frac{\left\lceil g/2 \right\rceil}{\left\lceil g/2 \right\rceil+1}  \cdot (1+\frac{1}{\left\lfloor (g+25)/2 \right\rfloor})}.\]</span></p>
+<p>not clear how good this is.</p>
 </div>
 <h3 id="additive-1-approximation-for-girth-in-n2-time">additive <span class="math inline">\(1\)</span>-approximation for girth in <span class="math inline">\(n^2\)</span> time</h3>
 <div class="thm envbox">
@@ -149,8 +152,38 @@ There is a (multiplicative) <span class="math inline">\(\mathcal{O}(1)\)</span>-
 <p>Here’s how we construct a triangle-detection instance: Make a new graph <span class="math inline">\(G&#39;\)</span>. Place <span class="math inline">\(G\)</span> in <span class="math inline">\(G&#39;\)</span>. Then create copies of the vertices. Connect <span class="math inline">\(v\in V(G)\)</span> and copy the copy <span class="math inline">\(w&#39;\)</span> of <span class="math inline">\(w\in V(G)\)</span> if <span class="math inline">\(dist(v, w)=\ell-1\)</span>. We know this distance because of our BFS-ing.</p>
 <p><span class="math inline">\(G&#39;\)</span> has a triangle iff <span class="math inline">\(G\)</span> has an <span class="math inline">\((2\ell-1)\)</span>-cycle. <img src="src/images/ink_img002.png" alt="ink_img002" /></p>
 </div>
-<h1 id="open-questions-knudsen">open questions [Knudsen]</h1>
+<h2 id="section">——–</h2>
+<h2 id="virginia-lecture-11-stuff">virginia lecture 11 stuff</h2>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(\widetilde{O}(n^{3}/m)\)</span> time <span class="math inline">\(+3\)</span> additive girth approx.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
 <ul>
-<li>sub-quadratic additive approx?</li>
-<li>sub-quadratic 1.99-approx?</li>
+<li>case 1: graph has <span class="math inline">\(O(n\log n)\)</span> edges: just give up and do a quadratic time algorithm.</li>
+<li>case 2: graph has enough edges that we can find a good enough cycle via super-saturation: then just do that</li>
+<li>case 3: graph is reasonably sparse, but not crazy sparse.
+<ul>
+<li>case 3.1: assume that all vertices on the cycle have degree at most <span class="math inline">\(n^{1/k}\)</span>.
+<ul>
+<li>BFS-cycle for <span class="math inline">\(k-1\)</span> levels, only visiting low degree vertices.</li>
+</ul></li>
+<li>case 3.2: there is a high degree vertex on the cycle. sample <span class="math inline">\(n/H\)</span> vertices. <em>this won’t necessarily hit a high degree vertex, but should at least hit a neighbor of a high degree vertex</em>. So we could do a <span class="math inline">\(+3\)</span> approx this way. Very few vertices we need to BFS out of here.</li>
+</ul></li>
 </ul>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong></p>
+<ul>
+<li>“Finding and Counting Given Length Cycles” Alon Yuster Zwick:</li>
+<li><span class="math inline">\(m^{4/3}\)</span> algorithm for <span class="math inline">\(C_4\)</span>’s</li>
+<li><span class="math inline">\(m^{13/8}\)</span> algorithm for <span class="math inline">\(C_6\)</span>’s</li>
+<li>Count number of <span class="math inline">\(C_k\)</span>’s for <span class="math inline">\(k\le 7\)</span> in <span class="math inline">\(n^{\omega}\)</span> time. Unlikely to be possible for <span class="math inline">\(C_8\)</span>’s because <span class="math inline">\(K_4\)</span>’s are harder than <span class="math inline">\(K_3\)</span>’s.</li>
+</ul>
+</div>
+<h2 id="some-questions">some questions</h2>
+<ul>
+<li>subquadratic additive girth approx?</li>
+</ul>
+<h2 id="list-of-things-to-look-up">list of things to look up</h2>
+<p>relevant graph parameters that we could do case-work on: - degeneracy - capped walls? - arboricity</p>
