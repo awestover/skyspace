@@ -175,8 +175,15 @@ There is a (multiplicative) <span class="math inline">\(\mathcal{O}(1)\)</span>-
 <div class="pf envbox">
 <p><strong>Proof.</strong> We present it for <span class="math inline">\(k=5\)</span> for simplicity.</p>
 <p>We are going to give a <span class="math inline">\(31\)</span>-approximation or something.</p>
-<p>Do each of the following things: - Sample a set of <span class="math inline">\(n\)</span> vertices, BFS-Cycle for <span class="math inline">\(n^{1/5}\)</span> steps out of each of them. - Sample a set of <span class="math inline">\(n^{4/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{2/5}\)</span> steps out of each of these vertices. - Sample a set of <span class="math inline">\(n^{3/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{3/5}\)</span> steps out of each of these vertices. - Sample a set of <span class="math inline">\(n^{2/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{4/5}\)</span> steps out of each of these vertices. - Sample a set of <span class="math inline">\(n^{1/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{5/5}\)</span> steps out of each of these vertices.</p>
-<pre><code>Let $C$ be a minimum length cycle.</code></pre>
+<p>Do each of the following things:</p>
+<ul>
+<li>Sample a set of <span class="math inline">\(n\)</span> vertices, BFS-Cycle for <span class="math inline">\(n^{1/5}\)</span> steps out of each of them.</li>
+<li>Sample a set of <span class="math inline">\(n^{4/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{2/5}\)</span> steps out of each of these vertices.</li>
+<li>Sample a set of <span class="math inline">\(n^{3/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{3/5}\)</span> steps out of each of these vertices.</li>
+<li>Sample a set of <span class="math inline">\(n^{2/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{4/5}\)</span> steps out of each of these vertices.</li>
+<li>Sample a set of <span class="math inline">\(n^{1/5}\log n\)</span> vertices, BFS-cycle for <span class="math inline">\(n^{5/5}\)</span> steps out of each of these vertices.</li>
+</ul>
+<p>Let <span class="math inline">\(C\)</span> be a minimum length cycle.</p>
 <p>Let <span class="math inline">\(r_0\)</span> be the minimum <span class="math inline">\(r&gt;0\)</span> such that <span class="math inline">\(|B(C, \left\lceil g/2 \right\rceil(2^{r}-1))| \le n^{r/5}\)</span>. Then we have that <span class="math inline">\(|B(C, \left\lceil g/2 \right\rceil(2^{r_0-1}-1))| &gt; n^{(r_0-1)/5}\)</span>.</p>
 <p>We claim that we will find a pretty short cycle when we run the <span class="math inline">\(r_0\)</span>-th itteration of our for-loop.</p>
 <p>By a calculation we find that we will, with high probability, get some vertex <span class="math inline">\(u \in B(C, \left\lceil g/2 \right\rceil(2^{r_0-1}-1))\)</span> in the set of size <span class="math inline">\(n^{\frac{6-r_0}{5})} \log n\)</span> that we sample. Then if we BFS-cycle out of this dude we get the desired short cycle.</p>
