@@ -95,6 +95,31 @@
 <p>Note that all vertices <span class="math inline">\(v\in H_{k_0}\)</span> satisfy <span class="math inline">\(|B(v, \left\lceil g/4 \right\rceil)| \le n^{1/3}\)</span> and thus <span class="math inline">\(|B(v, 2\left\lceil g/4 \right\rceil)|\le n^{2/3}\)</span>. Thus the BFS-cycle out of <span class="math inline">\(k_0\)</span> will successfully find a cycle of length like at most <span class="math inline">\(4\left\lceil g/4 \right\rceil+1\)</span> ish.</p>
 <p>The run time of doing this is going to be <span class="math inline">\(n\cdot n^{2/3}\le n^{5/3}\)</span>.</p>
 </div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Virginia gives a somewhat different proof of this in her lecture notes. I’m writing it down too so that I’ll maybe understand it.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Let <span class="math inline">\(T_v\)</span> denote the result of BFS-ing out of <span class="math inline">\(v\)</span> until we get <span class="math inline">\(n^{1/3}\)</span> vertices in the tree.</p>
+<p>She also starts by BFS-ing out of an <span class="math inline">\((n^{1/3}\log n)\)</span>-sized random set. (Basically. But she also checks that her random set intersects with all the <span class="math inline">\(T_v\)</span>’s. Presumably this happens with high probability? so not sure why she’s checking it.) This handles the case that some vertex in the cycle has a very large <span class="math inline">\(\left\lfloor g/4 \right\rfloor\)</span>-neighborhood.</p>
+<p>But she handles the other case a bit differently from Knudsen. Case 2: Each <span class="math inline">\(v\in C\)</span> has a <span class="math inline">\(\left\lfloor g/4 \right\rfloor\)</span> ball of size at most <span class="math inline">\(n^{1/3}\)</span>. In this case we will compute the girth <em>exactly</em>.</p>
+<p>Here’s the algorithm:</p>
+<ul>
+<li>for each <span class="math inline">\(v\)</span>
+<ul>
+<li>for each pair <span class="math inline">\(x,y \in T_v\)</span>
+<ul>
+<li>Insert <span class="math inline">\(v, d_{T_v}(x,y), p_{T_v}(x,y)\)</span> into <span class="math inline">\(Q_{x,y}\)</span></li>
+</ul></li>
+</ul></li>
+<li>For each <span class="math inline">\(x,y\)</span> where <span class="math inline">\(Q_{x,y}\)</span> is non-empty:
+<ul>
+<li>Sort the values in <span class="math inline">\(Q_{x,y}\)</span>’s by distance.</li>
+<li>Find <span class="math inline">\(u,v\)</span> such that <span class="math inline">\(d_{T_v}(x,y) + d_{T_u}(x,y)\)</span> is minimized</li>
+<li>consider the cycle determined by <span class="math inline">\(x,y,u,v\)</span> as defining the quarters.</li>
+</ul></li>
+</ul>
+</div>
 <hr />
 <p>beg thm (Due to Knudsen et al, also from the paper “New Subquadratic Approximation Algorithms for the Girth”.)</p>
 There is a (multiplicative) <span class="math inline">\(\mathcal{O}(1)\)</span>-approx for girth with running time <span class="math inline">\(n^{2+1/k}\)</span> for any constant <span class="math inline">\(k\)</span>. end thm
