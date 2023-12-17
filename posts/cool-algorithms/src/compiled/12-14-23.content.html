@@ -89,13 +89,10 @@
 <p><span class="math inline">\((\min, +)\)</span>-product is <strong>actually</strong> equivalent to APSP. No “combinatorial algorithm” nonsense.</p>
 <p>However, it turns out you can compute <span class="math inline">\(A\star B\)</span> using fast MM if the entries are all small integers.</p>
 </div>
-<h1 id="lectures-678">lectures 6,7,8</h1>
-<p>At some later point I might read the remaining lecture notes in more detail. For now I want to really quickly familiarize myself with what the problems that people care about in this field are and what are some of the key results.</p>
-<ul>
-<li>earliest arrivals</li>
-<li>all-pairs bottleneck paths</li>
-<li>witness matrix</li>
-</ul>
+<h1 id="lectures-6-todo">lectures 6: TODO!!</h1>
+<p>All pairs earliest arrivals, bottleneck paths and the dominance product</p>
+<h1 id="lecture-7-successor-and-witness-matrices-computing-actual-paths">lecture 7: Successor and witness matrices; computing actual paths</h1>
+<h1 id="lecture-8-minimum-weight-triangle">lecture 8: minimum weight triangle</h1>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Minimum vertex weight triangle: vertices are given integer weights. Find the triangle of minimum weight. Can be done in <span class="math inline">\(O(n^{\omega+o(1)})\)</span>.</p>
 </div>
@@ -178,4 +175,53 @@
 <blockquote>
 <p>CONJECTURE: For any <span class="math inline">\(k\)</span>-vertex pattern <span class="math inline">\(H\neq K_k\)</span>, <span class="math inline">\(H\)</span>-detection can be done in <span class="math inline">\(K_{k-1}\)</span>-detection time.</p>
 </blockquote>
-<h1 id="coming-soon-lectures-10-20">coming soon: lectures 10-20</h1>
+<h1 id="lecture-12">lecture 12</h1>
+<p><strong>diameter: largest distance in a graph</strong></p>
+<h3 id="why-it-would-be-hard-to-show-that-diameter-is-sub-cubically-equivalent-to-apsp-if-its-even-true">why it would be hard to show that diameter is sub-cubically equivalent to APSP (if its even true)</h3>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a simple <span class="math inline">\(O(n^{2})\)</span> <strong>non-deterministic</strong> algorithm for diameter.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>To prove that the diameter is at least <span class="math inline">\(D\)</span> the PROOF is <span class="math inline">\(u,v\)</span> with <span class="math inline">\(d(u,v) \ge D\)</span>. To check the proof we run Dijkstra’s algorithm (SSSP).</p>
+<p>To prove that the diameter is at most <span class="math inline">\(D\)</span> the PROOF is a “shortest path tree” out of every vertex <span class="math inline">\(v\)</span>. To check the proof we make sure that the edges in the tree are legit (i.e., actually correspond to edges in the original graph) and then we also check that the distances are sufficiently small.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a not-so-simple <span class="math inline">\(O(n^{(3+\omega)/2})\)</span> time <strong>non-deterministic</strong> algorithm for “zero-triangle” (the problem: does my graph have a triangle with edges summing to <span class="math inline">\(0\)</span>).</p>
+<p>Let <span class="math inline">\(G\)</span> be a graph with integer weights of absolute value at-most <span class="math inline">\(n^{c}\)</span> for some constant <span class="math inline">\(c\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<ul>
+<li><p>For any prime <span class="math inline">\(p\)</span> we can count the number of triangles in <span class="math inline">\(G\)</span> whose weight is <span class="math inline">\(\equiv 0 \mod p\)</span> in time <span class="math inline">\(\widetilde{O}(pn^{\omega})\)</span>:</p></li>
+<li><p>This is by using generating functions and cubing the matrix. Specifically, in <span class="math inline">\(A[i,j]\)</span> we write the polynomial <span class="math inline">\(x^{w(i,j) \mod p}\)</span>. After cubing, the number of zero-sum (mod <span class="math inline">\(p\)</span>) triangles involving vertex <span class="math inline">\(i\)</span> is the sum of the coefficients on the <span class="math inline">\(x^{0},x^{p},x^{2p}\)</span> terms in <span class="math inline">\(A^{3}[i,i]\)</span>.</p></li>
+<li><p>There is some small prime <span class="math inline">\(p^{*}\)</span> relative to which there are not so many zero-sum-mod-<span class="math inline">\(p^{*}\)</span> triangles.</p></li>
+<li><p>Now, the proof is this prime and a list of all the triangles with zero-sum-mod-<span class="math inline">\(p^{*}\)</span>.</p></li>
+<li><p>A verifier checks to make sure that all the given triangles are indeed zero-sum-mod-<span class="math inline">\(p^{*}\)</span> but not actually zero-sum and that all the zero-sum-mod-<span class="math inline">\(p^{*}\)</span> things are accounted for, in which case there cannot be any real zero-sum triangles.</p></li>
+</ul>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Exact diameter: run APSP.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(G\)</span> be a graph with diameter <span class="math inline">\(3d\)</span> (for simplicity). Then we can give a <span class="math inline">\(n^{2}+m\sqrt{n}\)</span> time <span class="math inline">\(1.5\)</span>-approx to diameter.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<ul>
+<li>Let <span class="math inline">\(T_v\)</span> be the <span class="math inline">\(\sqrt{n}\)</span> closest vertices to <span class="math inline">\(v\)</span> for each <span class="math inline">\(v\)</span>.</li>
+<li>Let <span class="math inline">\(S\)</span> be a size <span class="math inline">\(\sqrt{n}\log n\)</span>-sized set that intersects each <span class="math inline">\(T_v\)</span>.</li>
+<li>BFS out of all vertices <span class="math inline">\(s\in S\)</span>. Let <span class="math inline">\(D_1\)</span> be the largest distance found from all these BFS runs.</li>
+<li>Let <span class="math inline">\(w\)</span> be the vertex that is the farthest from <span class="math inline">\(S\)</span>, i.e., the vertex maximizing <span class="math inline">\(\min_{s\in S} d(s, w)\)</span>.</li>
+<li>BFS out of <span class="math inline">\(w\)</span>. BFS into each <span class="math inline">\(v\in T_w\)</span>.</li>
+<li>Let <span class="math inline">\(D_2\)</span> be the largest distance found in previous step.</li>
+<li>Output <span class="math inline">\(1.5\cdot \max(D_1, D_2)\)</span>.</li>
+</ul>
+<p><strong>correctness:</strong> TODO 2.1</p>
+<p><strong>performance:</strong> TODO 2.2</p>
+</div>
+<h1 id="lecture-13-approximate-apsp">lecture 13: approximate APSP</h1>
+<h1 id="lecture-14-spanners">lecture 14: spanners</h1>
+<h1 id="lecture-15-approximate-distance-oracles">lecture 15: approximate distance oracles</h1>
+<h1 id="lecture-16-matchings">lecture 16: matchings</h1>
+<h1 id="lecture-17-more-matchings">lecture 17: more matchings</h1>
