@@ -126,6 +126,26 @@
 <img src="src/images/ink_img005.png" alt="" /><figcaption>ink_img005</figcaption>
 </figure>
 </div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> An <span class="math inline">\(\widetilde{O}(n^{2})\)</span> time algo for <span class="math inline">\(6\)</span>-cycle.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Important fact: any connected graph with average degree at least <span class="math inline">\(4\)</span> has a <span class="math inline">\(4\)</span>-edge path emenating from every vertex.</p>
+<p>Corollary: in any graph <span class="math inline">\(G\)</span> with average degree at least <span class="math inline">\(4\)</span> we can find a <span class="math inline">\(4\)</span>-edge path in <span class="math inline">\(G\)</span> in linear time. Proof: First, if the edge density of <span class="math inline">\(G\)</span> is more than <span class="math inline">\(n^{.1}\)</span> we can do it by super-saturation in <span class="math inline">\(\log n\)</span> time with high probability. Else, just do a <span class="math inline">\(2\)</span>-step BFS (not BFS cycle) out of some vertex. And then its pretty easy.</p>
+<p>We give an <span class="math inline">\(\widetilde{O}(n)\)</span> algorithm that given a vertex <span class="math inline">\(v\)</span> contained in a <span class="math inline">\(6\)</span>-cycle outputs a <span class="math inline">\(6\)</span>-cycle not-necessarily containing <span class="math inline">\(v\)</span>.</p>
+<p>We BFS but we quit if there is every average degree at least <span class="math inline">\(4\)</span> within a level of BFS or between levels of BFS. More particularly, let <span class="math inline">\(L_1,L_2,L_3\)</span> be the levels of BFS.</p>
+<p>Let <span class="math inline">\(G[L_i]\)</span> denote the induced subgraph on vertices <span class="math inline">\(L_i\)</span> and let <span class="math inline">\(G[L_i, L_{i+1}]\)</span> denote the bipartite subgraph consisting of edges with one endpoint in <span class="math inline">\(L_i\)</span> and the other endpoint in <span class="math inline">\(L_{i+1}\)</span>.</p>
+<ul>
+<li><p>Case 1: <span class="math inline">\(G[L_1]\)</span> has average degree at least <span class="math inline">\(4\)</span>. Then, find a connected component of <span class="math inline">\(G[L_1]\)</span> with average degree at least <span class="math inline">\(4\)</span>; this can be done in linear time. Then, find a <span class="math inline">\(4\)</span>-edge path in this connected component of <span class="math inline">\(G[L_1]\)</span> and connect it to the BFS root <span class="math inline">\(v\)</span>: it’s a <span class="math inline">\(6\)</span>-cycle!</p></li>
+<li><p>Case 2: <span class="math inline">\(G[L_1, L_2]\)</span> has average degree at least <span class="math inline">\(4\)</span>. Then, find a <span class="math inline">\(4\)</span>-path in a connected component of <span class="math inline">\(G[L_1, L_2]\)</span> with average degree at least <span class="math inline">\(4\)</span> and connect it to the BFS root <span class="math inline">\(v\)</span>: it’s a <span class="math inline">\(6\)</span>-cycle. Note the key fact that a <span class="math inline">\(4\)</span>-edge path in a bipartite graph starts and ends in the same part.</p></li>
+<li><p>Case 3: <span class="math inline">\(G[L_2]\)</span> has average degree at least <span class="math inline">\(4\)</span>. Here we need a picture: <img src="src/images/ink_img006.png" alt="ink_img006" /> Basically, you find a <span class="math inline">\(4\)</span>-path. If it contains a <span class="math inline">\(2\)</span>-path that is connected to <span class="math inline">\(2\)</span> separate vertices from <span class="math inline">\(L_1\)</span> then that gives a <span class="math inline">\(6\)</span>-cycle. If the <span class="math inline">\(4\)</span>-path’s endpoints are connected to the same vertex in <span class="math inline">\(L_1\)</span> we also get a <span class="math inline">\(6\)</span>-cycle. Finally, if both of the above things fail we get a <span class="math inline">\(6\)</span>-cycle on the other end. Or rather I should say, it is impossible for both of these things to fail.</p></li>
+<li><p>Case 4: <span class="math inline">\(G[L_2, L_3]\)</span> has average degree at least <span class="math inline">\(4\)</span>. Again this is great because this is bipartite so a <span class="math inline">\(4\)</span>-path in it works ust the same way as a <span class="math inline">\(4\)</span>-path in <span class="math inline">\(G[L_2]\)</span> from case 3.</p></li>
+<li><p>Case 5: Now, assuming all that stuff didn’t happen, we can win in time <span class="math inline">\(n\log n\)</span> with high probability.</p>
+<p>Let’s mark the vertices in <span class="math inline">\(L_2\)</span> by which vertex from <span class="math inline">\(L_1\)</span> they are reachable from. If a vertex in <span class="math inline">\(L_2\)</span> is reachable from multiple <span class="math inline">\(L_1\)</span> vertices, call that vertex <strong>extra-nice</strong>.</p>
+<p>Then we want to find a vertex in <span class="math inline">\(L_3\)</span> that is hit by two <span class="math inline">\(L_2\)</span> vertices with distinct labels. E.g., a <span class="math inline">\(v_1\)</span>-reachable and a <span class="math inline">\(v_2\)</span>-reachable <span class="math inline">\(L_2\)</span> vertex or an extra-nice vertex and any other vertex. Seems like this should be <span class="math inline">\(O(n)\)</span> time because there are <span class="math inline">\(O(n)\)</span> edges emenating from <span class="math inline">\(L_2\)</span>.</p>
+<p><strong>TODO: I think I must be wrong here, because this is quite a bit stronger than what the pset asked for.</strong></p></li>
+</ul>
+</div>
 <strong>Broken proof</strong> for general <span class="math inline">\(k\)</span>
 <div class="pf envbox">
 <p><strong>Proof.</strong> <strong>EDIT: no this is not quite right. the problem is, BFS-cycle might return a smaller cycle than our target size!! so this doesn’t work. CAUTION.</strong></p>
@@ -303,6 +323,13 @@
 <li><span class="math inline">\(m^{13/8}\)</span> algorithm for <span class="math inline">\(C_6\)</span>’s</li>
 <li>Count number of <span class="math inline">\(C_k\)</span>’s for <span class="math inline">\(k\le 7\)</span> in <span class="math inline">\(n^{\omega}\)</span> time. Unlikely to be possible for <span class="math inline">\(C_8\)</span>’s because <span class="math inline">\(K_4\)</span>’s are harder than <span class="math inline">\(K_3\)</span>’s.</li>
 </ul>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Every connected <span class="math inline">\(n\)</span> vertex graph with <span class="math inline">\(kn\)</span> edges has a <span class="math inline">\(k\)</span>-edge path (not necessarily induced) emenating from every vertex.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We prove this by induction on <span class="math inline">\(k.\)</span> For <span class="math inline">\(k=1\)</span>, the base case, this is quite clear. For <span class="math inline">\(k&gt;1\)</span> we induct on <span class="math inline">\(n\)</span>. Let <span class="math inline">\(G\)</span> be an <span class="math inline">\(n+1\)</span> vertex graph with at least <span class="math inline">\(k(n+1)\)</span> edges.</p>
+<p>Deleting any vertex may disconnect the graph into several connected components <span class="math inline">\(V_1,V_2,\ldots,V_\ell\)</span>. However, we claim that at least one of these connected components has average degree at least <span class="math inline">\(k-1\)</span>. You can check this. So to find the desired path, delete your vertex and then recursively find a <span class="math inline">\(k-1\)</span> path in the connected component with highest average degree.</p>
 </div>
 <h2 id="some-questions">some questions</h2>
 <ul>
