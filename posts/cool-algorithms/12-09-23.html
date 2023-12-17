@@ -67,6 +67,7 @@
 <blockquote>
 <p>Is this tight? Turns out it is for odd cycles but not for even.</p>
 </blockquote>
+<h1 id="many-proofs-of-4-cycle-in-n2-time">many proofs of <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(n^2\)</span> time</h1>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> “Even cycles Even Faster”</p>
 <ol type="1">
@@ -75,13 +76,57 @@
 </ol>
 </div>
 <p>First I present two simple proofs of the theorem for <span class="math inline">\(k=2\)</span>. Then I’ll present a proof for general <span class="math inline">\(k\)</span>.</p>
-<div class="pf envbox">
-<p><strong>Proof.</strong> 1. Common neighbor(x,y): make an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(A\)</span>. <span class="math inline">\(A[i,j]\)</span> will store whether we have found a common neighbor for <span class="math inline">\(i,j\)</span> so far. If any cell in the matrix ever gets hit twice then we found a <span class="math inline">\(4\)</span>-cycle.</p>
-<p>What we do is, for each vertex <span class="math inline">\(v\)</span>, for each pair of vertices in <span class="math inline">\(N(v)\)</span> mark them as having a common neighbor.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(4\)</span>-cycle, <span class="math inline">\(n^{2}\)</span> time.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> 2. wlog its bipartite: In particular, take <span class="math inline">\(G=(V,E)\)</span>, and form <span class="math inline">\(G&#39;\)</span> by duplicating the vertex set to <span class="math inline">\(V\sqcup V&#39;\)</span> and put an edge between <span class="math inline">\(uv&#39;\)</span> if <span class="math inline">\(uv\)</span> is an edge in <span class="math inline">\(G\)</span>. Then, if you had a <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(G\)</span> it is converted into a <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(G&#39;\)</span>. But of course <span class="math inline">\(G&#39;\)</span> is bipartite and only a constant-factor larger. Then, run BFS-cycle out of each vertex (for depth <span class="math inline">\(2\)</span>). This must terminate fast. More precisely, for all vertices in the neighbor-set of one of your vertices color their left-neighbors. If a left-neighbor gets colored twice it means you have a <span class="math inline">\(C_4\)</span>.</p>
+<p><strong>Proof.</strong> 1. Common neighbor(x,y): make an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(A\)</span>. <span class="math inline">\(A[i,j]\)</span> will store whether we have found a common neighbor for <span class="math inline">\(i,j\)</span> so far. If any cell in the matrix ever gets hit twice then we found a <span class="math inline">\(4\)</span>-cycle. What we do is, for each vertex <span class="math inline">\(v\)</span>, for each pair of vertices in <span class="math inline">\(N(v)\)</span> mark them as having a common neighbor.</p>
+<ol start="2" type="1">
+<li><p>wlog its bipartite: In particular, take <span class="math inline">\(G=(V,E)\)</span>, and form <span class="math inline">\(G&#39;\)</span> by duplicating the vertex set to <span class="math inline">\(V\sqcup V&#39;\)</span> and put an edge between <span class="math inline">\(uv&#39;\)</span> if <span class="math inline">\(uv\)</span> is an edge in <span class="math inline">\(G\)</span>. Then, if you had a <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(G\)</span> it is converted into a <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(G&#39;\)</span>. But of course <span class="math inline">\(G&#39;\)</span> is bipartite and only a constant-factor larger. Then, run BFS-cycle out of each vertex (for depth <span class="math inline">\(2\)</span>). This must terminate fast. More precisely, for all vertices in the neighbor-set of one of your vertices color their left-neighbors. If a left-neighbor gets colored twice it means you have a <span class="math inline">\(C_4\)</span>.</p></li>
+<li><p>Again, lets just work in bipartite graphs. wlog by Bond Simonivitis <span class="math inline">\(m\le 200 n^{1.5}\)</span>. Do a 2 step BFS out of some vertex <span class="math inline">\(v\)</span> with degree <span class="math inline">\(\ge \sqrt{n}\)</span>. If we found a <span class="math inline">\(4\)</span>-cycle then that’s lovely. Else, itterate over all <span class="math inline">\(w\in RHS\)</span> and check if any of them have two neighbors in <span class="math inline">\(N(u)\)</span> for any <span class="math inline">\(u\in N(v)\)</span>. This will take <span class="math inline">\(n^{1.5}\)</span> time. If any of the checks pass, we get a <span class="math inline">\(4\)</span>-cycle. Else, we can delete the vertices <span class="math inline">\(N(v)\)</span>: they are not part of any four-cycles. The gist is we keep paying <span class="math inline">\(n^{1.5}\)</span> to kick <span class="math inline">\(\sqrt{n}\)</span> vertices. Should pay <span class="math inline">\(n^{2}\)</span> to kick all <span class="math inline">\(n\)</span> vertices.</p></li>
+</ol>
+<p><strong>You can also get better results if your graph is extra sparse.</strong> 4. For instance, here’s an <span class="math inline">\(O(nm^{2/3})\)</span> time algorithm: BFS-cycle out of all vertices with more than <span class="math inline">\(m^{1/3}\)</span> degree, do a restricted BFS-cycle ignoring high degree vertices out of all vertices. Costs <span class="math display">\[\frac{m}{H} n + nH^{2}.\]</span> IMPORTANT: first make your graph bipartite before you do this, to kill triangles.</p>
+<ol start="5" type="1">
+<li><span class="math inline">\(m\sqrt{n}\)</span> algorithm: again, we are going to assume bipartite (we can make a bipartite instance in <span class="math inline">\(O(m+n)\)</span> time so this is legal; could also argue by color coding but that’s overkill).</li>
+</ol>
+<ul>
+<li><p>BFS-cycle out of all vertices with degree larger than <span class="math inline">\(\sqrt{n}\)</span></p></li>
+<li><p>Now we only focus on vertices of degree smaller than <span class="math inline">\(\sqrt{n}\)</span></p></li>
+<li><p>for <span class="math inline">\((v,w)\in E(g)\)</span></p>
+<ul>
+<li>for <span class="math inline">\(x\in N(v)\)</span>
+<ul>
+<li>Mark <span class="math inline">\(x,w\)</span> as friends, unless they were already friends in which case we have a <span class="math inline">\(4\)</span>-cycle. Run time is <span class="math display">\[\frac{m}{\sqrt{n}}n + m\sqrt{n}.\]</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<ol start="6" type="1">
+<li><span class="math inline">\(O(m^{4/3}\)</span> algorithm (ok, we’re assuming <span class="math inline">\(m\ge n\)</span>, here and always and forever)</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>degrees <span class="op">=</span> [array storing <span class="bu">hash</span><span class="op">-</span>sets of which vertices are of each degree]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>my_degree <span class="op">=</span> [lookup table, <span class="cf">for</span> each vertex tells you where it <span class="kw">is</span> <span class="kw">in</span> the degree table]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="cf">while</span> there are vertices <span class="cf">with</span> degree <span class="op">&lt;</span> <span class="dv">200</span> m<span class="op">^</span>{<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>}:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  delete some such vertex w</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  modify the degrees of the neighbors of w appropriately</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="cf">if</span> this resulted <span class="kw">in</span> a non<span class="op">-</span>empty graph:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  we have <span class="bu">super</span><span class="op">-</span>saturation <span class="kw">in</span> this graph, <span class="kw">and</span> insta<span class="op">-</span>win</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="cf">else</span>:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>  Let v1,v2,... be the order that we deleted vertices <span class="kw">in</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  <span class="cf">for</span> v <span class="op">=</span> v1,v2, etc:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    <span class="cf">for</span> each pair (a,b) <span class="kw">in</span> N(v):</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>      mark a,b <span class="im">as</span> friends, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>      unless they are already friends,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>      <span class="kw">in</span> which case we found a <span class="dv">4</span> cycle</span></code></pre></div>
+<p>The correctness of this algorithm is pretty clear. Now we analyze its performance.</p>
+<p>First, assume that the resulting graph after the deletions is non-empty. It costs <span class="math inline">\(m^{1/3}\)</span> to delete a vertex, because the vertex has low degree and we must update its neighbor’s degree counters. Finding the minimum degree vertex is always super cheap because we keep a sorted list. The super-saturation stuff is super cheap. So we pay <span class="math inline">\(nm^{1/3}\le m^{4/3}\)</span> in this case.</p>
+<p>Now, assume that the resulting graph after the deletions turns out to be empty. Then, we claim that if we do the construction from the previous method a bit more carefully stuff will work. You might hope that we can just immediately use the previous construction. But its not the case that all vertices have degree smaller than <span class="math inline">\(m^{1/3}\)</span> here, they just did after some deletions. So, we will process vertices in this same order and achieve the same bound. Specifically, if we deleted the vertices in the order <span class="math inline">\(v_1,v_2,v_3,\ldots\)</span> we first handle the edges out of <span class="math inline">\(v_1\)</span>, then delete <span class="math inline">\(v_1\)</span> and handle the edges out of <span class="math inline">\(v_2\)</span> etc. And when I say delete I really do mean clean up the adjacency lists of all of <span class="math inline">\(v_1\)</span>’s friends; this should be find seeing as there are not so many of them. Anyways with this method you repeatedly take time <span class="math inline">\(|N(v_i)|^{2}\)</span> (note it’s the number of neighbors after we have already deleted some neighbors) to kill <span class="math inline">\(|N(v_i)|\)</span> edges. But of course we have our degree constraint. So the worse time-edge-killed tradeoff possible is <span class="math inline">\(m^{1/3}\)</span> edges per <span class="math inline">\(m^{2/3}\)</span> time. But even this way we will kill all edges after <span class="math inline">\(m^{2/3}\)</span> steps. So we win in time <span class="math inline">\(m^{4/3}\)</span>.</p>
+<figure>
+<img src="src/images/ink_img005.png" alt="" /><figcaption>ink_img005</figcaption>
+</figure>
 </div>
+<strong>Broken proof</strong> for general <span class="math inline">\(k\)</span>
 <div class="pf envbox">
 <p><strong>Proof.</strong> <strong>EDIT: no this is not quite right. the problem is, BFS-cycle might return a smaller cycle than our target size!! so this doesn’t work. CAUTION.</strong></p>
 <p>goal: check whether our graph contains a <span class="math inline">\(2k\)</span>-cycle Note: wlog <span class="math inline">\(m\le 200 n^{1+\frac{1}{k}}\)</span> or else we are guaranteed to have a <span class="math inline">\(2k\)</span>-cycle (even, super-saturation of <span class="math inline">\(2k\)</span>-cycles. anyways, we can find them.)</p>
