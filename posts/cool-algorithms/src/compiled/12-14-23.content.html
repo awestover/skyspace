@@ -33,7 +33,7 @@
 <div class="thm envbox">
 <p><strong>Theorem.</strong> You can compute strongly connected components in <span class="math inline">\(n^{2}\)</span> time.</p>
 </div>
-<h1 id="lecture-3-intro-to-apsp">lecture 3: intro to APSP</h1>
+<h1 id="lecture-3--intro-to-apsp">lecture 3- intro to APSP</h1>
 <p>APSP: Given a weighted (possibly directed) graph, compute <span class="math inline">\(d(u,v)\)</span> for all vertices <span class="math inline">\(u,v\)</span>.</p>
 <p>Best algorithm as of 2021 (Ryan Williams): <span class="math inline">\(n^{3} / 2^{\Omega(\sqrt{\log n})}\)</span>.</p>
 <p>Observation: <span class="math inline">\(d(u,v)\)</span> is the smallest <span class="math inline">\(k\)</span> for which <span class="math inline">\(A^{k}[u,v]\neq 0\)</span>. This is great if the graph has small diameter. For far away vertices we need another technique</p>
@@ -62,7 +62,7 @@
 </ul>
 <p>so it turns out that there is some MM stuff that you can do by looking at the neighborhood of a vertex to determine the parity of the distance, based on the above observation.</p>
 </div>
-<h1 id="lecture-4-zwicks-apsp-algorithm">lecture 4: Zwick’s APSP Algorithm</h1>
+<h1 id="lecture-4--zwicks-apsp-algorithm">lecture 4- Zwick’s APSP Algorithm</h1>
 <div class="lem envbox">
 <p><strong>Lemma.</strong> Dijstra’s algorithm: Given a graph <span class="math inline">\(G\)</span> with non-negative edge weights, there is an algorithm wtih running time <span class="math inline">\(O(m+n\log n)\)</span> to compute SSSP.</p>
 </div>
@@ -74,7 +74,7 @@
 <li>Repeatedly take the closest vertex from the heap, and update the distance to all vertices through this vertex</li>
 </ul>
 </div>
-<h1 id="lecture-5-weighted-apsp">lecture 5: weighted APSP</h1>
+<h1 id="lecture-5--weighted-apsp">lecture 5- weighted APSP</h1>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> You can also do APSP in weighted undirected graphs pretty fast.</p>
 </div>
@@ -89,10 +89,10 @@
 <p><span class="math inline">\((\min, +)\)</span>-product is <strong>actually</strong> equivalent to APSP. No “combinatorial algorithm” nonsense.</p>
 <p>However, it turns out you can compute <span class="math inline">\(A\star B\)</span> using fast MM if the entries are all small integers.</p>
 </div>
-<h1 id="lectures-6-todo">lectures 6: TODO!!</h1>
+<h1 id="lectures-6--todo">lectures 6- TODO</h1>
 <p>All pairs earliest arrivals, bottleneck paths and the dominance product</p>
-<h1 id="lecture-7-successor-and-witness-matrices-computing-actual-paths">lecture 7: Successor and witness matrices; computing actual paths</h1>
-<h1 id="lecture-8-minimum-weight-triangle">lecture 8: minimum weight triangle</h1>
+<h1 id="lecture-7--successor-and-witness-matrices-computing-actual-paths-todo">lecture 7- Successor and witness matrices; computing actual paths: TODO</h1>
+<h1 id="lecture-8--minimum-weight-triangle">lecture 8- minimum weight triangle</h1>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Minimum vertex weight triangle: vertices are given integer weights. Find the triangle of minimum weight. Can be done in <span class="math inline">\(O(n^{\omega+o(1)})\)</span>.</p>
 </div>
@@ -220,8 +220,8 @@
 <p><strong>correctness:</strong> TODO 2.1</p>
 <p><strong>performance:</strong> TODO 2.2</p>
 </div>
-<h1 id="lecture-13-approximate-apsp">lecture 13: approximate APSP</h1>
-<h1 id="lecture-14-spanners">lecture 14: spanners</h1>
-<h1 id="lecture-15-approximate-distance-oracles">lecture 15: approximate distance oracles</h1>
-<h1 id="lecture-16-matchings">lecture 16: matchings</h1>
-<h1 id="lecture-17-more-matchings">lecture 17: more matchings</h1>
+<h1 id="lecture-13--approximate-apsp">lecture 13- approximate APSP</h1>
+<h1 id="lecture-14--spanners">lecture 14- spanners</h1>
+<h1 id="lecture-15--approximate-distance-oracles">lecture 15- approximate distance oracles</h1>
+<h1 id="lecture-16--matchings">lecture 16- matchings</h1>
+<h1 id="lecture-17--more-matchings">lecture 17- more matchings</h1>
