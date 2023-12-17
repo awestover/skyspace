@@ -147,12 +147,27 @@
 </div>
 <p>But some <span class="math inline">\(H\)</span> are faster than <span class="math inline">\(k\)</span>-clique.</p>
 <h3 id="k3"><span class="math inline">\(k=3\)</span></h3>
-<ul>
-<li>triangle can be done in <span class="math inline">\(n^{\omega}\)</span> time</li>
-<li>V can be detected in <span class="math inline">\(n^{2}\)</span> time. I think I have an algorithm:</li>
-</ul>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Triangle can be done in <span class="math inline">\(n^{\omega}\)</span> time: <span class="math inline">\(tr(A^{3})=0?\)</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Induced <span class="math inline">\(V\)</span> (i.e., a triangle minus the third edge) can be found in <span class="math inline">\(O(m+n)\)</span>.</p>
+</div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> - Make a list of edges - Maintain sets <span class="math inline">\(A,B\)</span>, where <span class="math inline">\(A\)</span> is initialized to be an edge and <span class="math inline">\(B\)</span> to be empty - loop over all the vertices - if the vertex is connected to all of <span class="math inline">\(A\)</span> add it to <span class="math inline">\(A\)</span>. - if the vertex is connected to none of <span class="math inline">\(A\)</span> add it to <span class="math inline">\(B\)</span> - if neither of the above happened, you can just win using that vertex - At the end of this process, we have sets <span class="math inline">\(A,B\)</span> where <span class="math inline">\(A\)</span> is a clique and no vertices in <span class="math inline">\(B\)</span> have any neighbors in <span class="math inline">\(A\)</span>. - Delete <span class="math inline">\(A\)</span> and repeat the above stuff - should take time <span class="math inline">\(O(n |A|)\)</span> on each iteration, - so total time <span class="math inline">\(O(n^{2})\)</span>.</p>
+<p><strong>Proof.</strong></p>
+<ul>
+<li>for <span class="math inline">\(v\in V(G)\)</span>:
+<ul>
+<li>do two-step BFS out of <span class="math inline">\(v\)</span>.</li>
+<li>Case 1: the two-step BFS shows that <span class="math inline">\(N(v)\)</span> is a clique, and is not connected to anything in <span class="math inline">\(V(G) \setminus (N(v)\sqcup \left\{ v\right\})\)</span>.
+<ul>
+<li>in this case we remove <span class="math inline">\(\left\{ v\right\}\sqcup N(v)\)</span> from the graph and keep going.</li>
+</ul></li>
+<li>Case 2: if case 1 didn’t happen then we just win.</li>
+</ul></li>
+</ul>
+<p>Each time we do case 1 we spend time <span class="math inline">\(O(|N(v)|^{2})\)</span> and delete <span class="math inline">\(\Omega(|N(v)|^{2})\)</span> edges. But we never delete an edge twice. So the aggregate cost of all case 1’s is at most <span class="math inline">\(m\)</span>.</p>
+<p>This algo works because in the case 1 case the isolated clique is not ever helpful for finding an induced V, so its super find to just delete it.</p>
 </div>
 <h3 id="k4"><span class="math inline">\(k=4\)</span></h3>
 <p>“Finding Four-Node Subgraphs in Triangle Time” -Williams</p>
@@ -225,3 +240,4 @@
 <h1 id="lecture-15--approximate-distance-oracles">lecture 15- approximate distance oracles</h1>
 <h1 id="lecture-16--matchings">lecture 16- matchings</h1>
 <h1 id="lecture-17--more-matchings">lecture 17- more matchings</h1>
+<h1 id="misc-exercises">misc exercises</h1>

@@ -34,7 +34,8 @@
 <p><strong>Proof.</strong> 2. wlog its bipartite: In particular, take <span class="math inline">\(G=(V,E)\)</span>, and form <span class="math inline">\(G&#39;\)</span> by duplicating the vertex set to <span class="math inline">\(V\sqcup V&#39;\)</span> and put an edge between <span class="math inline">\(uv&#39;\)</span> if <span class="math inline">\(uv\)</span> is an edge in <span class="math inline">\(G\)</span>. Then, if you had a <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(G\)</span> it is converted into a <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(G&#39;\)</span>. But of course <span class="math inline">\(G&#39;\)</span> is bipartite and only a constant-factor larger. Then, run BFS-cycle out of each vertex (for depth <span class="math inline">\(2\)</span>). This must terminate fast. More precisely, for all vertices in the neighbor-set of one of your vertices color their left-neighbors. If a left-neighbor gets colored twice it means you have a <span class="math inline">\(C_4\)</span>.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> goal: check whether our graph contains a <span class="math inline">\(2k\)</span>-cycle Note: wlog <span class="math inline">\(m\le 200 n^{1+\frac{1}{k}}\)</span> or else we are guaranteed to have a <span class="math inline">\(2k\)</span>-cycle (even, super-saturation of <span class="math inline">\(2k\)</span>-cycles. anyways, we can find them.)</p>
+<p><strong>Proof.</strong> <strong>EDIT: no this is not quite right. the problem is, BFS-cycle might return a smaller cycle than our target size!! so this doesn’t work. CAUTION.</strong></p>
+<p>goal: check whether our graph contains a <span class="math inline">\(2k\)</span>-cycle Note: wlog <span class="math inline">\(m\le 200 n^{1+\frac{1}{k}}\)</span> or else we are guaranteed to have a <span class="math inline">\(2k\)</span>-cycle (even, super-saturation of <span class="math inline">\(2k\)</span>-cycles. anyways, we can find them.)</p>
 <p><strong>Case 1:</strong> There exists a high degree vertex, say with degree larger than <span class="math inline">\(H\)</span> somewhere on the cycle. There aren’t so many vertices like this. It costs <span class="math inline">\(\frac{m}{H} n\)</span> to just BFS-cycle out of all the high degree vertices.</p>
 <p><strong>Case 2</strong>: Negation of case 1. i.e., all vertices on the cycle have degree smaller than <span class="math inline">\(H\)</span>. Then we can do BFS-cycle a bit more efficiently, in time <span class="math inline">\(n H^{k}\)</span>.</p>
 <p>Balancing (1) and (2) gives:</p>
@@ -82,9 +83,6 @@
 <div class="thm envbox">
 <p><strong>Theorem.</strong> There is an algorithm that, given an <span class="math inline">\(n\)</span>-vertex graph <span class="math inline">\(G\)</span> with girth <span class="math inline">\(g\ge 3\)</span> outputs a cycle of length at most <span class="math display">\[2\left\lceil g/2 \right\rceil+2\left\lceil g/4 \right\rceil\le 2g,\]</span> in running time <span class="math inline">\(n^{5/3}\)</span>.</p>
 </div>
-<div class="rmk envbox">
-<p><strong>Remark.</strong> If you want to turn the decision problem stated above into actually an algorithm for finding the shortest cycle, then you can do the standard binary search trick.</p>
-</div>
 <hr />
 <div class="pf envbox">
 <p><strong>Proof.</strong> <strong>CAUTION</strong> I have not been especially careful with the floors and ceilings in this proof. They are really important if you care about small <span class="math inline">\(g\)</span>! Beware.</p>
@@ -123,7 +121,7 @@
 <hr />
 <div class="thm envbox">
 <p><strong>Theorem.</strong> (Due to Knudsen et al, also from the paper “New Subquadratic Approximation Algorithms for the Girth”.)</p>
-<p>There is a (multiplicative) <span class="math inline">\(\mathcal{O}(1)\)</span>-approx for girth with running time <span class="math inline">\(n^{2+1/k}\)</span> for any constant <span class="math inline">\(k\)</span>.</p>
+<p>There is a (multiplicative) <span class="math inline">\(\mathcal{O}(1)\)</span>-approx for girth with running time <span class="math inline">\(n^{1+1/k}\)</span> for any constant <span class="math inline">\(k\)</span>.</p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> We present it for <span class="math inline">\(k=5\)</span> for simplicity.</p>
@@ -144,14 +142,11 @@
 <hr />
 <h3 id="a-worse-algorithm">A worse algorithm:</h3>
 <div class="prop envbox">
-<p><strong>Proposition.</strong> 2-approx in <span class="math inline">\(n^2\)</span> time.</p>
+<p><strong>Proposition.</strong> 2-approx in <span class="math inline">\(n^2\)</span> time. remark: This is kind of bad, we can get a <span class="math inline">\(+1\)</span> approx in <span class="math inline">\(n^{2}\)</span> time lol.</p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> Let <span class="math inline">\(G=(V, E)\)</span>. form a new graph with vertex sets <span class="math inline">\(V, V&#39;\)</span>. make an edge <span class="math inline">\(xy&#39; \in G&#39;\)</span> for <span class="math inline">\(x\in V, y&#39;\in V&#39; \iff xy\in E(G)\)</span>. So <span class="math inline">\(G&#39;\)</span> is bipartite. claim: If G’ has a cycle of length <span class="math inline">\(k\)</span> then G has a cycle of length at least <span class="math inline">\(k/2\)</span>. proof: I brute-forced k=6. It seems like it should be true in general.</p>
 <p>recall: “even cycles even faster”: we can find even cycles (even is redundant because G’ is bipartite but whatever) in G’ in <span class="math inline">\(n^2\)</span> time.</p>
-</div>
-<div class="rmk envbox">
-<p><strong>Remark.</strong> this is strictly worse in every way (except maybe simplicity) than the <span class="math inline">\(1.5\)</span>-approx in <span class="math inline">\(n^{2}\)</span> time proved above.</p>
 </div>
 <h3 id="on2-additive-25-approximation-assuming-g100"><span class="math inline">\(o(n^2)\)</span> additive <span class="math inline">\(+25\)</span> approximation assuming <span class="math inline">\(g&lt;100\)</span></h3>
 <div class="thm envbox">
