@@ -287,6 +287,16 @@
 <p><strong>Theorem.</strong> In fact, in more recent work “Algorithmic trade-offs for girth approximation in undirected graphs” Virginia shows how to get an almost <span class="math inline">\(k\)</span>-approximation in <span class="math inline">\(n^{1+1/k}\)</span> time. (exponentially better than Knudsen’s result above!) More precisely, it outputs a cycle of length at most <span class="math inline">\(2k\left\lceil g/2 \right\rceil\)</span> where <span class="math inline">\(g\)</span> is the girth of <span class="math inline">\(G\)</span>.</p>
 <p>There is also a version of this that gives a slightly different guarantee if the girth <span class="math inline">\(g\)</span> is odd: it outputs a cycle of length at most <span class="math inline">\(2k\left\lfloor g/2 \right\rfloor+2\)</span> in time <span class="math inline">\(O(m(n^{2}/m)^{1/k}).\)</span></p>
 </div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Here’s a sketch of how the algo works.</p>
+<p>Remark: basically the same exact algo works for weighted case with minor modifications!</p>
+<p>Ok, so the algo is like this:</p>
+<p>First a pre-processing step. By Super-saturation we can wlog assume <span class="math inline">\(m\le 200kn^{1+1/k}\)</span>. In fact we can eliminate the <span class="math inline">\(\cdot k\)</span> thing here if we are more careful. Some kind of greedy argument for either proving the graph has pretty bounded degerneracy or finding a cycle. But whatever.</p>
+<p>Start doing a BFS out of a vertex, doing it like <span class="math inline">\(\left\lceil g/2 \right\rceil\)</span> levels at a time. If you find a cycle just return it. Let <span class="math inline">\(V_{i-1},V_{i}\)</span> be the size of the previous and current “BFS levels”.</p>
+<p>If <span class="math inline">\(|V_i|\le n^{1/k}|V_{i-1}|\)</span> then we remove <span class="math inline">\(V_{i-1}\)</span> from the graph and recurse on <span class="math inline">\(G\setminus V_{i-1}\)</span>.</p>
+<p>Analysis: - we charge each edge for being deleted (each edge is deleted exactly once). - we charge each vertex for the work done between “phases”. The work is like <span class="math inline">\(|V_i|\log n\)</span> and the number of vertices that we spread the blame over is <span class="math inline">\(|V_{i-1}|\)</span>, so each vertex is charged <span class="math inline">\(n^{1/k}\)</span>.</p>
+<p>This gives <span class="math inline">\(n^{1+1/k}\)</span> as desired (recall our assumption on <span class="math inline">\(m\)</span> being small).</p>
+</div>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> In “Algorithmic trade-offs for girth approximation in undirected graphs” Virginia gives an algorithm that takes as input parameters <span class="math inline">\(g_0,k\)</span> and has the following guarantee:</p>
 <ul>
