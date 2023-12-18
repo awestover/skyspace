@@ -1,5 +1,5 @@
 <p>The topic today is taken from <a href="https://people.csail.mit.edu/virgi/6.890/">Virginia Williams’ MM + Graph Algs lecture notes</a>. Throughout the post <span class="math inline">\(\omega&lt;2.4\)</span> is the matrix multiplication exponent. MM will stand for matrix multiplication.</p>
-<h1 id="cycles-versus-triangles">Cycles versus triangles</h1>
+<h1 id="general-notes-on-exact-cycle-finding">General Notes on Exact Cycle Finding</h1>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Let <span class="math inline">\(k\in \mathbb{N}_{\ge 3}\)</span> be a constant. directed/undirected-<span class="math inline">\(k\)</span>-cycle detection can be accomplished in <span class="math inline">\(n^{\omega}\)</span> time on <span class="math inline">\(n\)</span>-vertex graphs.</p>
 </div>
@@ -15,10 +15,38 @@
 <img src="src/images/graph1.png" alt="" /><figcaption>src/images/graph1.png</figcaption>
 </figure>
 </div>
-<blockquote>
-<p>Is this tight? Turns out it is for odd cycles but not for even.</p>
-</blockquote>
-<h1 id="many-proofs-of-4-cycle-in-n2-time">many proofs of <span class="math inline">\(4\)</span>-cycle in <span class="math inline">\(n^2\)</span> time</h1>
+<p>It turns out that even cycle detection can be done in <span class="math inline">\(n^{2}\)</span> time in undirected graphs. Now I establish that odd cycle detection does require <span class="math inline">\(n^{\omega}\)</span> time. First we prove another interesting result:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(k\)</span> be an odd constant. Then directed-<span class="math inline">\(k\)</span>-cycle is equivalently hard to undirected-<span class="math inline">\(k\)</span>-cycle.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We can convert an instance of undirected-<span class="math inline">\(k\)</span>-cycle to directed-<span class="math inline">\(k\)</span>-cycle by thinking of each edge <span class="math inline">\(\left\{ u,v\right\}\)</span> as being two directed edges <span class="math inline">\(u\to v\)</span> and <span class="math inline">\(v\to u\)</span>.</p>
+<p>The other direction is more subtle. We are given an instance of directed-<span class="math inline">\(k\)</span>-cycle. By color coding we assume that the graph has parts <span class="math inline">\(V_1,V_2,\ldots, V_k\)</span> and we only consider edges from <span class="math inline">\(V_i\to V_{i+1}\)</span>. Let this new graph be <span class="math inline">\(G&#39;\)</span>.</p>
+<p>Let <span class="math inline">\(G&#39;&#39;\)</span> be the graph obtained by dropping the directionality on the edges in <span class="math inline">\(G&#39;\)</span>.</p>
+<p><strong>Claim</strong>: <span class="math inline">\(G&#39;&#39;\)</span> has an undirected-<span class="math inline">\(k\)</span>-cycle iff colorful <span class="math inline">\(G&#39;\)</span> has a directed <span class="math inline">\(k\)</span>-cycle.</p>
+<p>Proof of claim: If <span class="math inline">\(G&#39;\)</span> has a cycle then dropping the directionality won’t kill the cycle. If the cycle in <span class="math inline">\(G&#39;&#39;\)</span> uses a vertex from each of the <span class="math inline">\(k\)</span> parts <span class="math inline">\(V_i\)</span> then it is clearly a cycle in <span class="math inline">\(G&#39;\)</span>. Assume for contradiction that there is a cycle in <span class="math inline">\(G&#39;&#39;\)</span> that doesn’t use some part <span class="math inline">\(V_i\)</span>. But <span class="math inline">\(G&#39;&#39;\setminus V_i\)</span> is bipartite, so it cannot contain an odd cycle.</p>
+<figure>
+<img src="src/images/graph2.png" alt="" /><figcaption>Depictionn of the layered grahp</figcaption>
+</figure>
+<figure>
+<img src="src/images/graph3.png" alt="" /><figcaption>Why this breaks if k is even</figcaption>
+</figure>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(k\)</span> be a constant. Directed-<span class="math inline">\(k\)</span>-cycle is equivalently hard to triangle detection.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We already showed how to solve directed-<span class="math inline">\(k\)</span>-cycle with MM.</p>
+<p>Let <span class="math inline">\(G = (V, E)\)</span> be a graph we want to do triangle detection in. Make <span class="math inline">\(k\)</span> copies of the vertex set: <span class="math inline">\(V_1,V_2,\ldots, V_k\)</span>. We denote the copies of a vertex <span class="math inline">\(v\)</span> by <span class="math inline">\(v_1,v_2,\ldots, v_k\)</span>.</p>
+<ul>
+<li><p>Connect <span class="math inline">\(u_1\to v_2 \in V_1 \times V_2\)</span> iff <span class="math inline">\((u,v)\in E(G)\)</span>.</p></li>
+<li><p>Connnect <span class="math inline">\(u_k\to v_1 \in V_{k}\times V_1\)</span> iff <span class="math inline">\((u,v) \in E(G)\)</span></p></li>
+<li><p>For each <span class="math inline">\(i\in [2, k-1]\)</span> and each vertex <span class="math inline">\(v\in V\)</span> connect <span class="math inline">\(v_i\to v_{i+1}\in V_i \times V_{i+1}\)</span>.</p>
+<p>A <span class="math inline">\(k\)</span>-cycle in this new graph corresponds to a triangle in the original graph.</p></li>
+</ul>
+</div>
+<hr />
+<h1 id="finding-even-cycles">Finding Even Cycles</h1>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> “Even cycles Even Faster”</p>
 <ol type="1">
@@ -107,39 +135,90 @@
 <p><span class="math display">\[ \frac{m}{H}n = nH^{k} \implies H = m^{1/(k+1)}.\]</span></p>
 <p>This yields running time <span class="math display">\[n m^{k/(k+1)} \le n n^{(1+1/k)(k/(k+1))} = n^{2}.\]</span></p>
 </div>
-<p>Now I establish that odd cycle detection does require <span class="math inline">\(n^{\omega}\)</span> time. First we prove another interesting result:</p>
-<div class="thm envbox">
-<p><strong>Theorem.</strong> Let <span class="math inline">\(k\)</span> be an odd constant. Then directed-<span class="math inline">\(k\)</span>-cycle is equivalently hard to undirected-<span class="math inline">\(k\)</span>-cycle.</p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> We can convert an instance of undirected-<span class="math inline">\(k\)</span>-cycle to directed-<span class="math inline">\(k\)</span>-cycle by thinking of each edge <span class="math inline">\(\left\{ u,v\right\}\)</span> as being two directed edges <span class="math inline">\(u\to v\)</span> and <span class="math inline">\(v\to u\)</span>.</p>
-<p>The other direction is more subtle. We are given an instance of directed-<span class="math inline">\(k\)</span>-cycle. By color coding we assume that the graph has parts <span class="math inline">\(V_1,V_2,\ldots, V_k\)</span> and we only consider edges from <span class="math inline">\(V_i\to V_{i+1}\)</span>. Let this new graph be <span class="math inline">\(G&#39;\)</span>.</p>
-<p>Let <span class="math inline">\(G&#39;&#39;\)</span> be the graph obtained by dropping the directionality on the edges in <span class="math inline">\(G&#39;\)</span>.</p>
-<p><strong>Claim</strong>: <span class="math inline">\(G&#39;&#39;\)</span> has an undirected-<span class="math inline">\(k\)</span>-cycle iff colorful <span class="math inline">\(G&#39;\)</span> has a directed <span class="math inline">\(k\)</span>-cycle.</p>
-<p>Proof of claim: If <span class="math inline">\(G&#39;\)</span> has a cycle then dropping the directionality won’t kill the cycle. If the cycle in <span class="math inline">\(G&#39;&#39;\)</span> uses a vertex from each of the <span class="math inline">\(k\)</span> parts <span class="math inline">\(V_i\)</span> then it is clearly a cycle in <span class="math inline">\(G&#39;\)</span>. Assume for contradiction that there is a cycle in <span class="math inline">\(G&#39;&#39;\)</span> that doesn’t use some part <span class="math inline">\(V_i\)</span>. But <span class="math inline">\(G&#39;&#39;\setminus V_i\)</span> is bipartite, so it cannot contain an odd cycle.</p>
-<figure>
-<img src="src/images/graph2.png" alt="" /><figcaption>Depictionn of the layered grahp</figcaption>
-</figure>
-<figure>
-<img src="src/images/graph3.png" alt="" /><figcaption>Why this breaks if k is even</figcaption>
-</figure>
-</div>
-<div class="thm envbox">
-<p><strong>Theorem.</strong> Let <span class="math inline">\(k\)</span> be a constant. Directed-<span class="math inline">\(k\)</span>-cycle is equivalently hard to triangle detection.</p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> We already showed how to solve directed-<span class="math inline">\(k\)</span>-cycle with MM.</p>
-<p>Let <span class="math inline">\(G = (V, E)\)</span> be a graph we want to do triangle detection in. Make <span class="math inline">\(k\)</span> copies of the vertex set: <span class="math inline">\(V_1,V_2,\ldots, V_k\)</span>. We denote the copies of a vertex <span class="math inline">\(v\)</span> by <span class="math inline">\(v_1,v_2,\ldots, v_k\)</span>.</p>
-<ul>
-<li><p>Connect <span class="math inline">\(u_1\to v_2 \in V_1 \times V_2\)</span> iff <span class="math inline">\((u,v)\in E(G)\)</span>.</p></li>
-<li><p>Connnect <span class="math inline">\(u_k\to v_1 \in V_{k}\times V_1\)</span> iff <span class="math inline">\((u,v) \in E(G)\)</span></p></li>
-<li><p>For each <span class="math inline">\(i\in [2, k-1]\)</span> and each vertex <span class="math inline">\(v\in V\)</span> connect <span class="math inline">\(v_i\to v_{i+1}\in V_i \times V_{i+1}\)</span>.</p>
-<p>A <span class="math inline">\(k\)</span>-cycle in this new graph corresponds to a triangle in the original graph.</p></li>
-</ul>
-</div>
 <h1 id="girth">Girth</h1>
 <p><strong>GIRTH</strong>: length of shortest cycle</p>
-<h3 id="approx-in-n1.5-time"><span class="math inline">\(2\)</span>-approx in <span class="math inline">\(n^{1.5}\)</span> time</h3>
+<h2 id="some-not-so-good-algorithms-that-i-made-up">some not-so-good algorithms that I made up</h2>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> 2-approx in <span class="math inline">\(n^2\)</span> time. remark: This is kind of bad, we can get a <span class="math inline">\(+1\)</span> approx in <span class="math inline">\(n^{2}\)</span> time lol.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(G=(V, E)\)</span>. form a new graph with vertex sets <span class="math inline">\(V, V&#39;\)</span>. make an edge <span class="math inline">\(xy&#39; \in G&#39;\)</span> for <span class="math inline">\(x\in V, y&#39;\in V&#39; \iff xy\in E(G)\)</span>. So <span class="math inline">\(G&#39;\)</span> is bipartite. claim: If G’ has a cycle of length <span class="math inline">\(k\)</span> then G has a cycle of length at least <span class="math inline">\(k/2\)</span>. proof: I brute-forced k=6. It seems like it should be true in general.</p>
+<p>recall: “even cycles even faster”: we can find even cycles (even is redundant because G’ is bipartite but whatever) in G’ in <span class="math inline">\(n^2\)</span> time.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is an algorithm that, on graphs of girth <span class="math inline">\(g\le 100\)</span> outputs a cycle of length at most <span class="math inline">\(g+25\)</span> in time <span class="math inline">\(O(n^{1.999})\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>If <span class="math display">\[m \ge \Omega( n^{1+ \frac{1}{\left\lfloor (g+25)/2 \right\rfloor} }) \]</span> then we have super-saturation of <span class="math inline">\(2\left\lfloor (g+25)/2 \right\rfloor\)</span>-cycles. So wlog may assume this is not the case. Now, high-deg low-deg cases.</p>
+<ul>
+<li>High deg cost: <span class="math inline">\(n\cdot m/H\)</span>.</li>
+<li>Low deg cost: <span class="math inline">\(n\cdot H^{\left\lceil g/2 \right\rceil}\)</span>.</li>
+</ul>
+<p>Balancing: <span class="math display">\[H = m^{\frac{1}{\left\lceil g/2 \right\rceil+1}}.\]</span></p>
+<p>So the cost is <span class="math display">\[n m^{ \frac{\left\lceil g/2 \right\rceil}{\left\lceil g/2 \right\rceil+1} } \le n n^{\frac{\left\lceil g/2 \right\rceil}{\left\lceil g/2 \right\rceil+1}  \cdot (1+\frac{1}{\left\lfloor (g+25)/2 \right\rfloor})}.\]</span></p>
+<p>not clear how good this is.</p>
+</div>
+<h2 id="relatively-old-work-on-girth-approximation">relatively old work on girth approximation</h2>
+<h3 id="additive-1-approximation-for-girth-in-n2-time">additive <span class="math inline">\(1\)</span>-approximation for girth in <span class="math inline">\(n^2\)</span> time</h3>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Given a graph <span class="math inline">\(G\)</span> of girth <span class="math inline">\(g\)</span> we will find a cycle of length at most <span class="math inline">\(g+1\)</span> in time <span class="math inline">\(O(n^{2})\)</span>. Futhermore, if <span class="math inline">\(g\)</span> is even the cycle we find will actually be of length <span class="math inline">\(g\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Algorithm: BFS-Cycle out of every vertex. Run time: <span class="math inline">\(O(n^{2})\)</span>.</p>
+</div>
+<h3 id="exact-algorithm-for-girth-in-nomega-time">Exact Algorithm for Girth in <span class="math inline">\(n^{\omega}\)</span> time</h3>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Exact Algorithm for Girth in <span class="math inline">\(n^{\omega}\)</span> time.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> First run the additive <span class="math inline">\(1\)</span>-approximation.</p>
+<p>If it outputs a cycle of odd length we know it is equal to the girth. Else, call the length of the ouput cycle <span class="math inline">\(2\ell\)</span>. The girth is either <span class="math inline">\(2\ell\)</span> or <span class="math inline">\(2\ell-1\)</span>.</p>
+<p>So, now we would just like to determine whether <span class="math inline">\(G\)</span> has a cycle of length <span class="math inline">\(2\ell-1\)</span>. At the beginning of this blog post we showed how to solve this with <span class="math inline">\(2\ell-2\)</span> matrix multiplications. But that’s not going to cut it here, we don’t really have a bound on <span class="math inline">\(\ell\)</span>.</p>
+<p>Here’s how we construct a triangle-detection instance: Make a new graph <span class="math inline">\(G&#39;\)</span>. Place <span class="math inline">\(G\)</span> in <span class="math inline">\(G&#39;\)</span>. Then create copies of the vertices. Connect <span class="math inline">\(v\in V(G)\)</span> and copy the copy <span class="math inline">\(w&#39;\)</span> of <span class="math inline">\(w\in V(G)\)</span> if <span class="math inline">\(dist(v, w)=\ell-1\)</span>. We know this distance because of our BFS-ing.</p>
+<p><span class="math inline">\(G&#39;\)</span> has a triangle iff <span class="math inline">\(G\)</span> has an <span class="math inline">\((2\ell-1)\)</span>-cycle. <img src="src/images/ink_img002.png" alt="ink_img002" /></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(\widetilde{O}(n^{3}/m)\)</span> time <span class="math inline">\(+3\)</span> additive girth approx.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<ul>
+<li>case 1: graph has <span class="math inline">\(O(n\log n)\)</span> edges: just give up and do a quadratic time algorithm.</li>
+<li>case 2: graph has enough edges that we can find a good enough cycle via super-saturation: then just do that</li>
+<li>case 3: graph is reasonably sparse, but not crazy sparse.
+<ul>
+<li>case 3.1: assume that all vertices on the cycle have degree at most <span class="math inline">\(n^{1/k}\)</span>.
+<ul>
+<li>BFS-cycle for <span class="math inline">\(k-1\)</span> levels, only visiting low degree vertices.</li>
+</ul></li>
+<li>case 3.2: there is a high degree vertex on the cycle. sample <span class="math inline">\(n/H\)</span> vertices. <em>this won’t necessarily hit a high degree vertex, but should at least hit a neighbor of a high degree vertex</em>. So we could do a <span class="math inline">\(+3\)</span> approx this way. Very few vertices we need to BFS out of here.</li>
+</ul></li>
+</ul>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong></p>
+<ul>
+<li>“Finding and Counting Given Length Cycles” Alon Yuster Zwick:</li>
+<li><span class="math inline">\(m^{4/3}\)</span> algorithm for <span class="math inline">\(C_4\)</span>’s</li>
+<li><span class="math inline">\(m^{13/8}\)</span> algorithm for <span class="math inline">\(C_6\)</span>’s</li>
+<li>Count number of <span class="math inline">\(C_k\)</span>’s for <span class="math inline">\(k\le 7\)</span> in <span class="math inline">\(n^{\omega}\)</span> time. Unlikely to be possible for <span class="math inline">\(C_8\)</span>’s because <span class="math inline">\(K_4\)</span>’s are harder than <span class="math inline">\(K_3\)</span>’s.</li>
+</ul>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Every connected <span class="math inline">\(n\)</span> vertex graph with <span class="math inline">\(kn\)</span> edges has a <span class="math inline">\(k\)</span>-edge path (not necessarily induced) emenating from every vertex.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We prove this by induction on <span class="math inline">\(k.\)</span> For <span class="math inline">\(k=1\)</span>, the base case, this is quite clear. For <span class="math inline">\(k&gt;1\)</span> we induct on <span class="math inline">\(n\)</span>. Let <span class="math inline">\(G\)</span> be an <span class="math inline">\(n+1\)</span> vertex graph with at least <span class="math inline">\(k(n+1)\)</span> edges.</p>
+<p>Deleting any vertex may disconnect the graph into several connected components <span class="math inline">\(V_1,V_2,\ldots,V_\ell\)</span>. However, we claim that at least one of these connected components has average degree at least <span class="math inline">\(k-1\)</span>. You can check this. So to find the desired path, delete your vertex and then recursively find a <span class="math inline">\(k-1\)</span> path in the connected component with highest average degree.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Any graph with more than like <span class="math inline">\(200kn^{1+1/k}\)</span> edges is super-saturated with <span class="math inline">\(2k\)</span> cycles. I.e., we can find <span class="math inline">\(2k\)</span>-cycles in such a graph super easily.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a <span class="math inline">\(m^{2k/(k+1)}\)</span> time algo for finding a <span class="math inline">\(2k\)</span>-cycle in a <span class="math inline">\(m\)</span>-edge graph, if one exists.</p>
+</div>
+<h2 id="cutting-edge-approximations">cutting-edge approximations</h2>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> In “New Subquadratic Approximation Algorithms for the Girth” Knudsen talks about Virginia and Roditty’s paper. He observes that her algorithm outputs a cycle of size <span class="math inline">\(2\left\lceil g/2 \right\rceil + 2\left\lceil g/4 \right\rceil\)</span> when the girth is <span class="math inline">\(g\)</span>. So technically for <span class="math inline">\(g=3\)</span> this is a <span class="math inline">\(2\)</span>-approx. But for larger values of <span class="math inline">\(g\)</span> it is essentially a <span class="math inline">\(1.5\)</span>-approx. And her algo is indeed <span class="math inline">\(n^{5/3}\)</span>.</p>
 <p>Note: Knudsen gives a sub-quadratic algorithm that, if the girth is <span class="math inline">\(g\)</span>, returns a cycle with size at most <span class="math display">\[2\left\lceil g/2 \right\rceil+2\left\lceil \frac{g}{2(k-1)} \right\rceil\le (1+\varepsilon)g + 3,\]</span> for suitably large <span class="math inline">\(k\)</span>, although the run time is of course <span class="math inline">\(n^{2-1/k}\)</span>.</p>
@@ -204,87 +283,31 @@
 <p>We claim that we will find a pretty short cycle when we run the <span class="math inline">\(r_0\)</span>-th itteration of our for-loop.</p>
 <p>By a calculation we find that we will, with high probability, get some vertex <span class="math inline">\(u \in B(C, \left\lceil g/2 \right\rceil(2^{r_0-1}-1))\)</span> in the set of size <span class="math inline">\(n^{\frac{6-r_0}{5})} \log n\)</span> that we sample. Then if we BFS-cycle out of this dude we get the desired short cycle.</p>
 </div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> In fact, in more recent work “Algorithmic trade-offs for girth approximation in undirected graphs” Virginia shows how to get an almost <span class="math inline">\(k\)</span>-approximation in <span class="math inline">\(n^{1+1/k}\)</span> time. (exponentially better than Knudsen’s result above!) More precisely, it outputs a cycle of length at most <span class="math inline">\(2k\left\lceil g/2 \right\rceil\)</span> where <span class="math inline">\(g\)</span> is the girth of <span class="math inline">\(G\)</span>.</p>
+<p>There is also a version of this that gives a slightly different guarantee if the girth <span class="math inline">\(g\)</span> is odd: it outputs a cycle of length at most <span class="math inline">\(2k\left\lfloor g/2 \right\rfloor+2\)</span> in time <span class="math inline">\(O(m(n^{2}/m)^{1/k}).\)</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> In “Algorithmic trade-offs for girth approximation in undirected graphs” Virginia gives an algorithm that takes as input parameters <span class="math inline">\(g_0,k\)</span> and has the following guarantee:</p>
+<ul>
+<li>Either output a cycle of length <span class="math inline">\(\le 2k\)</span> or fail. This algo runs in time <span class="math inline">\(O(\min(m, n^{1+1/k}))\)</span>.</li>
+<li>If fail, we can run another algorithm that will either:
+<ul>
+<li>output a shortest cycle OR</li>
+<li>determine that the girth is larger than <span class="math inline">\(g_0\)</span></li>
+</ul></li>
+<li><span class="math inline">\(O(n^{1+2/k})\)</span> if <span class="math inline">\(g_0\in \left\{ 3,4\right\}\)</span>. Can also do <span class="math inline">\(O(m^{1+1/(k+1)})\)</span> here.</li>
+<li><span class="math inline">\(O(n^{1+3/k})\)</span> if <span class="math inline">\(g_0=5\)</span>. Can also do <span class="math inline">\(O(m^{1+2/(k+1)})\)</span> here.</li>
+<li>something some-what similar for <span class="math inline">\(g=6\)</span>.</li>
+</ul>
+<p>For instance, if <span class="math inline">\(g_0=3\)</span> and <span class="math inline">\(k=3\)</span> we get: Either a cycle of length <span class="math inline">\(\le 6\)</span> or a shortest cycle OR the algorithm declares the graph to be triangle free. All in running time <span class="math inline">\(n^{5/3}\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(n^{1+1/(2-\varepsilon)}\)</span> algo gives a cycle of length at most <span class="math inline">\((2-\varepsilon)g+4\)</span> for <span class="math inline">\(g\le \lg^2 n\)</span> and <span class="math inline">\((2-\varepsilon/2)g+3\)</span> else. This is like a continuous extension of Knudsen’s similar result.</p>
+</div>
 <hr />
-<h3 id="a-worse-algorithm">A worse algorithm:</h3>
-<div class="prop envbox">
-<p><strong>Proposition.</strong> 2-approx in <span class="math inline">\(n^2\)</span> time. remark: This is kind of bad, we can get a <span class="math inline">\(+1\)</span> approx in <span class="math inline">\(n^{2}\)</span> time lol.</p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> Let <span class="math inline">\(G=(V, E)\)</span>. form a new graph with vertex sets <span class="math inline">\(V, V&#39;\)</span>. make an edge <span class="math inline">\(xy&#39; \in G&#39;\)</span> for <span class="math inline">\(x\in V, y&#39;\in V&#39; \iff xy\in E(G)\)</span>. So <span class="math inline">\(G&#39;\)</span> is bipartite. claim: If G’ has a cycle of length <span class="math inline">\(k\)</span> then G has a cycle of length at least <span class="math inline">\(k/2\)</span>. proof: I brute-forced k=6. It seems like it should be true in general.</p>
-<p>recall: “even cycles even faster”: we can find even cycles (even is redundant because G’ is bipartite but whatever) in G’ in <span class="math inline">\(n^2\)</span> time.</p>
-</div>
-<h3 id="on2-additive-25-approximation-assuming-g100"><span class="math inline">\(o(n^2)\)</span> additive <span class="math inline">\(+25\)</span> approximation assuming <span class="math inline">\(g&lt;100\)</span></h3>
-<div class="thm envbox">
-<p><strong>Theorem.</strong> There is an algorithm that, on graphs of girth <span class="math inline">\(g\le 100\)</span> outputs a cycle of length at most <span class="math inline">\(g+25\)</span> in time <span class="math inline">\(O(n^{1.999})\)</span></p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong></p>
-<p>If <span class="math display">\[m \ge \Omega( n^{1+ \frac{1}{\left\lfloor (g+25)/2 \right\rfloor} }) \]</span> then we have super-saturation of <span class="math inline">\(2\left\lfloor (g+25)/2 \right\rfloor\)</span>-cycles. So wlog may assume this is not the case. Now, high-deg low-deg cases.</p>
-<ul>
-<li>High deg cost: <span class="math inline">\(n\cdot m/H\)</span>.</li>
-<li>Low deg cost: <span class="math inline">\(n\cdot H^{\left\lceil g/2 \right\rceil}\)</span>.</li>
-</ul>
-<p>Balancing: <span class="math display">\[H = m^{\frac{1}{\left\lceil g/2 \right\rceil+1}}.\]</span></p>
-<p>So the cost is <span class="math display">\[n m^{ \frac{\left\lceil g/2 \right\rceil}{\left\lceil g/2 \right\rceil+1} } \le n n^{\frac{\left\lceil g/2 \right\rceil}{\left\lceil g/2 \right\rceil+1}  \cdot (1+\frac{1}{\left\lfloor (g+25)/2 \right\rfloor})}.\]</span></p>
-<p>not clear how good this is.</p>
-</div>
-<h3 id="additive-1-approximation-for-girth-in-n2-time">additive <span class="math inline">\(1\)</span>-approximation for girth in <span class="math inline">\(n^2\)</span> time</h3>
-<div class="thm envbox">
-<p><strong>Theorem.</strong> Given a graph <span class="math inline">\(G\)</span> of girth <span class="math inline">\(g\)</span> we will find a cycle of length at most <span class="math inline">\(g+1\)</span> in time <span class="math inline">\(O(n^{2})\)</span>. Futhermore, if <span class="math inline">\(g\)</span> is even the cycle we find will actually be of length <span class="math inline">\(g\)</span>.</p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> Algorithm: BFS-Cycle out of every vertex. Run time: <span class="math inline">\(O(n^{2})\)</span>.</p>
-</div>
-<h3 id="exact-algorithm-for-girth-in-nomega-time">Exact Algorithm for Girth in <span class="math inline">\(n^{\omega}\)</span> time</h3>
-<div class="thm envbox">
-<p><strong>Theorem.</strong> Exact Algorithm for Girth in <span class="math inline">\(n^{\omega}\)</span> time.</p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> First run the additive <span class="math inline">\(1\)</span>-approximation.</p>
-<p>If it outputs a cycle of odd length we know it is equal to the girth. Else, call the length of the ouput cycle <span class="math inline">\(2\ell\)</span>. The girth is either <span class="math inline">\(2\ell\)</span> or <span class="math inline">\(2\ell-1\)</span>.</p>
-<p>So, now we would just like to determine whether <span class="math inline">\(G\)</span> has a cycle of length <span class="math inline">\(2\ell-1\)</span>. At the beginning of this blog post we showed how to solve this with <span class="math inline">\(2\ell-2\)</span> matrix multiplications. But that’s not going to cut it here, we don’t really have a bound on <span class="math inline">\(\ell\)</span>.</p>
-<p>Here’s how we construct a triangle-detection instance: Make a new graph <span class="math inline">\(G&#39;\)</span>. Place <span class="math inline">\(G\)</span> in <span class="math inline">\(G&#39;\)</span>. Then create copies of the vertices. Connect <span class="math inline">\(v\in V(G)\)</span> and copy the copy <span class="math inline">\(w&#39;\)</span> of <span class="math inline">\(w\in V(G)\)</span> if <span class="math inline">\(dist(v, w)=\ell-1\)</span>. We know this distance because of our BFS-ing.</p>
-<p><span class="math inline">\(G&#39;\)</span> has a triangle iff <span class="math inline">\(G\)</span> has an <span class="math inline">\((2\ell-1)\)</span>-cycle. <img src="src/images/ink_img002.png" alt="ink_img002" /></p>
-</div>
-<h2 id="section">——–</h2>
-<h2 id="virginia-lecture-11-stuff">virginia lecture 11 stuff</h2>
-<div class="thm envbox">
-<p><strong>Theorem.</strong> <span class="math inline">\(\widetilde{O}(n^{3}/m)\)</span> time <span class="math inline">\(+3\)</span> additive girth approx.</p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong></p>
-<ul>
-<li>case 1: graph has <span class="math inline">\(O(n\log n)\)</span> edges: just give up and do a quadratic time algorithm.</li>
-<li>case 2: graph has enough edges that we can find a good enough cycle via super-saturation: then just do that</li>
-<li>case 3: graph is reasonably sparse, but not crazy sparse.
-<ul>
-<li>case 3.1: assume that all vertices on the cycle have degree at most <span class="math inline">\(n^{1/k}\)</span>.
-<ul>
-<li>BFS-cycle for <span class="math inline">\(k-1\)</span> levels, only visiting low degree vertices.</li>
-</ul></li>
-<li>case 3.2: there is a high degree vertex on the cycle. sample <span class="math inline">\(n/H\)</span> vertices. <em>this won’t necessarily hit a high degree vertex, but should at least hit a neighbor of a high degree vertex</em>. So we could do a <span class="math inline">\(+3\)</span> approx this way. Very few vertices we need to BFS out of here.</li>
-</ul></li>
-</ul>
-</div>
-<div class="thm envbox">
-<p><strong>Theorem.</strong></p>
-<ul>
-<li>“Finding and Counting Given Length Cycles” Alon Yuster Zwick:</li>
-<li><span class="math inline">\(m^{4/3}\)</span> algorithm for <span class="math inline">\(C_4\)</span>’s</li>
-<li><span class="math inline">\(m^{13/8}\)</span> algorithm for <span class="math inline">\(C_6\)</span>’s</li>
-<li>Count number of <span class="math inline">\(C_k\)</span>’s for <span class="math inline">\(k\le 7\)</span> in <span class="math inline">\(n^{\omega}\)</span> time. Unlikely to be possible for <span class="math inline">\(C_8\)</span>’s because <span class="math inline">\(K_4\)</span>’s are harder than <span class="math inline">\(K_3\)</span>’s.</li>
-</ul>
-</div>
-<div class="thm envbox">
-<p><strong>Theorem.</strong> Every connected <span class="math inline">\(n\)</span> vertex graph with <span class="math inline">\(kn\)</span> edges has a <span class="math inline">\(k\)</span>-edge path (not necessarily induced) emenating from every vertex.</p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> We prove this by induction on <span class="math inline">\(k.\)</span> For <span class="math inline">\(k=1\)</span>, the base case, this is quite clear. For <span class="math inline">\(k&gt;1\)</span> we induct on <span class="math inline">\(n\)</span>. Let <span class="math inline">\(G\)</span> be an <span class="math inline">\(n+1\)</span> vertex graph with at least <span class="math inline">\(k(n+1)\)</span> edges.</p>
-<p>Deleting any vertex may disconnect the graph into several connected components <span class="math inline">\(V_1,V_2,\ldots,V_\ell\)</span>. However, we claim that at least one of these connected components has average degree at least <span class="math inline">\(k-1\)</span>. You can check this. So to find the desired path, delete your vertex and then recursively find a <span class="math inline">\(k-1\)</span> path in the connected component with highest average degree.</p>
-</div>
-<h2 id="some-questions">some questions</h2>
-<ul>
-<li>subquadratic additive girth approx?</li>
-</ul>
+<p>There is also some work on weighted graphs, e.g., “Improved girth approximation in weighted undirected graphs”.</p>
+<p>And even work on directed graphs.</p>
+<hr />
 <h2 id="list-of-things-to-look-up">list of things to look up</h2>
 <p>relevant graph parameters that we could do case-work on: - degeneracy - capped walls? - arboricity</p>
