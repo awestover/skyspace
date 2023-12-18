@@ -1,0 +1,23 @@
+<h1 id="vanilla">vanilla</h1>
+<p><span class="math display">\[\sum_k A_{i,k} B_{k,j}\]</span></p>
+<p>By definition can be done in <span class="math inline">\(n^{\omega}\)</span> I guess assuming that the matrix entries are <span class="math inline">\(O(1)\)</span> machine words.</p>
+<h1 id="boolean">Boolean</h1>
+<p><span class="math display">\[\bigvee_k (A_{i,k} \land B_{k,j})\]</span></p>
+<p>can be done in <span class="math inline">\(n^{\omega}\)</span> conjectured to be no “combinatorial algo” (which should losely be interpretted as “practical”) with run time <span class="math inline">\(n^{3-\varepsilon}\)</span>.</p>
+<h1 id="min-plus">min-plus</h1>
+<p><span class="math display">\[\min_k A_{i,k} + B_{k,j}\]</span></p>
+<p>Can be done in time <span class="math inline">\(O(Mn^{\omega})\)</span> where <span class="math inline">\(M\)</span> is the maximum absolute value of entry in the matrix.</p>
+<p><a href="https://people.csail.mit.edu/virgi/6.890/lecture4.pdf">reference</a></p>
+<h1 id="equality-product">equality-product</h1>
+<p><span class="math display">\[|\left\{ k\; : \;A_{i,k} = B_{k,j} \right\}|\]</span></p>
+<p>can be done fast (reference: personal communication with Virginia)</p>
+<h1 id="dominance-product">dominance-product</h1>
+<p><span class="math display">\[|\left\{ k\; : \;A_{i,k}\le B_{k,j} \right\}|\]</span></p>
+<p>equiv pretty strongly to equality-product</p>
+<h1 id="un-named">un-named</h1>
+<p><span class="math display">\[\min_k \left\{ B_{k,j}\; : \;A_{i,k}=1 \right\}.\]</span></p>
+<h1 id="max-min">max-min</h1>
+<h1 id="min-le"><span class="math inline">\(\min\)</span>-<span class="math inline">\(\le\)</span></h1>
+<h1 id="witness-matrix">“witness matrix”</h1>
+<p>Imagine you have a matrix product like <span class="math inline">\(\min, \odot\)</span> for some nice operation <span class="math inline">\(\odot\)</span>. The witness matrix is</p>
+<p><span class="math inline">\(argmin_k A_{i,k}\odot B_{k,j}\)</span></p>

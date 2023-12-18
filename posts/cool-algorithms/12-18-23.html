@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#vanilla
+" class="js-scroll-trigger">vanilla
+</a> </li>
+<li> <a href="#boolean-
+" class="js-scroll-trigger">Boolean 
+</a> </li>
+<li> <a href="#min-plus-
+" class="js-scroll-trigger">min-plus 
+</a> </li>
+<li> <a href="#equality-product-
+" class="js-scroll-trigger">equality-product 
+</a> </li>
+<li> <a href="#dominance-product
+" class="js-scroll-trigger">dominance-product
+</a> </li>
+<li> <a href="#un-named
+" class="js-scroll-trigger">un-named
+</a> </li>
+<li> <a href="#max-min
+" class="js-scroll-trigger">max-min
+</a> </li>
+<li> <a href="#$\min$-$\le$
+" class="js-scroll-trigger">$\min$-$\le$
+</a> </li>
+<li> <a href="#witness-matrix
+" class="js-scroll-trigger">"witness matrix"
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <h1 id="vanilla">vanilla</h1>
+<p><span class="math display">\[\sum_k A_{i,k} B_{k,j}\]</span></p>
+<p>By definition can be done in <span class="math inline">\(n^{\omega}\)</span> I guess assuming that the matrix entries are <span class="math inline">\(O(1)\)</span> machine words.</p>
+<h1 id="boolean">Boolean</h1>
+<p><span class="math display">\[\bigvee_k (A_{i,k} \land B_{k,j})\]</span></p>
+<p>can be done in <span class="math inline">\(n^{\omega}\)</span> conjectured to be no “combinatorial algo” (which should losely be interpretted as “practical”) with run time <span class="math inline">\(n^{3-\varepsilon}\)</span>.</p>
+<h1 id="min-plus">min-plus</h1>
+<p><span class="math display">\[\min_k A_{i,k} + B_{k,j}\]</span></p>
+<p>Can be done in time <span class="math inline">\(O(Mn^{\omega})\)</span> where <span class="math inline">\(M\)</span> is the maximum absolute value of entry in the matrix.</p>
+<p><a href="https://people.csail.mit.edu/virgi/6.890/lecture4.pdf">reference</a></p>
+<h1 id="equality-product">equality-product</h1>
+<p><span class="math display">\[|\left\{ k\; : \;A_{i,k} = B_{k,j} \right\}|\]</span></p>
+<p>can be done fast (reference: personal communication with Virginia)</p>
+<h1 id="dominance-product">dominance-product</h1>
+<p><span class="math display">\[|\left\{ k\; : \;A_{i,k}\le B_{k,j} \right\}|\]</span></p>
+<p>equiv pretty strongly to equality-product</p>
+<h1 id="un-named">un-named</h1>
+<p><span class="math display">\[\min_k \left\{ B_{k,j}\; : \;A_{i,k}=1 \right\}.\]</span></p>
+<h1 id="max-min">max-min</h1>
+<h1 id="min-le"><span class="math inline">\(\min\)</span>-<span class="math inline">\(\le\)</span></h1>
+<h1 id="witness-matrix">“witness matrix”</h1>
+<p>Imagine you have a matrix product like <span class="math inline">\(\min, \odot\)</span> for some nice operation <span class="math inline">\(\odot\)</span>. The witness matrix is</p>
+<p><span class="math inline">\(argmin_k A_{i,k}\odot B_{k,j}\)</span></p>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
