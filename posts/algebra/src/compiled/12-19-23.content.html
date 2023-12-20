@@ -1,0 +1,21 @@
+<p>One of the most basic facts of linear algebra is that whenever you have <span class="math inline">\(n+1\)</span> vectors in an <span class="math inline">\(n\)</span>-dimensional vectors space, there must be one of your vectors which can be expressed as a linear combination of the other vectors. This seemingly simple fact can prove some really interesting combinatorial statements.</p>
+Not sure if this one counts:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(x_1,x_2,\ldots, x_k\)</span> be <span class="math inline">\(k\)</span> linearly-independent vectors in, say, <span class="math inline">\(\mathbb{F}_2^{n}\)</span>. Then there is a vector <span class="math inline">\(y\)</span> in the span of <span class="math inline">\(x_1,x_2,\ldots, x_k\)</span> with at least <span class="math inline">\(k\)</span> non-zero entries.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Write the <span class="math inline">\(x_1,x_2,\ldots, x_k\)</span> as an <span class="math inline">\(n \times k\)</span> matrix. It must have a <span class="math inline">\(k\times k\)</span> invertible submatrix. Why? Because just delete rows one at a time.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> The vertices of any graph <span class="math inline">\(G\)</span> can be partitioned into two parts <span class="math inline">\(V_1,V_2\)</span> such that <span class="math inline">\(G[V_1], G[V_2]\)</span> have all vertices having even degree.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Let <span class="math inline">\(x_i\in \mathbb{F}_2\)</span> be a binary variable indicating which part to put vertex <span class="math inline">\(i\)</span> in. Then write some equations: For <span class="math inline">\(i\)</span> with odd degree write: <span class="math display">\[x_i + \sum_{j\in N(i)}x_j = 1\]</span> For <span class="math inline">\(i\)</span> with even degree write: <span class="math display">\[\sum_{j\in N(i)}x_j = 0.\]</span></p>
+<p>claim: It must have a solution. proof: you might be highly skeptical: “thaht matrix needn’t be invertible.” well fine, but we don’t need it to be invertible, we just need this very specific vector to be in its image.</p>
+<p>Letting <span class="math inline">\(D\)</span> be a diagonal matrix with <span class="math inline">\(D_{i,i}\)</span> being the degree of vertex <span class="math inline">\(i\)</span>, and letting <span class="math inline">\(d\)</span> be a vector with <span class="math inline">\(d_i\)</span> being the degree of vertex <span class="math inline">\(i\)</span>, we have:</p>
+<p><span class="math display">\[ d \in Im (A+D)\]</span> This is equiv to <span class="math display">\[ (Im (A+D)) ^{\perp} \subseteq d^{\perp} .\]</span></p>
+<p>Take <span class="math inline">\(x\in( Im(A+D))^{\perp}\)</span>. Then for all <span class="math inline">\(i\)</span>, <span class="math display">\[\sum_j x_j (a_{i,j}+d_{i,j}) = 0,\]</span> so <span class="math display">\[\sum_j x_j a_{i,j} = x_i d_i.\]</span> Then <span class="math display">\[\sum_i x_i \sum_j x_j a_{i,j} = \sum_i x_i^{2}d_i \]</span></p>
+<p>But then of course <span class="math display">\[\sum_i x_i d_i = \sum_{i&lt;j} (a_{i,j}+a_{j,i})x_{i}x_j + \sum_{i}x_i a_{i,i} = 0.\]</span> That is, <span class="math inline">\(x\perp d\)</span> as desired.</p>
+<p>Intuitively what just happened? “weighted sums are kind of powerful” is the extent to which I understand this so far.</p>
+</div>

@@ -1,0 +1,7 @@
+the power of linear-dependence
+
+One of the most basic facts of linear algebra is that whenever
+you have $n+1$ vectors in an $n$-dimensional vectors space, there
+must be one of your vectors which can be expressed as a linear
+combination of the other vectors. This seemingly simple fact can
+prove some really interesting combinatorial statements. 
