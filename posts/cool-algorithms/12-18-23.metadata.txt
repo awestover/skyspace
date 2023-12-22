@@ -1,4 +1,4 @@
 MM zoo
-
+images/ink_img008.png
 In which I write down as many types of MM that I can look up, in
 hopes that they will help solve a **really** hard problem.

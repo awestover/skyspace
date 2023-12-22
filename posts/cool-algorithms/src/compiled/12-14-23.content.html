@@ -89,8 +89,21 @@
 <p><span class="math inline">\((\min, +)\)</span>-product is <strong>actually</strong> equivalent to APSP. No “combinatorial algorithm” nonsense.</p>
 <p>However, it turns out you can compute <span class="math inline">\(A\star B\)</span> using fast MM if the entries are all small integers.</p>
 </div>
-<h1 id="lectures-6--todo">lectures 6- TODO</h1>
+<h1 id="lecture-6--todo">lecture 6- TODO</h1>
 <p>All pairs earliest arrivals, bottleneck paths and the dominance product</p>
+<h3 id="all-pairs-earliest-arrivals">All pairs earliest arrivals</h3>
+<p>Setup is as follows: <img src="src/images/ink_img007.png" alt="ink_img007" /></p>
+<ul>
+<li>Flights: source, destination, departure and arrival times</li>
+<li>Airports</li>
+<li>goal: find the fastest route between each pair of vertices</li>
+<li>a route is valid if you could make all the planes</li>
+</ul>
+<p>First we focus on the 2-hop version which can be solved via the <span class="math inline">\(\min, \le\)</span> matrix product.</p>
+<h3 id="all-pairs-bottleneck-paths">All pairs bottleneck Paths</h3>
+<p><strong>Bottleneck of a path</strong>: minimum weight edge on the path. For all <span class="math inline">\(u,v\)</span>, find the maximum over all <span class="math inline">\(u\to v\)</span> paths of the bottleneck weight of the path. For example, if the weight is size of truck that can fit through tunnel we want to find the largest truck that can get between two given points.</p>
+<p>max-min product: <span class="math display">\[\max_k \min (A[i,k], B[k,j])\]</span></p>
+<p>For more details see my blog post about MM.</p>
 <h1 id="lecture-7--successor-and-witness-matrices-computing-actual-paths-todo">lecture 7- Successor and witness matrices; computing actual paths: TODO</h1>
 <h1 id="lecture-8--minimum-weight-triangle">lecture 8- minimum weight triangle</h1>
 <div class="thm envbox">

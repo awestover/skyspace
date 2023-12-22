@@ -3,21 +3,60 @@
 <p>By definition can be done in <span class="math inline">\(n^{\omega}\)</span> I guess assuming that the matrix entries are <span class="math inline">\(O(1)\)</span> machine words.</p>
 <h1 id="boolean">Boolean</h1>
 <p><span class="math display">\[\bigvee_k (A_{i,k} \land B_{k,j})\]</span></p>
-<p>can be done in <span class="math inline">\(n^{\omega}\)</span> conjectured to be no “combinatorial algo” (which should losely be interpretted as “practical”) with run time <span class="math inline">\(n^{3-\varepsilon}\)</span>.</p>
+<p>Can be done in <span class="math inline">\(n^{\omega}\)</span> conjectured to be no “combinatorial algo” (which should losely be interpretted as “practical”) with run time <span class="math inline">\(n^{3-\varepsilon}\)</span>.</p>
 <h1 id="min-plus">min-plus</h1>
 <p><span class="math display">\[\min_k A_{i,k} + B_{k,j}\]</span></p>
 <p>Can be done in time <span class="math inline">\(O(Mn^{\omega})\)</span> where <span class="math inline">\(M\)</span> is the maximum absolute value of entry in the matrix.</p>
+<p>Interesting fact: this MM variant isn’t even associative! I think when defining MM variants you really should take nothing for granted.</p>
 <p><a href="https://people.csail.mit.edu/virgi/6.890/lecture4.pdf">reference</a></p>
 <h1 id="equality-product">equality-product</h1>
 <p><span class="math display">\[|\left\{ k\; : \;A_{i,k} = B_{k,j} \right\}|\]</span></p>
-<p>can be done fast (reference: personal communication with Virginia)</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Solvable in the same time as dominance-product, and vice-versa. (at least up to log-factor).</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>First we show how to take <span class="math inline">\(2\)</span> dominance products and then do <span class="math inline">\(O(n^{2})\)</span> work to combine their output into the answer to the equality product. It’s quite straightforward: Count the number of <span class="math inline">\(k\)</span> so that <span class="math inline">\(A[i,k]\le B[k,j]\)</span> and also the number of <span class="math inline">\(k\)</span> so that <span class="math inline">\(A[i,k]\ge B[k,j]\)</span>. Add these numbers and subtract <span class="math inline">\(n\)</span>. This results in the number of double-counted numbers which are precisely the equality cases.</p>
+<p>Now for the more difficult dirrection.</p>
+<p>We take a Dominance product instance and convert it into <span class="math inline">\(O(\log n)\)</span> equality product instances, whose sum is the dominance product.</p>
+<p>We consider the numbers to be integers in the range <span class="math inline">\([0,n^{O(1)}]\)</span>. Let <span class="math inline">\(L\le O(\log n)\)</span> be the maximum number of bits in any of the numbers. From now on we think of the numbers as all being <span class="math inline">\(L\)</span> bits, padding with zeros as necessary.</p>
+<p>For each <span class="math inline">\(\ell \in [L]\)</span>, form matrix <span class="math inline">\(A_\ell\)</span> by taking the <span class="math inline">\(\ell\)</span> most-significant bits of each entry in <span class="math inline">\(A\)</span>. Define <span class="math inline">\(B_\ell\)</span> as the <span class="math inline">\(\ell\)</span> most-significant bits of each entry in <span class="math inline">\(B\)</span>, except: if the <span class="math inline">\(\ell\)</span>-th most-significant bit is a <span class="math inline">\(1\)</span> then replace the number with “<span class="math inline">\(\bot\)</span>” (i.e., some symbol that isn’t allowed to match with any values in <span class="math inline">\(A_\ell\)</span>). If the <span class="math inline">\(\ell\)</span>-th digit is a <span class="math inline">\(0\)</span> then replace this <span class="math inline">\(0\)</span> with a <span class="math inline">\(1\)</span>.</p>
+<p>It’s evident that this is basically just an <span class="math inline">\(L\)</span>-overhead compared to the equality product. Why does it work though?</p>
+<p>The idea is, if <span class="math inline">\(A[i,k]\le B[k,j]\)</span> then we will count a point towards <span class="math inline">\((A \star_\le B)[i,j]\)</span>. In particular, we will count this point on the matrices <span class="math inline">\(A_\ell, B_\ell\)</span> for <span class="math inline">\(\ell\)</span> being the index of the first bit on which <span class="math inline">\(A[i,k], B[k,j]\)</span> differ.</p>
+<p>The intended solution in Virginia’s class pset2 is different. But I’m pretty sure that what I did works too.</p>
+</div>
 <h1 id="dominance-product">dominance-product</h1>
 <p><span class="math display">\[|\left\{ k\; : \;A_{i,k}\le B_{k,j} \right\}|\]</span></p>
-<p>equiv pretty strongly to equality-product</p>
+<p>Solvable in the same time as equality-product</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Dominance product can be computed in <span class="math inline">\(n^{(\omega+3)/2}\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>For <span class="math inline">\(i,j\in [n]\)</span> let <span class="math inline">\(a_i\)</span> denote the <span class="math inline">\(i\)</span>-th column of <span class="math inline">\(A\)</span> and let <span class="math inline">\(b_j\)</span> denote the <span class="math inline">\(j\)</span>-th row of <span class="math inline">\(B\)</span>.</p>
+<figure>
+<img src="src/images/ink_img008.png" alt="" /><figcaption>ink_img008</figcaption>
+</figure>
+<p>For each <span class="math inline">\(j\)</span>, sort <span class="math inline">\(a_j\sqcup b_j\)</span>. Fix parameter <span class="math inline">\(p = n^{(\omega-1)/2}\in [n^{.5}, n^{.7}]\)</span>. Define buckets <span class="math inline">\(S_{j,1},S_{j,2},\ldots, S_{j,2n/p}\)</span> to be contiguous chunks of <span class="math inline">\(a_j\sqcup b_j\)</span> with size <span class="math inline">\(p\)</span>.</p>
+<p>For each <span class="math inline">\(i,j\)</span> record $H_{i,j} = $ which <span class="math inline">\(j\)</span>-bucket <span class="math inline">\(A[i,j]\)</span> was placed in. Similarly, for each <span class="math inline">\(j,k\)</span> record $G_{j,k} = $ which <span class="math inline">\(j\)</span>-bucket <span class="math inline">\(B[j,k]\)</span> was placed in.</p>
+<p>Now, for each <span class="math inline">\(b\in [2n/p]\)</span> form matrices <span class="math inline">\(A_b, B_b\)</span> where <span class="math inline">\(A_b[i,j]\)</span> is <span class="math inline">\(1\)</span> if <span class="math inline">\(A[i,j]\)</span> was placed in bucket <span class="math inline">\(S_{j, b}\)</span>, and <span class="math inline">\(B_b[j,k]\)</span> is <span class="math inline">\(1\)</span> if <span class="math inline">\(B[j,k]\)</span> was placed in a bucket <span class="math inline">\(S_{j,b&#39;}\)</span> for some <span class="math inline">\(b&#39;&gt;b\)</span>.</p>
+<p>Then, the integer matrix product <span class="math inline">\((A_b B_b)[i,j]\)</span> counts the number of <span class="math inline">\(k\)</span> such that <span class="math inline">\(A[i,k]\le  B[k,j]\)</span> and <span class="math inline">\(A[i,k]\)</span> is in bucket <span class="math inline">\(b\)</span> and <span class="math inline">\(B[k,j]\)</span> is not in bucket <span class="math inline">\(b\)</span>.</p>
+<p>Summing over all values of <span class="math inline">\(b\)</span> gives the number of <span class="math inline">\(k\)</span> so that both <span class="math inline">\(A[i,k]\le B[k,j]\)</span> and <span class="math inline">\(A[i,k], B[k,j]\)</span> are in different <span class="math inline">\(k\)</span>-buckets.</p>
+<p>Finally, we brute force over all pairs of elements in each of the buckets. There are <span class="math inline">\(O(n^{2}/p)\)</span> buckets and <span class="math inline">\(p^{2}\)</span> pairs of elements in each bucket. This makes for <span class="math inline">\(O(n^{2}p)\)</span> checks that we need to do here. Like, the check that we are doing is for each pair we adjust whichever product involves the both of them appropriately.</p>
+<p>Anyways, the running time of this thing is <span class="math display">\[(n/p)n^{\omega}+n^{2}p \le n^{(\omega+3)/2}.\]</span></p>
+</div>
 <h1 id="un-named">un-named</h1>
 <p><span class="math display">\[\min_k \left\{ B_{k,j}\; : \;A_{i,k}=1 \right\}.\]</span></p>
 <h1 id="max-min">max-min</h1>
 <h1 id="min-le"><span class="math inline">\(\min\)</span>-<span class="math inline">\(\le\)</span></h1>
+<p><span class="math display">\[\min_k \left\{ B_{k,j}\; : \;A_{i,k} \le B_{k,j} \right\}.\]</span></p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Can be computed in <span class="math inline">\(n^{(9+\omega)/4}&lt;n^{3}\)</span> time.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Its also by bucket and brute force, similar to the dominance product one.</p>
+</div>
 <h1 id="witness-matrix">“witness matrix”</h1>
 <p>Imagine you have a matrix product like <span class="math inline">\(\min, \odot\)</span> for some nice operation <span class="math inline">\(\odot\)</span>. The witness matrix is</p>
 <p><span class="math inline">\(argmin_k A_{i,k}\odot B_{k,j}\)</span></p>
+<p>thanks!</p>
