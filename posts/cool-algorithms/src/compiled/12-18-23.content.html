@@ -3,7 +3,7 @@
 <p>By definition can be done in <span class="math inline">\(n^{\omega}\)</span> I guess assuming that the matrix entries are <span class="math inline">\(O(1)\)</span> machine words.</p>
 <h1 id="boolean">Boolean</h1>
 <p><span class="math display">\[\bigvee_k (A_{i,k} \land B_{k,j})\]</span></p>
-<p>Can be done in <span class="math inline">\(n^{\omega}\)</span> conjectured to be no “combinatorial algo” (which should losely be interpretted as “practical”) with run time <span class="math inline">\(n^{3-\varepsilon}\)</span>.</p>
+<p>Can be done in <span class="math inline">\(n^{\omega}\)</span> where <span class="math inline">\(\omega\in (2,2.4)\)</span>. conjectured to be no “combinatorial algo” (which should losely be interpretted as “practical”) with run time <span class="math inline">\(n^{3-\varepsilon}\)</span>.</p>
 <h1 id="min-plus">min-plus</h1>
 <p><span class="math display">\[\min_k A_{i,k} + B_{k,j}\]</span></p>
 <p>Can be done in time <span class="math inline">\(O(Mn^{\omega})\)</span> where <span class="math inline">\(M\)</span> is the maximum absolute value of entry in the matrix.</p>
@@ -59,4 +59,7 @@
 <h1 id="witness-matrix">“witness matrix”</h1>
 <p>Imagine you have a matrix product like <span class="math inline">\(\min, \odot\)</span> for some nice operation <span class="math inline">\(\odot\)</span>. The witness matrix is</p>
 <p><span class="math inline">\(argmin_k A_{i,k}\odot B_{k,j}\)</span></p>
-<p>thanks!</p>
+<h1 id="rectangular-mm">rectangular MM</h1>
+<p><span class="math inline">\(\omega(1,2,1)\)</span> denotes how long it takes to multiply <span class="math inline">\(n \times n^{2}, n^{2}\times n\)</span> matrices. It is known that <span class="math inline">\(\omega(1,2,1)\le 3.3\)</span>.</p>
+<h1 id="some-silly-facts">some silly facts</h1>
+<p>Sidon set: <span class="math inline">\(a+b=c+d \implies \left\{ a,b\right\}=\left\{ c,d\right\}\)</span>. The primes are a “multiplicative sidon set”.</p>

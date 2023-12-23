@@ -1,3 +1,5 @@
+*.secret.md
+
 *.svg
 .DS_Store
 node_modules/

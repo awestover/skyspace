@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Test Encryption</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+</head>
+<body>
+
+<div class="button-container">
+    <a href="../">Go back</a>
+  <button id="ENC" onclick="clickEnc()">Encrypt</button>
+  <button id="DEC" onclick="clickDec()">Decrypt</button>
+<label for="password">Password:</label>
+<input id="password" type="password" style="width: 50%;">
+</div>
+<br><br>
+<textarea id="inputtext">Example text</textarea>
+<div id="display"></div>
+
+<script src="cryptography.js" charset="utf-8"></script>
+  </body>
+</html>

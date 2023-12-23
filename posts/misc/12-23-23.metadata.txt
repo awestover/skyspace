@@ -1,0 +1,5 @@
+encryption
+
+In this post I discuss the state of the skyspace software, some
+musings about software development, and of course a description
+of the newest feature of skyspace: encryption.
