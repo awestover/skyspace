@@ -1,0 +1,7 @@
+"Stronger 3SUM lower bounds via Additive Combinatorics"
+images/ink_img009.png
+In this blog post I summarize "Stronger 3-SUM Lower Bounds for
+Approximate Distance Oracles via Additive Combinatorics" by
+Abboud Bringmann and Fischer and also discuss the very similar
+"Removing Additive Structure in 3sum based reductions" by Jin and
+Xu.

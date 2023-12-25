@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#$c_4$-enumeration
+" class="js-scroll-trigger">$C_4$ enumeration
+</a> </li>
+<li> <a href="#sparse-all-edges-triangle
+" class="js-scroll-trigger">sparse all-edges triangle
+</a> </li>
+<li> <a href="#energy-reduction-amplification
+" class="js-scroll-trigger">energy reduction amplification
+</a> </li>
+<li> <a href="#energy-reduction-initial
+" class="js-scroll-trigger">energy reduction initial
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p><strong>Work in progress</strong></p>
+<p>In this blog post I summarize “Stronger 3-SUM Lower Bounds for Approximate Distance Oracles via Additive Combinatorics” by Abboud Bringmann and Fischer and also discuss the very similar “Removing Additive Structure in 3sum based reductions” by Jin and Xu. I will present the results “backwards”, because I think this makes the motivation clear. In particular, I will present the results in the following order:</p>
+<ol type="1">
+<li>Reduction from “sparse all-edges triangle” to <span class="math inline">\(C_4\)</span>-enumeration.</li>
+<li>Reduction from 3SUM instance with <span class="math inline">\(n^{2+\delta}\)</span> additive energy to sparse all-edges triangle.</li>
+<li>Reduction from 3SUM instance with <span class="math inline">\(O(n^{3-\varepsilon})\)</span> additive energy to 3SUM instance with <span class="math inline">\(n^{2+\delta}\)</span> additive energy.</li>
+<li>Reduction from 3SUM instance with <span class="math inline">\(\Theta(n^{3})\)</span> additive energy to 3SUM with <span class="math inline">\(n^{3-\varepsilon}\)</span> additive energy.</li>
+</ol>
+<p>Before giving the proofs, it will be helpful to state all the results.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> The 3SUM problem is, given a list of numbers, are there any <span class="math inline">\(3\)</span> summing to <span class="math inline">\(0\)</span>? The 3SUM conjecture states that there is no <span class="math inline">\(n^{2-\varepsilon}\)</span> algorithm for 3SUM.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> 3SUM is “just as hard” when restricted to sets with additive energy <span class="math inline">\(n^{2.9999}\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> 3SUM is “just as hard” when restricted to sets with <span class="math inline">\(n^{2.0001}\)</span> additive energy.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Fix <span class="math inline">\(\varepsilon&gt;0, k_{\max}\ge 3\)</span>. The <strong>sparse all-edges triangle</strong> problem is, given an <span class="math inline">\(n\)</span>-vertex graph <span class="math inline">\(G\)</span> where all vertices have degrees in <span class="math inline">\(\Theta(\sqrt{n})\)</span> and where <span class="math inline">\(G\)</span> has at most <span class="math inline">\(O(n^{k/2})\)</span> <span class="math inline">\(k\)</span>-cycles for each <span class="math inline">\(k\in [3,k_{\max}]\)</span> for each edge determine whether the edge is part of a triangle. Under the 3SUM conjecture there is no <span class="math inline">\(O(n^{2-\varepsilon})\)</span>-time algorithm for sparse all-edges triangle.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Assuming the 3SUM conjecture, there is no <span class="math inline">\(C_4\)</span> enumeration algorithm in time <span class="math inline">\(\widetilde{O}(n^{2-\varepsilon}+t)\)</span> or <span class="math inline">\(\widetilde{O}(m^{4/3-\varepsilon}+t)\)</span> where <span class="math inline">\(t\)</span> is the number of <span class="math inline">\(C_4\)</span>’s.</p>
+</div>
+<h1 id="c_4-enumeration"><span class="math inline">\(C_4\)</span> enumeration</h1>
+<p>In this section we reduce sparse all-edges triangle to <span class="math inline">\(C_4\)</span>-enumeration.</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Assume that we have a <span class="math inline">\(C_4\)</span> enumeration algorithm with running time <span class="math inline">\(\widetilde{O}(n^{2-\varepsilon}+t)\)</span> (where <span class="math inline">\(t\)</span> is the number of <span class="math inline">\(C_4\)</span>’s).</p>
+<p>Randomly partition the vertex set into <span class="math inline">\(s=n^{\varepsilon/4}\)</span> parts: <span class="math inline">\(V=V_1\sqcup V_2 \sqcup \cdots \sqcup V_s\)</span>. For each tripple <span class="math inline">\(i,j,k \in [s]^{3}\)</span>, we make a graph <span class="math inline">\(G_{ijk}\)</span>. In <span class="math inline">\(G_{ijk}\)</span> we make 4 copies <span class="math inline">\(v_1,v_2,v_3,v_4\)</span> of each vertex <span class="math inline">\(v\in V_i\sqcup V_j \sqcup V_k\)</span>. We add the following edges:</p>
+<ul>
+<li><span class="math inline">\(\{v_1, w_2\}\)</span> if <span class="math inline">\(\{v,w\}\in E(G)\)</span></li>
+<li><span class="math inline">\(\{v_2, w_3\}\)</span> if <span class="math inline">\(\{v,w\}\in E(G)\)</span></li>
+<li><span class="math inline">\(\{v_3, w_4\}\)</span> if <span class="math inline">\(\{v,w\}\in E(G)\)</span></li>
+<li><span class="math inline">\(\{v_1,v_4\}\)</span></li>
+</ul>
+<p><strong>Claim 1:</strong> Each triangle in <span class="math inline">\(G[V_i\sqcup V_j \sqcup V_k]\)</span> becomes a <span class="math inline">\(C_4\)</span> in <span class="math inline">\(G_{ijk}\)</span>.</p>
+<p><strong>Claim 2:</strong> Each <span class="math inline">\(C_4\)</span> in <span class="math inline">\(G_{ijk}\)</span> either corresponds to a <span class="math inline">\(C_4\)</span> in <span class="math inline">\(G[V_i\sqcup V_j \sqcup V_k]\)</span> or a <span class="math inline">\(C_3\)</span> in <span class="math inline">\(G[V_i\sqcup V_j \sqcup V_k]\)</span>. And each <span class="math inline">\(C_4,C_3\)</span> in <span class="math inline">\(G\)</span> generates <span class="math inline">\(O(1)\)</span> <span class="math inline">\(C_4\)</span>’s in <span class="math inline">\(G_{ijk}\)</span>’s.</p>
+<p>Proof by picture of Claims 1 and 2: <img src="src/images/ink_img009.png" alt="ink_img009" /></p>
+<p><strong>Claim 3:</strong> Thus, the number of <span class="math inline">\(C_4\)</span>’s across all <span class="math inline">\(G_{ijk}\)</span> is at most <span class="math inline">\(O(n^{2}/s + n^{3/2})\)</span>. proof: Each <span class="math inline">\(C_4\)</span> from <span class="math inline">\(G\)</span> survives the slicing with probability <span class="math inline">\(1/s^{4}\)</span>. Thus, the expected number of survivors is <span class="math inline">\(ts^{3}/s^{4}\)</span> (where <span class="math inline">\(t\)</span> is number of <span class="math inline">\(C_4\)</span>’s). By assumption there are at most <span class="math inline">\(O(n^{2})\)</span> <span class="math inline">\(C_4\)</span>’s in <span class="math inline">\(G\)</span> so this is bounded by <span class="math inline">\(O(n^{2}/s)\)</span>.</p>
+<p>The number of triangles in <span class="math inline">\(G\)</span> is <span class="math inline">\(O(n^{3/2})\)</span>.</p>
+<p>Adding these up gives the desired bound.</p>
+<!-- can we do something similar for C6's ? but stronger in terms
+of the sparseness? like the sqrt{n} regular is the wrong regime?-->
+<p><strong>claim 4</strong>: Algo run time is <span class="math inline">\(O(n^{2-\varepsilon/4})\)</span>. The run time is bounded by <span class="math display">\[\sum_{ijk\in [s^{3}]} n^{2-\varepsilon}+t_{ijk} \le
+n^{2-\varepsilon+(3/4)\varepsilon} + n^{2-\varepsilon/4} \le \widetilde{O}(n^{2-\varepsilon/4}).\]</span></p>
+<p>This same computation would show that you’re toasted if you were assuming the existence of an <span class="math inline">\(m^{4/3-\varepsilon}\)</span> time algorithm instead.</p>
+<p>I think the tilde everywhere is because we have given an algo with a certai expected running time, and in order to boost this to working in the desired time whp we can repeate it <span class="math inline">\(\log n\)</span> times, terminating if its taking longer than twice the expectation.</p>
+</div>
+<h1 id="sparse-all-edges-triangle">sparse all-edges triangle</h1>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(G = \mathbb{F}_p^{\log_p n}\)</span> be the group that we’re solving 3sum over. Let <span class="math inline">\(G&#39;\subset G\)</span> be a subgroup of <span class="math inline">\(G\)</span> of size <span class="math inline">\(\sqrt{n}\)</span>.</p>
+<p>Let <span class="math inline">\(h\)</span> be a function <span class="math inline">\(G\maps (G&#39;)^{3}\)</span> (I think a random projection onto appropriate dimensional space). Construct a tripartite graph as follows:</p>
+<p>Vertex set <span class="math inline">\(X\sqcup Y \sqcup Z\)</span> with <span class="math display">\[X = G&#39;  \times G&#39; \times \{0\},\]</span> <span class="math display">\[Y = G&#39;  \times  \{0\} \times G&#39;,\]</span> <span class="math display">\[Z = \{0\} \times G&#39;  \times G&#39; .\]</span></p>
+<p>Edge set: edge <span class="math inline">\(\{x,y\}\)</span> if <span class="math inline">\(y=x+h(a)\)</span>. etc.</p>
+<p><strong>claim 1</strong> psuedo-solutions exactly correspond to triangles, so triangle listing would suffice to sift through all the pseudo-solutions and find a real solution.</p>
+<p><strong>claim 2</strong>: probably not too many triangles</p>
+<p><strong>claim 3:</strong> counting cycles <strong>claim 4:</strong> degree regularization <strong>claim 5:</strong> put it all together</p>
+<p><strong>TODO: understand this one more!</strong></p>
+</div>
+<h1 id="energy-reduction-amplification">energy reduction amplification</h1>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> The Jin, Xu paper shows how to actually get a Sidon set, i.e., a set with the absolute minimum additive energy. Abboud et al only show how to obtain a set with <span class="math inline">\(O(n^{2.0001})\)</span> additive energy. The Jin Xu result seems pretty cool, but the results are equaly good for our applications. I think the Abboud one is a bit simpler so I will present theirs.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <strong>HASHING!!!!!</strong></p>
+<p>Use some hash functions to subsample your instance. Basically in Abboud et al ’s language this is just some random projection.</p>
+<p>Intuitively, slicing up the instance kills additive energy faster than it kills 3sum solutions. So the little boost that we started with is enough that we can win here.</p>
+<p><strong>TODO: understand more.</strong></p>
+</div>
+<h1 id="energy-reduction-initial">energy reduction initial</h1>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p><strong>Claim 1</strong>: (tripartite) 3SUM is easy if one of the sets has bounded doubling. proof: For sake of intuition, think of the set <span class="math inline">\(A\)</span> as being contained in a small interval <span class="math inline">\(I\)</span> (In general, <span class="math inline">\(A\)</span> is contained densely in some “approximate group”).</p>
+<p>Partition <span class="math inline">\(B,C\)</span> into $B_1,B_2,, $ and <span class="math inline">\(C_1,C_2,\ldots\)</span> by covering them with disjoint translates of <span class="math inline">\(A\)</span>.</p>
+<p>Call <span class="math inline">\((i,j)\)</span> <strong>relevant</strong> if it could possibly be the case that <span class="math inline">\(A+B_i \cap -C_j \neq \varnothing\)</span> just based on the intervals that are covering the dudes. Observe that <span class="math inline">\(A+B_i\)</span> is contained in a small interval, so it only intersects <span class="math inline">\(O(1)\)</span> <span class="math inline">\(C_j\)</span>’s. Then we do the following:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="cf">for</span> relevant i,j:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="cf">if</span> Bi <span class="kw">and</span> Cj are both small (size smaller than n<span class="op">^</span>{<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>}):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    brute force check <span class="cf">if</span> there <span class="kw">is</span> <span class="bu">any</span> b <span class="kw">in</span> Bi <span class="kw">and</span> c <span class="kw">in</span> Cj <span class="cf">for</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    which b<span class="op">+</span>c <span class="kw">in</span> <span class="op">-</span>A</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  <span class="cf">else</span> <span class="cf">if</span> one of Bi, Cj <span class="kw">is</span> large:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    Use FFT to compute Bi <span class="op">+</span> Cj. Then check <span class="cf">if</span> Bi <span class="op">+</span> Cj has</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    non<span class="op">-</span>empty intersection <span class="cf">with</span> <span class="op">-</span>A</span></code></pre></div>
+<p>Run time:</p>
+<ul>
+<li>light: <span class="math inline">\(n\cdot n^{2/3}\)</span> (<span class="math inline">\(n\)</span> many, <span class="math inline">\(n^{2/3}\)</span> brute cost)</li>
+<li>heavy: <span class="math inline">\(n\log n\cdot n^{2/3}\)</span> (<span class="math inline">\(n^{2/3}\)</span> many, <span class="math inline">\(n\)</span> fourier cost)</li>
+<li>total: <span class="math inline">\(\widetilde{O}(n^{5/3})\)</span>.</li>
+</ul>
+<p><strong>TODO: talk about Ruzsa covering lemma, and just generally how you do this</strong></p>
+<p>Now that we have claim 1, we give the following algo for the initial energy reduction:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="cf">while</span> additive energy <span class="op">&gt;</span> n<span class="op">^</span>{<span class="fl">2.999</span>}:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  A<span class="st">&#39; = use BSG to peel off a set with bounded doubling</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="st">  check if A&#39;</span> <span class="kw">is</span> useful <span class="cf">for</span> <span class="bu">any</span> 3SUM solutions using the fast</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  bounded doubling 3sum algo.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  <span class="cf">if</span>: </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    so, <span class="cf">return</span> the found solution</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="cf">else</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    Evict A<span class="st">&#39; and keep going</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="st">if size is really small: </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="st">  brute force solve</span></span></code></pre></div>
+<p><strong>Claim 2:</strong> As long as the additive energy is larger than <span class="math inline">\(n^{2.999}\)</span> we almost certainly can do the peeling off step and its probably fast. So, either the size gets too small in which case we can afford to just brute force and find a solution, or if not then we have reduced to a reasonable 3sum instance just with slightly subcubic additive energy.</p>
+<p><strong>TODO: argue more formally that this works. </strong></p>
+</div>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
