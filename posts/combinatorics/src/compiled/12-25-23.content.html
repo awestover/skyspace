@@ -1,0 +1,13 @@
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(s,t \le O(1)\)</span>. Any <span class="math inline">\(K_{s,t}\)</span>-free bipartite graph with <span class="math inline">\(n\)</span> vertices in both parts must have <span class="math inline">\(m\le O(n^{2-1/s})\)</span> edges. Note: this is true for non-bipartite graphs as well, probably just by deleting half the edges to find a large bipartite subgraph. But this seems the simplest way to talk about it.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We count the number of right-facing <span class="math inline">\(s\)</span>-stars in two ways:</p>
+<p>First, you could choose a vertex on the right and pair up any <span class="math inline">\(s\)</span> of its neighbors. This gives <span class="math display">\[\sum_{v\in R} \binom{|N(v)|}{s}\]</span> <span class="math inline">\(s\)</span>-stars. Second, you could choose <span class="math inline">\(s\)</span> vertices on the left, and connect them to at most <span class="math inline">\(t-1\)</span> common neighbors. This gives at most <span class="math display">\[\binom{n}{s}(t-1)\]</span> <span class="math inline">\(s\)</span>-stars.</p>
+<figure>
+<img src="src/images/ink_img015.png" alt="" /><figcaption>ink_img015</figcaption>
+</figure>
+<p>Comparing we have:</p>
+<p><span class="math display">\[ \sum_{v\in R} \binom{d_v}{s} \le \binom{n}{s} (t-1) \]</span> At this point its pretty clear that you should say “by convexity blah blah.” I came up with a helpful mnemonic to remember which way convexity points: <span class="math display">\[\mathop{\mathrm{\mathbb{E}}}X^2 \ge (\mathop{\mathrm{\mathbb{E}}}X)^{2}.\]</span> So anyways we also have: <span class="math display">\[\mathop{\mathrm{\mathbb{E}}}\binom{X}{s} \ge \binom{\mathop{\mathrm{\mathbb{E}}}X}{s}.\]</span></p>
+<p>Applying this and some standard bounds to our equation gives: <span class="math display">\[m\le n^{2-1/s} \frac{e(t-1)^{1/s}}{2} \le O(n^{2-1/s}),\]</span> as desired.</p>
+</div>
