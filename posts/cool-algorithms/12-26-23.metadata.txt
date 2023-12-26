@@ -1,0 +1,6 @@
+fine-grained complexity: 3sum
+
+I was reading a couple of Virginia's
+https://people.csail.mit.edu/virgi/6.s078/ fine-grained
+complexity theory notes. Here I write down some of the cool
+things I learned while reading the notes. 

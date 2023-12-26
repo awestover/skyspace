@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#
+" class="js-scroll-trigger">
+</a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+      <p>One of the interesting results in “Deterministic Time-Space Tradeoffs for k-SUM” is</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> 3-SUM is in deterministic time <span class="math inline">\(\hat{O}(n^{2} / \log n)\)</span> and space <span class="math inline">\(\hat{O}(\sqrt{n} \log n)\)</span>.</p>
+<p>(We use <span class="math inline">\(\hat{O}\)</span> to mask <span class="math inline">\(\mathop{\mathrm{\text{polylog}}}\log\)</span> factors.)</p>
+</div>
+Another interesting result that they prove is:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> The following problem is equivalently hard to 3sum: Solve 3-SUM in subquadratic time with <span class="math inline">\(n^{1/2+\varepsilon}\)</span> space.</p>
+<p>So either there is no subquadratic 3-SUM algorithm, or there is one with space requirement <span class="math inline">\(O(n^{.51})\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> It’s widely believed that <span class="math inline">\(k\)</span>-SUM requires <span class="math inline">\(n^{\left\lceil k/2 \right\rceil-o(1)}\)</span> time. It’s not known how to do polynomial method for <span class="math inline">\(3\)</span>-sum: the best improvement is just a polylog factor. For <span class="math inline">\(4\)</span>-sum it is not even known how to eliminate a log factor.</p>
+</div>
+<p>Then they do some domination thing with posets that I really didn’t follow. If you are a reader and can explain this to me, please contact me! I get why they need it though: They do a self-reduction, sorting (well they don’t actually sort, because they can’t afford to in their space bound, but they just “implicitly sort” without writing down the sorted list) I originally (naively) thought that it was obvious that if you sorted and split into buckets each pair of buckets would interact with <span class="math inline">\(O(1)\)</span> other buckets. This would be true if, e.g., the buckets were sets with bounded doubling :). However, they do some fancy stuff to show this I guess. Or, I’m not even sure that it is true anymore, but they at least show that its true “on average”. I.e., the number of triples of buckets that interact is <span class="math inline">\(O((n/g)^{2})\)</span>.</p>
+Here’s how they “implicitlt sort” because I thought it was neat:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> The <strong><span class="math inline">\(s\)</span>-select problem</strong> is to find the <span class="math inline">\(s\)</span>-th smallest item in a list.</p>
+<p>The <span class="math inline">\(s\)</span>-select problem can be solved in <span class="math inline">\(O(n)\)</span> time and <span class="math inline">\(O(s)\)</span> space.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> You keep a list of size <span class="math inline">\(2s\)</span>. You start by putting the first <span class="math inline">\(2s\)</span> elements in your list. Then you throw out the <span class="math inline">\(s\)</span> smallest by doing median select and filtering.</p>
+<p>Then you absorb the next <span class="math inline">\(s\)</span> elements and then throw out the <span class="math inline">\(s\)</span> smallest elements from your new array. And so on.</p>
+</div>
+<p>Ok, now here’s a bit more about how their reduction works:</p>
+<p>Recall, we have so far done the following: Sort the array and partition into chunks of <span class="math inline">\(g\)</span> contiguous elements. Now:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Suppose we chose a random prime in <span class="math inline">\([mg^{7}]\)</span>. Then for any set <span class="math inline">\(S\)</span> of <span class="math inline">\(3g\)</span> numbers in <span class="math inline">\(2^{m}\)</span>:</p>
+<ul>
+<li>If <span class="math inline">\(S\)</span> has a 3SUM solution then <span class="math inline">\(\Pr\)</span> <span class="math inline">\(S\)</span> has a 3SUM solution <span class="math inline">\(\bmod p\)</span> is 1.</li>
+<li>If <span class="math inline">\(S\)</span> doesn’t have a 3SUM solution then <span class="math inline">\(\Pr\)</span> <span class="math inline">\(S\)</span> has a 3SUM solution <span class="math inline">\(\bmod p\)</span> is at most <span class="math inline">\(O(\log m + \log g)/g^{4}\)</span>.</li>
+</ul>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math inline">\(m\)</span>-bit numbers have at most <span class="math inline">\(m\)</span> prime factors.</p>
+</div>
+We are going to set <span class="math inline">\(g = O(\log n / \log \log n)\)</span>.
+<div class="rmk envbox">
+<p><strong>Remark.</strong> For any prime <span class="math inline">\(p\le g^{O(1)}\)</span> there is a data structure of size <span class="math inline">\(g^{O(g)}\)</span> that can answer any 3SUM instance on <span class="math inline">\(g\)</span> numbers modulo <span class="math inline">\(p\)</span>.</p>
+</div>
+Final algorithm:
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<ol start="0" type="1">
+<li>Pick random prime <span class="math inline">\(p\le g^{O(1)}\)</span>. construct lookup table for all 3sum instances on <span class="math inline">\(3g\)</span> numbers mod <span class="math inline">\(p\)</span>.</li>
+<li>Compute numbers mod <span class="math inline">\(p\)</span>. Probability that this creates a fake 3sum solution is less than <span class="math inline">\(1/g^{3}\)</span>.</li>
+<li>Run 3sum self-reduction to get <span class="math inline">\(O((n/g)^{2})\)</span> 3sum instances on <span class="math inline">\(3g\)</span> numbers. Solve these by the look-up table.</li>
+<li>If more than <span class="math inline">\(100 (n^2/g^{5})\)</span> of the subproblems said yes, report yes. there’s no way that we could have this many false positives (at least with constant probability by Markov)</li>
+<li>Else, just itterate through all the reported solutions and check whether they are real solutions.</li>
+</ol>
+</div>
+<p>Oh, so actually this saves <span class="math inline">\(\log^{2}\)</span> factor if you are in unit-cost word-ram. And still <span class="math inline">\(\log\)</span> factor if not.</p>
+
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
