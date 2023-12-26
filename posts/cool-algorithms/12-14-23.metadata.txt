@@ -1,4 +1,4 @@
 More MM notes
-images/ink_img003.png
+images/ink_img004.png
 I write down some of the key problems, results, and ideas in the
 land of MM + graph algorithms. 

@@ -1,0 +1,4 @@
+exchanging triangles / squares for larger cycles
+
+Proof from Appendix of Aboud FOCS22. 
+"Hardness of approximation in P via short-cycle removal"
