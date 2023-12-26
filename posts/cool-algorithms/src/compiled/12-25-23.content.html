@@ -22,7 +22,7 @@
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Assuming the 3SUM conjecture, there is no <span class="math inline">\(C_4\)</span> enumeration algorithm in time <span class="math inline">\(\widetilde{O}(n^{2-\varepsilon}+t)\)</span> or <span class="math inline">\(\widetilde{O}(m^{4/3-\varepsilon}+t)\)</span> where <span class="math inline">\(t\)</span> is the number of <span class="math inline">\(C_4\)</span>’s.</p>
 </div>
-<h1 id="c_4-enumeration"><span class="math inline">\(C_4\)</span> enumeration</h1>
+<h1 id="cycle-enumeration">4-cycle enumeration</h1>
 <p>In this section we reduce sparse all-edges triangle to <span class="math inline">\(C_4\)</span>-enumeration.</p>
 <div class="pf envbox">
 <p><strong>Proof.</strong> Assume that we have a <span class="math inline">\(C_4\)</span> enumeration algorithm with running time <span class="math inline">\(\widetilde{O}(n^{2-\varepsilon}+t)\)</span> (where <span class="math inline">\(t\)</span> is the number of <span class="math inline">\(C_4\)</span>’s).</p>
@@ -41,20 +41,35 @@
 <p>Adding these up gives the desired bound.</p>
 <!-- can we do something similar for C6's ? but stronger in terms
 of the sparseness? like the sqrt{n} regular is the wrong regime?-->
-<p><strong>claim 4</strong>: Algo run time is <span class="math inline">\(O(n^{2-\varepsilon/4})\)</span>. The run time is bounded by <span class="math display">\[\sum_{ijk\in [s^{3}]} n^{2-\varepsilon}+t_{ijk} \le
+<p><strong>claim 4</strong>: Algo run time is <span class="math inline">\(O(n^{2-\varepsilon/4})\)</span>. The run time is bounded by <span class="math display">\[\sum_{ijk\in [s]^{3}} n^{2-\varepsilon}+t_{ijk} \le
 n^{2-\varepsilon+(3/4)\varepsilon} + n^{2-\varepsilon/4} \le \widetilde{O}(n^{2-\varepsilon/4}).\]</span></p>
 <p>This same computation would show that you’re toasted if you were assuming the existence of an <span class="math inline">\(m^{4/3-\varepsilon}\)</span> time algorithm instead.</p>
 <p>I think the tilde everywhere is because we have given an algo with a certai expected running time, and in order to boost this to working in the desired time whp we can repeate it <span class="math inline">\(\log n\)</span> times, terminating if its taking longer than twice the expectation.</p>
 </div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Everything would go through identically in the above proof if you replaced “sparse all edge triangle” problem with “sparse all edge pentagon” problem. Of course, the difference is that I don’t know a proof based on 5sum that “sparse all edge pentagon” is hard.</p>
+</div>
 <h1 id="sparse-all-edges-triangle">sparse all-edges triangle</h1>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Let <span class="math inline">\(G = \mathbb{F}_p^{\log_p n}\)</span> be the group that we’re solving 3sum over. Let <span class="math inline">\(G&#39;\subset G\)</span> be a subgroup of <span class="math inline">\(G\)</span> of size <span class="math inline">\(\sqrt{n}\)</span>.</p>
-<p>Let <span class="math inline">\(h\)</span> be a function <span class="math inline">\(G\maps (G&#39;)^{3}\)</span> (I think a random projection onto appropriate dimensional space). Construct a tripartite graph as follows:</p>
-<p>Vertex set <span class="math inline">\(X\sqcup Y \sqcup Z\)</span> with <span class="math display">\[X = G&#39;  \times G&#39; \times \{0\},\]</span> <span class="math display">\[Y = G&#39;  \times  \{0\} \times G&#39;,\]</span> <span class="math display">\[Z = \{0\} \times G&#39;  \times G&#39; .\]</span></p>
-<p>Edge set: edge <span class="math inline">\(\{x,y\}\)</span> if <span class="math inline">\(y=x+h(a)\)</span>. etc.</p>
-<p><strong>claim 1</strong> psuedo-solutions exactly correspond to triangles, so triangle listing would suffice to sift through all the pseudo-solutions and find a real solution.</p>
-<p><strong>claim 2</strong>: probably not too many triangles</p>
-<p><strong>claim 3:</strong> counting cycles <strong>claim 4:</strong> degree regularization <strong>claim 5:</strong> put it all together</p>
+<p><strong>Proof.</strong> Let <span class="math inline">\(G = \mathbb{F}_p^{O(\log n)}\)</span> be the group that all our sets live in. Our 3sum instance is an <span class="math inline">\(n\)</span>-element set <span class="math inline">\(A\subset G\)</span>, which we may assume by the theorem about decreasing energy has additive energy at most <span class="math inline">\(O(n^{2.0001})\)</span>.</p>
+<p>Let <span class="math inline">\(G&#39;\)</span> be a subgroup of <span class="math inline">\(G\)</span> with size <span class="math inline">\(\sqrt{n}\)</span>.</p>
+<p>(If you were trying to do something similar for “sparse all edges pentagon you would set <span class="math inline">\(G&#39;\)</span> to have size <span class="math inline">\(n^{2/3}\)</span>”)</p>
+<p>Let <span class="math inline">\(h_1,h_2,h_3: G\to G&#39;\)</span> be random projections. (You would have projections <span class="math inline">\(h_1,\ldots, h_5\)</span> if you were trying all edges sparse pentagon)</p>
+<p>Construct a tripartite graph as follows:</p>
+<p>Vertex set <span class="math inline">\(X\sqcup Y \sqcup Z\)</span> with <span class="math display">\[X = G&#39; \times G&#39; \times \{0\},\]</span> <span class="math display">\[Y = G&#39; \times \{0\} \times G&#39;,\]</span> <span class="math display">\[Z = \{0\} \times G&#39;  \times G&#39; .\]</span></p>
+<p>Edge set: For each <span class="math inline">\(a\in A\)</span>, place an edge <span class="math inline">\(\{x,y\}\in X\times Y\)</span> if <span class="math inline">\(y=x+h(a)\)</span>. etc.</p>
+<p><strong>pseudo-solution</strong>: <span class="math inline">\(h(a)+h(b)+h(c)=0\)</span> <strong>real solution:</strong> <span class="math inline">\(a+b+c=0\)</span>.</p>
+<p><strong>claim 1</strong> psuedo-solutions basically correspond to triangles, so triangle listing would suffice to sift through all the pseudo-solutions and find a real solution. More precisely, each pseudo-solution turns into <span class="math inline">\(O(1)\)</span> triangles and the labels on each triangle correspond to a pseudo-solution.</p>
+<p>Here’s why: if you have a triangle, i.e., a closed walk, then its gotta satisfy <span class="math inline">\(h(a)+h(b)+h(c)=0\)</span> or it isn’t a <strong>closed</strong> walk.</p>
+<p>The reverse side is a bit more subtle but not too bad. I claim that for any <span class="math inline">\(a,b,c\)</span> with <span class="math inline">\(h(a)+h(b)+h(c)=0\)</span> it generates at most <span class="math inline">\(6\)</span> triangles. Basically you gotta satisfy some system of equations. And the only way to do it is</p>
+<p><span class="math display">\[x_1=-h_1(a), x_2=-h_2(a)-h_2(b), x_3=-h_3(a)-h_3(b)-h_3(c)=0,\]</span> and then to define <span class="math inline">\(y\)</span>’s and <span class="math inline">\(z\)</span>’s based on the <span class="math inline">\(x\)</span>’s in the obvious manner. (for sparse all edges pentagon you would have like <span class="math inline">\(x_1=-h_1(a), x_2=-h_2(a)-h_2(b),\)</span> and so on)</p>
+<p><strong>claim 2</strong>: Probably not too many triangles. More precisely, there are two cases:</p>
+<p>case 1: there are more than <span class="math inline">\(n^{3/2}\)</span> real solutions to the 3sum instance. In this case we can guess like <span class="math inline">\(\sqrt{n}\log n\)</span> <span class="math inline">\((a,b, -a-b)\)</span> tripples and with high probability we will hit a solution.</p>
+<p>case 2: there are at most <span class="math inline">\(n^{3/2}\)</span> real solutions. Then it remains to count the contribution of fake pseudo-solutions to the triangle count. But observe, <span class="math inline">\(\Pr[h(a+b+c)=0] = 1/n^{3/2}\)</span> so long as <span class="math inline">\(a+b+c\neq 0\)</span>. Hence, the expected number of fake pseudo-solutions is <span class="math inline">\(n^{3}/n^{3/2}.\)</span></p>
+<p>Thus, the number of triangles is <span class="math inline">\(O(n^{3/2})\)</span>, as desired.</p>
+<p><strong>claim 3:</strong> counting cycles</p>
+<p><strong>claim 4:</strong> degree regularization Observe: The expected degree of each vertex is <span class="math inline">\(\Theta(\sqrt{n})\)</span>: for each <span class="math inline">\(a\in A\)</span> there is a <span class="math inline">\(1/\sqrt{n}\)</span> chance that <span class="math inline">\(h(a)=-x_2\)</span> or whatever. It turns out the variance of the degree is <span class="math inline">\(O(\sqrt{n})\)</span>. Thus, we can do the following algorithm: Kick out high degree and low degree vertices. After not too long everyone has degree that is <span class="math inline">\(\Theta(\sqrt{n})\)</span>.</p>
+<p><strong>claim 5:</strong> put it all together</p>
 <p><strong>TODO: understand this one more!</strong></p>
 </div>
 <h1 id="energy-reduction-amplification">energy reduction amplification</h1>

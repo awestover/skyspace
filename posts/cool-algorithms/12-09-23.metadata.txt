@@ -1,3 +1,3 @@
 cycles
-images/ink_img006.png
+images/graph1.png
 Some notes about algorithms for finding cycles in graphs.
