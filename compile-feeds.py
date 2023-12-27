@@ -2,9 +2,11 @@ import os
 from os.path import join
 import sys
 from datetime import datetime
+import hashlib
 
 def imagehash(file):
-    return IMAGES[(((hash(file)%100151)*53+101010)%999983)%len(IMAGES)]
+    hash_obj = int(hashlib.sha256(file).hexdigest(), 16)
+    return IMAGES[hash_obj%len(IMAGES)]
 
 os.chdir(join(os.environ["SKYSPACE"], "posts"))
 
