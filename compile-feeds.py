@@ -5,7 +5,7 @@ from datetime import datetime
 import hashlib
 
 def imagehash(file):
-    hash_obj = int(hashlib.sha256(file).hexdigest(), 16)
+    hash_obj = int(hashlib.sha256(file.encode()).hexdigest(), 16)
     return IMAGES[hash_obj%len(IMAGES)]
 
 os.chdir(join(os.environ["SKYSPACE"], "posts"))
@@ -51,7 +51,7 @@ for dir in os.listdir():
             escaped_title = title.replace(" ", "-").strip()
             this_entry += f"<h5 id='{escaped_title}'><a href='posts/{dir}/{file}' class='blog-title'>{title}</a></h5>\n"
             if len(image) < 3:
-                image = IMAGES[hash(file)%len(IMAGES)]
+                image = imagehash(file)
                 this_entry += f"<img class='side-img' src='{image}'/>"
             else:
                 this_entry += f"<img src='posts/{dir}/src/{image}'/>"
