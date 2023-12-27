@@ -46,9 +46,73 @@
 <p><strong>Proof.</strong> Do a 2 step BFS out of every vertex. For each pair <span class="math inline">\(u,v\)</span> make a list of the paths of length <span class="math inline">\(2\)</span> between <span class="math inline">\(u,v\)</span>.</p>
 <p>Then itterate over <span class="math inline">\(u,v\)</span> and itterate over pairs of paths of length <span class="math inline">\(2\)</span> between <span class="math inline">\(u, v\)</span>: each of these is a four-cycle.</p>
 </div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Now we enter sparse land. In sparse land we always assume wlog that <span class="math inline">\(n\le O(m)\)</span>.</p>
+</div>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> You can list squares in <span class="math inline">\(\widetilde{O}(m^{4/3}+t)\)</span> time, where <span class="math inline">\(t\)</span> is number of squares.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Some kindof high-degree low-degree construction. One of the cases “LHH” seems trickier.</p>
+<p><strong>Proof.</strong> Let <span class="math inline">\(L\)</span> be the set of low-degree vertices, i.e., vertices with degree smaller than <span class="math inline">\(m^{1/3}\)</span>. Let <span class="math inline">\(H\)</span> be the high degree vertices.</p>
+<p>We break it into a few cases:</p>
+<ul>
+<li>2-paths wtih an L at the middle</li>
+<li>2-paths consisting solely of H vertices</li>
+<li>“LHH” 2-paths. these ones are more tricky. But we only have to list half of them. So they direct the graph in an interesting way.</li>
+</ul>
 </div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> You can list 2-paths with an L in the middle in <span class="math inline">\(O(m^{4/3})\)</span> time.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Itterate over edges, if the edge has a low-degree endpoint itterate over that endpoint’s neighbors. Time <span class="math inline">\(O(m^{4/3})\)</span></p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> You can list 2-paths only involving H vertices in <span class="math inline">\(O(m^{4/3}+t)\)</span> time.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> At most <span class="math inline">\(m^{4/3}\)</span> pairs of high deg vertices. Let <span class="math inline">\(G&#39;\)</span> be the graph where we have removed low degree vertices. This can be computed in time <span class="math inline">\(O(m)\)</span>. Now we do a 2-step BFS out of each vertex in <span class="math inline">\(G&#39;\)</span>. You have to pay for the first 2-path you list between each pair of high degree vertices. After the first one though the rest get charged to <span class="math inline">\(4\)</span>-cycles.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> The hard case: LHH.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Any graph with <span class="math inline">\(n\)</span> vertices and average degree <span class="math inline">\(d\)</span> has <span class="math inline">\(\Omega(d^{4}-n^{2})\)</span> 4-cycles.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math inline">\(\lambda_1(G) \ge d^{4}\)</span>. The number of walks of length 4 is <span class="math inline">\(tr(A^{4}) \ge \lambda_1(G)\)</span>. The number of 4-walks is equal to the number of 2-paths: <img src="src/images/ink_img001.png" alt="ink_img001" /></p>
+<p>The number of <span class="math inline">\(2\)</span>-paths is simply: <span class="math display">\[\sum_{uv} codeg(u,v) \le O(n^{2} + \# C_4).\]</span></p>
+<p>In summary:</p>
+<p><span class="math display">\[\# C_4 + \# P_2 \ge d^{4}\]</span> so</p>
+<p><span class="math display">\[\# C_4 \ge \Omega(d^{4}-n^{2}).\]</span></p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Direct the edges from low degree vertex to high degree vertex (breaking ties arbitrarily).</p>
+<p>There exists a partition <span class="math inline">\(H = A\sqcup B\)</span> of high degree vertices so that</p>
+<ol type="1">
+<li>The partition captures most of the <span class="math inline">\(L\to H\to H\)</span> paths. I.e., the number of <span class="math inline">\(L\to A\to B\)</span> paths is at least an <span class="math inline">\(\Omega(1/\log^{2} n)\)</span>-fraction of all of the <span class="math inline">\(L\to H\to H\)</span> paths.</li>
+<li>The vertices in <span class="math inline">\(A\)</span> all have about the same number of <span class="math inline">\(L\)</span> neighbors (up to multiplicative factor of <span class="math inline">\(2\)</span>) and about the same number of <span class="math inline">\(B\)</span> neighbors.</li>
+<li>All vertices in <span class="math inline">\(B\)</span> have an <span class="math inline">\(A\)</span> dude pointing at them.</li>
+</ol>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Start by selecting each high-degree vertex to join <span class="math inline">\(A\)</span> with probability <span class="math inline">\(1/2\)</span>. This kills <span class="math inline">\(3/4\)</span> of the <span class="math inline">\(L\to H\to H\)</span> paths on average. Now bucket the nodes based on <span class="math inline">\(\left\lfloor \log_2 \cdot \right\rfloor\)</span> in arrows from L and out arrows to B.</p>
+<figure>
+<img src="src/images/ink_img002.png" alt="" /><figcaption>ink_img002</figcaption>
+</figure>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(P\)</span> be the number of <span class="math inline">\(L\to H \to H\)</span> paths. If <span class="math inline">\(P &gt; 100m^{4/3}\log^{2} n\)</span> then there are at least <span class="math inline">\(P/(100\log^{2 n})\)</span> <span class="math inline">\(4\)</span>-cycles.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Combine the lemmas.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> We can list 4-cycles in <span class="math inline">\(\widetilde{O}(m^{4/3}+t)\)</span> time.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Combine the lemmas.</p>
+</div>
+<p>TODO: read “[AYZ95] Noga Alon, Raphael Yuster, and Uri Zwick. Color-coding. J. ACM, 42(4):844–856, 1995.” especially section 4 “perfect hashing”</p>
+<p>TODO: read “Listing 6-Cycles”: Jin Williams, Zhou extends this stuff to work for 6-cycles.</p>
