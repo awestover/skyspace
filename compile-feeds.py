@@ -2,7 +2,9 @@ import os
 from os.path import join
 import sys
 from datetime import datetime
-from random import choice as rchoice
+
+def imagehash(file):
+    return IMAGES[(((hash(file)%100151)*53+101010)%999983)%len(IMAGES)]
 
 os.chdir(join(os.environ["SKYSPACE"], "posts"))
 
@@ -47,7 +49,7 @@ for dir in os.listdir():
             escaped_title = title.replace(" ", "-").strip()
             this_entry += f"<h5 id='{escaped_title}'><a href='posts/{dir}/{file}' class='blog-title'>{title}</a></h5>\n"
             if len(image) < 3:
-                image = rchoice(IMAGES)
+                image = IMAGES[hash(file)%len(IMAGES)]
                 this_entry += f"<img class='side-img' src='{image}'/>"
             else:
                 this_entry += f"<img src='posts/{dir}/src/{image}'/>"

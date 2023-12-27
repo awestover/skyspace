@@ -27,10 +27,12 @@ hamiltonian cycle. Nice.
 OK but TSP is still NP-hard on these nicer graphs.
 What to do? Well let's just approximate it.
 
+# approximation algorithm
+
 Consider the following relaxation of TSP: 
 Find a minimal-cost connected sub-graph spanning the graph. Now
 of course, the TSP tour is a connected sub-graph spanning the
-graph.  
+graph. 
 But actually the minimal-cost connected sub-graph spanning the
 graph is just the Minimum spanning tree (MST).
 

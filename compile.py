@@ -70,10 +70,16 @@ def augment_md(body, folder):
     start_environment = ""
 
     out_text = ""
+    extracted_toc = ""
     for row in body:
         if len(row.strip()) == 0:
             out_text += row
             continue
+
+        # extract markdown headers for TOC
+        for i in range(2, 5):
+            if row[:i] == (i-1)*"#"+" ":
+                extracted_toc += row[i:]
 
         if "@importpdf:" in row:
             xxx = row.replace("@importpdf: ", "")
@@ -124,7 +130,7 @@ def augment_md(body, folder):
     for img in IMAGES:
         out_text = out_text.replace(img[0], img[1])
 
-    return tex_macros + out_text
+    return tex_macros + out_text, extracted_toc
 
 
 def toc(contents):
@@ -178,7 +184,8 @@ for updated_file_path in get_updated_files():
             description += all_rows[i]
 
     aug_loc = join("compiled", real_name + ".aug.md")
-    aug_bod = augment_md(body, folder)
+    aug_bod, extracted_toc = augment_md(body, folder)
+    contents = extracted_toc.split("\n")
     with open(aug_loc, "w") as f:
         f.write(aug_bod)
     #  with open(join("compiled", real_name+".toc.html"), "w") as f:

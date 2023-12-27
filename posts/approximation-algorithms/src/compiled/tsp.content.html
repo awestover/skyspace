@@ -2,8 +2,8 @@
 <p>ok so TSP on an arbitrary graph is actually just too hard: there might not even be a hamiltonian cycle in the graph, and checking this is already NP-complete. So as a simplification we are just going to consider some nice graphs.</p>
 <p>In particualr, we consider graphs that define metric spaces: i.e. all edges are defined, and the edge-costs satisfy the triangle inequality. <span class="math display">\[w_{a\to b} + w_{b\to c} \geq w_{a\to c}.\]</span> This is a fairly reasonable set of graphs, and it has the nice property that by virtue of being complete there will always be a hamiltonian cycle. Nice.</p>
 <p>OK but TSP is still NP-hard on these nicer graphs. What to do? Well let’s just approximate it.</p>
-<p>Consider the following relaxation of TSP: Find a minimal-cost connected sub-graph spanning the graph. Now of course, the TSP tour is a connected sub-graph spanning the graph.<br />
-But actually the minimal-cost connected sub-graph spanning the graph is just the Minimum spanning tree (MST).</p>
+<h1 id="approximation-algorithm">approximation algorithm</h1>
+<p>Consider the following relaxation of TSP: Find a minimal-cost connected sub-graph spanning the graph. Now of course, the TSP tour is a connected sub-graph spanning the graph. But actually the minimal-cost connected sub-graph spanning the graph is just the Minimum spanning tree (MST).</p>
 <p>of course the MST is not really path-y. But actually we can turn it into a path not too hard.</p>
 <div class="prop envbox">
 <p><strong>Proposition.</strong> If you just do a DFS traversal of the MST you get a 2-approx for TSP.</p>
