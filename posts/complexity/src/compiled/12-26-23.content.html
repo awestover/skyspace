@@ -80,7 +80,7 @@
 <p><strong>Lemma.</strong> Any graph with <span class="math inline">\(n\)</span> vertices and average degree <span class="math inline">\(d\)</span> has <span class="math inline">\(\Omega(d^{4}-n^{2})\)</span> 4-cycles.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> <span class="math inline">\(\lambda_1(G) \ge d^{4}\)</span>. The number of walks of length 4 is <span class="math inline">\(tr(A^{4}) \ge \lambda_1(G)\)</span>. The number of 4-walks is equal to the number of 2-paths: <img src="src/images/ink_img001.png" alt="ink_img001" /></p>
+<p><strong>Proof.</strong> <span class="math inline">\(\lambda_1(G) \ge d^{4}\)</span>. The number of walks of length 4 is <span class="math inline">\(tr(A^{4}) \ge \lambda_1(G)\)</span>. The number of 4-walks is equal to number of squares plus the number of 2-paths (degenerate C4s): <img src="src/images/ink_img001.png" alt="ink_img001" /></p>
 <p>The number of <span class="math inline">\(2\)</span>-paths is simply: <span class="math display">\[\sum_{uv} codeg(u,v) \le O(n^{2} + \# C_4).\]</span></p>
 <p>In summary:</p>
 <p><span class="math display">\[\# C_4 + \# P_2 \ge d^{4}\]</span> so</p>
