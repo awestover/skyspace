@@ -32,51 +32,14 @@
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
             <div id="toc">
-            <li> <a href="#
-" class="js-scroll-trigger">
-</a> </li>
+            
             </div>
           </ul>
         </div>
       </nav>
 
       <div id="content"> 
-      <p>Henceforth <span class="math inline">\(C_4\)</span> will be refered to as a “square” sometimes.</p>
-<p>Proof from Appendix of Aboud FOCS22. “Hardness of approximation in P via short-cycle removal”</p>
-<p>They prove two interesting theorems:</p>
-<ul>
-<li>For any <span class="math inline">\(k\in \mathbb{N}\)</span> there is an <span class="math inline">\(O(m)\)</span> time algorithm that, on an <span class="math inline">\(m\)</span>-edge graph <span class="math inline">\(G\)</span> produces a graph <span class="math inline">\(G^{\star}\)</span> whose <span class="math inline">\(4k\)</span>-cycles are in bijection with <span class="math inline">\(G\)</span>’s <span class="math inline">\(4\)</span>-cycles.</li>
-<li>For any <span class="math inline">\(k\ge 3\)</span> not a power of <span class="math inline">\(2\)</span>, there is an <span class="math inline">\(O(m)\)</span> time algorithm that, on an <span class="math inline">\(m\)</span>-edge graph <span class="math inline">\(G\)</span> produces a graph <span class="math inline">\(G^{\star}\)</span> such that <span class="math inline">\(G\)</span>’s triangles are in bijection with <span class="math inline">\(G^{\star}\)</span>’s <span class="math inline">\(k\)</span>-cycles.</li>
-</ul>
-<div class="cor envbox">
-<p><strong>Corollary.</strong></p>
-<ul>
-<li>If <span class="math inline">\(k\)</span>-cycle can be solved in <span class="math inline">\(m^{\alpha}\)</span> time for any <span class="math inline">\(k,\alpha\)</span>, then for at least one of <span class="math inline">\(k_0\in \{3,4\}\)</span> we can solve <span class="math inline">\(k\)</span>-cycle detection in <span class="math inline">\(m^{\alpha}\)</span> time.</li>
-<li>If there is an algorithm that with <span class="math inline">\(O(m^{\alpha})\)</span> preprocessing lists <span class="math inline">\(k\)</span>-cycles with <span class="math inline">\(m^{o(1)}\)</span> delay, then there is also such an algorithm for at least one of triangle / square enumeration.</li>
-</ul>
-</div>
-<div class="cor envbox">
-<p><strong>Corollary.</strong> The result of Jin Xu STOC23 implies that there is no <span class="math inline">\(m^{4/3-o(1)}\)</span> preprocessing followed by tiny delays algorithm for <span class="math inline">\(2k\)</span>-cycle listing. But this is of course kind of weaker than what we believe to be the truth.</p>
-</div>
-<p>ok now lets see some proofs:</p>
-<p><img src='../../images/blob.png' width='25%'></p>
-<blockquote>
-<p>“pfs vg!” -Blobby</p>
-</blockquote>
-<div class="lem envbox">
-<p><strong>Lemma.</strong> Let <span class="math inline">\(r\mid k\)</span>. <span class="math inline">\(G \to G&#39;\)</span>, such that <span class="math inline">\(C_r\leftrightarrow C_k\)</span></p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> Subdivide the edges. i.e., replace the edges with paths of length <span class="math inline">\(k/r\)</span>.</p>
-</div>
-<div class="lem envbox">
-<p><strong>Lemma.</strong> Let <span class="math inline">\(k\)</span> be odd. There is an <span class="math inline">\(O(m)\)</span> time algorithm that takes a tripartite graph <span class="math inline">\(G\)</span> and converts it into <span class="math inline">\(G^{\star}\)</span> so that triangles in <span class="math inline">\(G\)</span> are in bijection with <span class="math inline">\(k\)</span>-cycles in <span class="math inline">\(G^{\star}\)</span>.</p>
-</div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> Exchange each <span class="math inline">\(B\times C\)</span> edge for a path of length <span class="math inline">\(k-2\)</span>, i.e., subdivide those edges.</p>
-<p>It is clear that triangles get converted into <span class="math inline">\(k\)</span>-cycles. To see the other direction it is helpful to partition the vertex set into <span class="math inline">\(A,B,C, D_1,D_2,\ldots, D_{k-3}\)</span> where <span class="math inline">\(D_i\)</span> is the vertices which are <span class="math inline">\(i\)</span> steps along a <span class="math inline">\(B\to C\)</span> path.</p>
-<p>Observe that if we delete any of these parts the graph becomes bipartite, and then we could certainly not find a <span class="math inline">\(k\)</span>-cycle in it. Hence every <span class="math inline">\(k\)</span>-cycle must actually use one of the <span class="math inline">\(B \times C\)</span> path / edge things and thus actually corresponds to a triangle in the original graph.</p>
-</div>
+      
 
       </div>
     </div>

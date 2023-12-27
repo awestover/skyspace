@@ -45,28 +45,135 @@
 <div class='post-card'>
 <h5 id='Formal-complexity-measure'><a href='12-13-23.html' class='blog-title'>Formal complexity measure
 </a></h5>
-<img class='side-img' src='../../images/shark-original2.png'/><p>[12-13-23]</p>
+<img class='side-img' src='../../images/sheep2.png'/><p>[12-13-23]</p>
 <p>Saw a cool complexity theory idea today. Quickly jotting it down
 so I don't forget it. 
 </p></div>
 <div class='post-card'>
-<h5 id='exchanging-triangles-/-squares-for-larger-cycles'><a href='12-26-23.html' class='blog-title'>exchanging triangles / squares for larger cycles
+<h5 id='exchanging-triangles-/-squares-for-larger-cycles-and-listing'><a href='12-26-23.html' class='blog-title'>exchanging triangles / squares for larger cycles and listing
 </a></h5>
-<img class='side-img' src='../../images/squid-original2.png'/><p>[12-26-23]</p>
-<p>Proof from Appendix of Aboud FOCS22. 
+<img src='src/cycles
+'/><p>[12-26-23]</p>
+<p>reductions between square/triangle and k-cycle
+4cycle listing
+{description}
+Proof from Appendix of Aboud FOCS22. 
 "Hardness of approximation in P via short-cycle removal"
+{body}
+
+# reductions between square/triangle and k-cycle
+
+Henceforth $C_4$ will be refered to as a "square" sometimes.
+
+Proof from Appendix of Aboud FOCS22. 
+"Hardness of approximation in P via short-cycle removal"
+
+They prove two interesting theorems:
+
+beg thm
+- For any $k\in \N$ there is an $O(m)$ time algorithm that, on 
+    an $m$-edge graph $G$ produces a graph $G^{\star}$ whose
+    $4k$-cycles are in bijection with $G$'s $4$-cycles.
+- For any $k\ge 3$ not a power of $2$, there is an $O(m)$ time
+    algorithm that, on an $m$-edge graph $G$ produces a
+    graph $G^{\star}$ such that $G$'s triangles are in bijection
+    with $G^{\star}$'s $k$-cycles.
+end thm
+
+beg cor
+
+- If $k$-cycle can be solved in $m^{\alpha}$ time for any
+$k,\alpha$, then for at least one of $k_0\in \{3,4\}$ we can
+solve $k$-cycle detection in $m^{\alpha}$ time.
+- If there is an algorithm that with $O(m^{\alpha})$
+    preprocessing lists $k$-cycles with $m^{o(1)}$ delay, then
+    there is also such an algorithm for at least one of triangle
+    / square enumeration.
+end cor
+
+beg cor
+The result of Jin Xu STOC23 implies that there is no
+$m^{4/3-o(1)}$ preprocessing followed by tiny delays algorithm
+for $2k$-cycle listing.
+But this is of course kind of weaker than what we believe to be
+the truth.
+end cor
+
+ok now lets see some proofs:
+
+<blob>
+
+> "pfs vg!" -Blobby
+
+beg lem
+Let $r\mid k$.
+$G \to G'$, such that $C_r\leftrightarrow C_k$
+end lem
+beg pf
+Subdivide the edges. i.e., replace the edges with paths of length
+$k/r$.
+end pf
+
+beg lem
+Let $k$ be odd. 
+There is an $O(m)$ time algorithm that takes a tripartite graph $G$ and converts it into $G^{\star}$ so that triangles in $G$ are in bijection with $k$-cycles in $G^{\star}$.
+end lem
+beg pf
+Exchange each $B\times C$ edge for a path of length $k-2$, i.e.,
+subdivide those edges.
+
+It is clear that triangles get converted into $k$-cycles.
+To see the other direction it is helpful to partition the vertex
+set into $A,B,C, D_1,D_2,\ldots, D_{k-3}$ where $D_i$ is the
+vertices which are  $i$ steps along a $B\to C$ path.
+
+Observe that if we delete any of these parts the graph becomes
+bipartite, and then we could certainly not find a $k$-cycle in
+it. Hence every $k$-cycle must actually use one of the $B \times
+C$ path / edge things and thus actually corresponds to a triangle
+in the original graph.
+
+end pf
+
+
+# 4cycle listing
+
+"Listing 4-Cycles" Abboud et al
+https://arxiv.org/pdf/2211.10022.pdf
+
+beg prop 
+You can list squares in $O(n^{2}+t)$ time, where $t$ is number
+of squares.
+end prop
+beg pf
+Do a 2 step BFS out of every vertex. For each pair $u,v$ make a
+list of the paths of length $2$ between $u,v$.
+
+Then itterate over $u,v$ and itterate over pairs of paths of
+length $2$ between $u, v$: each of these is a four-cycle. 
+end pf
+
+beg thm 
+You can list squares in $\widetilde{O}(m^{4/3}+t)$ time, where
+$t$ is number of squares.
+end thm
+beg pf
+Some kindof high-degree low-degree construction. 
+One of the cases "LHH" seems trickier.
+
+end pf
 </p></div>
 <div class='post-card'>
 <h5 id='FPT-part-1'><a href='11-24-23.html' class='blog-title'>FPT part 1
 </a></h5>
-<img class='side-img' src='../../images/squid1.png'/><p>[11-24-23]</p>
+<img class='side-img' src='../../images/squid2.png'/><p>[11-24-23]</p>
 <p>Sometimes problems are hard. But sometimes they're less hard if
 you parameterize them correctly.
 </p></div>
 <div class='post-card'>
 <h5 id='SAT-notes:-Demaine-Fun-with-Hardness'><a href='09-23-23.html' class='blog-title'>SAT notes: Demaine Fun with Hardness
 </a></h5>
-<img class='side-img' src='../../images/rat.png'/><p>[09-23-23]</p>
+<img class='side-img' src='../../images/butterfly2.png'/><p>[09-23-23]</p>
 <p>We talked about a lot of special cases of SAT that are NP-hard in
 Erik Demaine's Fun with Hardness class. I have had a hard time
 keeping track of them all so I've created this little condensed
@@ -75,7 +182,7 @@ reference for all the various versions.
 <div class='post-card'>
 <h5 id='BPP-is-weird:-featuring-arithmetization'><a href='12-07-22.html' class='blog-title'>BPP is weird: featuring arithmetization
 </a></h5>
-<img class='side-img' src='../../images/dog1.png'/><p>[12-07-22]</p>
+<img class='side-img' src='../../images/squid-original1.png'/><p>[12-07-22]</p>
 <p>we look at bpp
 </p></div>
 
