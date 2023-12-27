@@ -1,11 +1,24 @@
-# TODO: make an option to only compile a single directory rather than everything 
-# TODO: enable latex rendering on the main page
-
 import os
 from os.path import join
+from pathlib import Path
 import sys
 from re import finditer
 from random import choice as rchoice
+import subprocess
+
+def get_updated_files():
+    try:
+        # porcelain: machine readable output
+        result = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True, check=True)
+        status_output = result.stdout.splitlines()
+        updated_files = []
+        for line in status_output:
+            if line.startswith('??') or line.startswith(' M'):
+                updated_files.append(Path(line[3:].strip()).parts)
+        return updated_files
+    except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
+        return None
 
 BASEDIR = os.environ["SKYSPACE"]
 os.chdir(BASEDIR)
@@ -116,7 +129,7 @@ def augment_md(body, folder):
 
 def toc(contents):
     elts = []
-    kill_chars = ["<br>", "?", ".", "!", "'", '"', ","]
+    kill_chars = ["<br>", "?", ".", "!", "'", '"', ",", "$"]
 
     for label in contents:
         id_name = label.lower().replace(" ", "-")
@@ -128,68 +141,71 @@ def toc(contents):
 
     return "\n".join(elts)
 
+## MAIN COMPILATION SCRIPT
 
-for folder in os.listdir(join(BASEDIR, "posts")):
+for updated_file_path in get_updated_files():
+    if updated_file_path[0] != "posts" or ".md" not in updated_file_path[-1] or ".aug.md" in updated_file_path[-1]:
+        continue
+    folder = updated_file_path[1]
+    fname = updated_file_path[-1]
     os.chdir(join(BASEDIR, "posts", folder, "src"))
 
-    for fname in os.listdir():
-        if ".md" in fname:
-            real_name = fname.replace(".md", "")
-            print(real_name)
-            with open(fname, "r") as f:
-                all_rows = []
-                for row in f:
-                    all_rows.append(row)
+    real_name = fname.replace(".md", "")
+    print("compiling ", real_name)
+    with open(fname, "r") as f:
+        all_rows = []
+        for row in f:
+            all_rows.append(row)
 
-            title = ""
-            contents = []
-            description = ""
-            body = []
+    title = ""
+    contents = []
+    description = ""
+    body = []
 
-            stages = ["{title}", "{contents}", "{description}", "{body}"]
-            stage = 0
-            for i in range(1, len(all_rows)):
-                #  print(stages[stage])
-                if stages[stage] == "{body}":
-                    body.append(all_rows[i])
-                elif all_rows[i].strip() == stages[stage + 1]:
-                    stage += 1
-                elif stages[stage] == "{title}":
-                    title += all_rows[i]
-                elif stages[stage] == "{contents}":
-                    contents.append(all_rows[i])
-                elif stages[stage] == "{description}":
-                    description += all_rows[i]
+    stages = ["{title}", "{contents}", "{description}", "{body}"]
+    stage = 0
+    for i in range(1, len(all_rows)):
+        #  print(stages[stage])
+        if stages[stage] == "{body}":
+            body.append(all_rows[i])
+        elif all_rows[i].strip() == stages[stage + 1]:
+            stage += 1
+        elif stages[stage] == "{title}":
+            title += all_rows[i]
+        elif stages[stage] == "{contents}":
+            contents.append(all_rows[i])
+        elif stages[stage] == "{description}":
+            description += all_rows[i]
 
-            aug_loc = join("compiled", real_name + ".aug.md")
-            aug_bod = augment_md(body, folder)
-            with open(aug_loc, "w") as f:
-                f.write(aug_bod)
-            #  with open(join("compiled", real_name+".toc.html"), "w") as f:
-            #    f.write(toc(contents))
+    aug_loc = join("compiled", real_name + ".aug.md")
+    aug_bod = augment_md(body, folder)
+    with open(aug_loc, "w") as f:
+        f.write(aug_bod)
+    #  with open(join("compiled", real_name+".toc.html"), "w") as f:
+    #    f.write(toc(contents))
 
-            os.system(
-                f"pandoc --mathjax {aug_loc} -o compiled/{real_name}.content.html"
-            )
+    os.system(
+        f"pandoc --mathjax {aug_loc} -o compiled/{real_name}.content.html"
+    )
 
-            with open(f"compiled/{real_name}.content.html", "r") as f:
-                compiled_body = f.read()
+    with open(f"compiled/{real_name}.content.html", "r") as f:
+        compiled_body = f.read()
 
-            with open(join(BASEDIR, "formatting/template.html"), "r") as f:
-                template = f.read()
+    with open(join(BASEDIR, "formatting/template.html"), "r") as f:
+        template = f.read()
 
-            template = template.replace(
-                "***CONTENT REPLACE THING 3899259***", compiled_body
-            )
-            template = template.replace("***TOC REPLACE THING 322946***", toc(contents))
+    template = template.replace(
+        "***CONTENT REPLACE THING 3899259***", compiled_body
+    )
+    template = template.replace("***TOC REPLACE THING 322946***", toc(contents))
 
-            thumb_img = get_thumb_img("\n".join(body))
+    thumb_img = get_thumb_img("\n".join(body))
 
-            with open(f"../{real_name}.html", "w") as f:
-                f.write(template)
-            with open(f"../{real_name}.metadata.txt", "w") as f:
-                f.write(title)
-                f.write(thumb_img)
-                f.write(description)
+    with open(f"../{real_name}.html", "w") as f:
+        f.write(template)
+    with open(f"../{real_name}.metadata.txt", "w") as f:
+        f.write(title)
+        f.write(thumb_img)
+        f.write(description)
 
 

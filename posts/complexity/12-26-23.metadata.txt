@@ -1,4 +1,4 @@
-exchanging triangles / squares for larger cycles and listing
+Exchanging triangles / squares for larger cycles and listing
 cycles
 reductions between square/triangle and k-cycle
 4cycle listing
