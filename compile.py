@@ -205,7 +205,14 @@ for updated_file_path in get_updated_files():
         "***CONTENT REPLACE THING 3899259***", compiled_body
     )
     template = template.replace("***TOC REPLACE THING 322946***", toc(contents))
-
+    if "ENC" in title:
+        print("secret secret")
+        template = template.replace(
+            "<!-- ***DECRYPT 1443849234234*** -->", 
+            '<button onclick="decryptpage()">DECRYPT</button>\
+            <input id="password" type="password">'
+        )
+        
     thumb_img = get_thumb_img("\n".join(body))
 
     with open(f"../{real_name}.html", "w") as f:

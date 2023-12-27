@@ -14,6 +14,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 
@@ -41,7 +43,8 @@
       </nav>
 
       <div id="content"> 
-      <h1 id="reductions-between-squaretriangle-and-k-cycle">reductions between square/triangle and k-cycle</h1>
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><h1 id="reductions-between-squaretriangle-and-k-cycle">reductions between square/triangle and k-cycle</h1>
 <p>Henceforth <span class="math inline">\(C_4\)</span> will be refered to as a “square” sometimes.</p>
 <p>Proof from Appendix of Aboud FOCS22. “Hardness of approximation in P via short-cycle removal”</p>
 <p>They prove two interesting theorems:</p>
@@ -77,6 +80,9 @@
 <p>It is clear that triangles get converted into <span class="math inline">\(k\)</span>-cycles. To see the other direction it is helpful to partition the vertex set into <span class="math inline">\(A,B,C, D_1,D_2,\ldots, D_{k-3}\)</span> where <span class="math inline">\(D_i\)</span> is the vertices which are <span class="math inline">\(i\)</span> steps along a <span class="math inline">\(B\to C\)</span> path.</p>
 <p>Observe that if we delete any of these parts the graph becomes bipartite, and then we could certainly not find a <span class="math inline">\(k\)</span>-cycle in it. Hence every <span class="math inline">\(k\)</span>-cycle must actually use one of the <span class="math inline">\(B \times C\)</span> path / edge things and thus actually corresponds to a triangle in the original graph.</p>
 </div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> These both have the unfortunate property of resuling in graphs with way too many vertices.</p>
+</div>
 <h1 id="cycle-listing">4cycle listing</h1>
 <p>“Listing 4-Cycles” Abboud et al: https://arxiv.org/pdf/2211.10022.pdf</p>
 <div class="prop envbox">
@@ -92,13 +98,14 @@
 <div class="pf envbox">
 <p><strong>Proof.</strong> Some kindof high-degree low-degree construction. One of the cases “LHH” seems trickier.</p>
 </div>
-
+</div>
       </div>
     </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
     <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
 
     <script charset="utf-8">
         var pres = document.querySelectorAll("pre>code");
