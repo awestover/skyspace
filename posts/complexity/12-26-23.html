@@ -36,6 +36,7 @@
             <div id="toc">
             <li> <a href="#reductions-between-square-or-triangle-and-k-cycle" class="js-scroll-trigger">reductions between square or triangle and k-cycle</a> </li>
 <li> <a href="#square-listing" class="js-scroll-trigger">square listing</a> </li>
+<li> <a href="#hexagon-listing" class="js-scroll-trigger">hexagon listing</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -165,7 +166,90 @@ They prove two interesting theorems:
 <p><strong>Proof.</strong> Combine the lemmas.</p>
 </div>
 <p>TODO: read “[AYZ95] Noga Alon, Raphael Yuster, and Uri Zwick. Color-coding. J. ACM, 42(4):844–856, 1995.” especially section 4 “perfect hashing”</p>
-<p>TODO: read “Listing 6-Cycles”: Jin Williams, Zhou extends this stuff to work for 6-cycles.</p>
+<h1 id="hexagon-listing">hexagon listing</h1>
+<p>“Listing 6-Cycles”: Jin Williams, Zhou which extends this stuff to work for 6-cycles.</p>
+<p>High level:</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> We start by color coding with 4 colors. Call the parts <span class="math inline">\(A,B,C,D\)</span>. We only look for 6-cycles with one vertex in A, two vertices in B, two vertices in C, and one vertex in D. We will repeat the construction <span class="math inline">\(\Theta(\log n)\)</span> times to ensure that we actually hit all the cycles.</p>
+<ul>
+<li>Let <span class="math inline">\(P_{a,d}\)</span> denote the set of (3-)paths between <span class="math inline">\(a\in A,d\in D\)</span> such that the first edge in the 3-path is used by multiple <span class="math inline">\((a,d)\)</span> 3-paths.</li>
+<li>Let <span class="math inline">\(Q_{a,d}\)</span> be the set of 3-paths between <span class="math inline">\(a,d\)</span> such that the last edge of the 3-path is used by multiple <span class="math inline">\((a,d)\)</span> paths.</li>
+<li><em>Note that <span class="math inline">\(P_{a,d}\)</span> and <span class="math inline">\(Q_{a,d}\)</span> are not necessarily disjoint.</em></li>
+<li>Let <span class="math inline">\(R_{a,d}\)</span> be the set of <span class="math inline">\((a,d)\)</span> 3-paths which don’t share an edge with any other <span class="math inline">\((a,d)\)</span> 3-paths.</li>
+<li>Let <span class="math inline">\(N_{a,c}\)</span> be the set of <span class="math inline">\(b\)</span> which are neighbors of both <span class="math inline">\(a,c\)</span>.</li>
+<li>Let <span class="math inline">\(N_{b,d}\)</span> be the set of <span class="math inline">\(c\)</span> which are neighbors of both <span class="math inline">\(b,d.\)</span></li>
+</ul>
+<p>We can compute this stuff in <span class="math inline">\(O(n^2 + \text{ table size})\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="cf">for</span> (b,c) <span class="kw">in</span> BxC cap Edges :</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="cf">for</span> a <span class="kw">in</span> N[b] cap A:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    insert b into N[a,c]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="cf">if</span> <span class="op">|</span>N[a,c]<span class="op">|</span> <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>      insert c into Q[a,d] <span class="cf">for</span> <span class="bu">all</span> d <span class="kw">in</span> N[c] cap D</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>  <span class="cf">for</span> d <span class="kw">in</span> N[c] cap D:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    insert c into N[b,d]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    similar condition to above to add paths to P[a,d]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="cf">for</span> (b,c) <span class="kw">in</span> BxC cap Edges:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  Sa <span class="op">=</span> {a <span class="kw">in</span> N[b] cap A : <span class="op">|</span>N[a,c]<span class="op">|==</span><span class="dv">1</span>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  Sd <span class="op">=</span> {d <span class="kw">in</span> N[c] cap D : <span class="op">|</span>N[b,d]<span class="op">|==</span><span class="dv">1</span>}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  <span class="cf">for</span> (a,d) <span class="kw">in</span> Sa x Sd:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    insert (b,c) into R[a,d]</span></code></pre></div>
+<p>claim: this code is <span class="math inline">\(O(n^2 + \text{ table size})\)</span>. proof: Basically on most lines of the code we are inserting into the table.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Using our table of <span class="math inline">\(P,Q,R,N\)</span> we can easily list the <span class="math inline">\(C_6\)</span>’s in <span class="math inline">\(O(n^{2}+\# C_6)\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We do cases on what type of paths the C6 is composed of.</p>
+<ul>
+<li>Case 3: RR</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="cf">for</span> a <span class="kw">in</span> A, d <span class="kw">in</span> D:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="cf">for</span> (b1,c1) <span class="kw">in</span> R[a,d], (b2,c2) <span class="kw">in</span> R[a,d]:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="cf">if</span> (b1,c1) <span class="op">!=</span> (b2,c2):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>      output C6: a,b1,c1,d,c2,b2</span></code></pre></div>
+<ul>
+<li>Case 4: P/Q R.</li>
+</ul>
+<p>similar to case 3</p>
+<ul>
+<li>Case 1: PQ</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="cf">for</span> a <span class="kw">in</span> A, d <span class="kw">in</span> D:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="cf">for</span> b1 <span class="kw">in</span> P[a,d], c2 <span class="kw">in</span> Q[a,d]:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="cf">for</span> b2 <span class="kw">in</span> N[b1,d], c1 <span class="kw">in</span> N[a,c2]:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>      <span class="cf">if</span> b1 <span class="op">!=</span> b2 <span class="kw">and</span> c1 <span class="op">!=</span> c2:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>        output C6: a b1 b2 d c2 c1</span></code></pre></div>
+<p>The reason this works is because the neighbor sets are size at least <span class="math inline">\(2\)</span> so when we do “choose 2” it doesn’t become 0. I.e., for <span class="math inline">\(n\ge 2\)</span> we have <span class="math display">\[\binom{n}{2}\ge \frac{n^2}{4}.\]</span> Or at least its this kind of vibe.</p>
+<ul>
+<li>Case 2: similar to case 1</li>
+</ul>
+<figure>
+<img src="src/images/ink_img003.png" alt="" /><figcaption>ink_img003</figcaption>
+</figure>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Now for the most interesting part: <span class="math display">\[\text{table size} \le O(n^{2}+\text{ table size}).\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> First we analyze the PQR stuff.</p>
+<p>PQR: Suppose that <span class="math inline">\(|P_{a,d}|=x\ge 2\)</span>. Then you get at least <span class="math inline">\(\binom{x}{2}\ge x-1\)</span> hexagons. So we get <span class="math display">\[\sum_{a,d}|P_{a,d}|\le O(n^{2}+C_6).\]</span></p>
+<p>Remains to show that listing the common neighbors of every pair of vertices is fine. The argument is based on this key fact:</p>
+<p><strong>If <span class="math inline">\(a\in A\)</span> satisfies <span class="math inline">\(\sum_{c\in C} |N_{a,c}|\ge 100n+k\)</span> then there are at least <span class="math inline">\(k\)</span> C6’s for which <span class="math inline">\(a\)</span> is the only <span class="math inline">\(A\)</span> vertex in the C6.</strong></p>
+<p>Let <span class="math inline">\(G_a\)</span> (basically) be the 2-step BFS tree out of <span class="math inline">\(a\)</span>. We form <span class="math inline">\(G_a&#39;\)</span> as follows: itteratively delete vertices while there is a vertex of degree at most <span class="math inline">\(2\)</span>. This deletes at most <span class="math inline">\(2\)</span> edges per vertex, for a total of at most <span class="math inline">\(2n\)</span> edges. Hence, <span class="math inline">\(|E(G_a&#39;)|\ge 98n+k\)</span>. Now we can greedily find a C6.</p>
+<p>I was initially a bit confused by this. Because I thought the idea with the color-coding is that we were only going to list the C6’s spanning ABCD. But this isn’t part of the algorithm, this is part of the analysis.</p>
+<p>So anyways, this lets us prove:</p>
+<p><span class="math display">\[\sum_{c\in C} |N_{a,c}|-100n\]</span> is a lower bound on the number of <span class="math inline">\(C_6\)</span>’s for which <span class="math inline">\(a\)</span> is the only <span class="math inline">\(A\)</span> vertex in the <span class="math inline">\(C_6\)</span>.</p>
+<p>Hence, <span class="math display">\[C_6 \ge \sum_{a\in A}\sum_{c\in C} (|N_{a,c}|-100n).\]</span> Thus, <span class="math display">\[\sum_{a,c} |N_{a,c}| \le O(n^{2}+C_6).\]</span></p>
+<p>lovely!</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> They also do something so that if you want to list a certain number of <span class="math inline">\(C_6\)</span>’s (not all of them) you can do that as well.</p>
+</div>
 </div>
       </div>
     </div>
