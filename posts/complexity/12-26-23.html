@@ -233,7 +233,7 @@ They prove two interesting theorems:
 </figure>
 </div>
 <div class="lem envbox">
-<p><strong>Lemma.</strong> Now for the most interesting part: <span class="math display">\[\text{table size} \le O(n^{2}+\text{ table size}).\]</span></p>
+<p><strong>Lemma.</strong> Now for the most interesting part: <span class="math display">\[\text{table size} \le O(n^{2}+C_6).\]</span></p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> First we analyze the PQR stuff.</p>
@@ -249,6 +249,9 @@ They prove two interesting theorems:
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> They also do something so that if you want to list a certain number of <span class="math inline">\(C_6\)</span>’s (not all of them) you can do that as well.</p>
+<p>Seems like the idea is basically as follows: order the vertices <span class="math inline">\(v_1,v_2,\ldots,v_n\)</span>. Let <span class="math inline">\(G_i\)</span> be the induced subgraph on <span class="math inline">\(v_1,\ldots, v_i\)</span>.</p>
+<p>Binary search over <span class="math inline">\(i\)</span> until you find one with the right number of <span class="math inline">\(C_6\)</span>’s, ish.</p>
+<p>Anyways, there are some cases and stuff but this is the gist.</p>
 </div>
 </div>
       </div>
