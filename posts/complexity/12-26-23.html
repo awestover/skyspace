@@ -198,6 +198,17 @@ They prove two interesting theorems:
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  Sd <span class="op">=</span> {d <span class="kw">in</span> N[c] cap D : <span class="op">|</span>N[b,d]<span class="op">|==</span><span class="dv">1</span>}</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  <span class="cf">for</span> (a,d) <span class="kw">in</span> Sa x Sd:</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    insert (b,c) into R[a,d]</span></code></pre></div>
+<p>I think there is a simpler way of phrasing this that still works:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>List <span class="bu">all</span> <span class="dv">2</span><span class="op">-</span>paths by doing a <span class="dv">2</span><span class="op">-</span>step BFS out of every vertex.</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>While listing the <span class="dv">2</span><span class="op">-</span>paths <span class="cf">for</span> each vertex create a <span class="bu">list</span> of their <span class="st">&quot;2-step neighbors&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="cf">for</span> a <span class="kw">in</span> A:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="cf">for</span> c <span class="kw">in</span> <span class="dv">2</span><span class="op">-</span>step neighbors of a:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="cf">for</span> d <span class="kw">in</span> D neighbors of c:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>      <span class="cf">if</span> there are multiple a <span class="op">-&gt;</span> c <span class="dv">2</span><span class="op">-</span>paths:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>        mark c <span class="im">as</span> an (a,d) dead<span class="op">-</span>fish</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>      <span class="cf">elif</span> there <span class="kw">is</span> a unique b <span class="cf">for</span> which a<span class="op">-&gt;</span>b<span class="op">-&gt;</span>c:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>        mark (b,c) <span class="im">as</span> an (a,d) irreplacable<span class="op">-</span>path</span></code></pre></div>
+<p>This should be fine because we have the OP lemma that we can afford to list P2’s.</p>
 <p>claim: this code is <span class="math inline">\(O(n^2 + \text{ table size})\)</span>. proof: Basically on most lines of the code we are inserting into the table.</p>
 </div>
 <div class="lem envbox">
@@ -208,10 +219,10 @@ They prove two interesting theorems:
 <ul>
 <li>Case 3: RR</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="cf">for</span> a <span class="kw">in</span> A, d <span class="kw">in</span> D:</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="cf">for</span> (b1,c1) <span class="kw">in</span> R[a,d], (b2,c2) <span class="kw">in</span> R[a,d]:</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="cf">if</span> (b1,c1) <span class="op">!=</span> (b2,c2):</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>      output C6: a,b1,c1,d,c2,b2</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="cf">for</span> a <span class="kw">in</span> A, d <span class="kw">in</span> D:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="cf">for</span> (b1,c1) <span class="kw">in</span> R[a,d], (b2,c2) <span class="kw">in</span> R[a,d]:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="cf">if</span> (b1,c1) <span class="op">!=</span> (b2,c2):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>      output C6: a,b1,c1,d,c2,b2</span></code></pre></div>
 <ul>
 <li>Case 4: P/Q R.</li>
 </ul>
@@ -219,11 +230,11 @@ They prove two interesting theorems:
 <ul>
 <li>Case 1: PQ</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="cf">for</span> a <span class="kw">in</span> A, d <span class="kw">in</span> D:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="cf">for</span> b1 <span class="kw">in</span> P[a,d], c2 <span class="kw">in</span> Q[a,d]:</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="cf">for</span> b2 <span class="kw">in</span> N[b1,d], c1 <span class="kw">in</span> N[a,c2]:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>      <span class="cf">if</span> b1 <span class="op">!=</span> b2 <span class="kw">and</span> c1 <span class="op">!=</span> c2:</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>        output C6: a b1 b2 d c2 c1</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="cf">for</span> a <span class="kw">in</span> A, d <span class="kw">in</span> D:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  <span class="cf">for</span> b1 <span class="kw">in</span> P[a,d], c2 <span class="kw">in</span> Q[a,d]:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="cf">for</span> b2 <span class="kw">in</span> N[b1,d], c1 <span class="kw">in</span> N[a,c2]:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>      <span class="cf">if</span> b1 <span class="op">!=</span> b2 <span class="kw">and</span> c1 <span class="op">!=</span> c2:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>        output C6: a b1 b2 d c2 c1</span></code></pre></div>
 <p>The reason this works is because the neighbor sets are size at least <span class="math inline">\(2\)</span> so when we do “choose 2” it doesn’t become 0. I.e., for <span class="math inline">\(n\ge 2\)</span> we have <span class="math display">\[\binom{n}{2}\ge \frac{n^2}{4}.\]</span> Or at least its this kind of vibe.</p>
 <ul>
 <li>Case 2: similar to case 1</li>
