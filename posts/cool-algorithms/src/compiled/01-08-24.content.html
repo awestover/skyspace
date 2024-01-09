@@ -1,0 +1,64 @@
+<h1 id="simple-kernels">Simple Kernels</h1>
+<p>Vertex cover is covered (hahahaha) in a different blog post.</p>
+<p>FAST: Feedback arc set in Tournaments</p>
+<p>(find a set of edges “hitting” all the cycles)</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> A minimal (in the sense that if you delete any edge from the set the property fails; not necessarily minimum) set of edges in the whose reversal in the tournament results in a DAG is also a minimal (in the same sense as above) feedback arc set.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<figure>
+<img src="src/images/FASTFPT.jpg" alt="" /><figcaption>proof</figcaption>
+</figure>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> nice kernel for FAST</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<ul>
+<li>must take edges involved in more than <span class="math inline">\(k+1\)</span> triangles</li>
+<li>is safe to delete vertices not involved in any triangle</li>
+<li>at this point I think you get a bound of like <span class="math inline">\(O(k^{2})\)</span> on number of edges in a YES instance based on the two above reductions.</li>
+</ul>
+</div>
+<p>ECC: edge clique cover. cover edges by cliques.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(2^{k}\)</span> sized kernel</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<ul>
+<li><p>it is safe to delete connected components which are already cliques (and decrease <span class="math inline">\(k\)</span> by one here).</p></li>
+<li><p>it is safe to merge “true twins”: vertices with identical (closed) neighborhoods.</p>
+<p>At this point we claim that in any YES instance there are at most <span class="math inline">\(2^{k}\)</span> vertices left. Assume for contradiction that we have a YES instance, i.e., there are cliques <span class="math inline">\(C_1,C_2,\ldots, C_k\)</span> covering all the edges, but we have more than <span class="math inline">\(2^{k}\)</span> vertices.</p>
+<p>Then associate a <span class="math inline">\(k\)</span>-bit vector with each vertex indicating which of the <span class="math inline">\(C_i\)</span> clique’s its part of.</p>
+<p>By pidgeon two vertices share an indicator vector. That means they are true twins, a contradiction.</p></li>
+</ul>
+</div>
+<p>A solved problem: can you delete k vertices to make a graph have max-degree <span class="math inline">\(d\)</span>? Pretty similar rules to VC. One interesting one is, you have high-deg and low-deg vtxs. And you can just toss vertices which aren’t adjacnet to any high-deg vertices.</p>
+<h1 id="lp-based-kernels">LP-based kernels</h1>
+<p>A lot of NP-hard problems are easily phrased as ILPs. ILP is hard. But often we can get a lot of info about what the ILP solution should look like by relaxing to an LP.</p>
+<p>Vertex cover LP relaxation:</p>
+<p><span class="math display">\[\forall uv\in E, x_u + x_v \ge 1\]</span> <span class="math display">\[\forall v\in V, x_v \in [0,1]\]</span> <span class="math display">\[\min \sum_{v\in V} x_v.\]</span> We can think of this as a “fractional vertex cover”.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Take an LP solution. Let <span class="math inline">\(V_0\)</span> be vertices in the LP solution with <span class="math inline">\(x_v&lt; 1/2\)</span> Let <span class="math inline">\(V_{1/2}\)</span> be vertices with <span class="math inline">\(x_v=1/2\)</span> and finally let <span class="math inline">\(V_1\)</span> be vertices with <span class="math inline">\(x_v&gt;1/2\)</span>.</p>
+<p>Then, it turns out that there is a minimal vertex cover <span class="math inline">\(S\)</span> satisfying:</p>
+<p><span class="math display">\[V_1 \subseteq S \subseteq V_1\sqcup V_{1/2}.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Take any minimum vertex cover <span class="math inline">\(S^*\)</span>. Form <span class="math inline">\(S\)</span> by taking <span class="math inline">\(S^{*}\)</span> and removing the <span class="math inline">\(V_0\)</span>’s and adding any missing <span class="math inline">\(V_1\)</span>’s.</p>
+<p>Claim: <span class="math inline">\(S\)</span> is also a minimum VC. proof: by contradiction. Specifically, assume <span class="math inline">\(S\)</span> is a worse VC. Turns out we can use this to show that the LP solution that generated <span class="math inline">\(V_0,V_{1/2},V_1\)</span> was actually suboptimal.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Vertex Cover kernel</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Run LP (actually you don’t need to, you can do some kinda flow thing instead of actually running LP; but same effect).</p>
+<p>Toss <span class="math inline">\(V_0\)</span>. Take <span class="math inline">\(V_1\)</span>. Size of <span class="math inline">\(V_{1/2}\)</span> can’t be too large or we auto reject.</p>
+</div>
+<p>COMING LATER:</p>
+<h1 id="crown">Crown</h1>
+<h1 id="expansion">Expansion</h1>
+<h1 id="sun-flower">Sun-flower</h1>
