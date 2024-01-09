@@ -36,7 +36,6 @@
 <p>By pidgeon two vertices share an indicator vector. That means they are true twins, a contradiction.</p></li>
 </ul>
 </div>
-<p>A solved problem: can you delete k vertices to make a graph have max-degree <span class="math inline">\(d\)</span>? Pretty similar rules to VC. One interesting one is, you have high-deg and low-deg vtxs. And you can just toss vertices which aren’t adjacnet to any high-deg vertices.</p>
 <h1 id="lp-based-kernels">LP-based kernels</h1>
 <p>A lot of NP-hard problems are easily phrased as ILPs. ILP is hard. But often we can get a lot of info about what the ILP solution should look like by relaxing to an LP.</p>
 <p>Vertex cover LP relaxation:</p>
@@ -58,7 +57,93 @@
 <p><strong>Proof.</strong> Run LP (actually you don’t need to, you can do some kinda flow thing instead of actually running LP; but same effect).</p>
 <p>Toss <span class="math inline">\(V_0\)</span>. Take <span class="math inline">\(V_1\)</span>. Size of <span class="math inline">\(V_{1/2}\)</span> can’t be too large or we auto reject.</p>
 </div>
-<p>COMING LATER:</p>
-<h1 id="crown">Crown</h1>
-<h1 id="expansion">Expansion</h1>
+<h1 id="crown-lemma">Crown Lemma</h1>
+<p>We say a matching “saturates” a set if there is an edge incident to all the vertices in that set.</p>
+<p>KONIG - bip. graph: max matching = min vertex cover</p>
+<p>HALL: bip graph <span class="math inline">\(G\)</span> with vertex bipartition <span class="math inline">\((V_1,V_2)\)</span>. - <span class="math inline">\(G\)</span> has a matching saturating <span class="math inline">\(V_1\)</span> iff for all <span class="math inline">\(X\subset V_1\)</span> we have <span class="math inline">\(|N(X)|\ge |X|\)</span>.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> We can use flow or whatever to find max-matching / min-vertex cover in <span class="math inline">\(O(m\sqrt{n})\)</span> time.</p>
+<p>If the max-matching doesn’t saturate <span class="math inline">\(V_1\)</span>, we can find a witness <span class="math inline">\(X\subseteq V_1\)</span> for which <span class="math inline">\(|N(X)|&lt; |X|.\)</span></p>
+</div>
+<p>beg defin Crown:</p>
+<p>CHR</p>
+<p>C is an indep set. And non-empty there is a C,H matching saturating H. There are no edges between C,R.</p>
+<p>end defin</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> there is a poly time algo that, on any graph with at least <span class="math inline">\(3k+1\)</span> vertices either</p>
+<ol type="1">
+<li>outputs a matching of size <span class="math inline">\(k+1\)</span></li>
+<li>finds a crown decomposition</li>
+</ol>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> we can use crown lemma to make a kernel for VC.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Run crow decomp algo. If you find a matching of size <span class="math inline">\(k+1\)</span> output NO. Else, you can take the “head” in the crown decomp, and ditch the crown. This allows us to decrease the problem size as long as the problem size is at least <span class="math inline">\(3k+1\)</span>. Hence <span class="math inline">\(O(k)\)</span> vertex kernel.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> MAX SAT has a kernel with <span class="math inline">\(O(k)\)</span> vars <span class="math inline">\(O(k)\)</span> clauses.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+</div>
+<h1 id="expansion-lemma">Expansion lemma</h1>
+<p>Now we do a more powerful version of the crown lemma.</p>
+<p>beg defin A <strong><span class="math inline">\(q\)</span>-expansion</strong> of <span class="math inline">\(A\)</span> into <span class="math inline">\(B\)</span> is each vertex in <span class="math inline">\(A\)</span> has exactly <span class="math inline">\(q\)</span> neighbors in <span class="math inline">\(B\)</span> and these neighbors are disjoint, i.e., <span class="math inline">\(q|A|\)</span> of the vertices in <span class="math inline">\(B\)</span> are hit.</p>
+<p>You can also think of this as a collection of <span class="math inline">\(q\)</span> edge-disjoint matchings, each saturating <span class="math inline">\(A\)</span>. end defin</p>
+Now we give a generalization of Hall’s theorem:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(G\)</span> be a bip graph with bipartition <span class="math inline">\((A,B)\)</span>. There is a <span class="math inline">\(q\)</span>-expansion from <span class="math inline">\(A\)</span> into <span class="math inline">\(B\)</span> iff <span class="math inline">\(|N(X)|\ge q|X|\)</span> for all <span class="math inline">\(X\subseteq A\)</span>. Furthermore, if there is no such <span class="math inline">\(q\)</span>-expansion we can find a witness in poly time.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Replace <span class="math inline">\(A\)</span> with <span class="math inline">\(q\)</span> copies of <span class="math inline">\(A\)</span>. Run Hall’s theorem on the new graph. Matchings in this new graph correspond to <span class="math inline">\(q\)</span>-expansions in the original graph.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> EXPANSION LEMMA</p>
+<p>Suppose we have a bip graph on vtxs <span class="math inline">\(A,B\)</span> with <span class="math inline">\(|B|\ge q|A|\)</span> and that there are no isolated vtxs in B.</p>
+<p>Then there are <span class="math inline">\(X\subseteq A, Y \subseteq B\)</span> such that <span class="math inline">\(q\)</span>-expansion of <span class="math inline">\(X\)</span> into <span class="math inline">\(Y\)</span>. No vertex in <span class="math inline">\(Y\)</span> has a neighbor outside of <span class="math inline">\(X\)</span>, i.e., <span class="math inline">\(N(Y)\subseteq X\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> <span class="math inline">\(X, Y, V\setminus (X\cup Y)\)</span> is a crown decomp but with even more properties: not only is every vertex of <span class="math inline">\(X\)</span> matched into <span class="math inline">\(Y\)</span> but there is a <span class="math inline">\(q\)</span>-expansion of <span class="math inline">\(X\)</span> into <span class="math inline">\(Y\)</span>.</p>
+</div>
 <h1 id="sun-flower">Sun-flower</h1>
+<p>beg defin SUNFLOWER:</p>
+<p><span class="math inline">\(k\)</span> petals, core <span class="math inline">\(Y\)</span>: sets <span class="math inline">\(S_1,S_2,\ldots, S_k\)</span> such that <span class="math inline">\(S_i \cap S_j = Y\)</span> for all <span class="math inline">\(i\neq j\)</span> and the “petals” <span class="math inline">\(S_i \setminus Y\)</span> are all required to be non-empty.</p>
+<p>The core can be empty though. end defin</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Family of sets over a universe. Each set has <span class="math inline">\(d\)</span> elements. If you have more than <span class="math inline">\(d!(k-1)^{d}\)</span> such sets then the family contains a sunflower with <span class="math inline">\(k\)</span> petals. And we can compute it in poly time in terms of the numebr of sets, universe size and <span class="math inline">\(k\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> induction</p>
+</div>
+<h1 id="some-exercises">some exercises</h1>
+<ol start="4" type="1">
+<li><div class="prop envbox">
+<p><strong>Proposition.</strong> “In the Point Line Cover problem, we are given a set of n points in the plane and an integer k, and the goal is to check if there exists a set of k lines on the plane that contain all the input points. Show a kernel for this problem with <span class="math inline">\(O(k^{2})\)</span> points.”</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> If any line has more than <span class="math inline">\(k\)</span> points on it, you better take that line. First run this reduction. Now wlog each line has at most <span class="math inline">\(k\)</span> points on it. Now, if there are more than <span class="math inline">\(k^{2}\)</span> points output REJECT. Else, we have our desired kernel.</p>
+</div></li>
+</ol>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> “2.7. In the Minimum Maximal Matching problem, we are given an undirected graph G and a positive integer k, and the objective is to decide whether there exists a maximal matching in G on at most k edges. Obtain a polynomial kernel for the problem (parame- terized by k).”</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>observation 1: If <span class="math inline">\(G\)</span> has a <span class="math inline">\(4k\)</span> vertex matching then it certainly can’t have a maximal matching of size at most <span class="math inline">\(k\)</span>.</p>
+<p>So let’s start by running Crow Lemma. If crown lemma outputs a huge matching we instantly reject. Else, we get a crown decomposition.</p>
+<p>TODO: not sure what to do next</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Q2.8:</p>
+</div>
+min-ones-2-sat: is there an assignemnt with at most <span class="math inline">\(k\)</span> ones satisfying the 2CNF SAT formula?
+<div class="prop envbox">
+<p><strong>Proposition.</strong></p>
+<p>Q2.9: can you delete k vertices to make a graph have max-degree <span class="math inline">\(d\)</span>?</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Pretty similar rules to VC. One interesting one is, you have high-deg and low-deg vtxs. And you can just toss vertices which aren’t adjacnet to any high-deg vertices.</p>
+</div>
