@@ -65,10 +65,11 @@
 <p><strong>Lemma.</strong> We can use flow or whatever to find max-matching / min-vertex cover in <span class="math inline">\(O(m\sqrt{n})\)</span> time.</p>
 <p>If the max-matching doesn’t saturate <span class="math inline">\(V_1\)</span>, we can find a witness <span class="math inline">\(X\subseteq V_1\)</span> for which <span class="math inline">\(|N(X)|&lt; |X|.\)</span></p>
 </div>
-<p>beg defin Crown:</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Crown:</p>
 <p>CHR</p>
 <p>C is an indep set. And non-empty there is a C,H matching saturating H. There are no edges between C,R.</p>
-<p>end defin</p>
+</div>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> there is a poly time algo that, on any graph with at least <span class="math inline">\(3k+1\)</span> vertices either</p>
 <ol type="1">
@@ -90,8 +91,10 @@
 </div>
 <h1 id="expansion-lemma">Expansion lemma</h1>
 <p>Now we do a more powerful version of the crown lemma.</p>
-<p>beg defin A <strong><span class="math inline">\(q\)</span>-expansion</strong> of <span class="math inline">\(A\)</span> into <span class="math inline">\(B\)</span> is each vertex in <span class="math inline">\(A\)</span> has exactly <span class="math inline">\(q\)</span> neighbors in <span class="math inline">\(B\)</span> and these neighbors are disjoint, i.e., <span class="math inline">\(q|A|\)</span> of the vertices in <span class="math inline">\(B\)</span> are hit.</p>
-<p>You can also think of this as a collection of <span class="math inline">\(q\)</span> edge-disjoint matchings, each saturating <span class="math inline">\(A\)</span>. end defin</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A <strong><span class="math inline">\(q\)</span>-expansion</strong> of <span class="math inline">\(A\)</span> into <span class="math inline">\(B\)</span> is each vertex in <span class="math inline">\(A\)</span> has exactly <span class="math inline">\(q\)</span> neighbors in <span class="math inline">\(B\)</span> and these neighbors are disjoint, i.e., <span class="math inline">\(q|A|\)</span> of the vertices in <span class="math inline">\(B\)</span> are hit.</p>
+<p>You can also think of this as a collection of <span class="math inline">\(q\)</span> edge-disjoint matchings, each saturating <span class="math inline">\(A\)</span>.</p>
+</div>
 Now we give a generalization of Hall’s theorem:
 <div class="lem envbox">
 <p><strong>Lemma.</strong> Let <span class="math inline">\(G\)</span> be a bip graph with bipartition <span class="math inline">\((A,B)\)</span>. There is a <span class="math inline">\(q\)</span>-expansion from <span class="math inline">\(A\)</span> into <span class="math inline">\(B\)</span> iff <span class="math inline">\(|N(X)|\ge q|X|\)</span> for all <span class="math inline">\(X\subseteq A\)</span>. Furthermore, if there is no such <span class="math inline">\(q\)</span>-expansion we can find a witness in poly time.</p>
@@ -109,9 +112,11 @@ Now we give a generalization of Hall’s theorem:
 <p><strong>Remark.</strong> <span class="math inline">\(X, Y, V\setminus (X\cup Y)\)</span> is a crown decomp but with even more properties: not only is every vertex of <span class="math inline">\(X\)</span> matched into <span class="math inline">\(Y\)</span> but there is a <span class="math inline">\(q\)</span>-expansion of <span class="math inline">\(X\)</span> into <span class="math inline">\(Y\)</span>.</p>
 </div>
 <h1 id="sun-flower">Sun-flower</h1>
-<p>beg defin SUNFLOWER:</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> SUNFLOWER:</p>
 <p><span class="math inline">\(k\)</span> petals, core <span class="math inline">\(Y\)</span>: sets <span class="math inline">\(S_1,S_2,\ldots, S_k\)</span> such that <span class="math inline">\(S_i \cap S_j = Y\)</span> for all <span class="math inline">\(i\neq j\)</span> and the “petals” <span class="math inline">\(S_i \setminus Y\)</span> are all required to be non-empty.</p>
-<p>The core can be empty though. end defin</p>
+<p>The core can be empty though.</p>
+</div>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Family of sets over a universe. Each set has <span class="math inline">\(d\)</span> elements. If you have more than <span class="math inline">\(d!(k-1)^{d}\)</span> such sets then the family contains a sunflower with <span class="math inline">\(k\)</span> petals. And we can compute it in poly time in terms of the numebr of sets, universe size and <span class="math inline">\(k\)</span>.</p>
 </div>
@@ -119,22 +124,25 @@ Now we give a generalization of Hall’s theorem:
 <p><strong>Proof.</strong> induction</p>
 </div>
 <h1 id="some-exercises">some exercises</h1>
-<ol start="4" type="1">
-<li><div class="prop envbox">
-<p><strong>Proposition.</strong> “In the Point Line Cover problem, we are given a set of n points in the plane and an integer k, and the goal is to check if there exists a set of k lines on the plane that contain all the input points. Show a kernel for this problem with <span class="math inline">\(O(k^{2})\)</span> points.”</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> 2.4 “In the Point Line Cover problem, we are given a set of n points in the plane and an integer k, and the goal is to check if there exists a set of k lines on the plane that contain all the input points. Show a kernel for this problem with <span class="math inline">\(O(k^{2})\)</span> points.”</p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> If any line has more than <span class="math inline">\(k\)</span> points on it, you better take that line. First run this reduction. Now wlog each line has at most <span class="math inline">\(k\)</span> points on it. Now, if there are more than <span class="math inline">\(k^{2}\)</span> points output REJECT. Else, we have our desired kernel.</p>
-</div></li>
-</ol>
+</div>
 <div class="prop envbox">
-<p><strong>Proposition.</strong> “2.7. In the Minimum Maximal Matching problem, we are given an undirected graph G and a positive integer k, and the objective is to decide whether there exists a maximal matching in G on at most k edges. Obtain a polynomial kernel for the problem (parame- terized by k).”</p>
+<p><strong>Proposition.</strong> “2.7. In the Minimum Maximal Matching problem, we are given an undirected graph G and a positive integer k, and the objective is to decide whether there exists a maximal matching in G on at most k edges. Obtain a polynomial kernel for the problem (parameterized by k).”</p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong></p>
 <p>observation 1: If <span class="math inline">\(G\)</span> has a <span class="math inline">\(4k\)</span> vertex matching then it certainly can’t have a maximal matching of size at most <span class="math inline">\(k\)</span>.</p>
-<p>So let’s start by running Crow Lemma. If crown lemma outputs a huge matching we instantly reject. Else, we get a crown decomposition.</p>
-<p>TODO: not sure what to do next</p>
+<p>Call a vertex “high degree” if its degree is more than <span class="math inline">\(4k\)</span>. Clearly we must take any edge that has two high-degree endpoints.</p>
+<p>So, the set of high-degree vertices will form an independent set after we apply the first reduction.</p>
+<p>So the story is, we are going to eat up to <span class="math inline">\(k\)</span> edges. And in order for this to be a maximal matching we need it to be the case that for every edge <span class="math inline">\(e\in E(G)\)</span> we ate an edge that shares an endpoint with <span class="math inline">\(e\)</span>.</p>
+<p>We say that an edge <span class="math inline">\(e\)</span> is “neutralized” if we take an edge that shares an endpoint with <span class="math inline">\(e\)</span>. Consider an LL edge. Observe that each edge we eat neutralizes at most <span class="math inline">\(O(k)\)</span> LL edges. Hence, if there are more than <span class="math inline">\(\Omega(k^{2})\)</span> such edges then we can output REJECT: there is no way we are going to neutralize all the edges.</p>
+<p>Otherwise, we have an instance with at most <span class="math inline">\(k^{2}\)</span> LL edges. The instance technically might still have a lot of vertices though. However we can clean this up. There are at most <span class="math inline">\(O(k)\)</span> H vertices, or else we can’t hope to cover all of the H vertices.</p>
+<p>The final thing we need to clean up is, there might be a ton of L vertices which are just connected to H vertices.</p>
+<p>TODO: edited till here.</p>
 </div>
 <div class="prop envbox">
 <p><strong>Proposition.</strong> Q2.8:</p>
