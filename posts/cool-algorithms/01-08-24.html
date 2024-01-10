@@ -200,7 +200,14 @@ Now we give a generalization of Hall’s theorem:
 <p><strong>Proposition.</strong> Q2.8: min-ones-2-sat: is there an assignemnt with at most <span class="math inline">\(k\)</span> ones satisfying the 2CNF SAT formula?</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong></p>
+<p><strong>Proof.</strong> First do some basic cleaning: remove duplicate clauses and vacuous clauses.</p>
+<p>“Hard Clause”: two positive variables. Obsservation: if a var occurs in more than <span class="math inline">\(k\)</span> hard clauses, then we better set that variable to <span class="math inline">\(1\)</span>. Applying this reduction rule we get that wlog each variable occurs in at most <span class="math inline">\(k\)</span> hard clauses.</p>
+<p>In particular this means that there are at most <span class="math inline">\(O(k^{2})\)</span> hard clauses, or else we can instantly REJECT.</p>
+<p>Let <span class="math inline">\(H_1\)</span> be the set of variables that appeaer in hard clauses. Of course <span class="math inline">\(|H_1|\le O(k^{2})\)</span>.</p>
+<p>If we have a variable <span class="math inline">\(x\)</span> and <span class="math inline">\(k\)</span> distinct variables <span class="math inline">\(v_1,v_2,v_2,\ldots, v_k\)</span> so that all the following clauses exist: <span class="math display">\[(\overline{x}\lor y)\land (\overline{x}\lor z)\land (\overline{x}\lor w)\land\cdots,\]</span> then we had better set <span class="math inline">\(x=F\)</span>.</p>
+<p>We can think of some kind of recursive structure for which variable we might be motivated to set to true.</p>
+<p>So far, the best bound I have is that there are certainly not more than <span class="math inline">\(k! \cdot k^{100}\)</span> variables which are worth considering setting positively. So, we could pretty much forget about all the other variables.</p>
+<p>But we want a kernel of size <span class="math inline">\(\text{poly}(k)\)</span>. Maybe I’ll see it in the morning.</p>
 </div>
 <div class="prop envbox">
 <p><strong>Proposition.</strong> Q2.9: can you delete k vertices to make a graph have max-degree <span class="math inline">\(d\)</span>?</p>
