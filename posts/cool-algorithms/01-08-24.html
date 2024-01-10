@@ -40,6 +40,7 @@
 <li> <a href="#expansion-lemma" class="js-scroll-trigger">Expansion lemma</a> </li>
 <li> <a href="#sun-flower" class="js-scroll-trigger">Sun-flower</a> </li>
 <li> <a href="#some-exercises" class="js-scroll-trigger">some exercises</a> </li>
+<li> <a href="#addendum" class="js-scroll-trigger">addendum</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -204,16 +205,51 @@ Now we give a generalization of Hall’s theorem:
 <p>“Hard Clause”: two positive variables. Obsservation: if a var occurs in more than <span class="math inline">\(k\)</span> hard clauses, then we better set that variable to <span class="math inline">\(1\)</span>. Applying this reduction rule we get that wlog each variable occurs in at most <span class="math inline">\(k\)</span> hard clauses.</p>
 <p>In particular this means that there are at most <span class="math inline">\(O(k^{2})\)</span> hard clauses, or else we can instantly REJECT.</p>
 <p>Let <span class="math inline">\(H_1\)</span> be the set of variables that appeaer in hard clauses. Of course <span class="math inline">\(|H_1|\le O(k^{2})\)</span>.</p>
-<p>If we have a variable <span class="math inline">\(x\)</span> and <span class="math inline">\(k\)</span> distinct variables <span class="math inline">\(v_1,v_2,v_2,\ldots, v_k\)</span> so that all the following clauses exist: <span class="math display">\[(\overline{x}\lor y)\land (\overline{x}\lor z)\land (\overline{x}\lor w)\land\cdots,\]</span> then we had better set <span class="math inline">\(x=F\)</span>.</p>
+<p>If we have a variable <span class="math inline">\(x\)</span> and <span class="math inline">\(k\)</span> distinct variables <span class="math inline">\(v_1,v_2,v_2,\ldots, v_k\)</span> so that all the following clauses exist: <span class="math display">\[(\overline{x}\lor y)\land (\overline{x}\lor z)\land
+(\overline{x}\lor w)\land\cdots,\]</span> then we had better set <span class="math inline">\(x=F\)</span>.</p>
 <p>We can think of some kind of recursive structure for which variable we might be motivated to set to true.</p>
 <p>So far, the best bound I have is that there are certainly not more than <span class="math inline">\(k! \cdot k^{100}\)</span> variables which are worth considering setting positively. So, we could pretty much forget about all the other variables.</p>
 <p>But we want a kernel of size <span class="math inline">\(\text{poly}(k)\)</span>. Maybe I’ll see it in the morning.</p>
+<hr />
+<p>EDIT: ok I have since figured out how to reduce the kernel size.</p>
+<p>Call a variable <strong>relevant</strong> if it is implied (possibly indirectly) by some HARD variable. So like what I mean is, you can view the clause <span class="math inline">\(\overline{v} \lor w\)</span> as the implication <span class="math inline">\(v\implies w\)</span>. And, if you have <span class="math inline">\(\overline{w} \lor u\)</span> as well, then you get <span class="math inline">\(v\implies w \implies u\)</span>. In this case we say that <span class="math inline">\(u\)</span> is indirectly implied by <span class="math inline">\(v\)</span>.</p>
+<p>Anyways, suppose there is a variable <span class="math inline">\(v\)</span> that (possibly indirectly) implies more than <span class="math inline">\(k\)</span> other variables have to be true. Then we really can’t afford to set <span class="math inline">\(v\)</span> to be true. So after applying this reduction we can assume that this doesn’t happen. And then we get that there are at most <span class="math inline">\(O(k^{3})\)</span> relevant variables.</p>
+<p><strong>CLAIM:</strong> If there is a solution to the min-ones-2-SAT problem, then there is a solution that sets all non-relevant variables to be False.</p>
+<p>PROOF: Suppose there is some solution. We copy the solution’s setting of relevant variables and set all non-relevant variables to False. We claim that this is still a satisfying assignment (and of course uses at most as many TRUES as the original assignment).</p>
+<p>The only place we need to worry about is if there is a clause like <span class="math inline">\(\overline{v} \lor w\)</span> where <span class="math inline">\(w\)</span> is non-relevant and <span class="math inline">\(v\)</span> is relevant. But if this clause <span class="math inline">\(\overline{v} \lor w\)</span> actually exists, it means that <span class="math inline">\(v\implies w\)</span>. So <span class="math inline">\(w\)</span> is actually relevant, not non-relevant.</p>
+<p>Now that we have proven this claim we can give the kernel.</p>
+<p>The kernel is: Apply the reductions mentioned above: namely, eliminate duplicate clauses, delete vacuous clauses, set variables which imply more than <span class="math inline">\(k\)</span> things true to be false and set variables that are involved in more than <span class="math inline">\(k\)</span> hard clauses to be true.</p>
+<p>Maybe just to be careful lets also propogate clauses of the form <span class="math inline">\(v\lor v\)</span> and <span class="math inline">\(\overline{v} \lor \overline{v}\)</span>.</p>
+<p>And just to be precise, when I said “set a variable” in the reductions above what I mean is, set that variable to be true, and carry out all the deductions that you can from that settting.</p>
+<p>Ok whatever. At this point we have some problem. Indentify the at-most <span class="math inline">\(O(k^{3})\)</span> relevant variables. Set all non-relevant variables to false, and propogate stuff.</p>
+<p>Then we are left with a formula that only involves relevant variables. So we have a formula with <span class="math inline">\(O(k^{3})\)</span> variables. We have a trivial bound of <span class="math inline">\(O(k^{6})\)</span> on num clauses. I think we maybe could give a better bound. But I think that’s enough for right now.</p>
 </div>
 <div class="prop envbox">
 <p><strong>Proposition.</strong> Q2.9: can you delete k vertices to make a graph have max-degree <span class="math inline">\(d\)</span>?</p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> Pretty similar rules to VC. One interesting one is, you have high-deg and low-deg vtxs. And you can just toss vertices which aren’t adjacnet to any high-deg vertices.</p>
+</div>
+<h1 id="addendum">addendum</h1>
+<p>My friend Tomas told me about a different way of looking at the kernelization algorithm for FAST.</p>
+<p>It’s based on the following really interesting and powerful theorem about tournaments:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> If you have a tournament then you can partition the vertices into a set of maximal cycles, and then order these cycles such that each edge between an earlier cycle and a later cycle points down-wards.</p>
+<p>Note that we have no constraint on what is allowed to happen within the cycles. Just between them.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<figure>
+<img src="src/images/tournament.png" title="tournament" alt="" /><figcaption>tournament</figcaption>
+</figure>
+<p>Basically, take a maximum sized cycle <span class="math inline">\(C\)</span>. If you have a vertex <span class="math inline">\(v\)</span> with an edge to <span class="math inline">\(C\)</span> then it turns out that <span class="math inline">\(v\)</span> better have all its edges point towards <span class="math inline">\(C\)</span>, or else we would find a bigger cycle than <span class="math inline">\(C\)</span>. If a vertex <span class="math inline">\(v\)</span> outside of <span class="math inline">\(C\)</span> has an edge coming from <span class="math inline">\(C\)</span> by the same logic all vertices in <span class="math inline">\(C\)</span> point towards <span class="math inline">\(v\)</span>.</p>
+<p>Finally if you had <span class="math inline">\(v\)</span> which is below the cycle and <span class="math inline">\(w\)</span> which is above the cycle then if you had an edge from <span class="math inline">\(v\to w\)</span> it would create a larger cycle than <span class="math inline">\(C\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> If you are part of one of the parts that isn’t just a singleton in the above factorization you’re contained in a triangle.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> See image above</p>
 </div>
 </div>
       </div>

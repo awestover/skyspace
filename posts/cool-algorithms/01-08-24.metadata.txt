@@ -1,4 +1,4 @@
 FPT part 3
-
+images/tournament.png
 I read chapter 2 of the FPT book in a bit more detail.
 And try some more problems.
