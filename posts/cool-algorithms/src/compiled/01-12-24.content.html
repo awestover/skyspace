@@ -1,0 +1,59 @@
+<p>Sorry brief post for today. A shame, because color coding is actually my favorite technique! Maybe I’ll come back and re-write at some point.</p>
+<p>TODO: - look up Zwick Alon “Perfect Hash Families” / other pseudorandom objects useful for derandomization</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Feedback vertex set (find a set of <span class="math inline">\(k\)</span> vertices whose deletion renders your multigraph acyclic) is in FPT.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Reduction rules:</p>
+<ol type="1">
+<li>Delete vertices involved in loops</li>
+<li>Reduce multi-edges to be at most 2-multiplicity</li>
+<li>Delete connected components which are trees</li>
+<li>If you have a degree-2 vertex you can “contract”: remove the vertex and join its neighbors. This is safe because it doesn’t affect the topology of your graph.</li>
+</ol>
+<p>In particular these reduction rules should guarantee that our graph has min-degree <span class="math inline">\(3\)</span> after applying the reductions.</p>
+<p>Now I think we have the following property: Let <span class="math inline">\(X\)</span> be a set of <span class="math inline">\(k\)</span> vertices whose removal renders the graph acyclic. Then <span class="math inline">\(1/2\)</span> of the edges in <span class="math inline">\(G\)</span> have an endpoint in <span class="math inline">\(X\)</span>.</p>
+<p>Proof: I didn’t fully follow the proof. I think the gist is that once you remove <span class="math inline">\(X\)</span> you gotta have a forest which has very few edges. And the min-degree condition is somehow just really good.</p>
+<p>FPT algo: So based on the key lemma we get the following FPT algo for this problem</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="cf">for</span> <span class="dv">4</span><span class="op">^</span>k itterations:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="cf">while</span> graph <span class="kw">not</span> acyclic:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="cf">while</span> there <span class="kw">is</span> a reduction rule you can <span class="bu">apply</span>:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>      <span class="bu">apply</span> that reduction rule</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    Now randomly guess an edge <span class="kw">and</span> an endpoint of that edge to add to your feedback vertex <span class="bu">set</span><span class="op">;</span> succeed <span class="cf">with</span> probability <span class="dv">1</span><span class="op">/</span><span class="dv">4</span></span></code></pre></div>
+<p>This should work with constant PR.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Longest Path in FPT</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The cannonical example of color coding!</p>
+<p>There’s also a fancier <strong>divide and color</strong> algorithm. The idea is you try to partition the vertex set. But you try a bunch of different partitions. You have really high branching at low depth in the recursion tree and then really low branching at high depth. Somehow this improves the constant of the standard color coding algo a tiny bit.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> If you randomly color a <span class="math inline">\(k\)</span>-edge graph with <span class="math inline">\(100\sqrt{k}\)</span> colors then with probability at least <span class="math inline">\(2^{-\sqrt{k}}\)</span> you get a proper coloring</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> TODO</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> This is cool. <span class="math inline">\(2^{o(k)}\)</span> is rare for FPT algos.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(d\)</span>-clustering chromatic coloring / color and conquer.</p>
+<p>We say that a graph is a <span class="math inline">\(d\)</span>-cluster graph if it consists of <span class="math inline">\(d\)</span> connected components, each of which is a clique. Problem: is there a set of <span class="math inline">\(k\)</span> edges you can modify (add or delete) to make input graph be a <span class="math inline">\(d\)</span>-cluster graph.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Assume yes instance. Let <span class="math inline">\(A\)</span> be the set of edges we need to modify. So we apply the lemma in hopes that <span class="math inline">\(A\)</span> is properly colored.</p>
+<p>If so, somehow this makes the problem relatively straightforward.</p>
+<p><strong>TODO: elaborate</strong></p>
+</div>
+<h1 id="derandomization">Derandomization</h1>
+<ul>
+<li>splitters</li>
+<li>universal sets</li>
+<li>perfect hash families</li>
+</ul>
+<p>TODO</p>
+<h2 id="examples-of-derandomization">examples of derandomization</h2>
+<p>TODO</p>
