@@ -39,7 +39,7 @@ We show how to turn a <span class="math inline">\(C_{2\ell}\)</span> with a heav
 <p>We have:</p>
 <p><span class="math display">\[g(v_1,v_2,v_3)\le f(v_1,v_2)f(v_2,v_3)f(v_3,v_1).\]</span></p>
 <p><span class="math display">\[\# C_6 \le \sum_{v_1,v_2,v_3} g(v_1,v_2,v_3) \le \sum_{v_1,v_2,v_3} \left(f(v_1,v_2)^2 + f(v_2,v_3)^2\right) f(v_3,v_1)\]</span> And as yufei would say, the “non-naive” bound above (pulling out the first terms) is vg.</p>
-<p>Anyways we get <span class="math display">\[C_6 \le \sum_{v_1,v_2,v_3} \left(f(v_1,v_2)^2 + f(v_2,v_3)^2\right) f(v_3,v_1) \le \sum_{u\neq v} f(u,v)^2 \sum_{w} \left(f(w, v_1)  + f(w,v_2)\right  \le 2n\sum_{u\neq v} f(u,v)^2\]</span> In this last inequality we used the fact that there are at most <span class="math inline">\(O(n)\)</span> P2s coming out of each vertex.</p>
+<p>Anyways we get <span class="math display">\[C_6 \le \sum_{v_1,v_2,v_3} \left(f(v_1,v_2)^2 + f(v_2,v_3)^2\right) f(v_3,v_1) \le \sum_{u\neq v} f(u,v)^2 \sum_{w} \left(f(w, v_1)  + f(w,v_2)\right)  \le 2n\sum_{u\neq v} f(u,v)^2\]</span> In this last inequality we used the fact that there are at most <span class="math inline">\(O(n)\)</span> P2s coming out of each vertex.</p>
 <p>Now, we can bound hte <span class="math inline">\(\sum_{u\neq v} f(u,v)^{2}\)</span> thing because this is just the number of <span class="math inline">\(C_4\)</span>’s. See the previous theorem in this blog post for a proof of the C4 statement.</p>
 <p>So we get <span class="math inline">\(\# C_6\le O((kn)^{3}).\)</span></p>
 </div>
