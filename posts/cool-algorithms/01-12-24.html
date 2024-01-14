@@ -44,8 +44,7 @@
 
       <div id="content"> 
         <!-- ***DECRYPT 1443849234234*** -->
-        <div id="actual-content"><p>Sorry brief post for today. A shame, because color coding is actually my favorite technique! Maybe I’ll come back and re-write at some point.</p>
-<p>TODO: - look up Zwick Alon “Perfect Hash Families” / other pseudorandom objects useful for derandomization</p>
+        <div id="actual-content"><p>Color coding has recently become my favorite technique in graph theory! This blog post doesn’t really do it justice. But it’s at least some notes.</p>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Feedback vertex set (find a set of <span class="math inline">\(k\)</span> vertices whose deletion renders your multigraph acyclic) is in FPT.</p>
 </div>
@@ -72,14 +71,30 @@
 <p><strong>Theorem.</strong> Longest Path in FPT</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> The cannonical example of color coding!</p>
+<p><strong>Proof.</strong> The cannonical example of color coding! Color, hope its rainbow, and then DP.</p>
 <p>There’s also a fancier <strong>divide and color</strong> algorithm. The idea is you try to partition the vertex set. But you try a bunch of different partitions. You have really high branching at low depth in the recursion tree and then really low branching at high depth. Somehow this improves the constant of the standard color coding algo a tiny bit.</p>
 </div>
-<div class="lem envbox">
-<p><strong>Lemma.</strong> If you randomly color a <span class="math inline">\(k\)</span>-edge graph with <span class="math inline">\(100\sqrt{k}\)</span> colors then with probability at least <span class="math inline">\(2^{-\sqrt{k}}\)</span> you get a proper coloring</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Subgraph isomorphism in graphs of bounded degree.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> TODO</p>
+<p><strong>Proof.</strong> Color edges, hope that your stuff shows up as connected components. Bounded degree condition makes it relatively likely that you get separated out.</p>
+<p>It’s slightly more complicated if your pattern graph isn’t connected. Then you do matching at the end.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> If you randomly color a <span class="math inline">\(k\)</span>-edge graph with <span class="math inline">\(q=100\sqrt{k}\)</span> colors then with probability at least <span class="math inline">\(2^{-\sqrt{k}}\)</span> you get a proper coloring</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(v_1,v_2,v_3,\ldots,\)</span> be vertices that arise from the following process:</p>
+<blockquote>
+<p>repeatedly delete a min-degree vertex</p>
+</blockquote>
+<p>They argue that <span class="math inline">\(v_i \le O(\sqrt{k})\)</span>. Seems pretty believable.</p>
+<p>An inequality that comes up fairly often is <span class="math inline">\(1-x \le e^{-x}\)</span>. Here they use another interesting one though: if <span class="math inline">\(x\in(0,1/2)\)</span> then <span class="math inline">\(1-x \ge 2^{-2x}\)</span>. Neat.</p>
+<p>They think of the random coloring as happening one vertex at a time. Then, they probability of the <span class="math inline">\(i\)</span>-th vertex getting a good color is at least <span class="math display">\[1-d_i / q \ge 2^{-2d_i/q}\]</span> using our bound on <span class="math inline">\(d_i\)</span>.</p>
+<p>Now, the total probability of success is at least:</p>
+<p><span class="math display">\[2^{-2(1/q) \sum d_i} = 2^{-\sqrt{k}}.\]</span></p>
+<p>It was pointed out that this is basically just a fancy way of saying that cliques maximize chromatic number per a given number of edges. But its a lot more quantitative than just saying that.</p>
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> This is cool. <span class="math inline">\(2^{o(k)}\)</span> is rare for FPT algos.</p>
@@ -91,18 +106,76 @@
 <div class="pf envbox">
 <p><strong>Proof.</strong></p>
 <p>Assume yes instance. Let <span class="math inline">\(A\)</span> be the set of edges we need to modify. So we apply the lemma in hopes that <span class="math inline">\(A\)</span> is properly colored.</p>
-<p>If so, somehow this makes the problem relatively straightforward.</p>
-<p><strong>TODO: elaborate</strong></p>
+<p>Assume that we have a coloring of <span class="math inline">\(G\)</span> that is a proper coloring of a solution <span class="math inline">\(A\)</span>. The key observation is that <span class="math inline">\(A\)</span> isn’t allowed to change any connections between vertices of the same color class. Hence, the induced subgraph on each color-class must already be <span class="math inline">\(\ell\)</span>-cluster graphs.</p>
+<p>So now we have at most <span class="math inline">\(qd\)</span> parts. And we try all <span class="math inline">\(d^{qd}\)</span> ways of combining these into <span class="math inline">\(d\)</span> clusters.</p>
+<p>After guessing the combo we just count how many edges are missing within each of the clusters and how many bad edges go between clusters. If deleting them is within budget we do it and win. Else we keep going.</p>
 </div>
 <h1 id="derandomization">Derandomization</h1>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> We will define some objects:</p>
 <ul>
 <li>splitters</li>
 <li>universal sets</li>
 <li>perfect hash families</li>
 </ul>
-<p>TODO</p>
+<p>With all of them it basically turns out that they have pretty minimal overhead compared to their randomized version, usually a log factor.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <strong>SPLITTER</strong></p>
+<p>Let <span class="math inline">\(k\le \ell\)</span>. You can define splitters for <span class="math inline">\(k&gt;\ell\)</span> as well but I don’t think it’ll be necessary for us. An <span class="math inline">\((n,k,\ell)\)</span>-splitter is a collection <span class="math inline">\(\mathcal{F}\)</span> of colorings <span class="math inline">\(f: [n]\to [\ell]\)</span>, with the property that for any <span class="math inline">\(k\)</span>-element subset <span class="math inline">\(S\)</span> of <span class="math inline">\([n]\)</span> there is some coloring <span class="math inline">\(f\in\mathcal{F}\)</span> that is injective onto <span class="math inline">\(S\)</span>, i.e., colors each element of <span class="math inline">\(S\)</span> a different color.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For any <span class="math inline">\(n,k \ge 1\)</span> one can construct an <span class="math inline">\((n,k,k^2)\)</span>-splitter of size <span class="math inline">\(k^{O(1)}\log n\)</span> in time <span class="math inline">\(k^{O(1)}n\log n\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> This is the main object we need. Unfortunately the dependancy chain for constructing it seems rather long.</p>
+<p>Perfect Hash Families were introduced by Alon Yuster Zwick in their seminal Color-Coding paper. But they use some result about “bounded probability spaces”.</p>
+<p>In any case, its obvious by a probabilistic argument that these objects exist, and while its impressive that they can be computed efficiently, its probably believable.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> An <span class="math inline">\((n,k,k)\)</span>-splitter is called an <span class="math inline">\((n,k)\)</span>-perfect hash family.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For any <span class="math inline">\(n,k \ge 1\)</span> one can construct an <span class="math inline">\((n,k)\)</span>-perfect hash family of size <span class="math inline">\(e^{k+O(\log^2 k)}\log n\)</span> in time <span class="math inline">\(e^{k+O(\log^2 k)} n\log n\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> The construction of this object is by composing a <span class="math inline">\((k^2,k,k)\)</span>-splitter (which is apparently easier to construct than an <span class="math inline">\((n,k)\)</span>-perfect hash family) and an <span class="math inline">\((n,k,k^2)\)</span>-splitter.</p>
+<p>My attempt to construct a <span class="math inline">\((k^2,k)\)</span>-perfect hash family: there are only <span class="math inline">\(\binom{k^2}{k}\le k^{k}\)</span> <span class="math inline">\(k\)</span>-element subsets of <span class="math inline">\([k^{2}]\)</span>. So, we could itterate over these sets <span class="math inline">\(S\)</span> and for each of these define a coloring for the sole purpose of having the coloring be rainbow on <span class="math inline">\(S\)</span>. It seems they maybe have slightly better quantitative bounds, but this seems like the right vibe.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> An <span class="math inline">\((n,k)\)</span>-universal set is a family <span class="math inline">\(U\)</span> of subsets of <span class="math inline">\([n]\)</span> such that for any <span class="math inline">\(S\in \binom{[n]}{k}\)</span> the family <span class="math inline">\(\{A\cap S: A\in U\}\)</span> contains all subsets of <span class="math inline">\(S\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> One can construct an <span class="math inline">\((n,k)\)</span>-universal set of size <span class="math inline">\(2^{k+O(\log^2 k)}\log n\)</span> in time <span class="math inline">\(2^{k+O(\log^2 k)}n\log n\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> How to do this: explicit construction of a <span class="math inline">\((k^2,k)\)</span>-universal set and compose it with an <span class="math inline">\((n,k,k^2)\)</span>-splitter.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A family of functions <span class="math inline">\(f: [n]\to [q]\)</span> is called a <span class="math inline">\(k\)</span>-wise independent sample space if, for every <span class="math inline">\(x\in [n]^{k}\)</span> with distinct components and every <span class="math inline">\(y\in [q]^{k}\)</span> we have</p>
+<p><span class="math display">\[\Pr_f [f(x_1)=y_1 \land f(x_2)=y_2 \land \cdots]\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There exists a <span class="math inline">\(k\)</span>-wise independent sample space of size <span class="math inline">\(O(n^{k})\)</span> and it can be constructed in linear time in its output size.</p>
+</div>
 <h2 id="examples-of-derandomization">examples of derandomization</h2>
-<p>TODO</p>
+<p>In many cases given the above objects the derandomization is trivial.</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Deterministic Longest Path FPT algo.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> For de-randomizing the vanilla version: Instead of random coloring use a perfect hash family.</p>
+<p>For de-randomizing the fancy tree version: instead of randomly partitioning the vertex set use a universal set.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Now we de-randomize the chromatic coding algorithm for <span class="math inline">\(d\)</span>-clustering.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Here we need to define another one of these pseudo-random objects a “coloring family”.</p>
+<p>The idea is we just construct a small one and then we boost it with the <span class="math inline">\((n,k,k^2)\)</span>-splitter that we always use to boost small things.</p>
+<p>Here’s the lemma spelled out in a bit more detail:</p>
+<p>Take a 2-wise independent sample space of functions <span class="math inline">\(f:[k^2]\to [\sqrt{k}]\)</span>. If you randomly sample a function <span class="math inline">\(f\)</span> from the 2-wise independent sample space and use <span class="math inline">\(f\)</span> to color the at-most <span class="math inline">\(k^2\)</span> vertices of a <span class="math inline">\(k\)</span>-edge graph, then in expectation <span class="math inline">\(\sqrt{k}\)</span> of the edges will be monochromatic. Then we use alterations to fix those edges. Alterations basically means that we itterate over all possible things that these vertices could be and give them unique colors.</p>
+</div>
 </div>
       </div>
     </div>
