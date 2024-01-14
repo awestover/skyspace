@@ -1,0 +1,5 @@
+APSP +2 fast 
+
+I realized that I have very few blog posts with the tag
+"approximation algorithms". Seeing as I had recently heard this
+algorithm for APSP approx I thought I'd write it down.
