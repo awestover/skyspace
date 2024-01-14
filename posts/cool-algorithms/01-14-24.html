@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#now-some-algorithms" class="js-scroll-trigger">now some algorithms</a> </li>
+<li> <a href="#weighted-is" class="js-scroll-trigger">weighted IS</a> </li>
+<li> <a href="#dom-set" class="js-scroll-trigger">dom set</a> </li>
+<li> <a href="#steiner-tree" class="js-scroll-trigger">steiner tree</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>The thing to wrap your head around in all of these algorithms is that vertices appear in a bunch of different places, but those places are “contiguous” and satisfy nice “separation” properties.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Maximum weighted independent set in a tree has an easy dynamic program.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> In a general graph it is quite a difficult question.</p>
+<p>However, suppose that your graph is a subgraph of a not-so-tall grid. In particular a grid of height <span class="math inline">\(k\)</span>. In this case we can also give a pretty nice DP.</p>
+<p>We sweep over columns. Each column just needs to know which of the up to <span class="math inline">\(k\)</span> vertices in the previous column were chosen. There are <span class="math inline">\(2^{k}\)</span> possibilities. So our DP table has an entry for each possibility.</p>
+<p>The most important property we needed here was “separators”.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Nice Path decomposition: A sequence of <strong>bags</strong> (which are subsets of the vertex set) such that:</p>
+<ul>
+<li>First and last bags are empty</li>
+<li>At each step we either <strong>introduce</strong> a new vertex or <strong>forget</strong> a vertex (we introduce and forget each vertex exactly once) compared to the previous bag.</li>
+<li>For each edge <span class="math inline">\(uv\)</span> there is a bag that contains both endpoints of the edge.</li>
+</ul>
+<p>The <strong>width</strong> of a path decomposition is the size of the largest bag minus one.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> We say that <span class="math inline">\((A, B)\)</span> is a separation of a graph if <span class="math inline">\(A\cup B = V\)</span>, and if there are no edges between <span class="math inline">\(A\setminus B\)</span> and <span class="math inline">\(B \setminus A\)</span>.</p>
+<p>For a set <span class="math inline">\(A\)</span> we define border <span class="math inline">\(\partial A\)</span> aas the set of vertices of <span class="math inline">\(A\)</span> with a neighbor in <span class="math inline">\(V\setminus A\)</span>. Note that <span class="math inline">\((A, \partial A \cup (V\setminus A))\)</span> is a separation.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Each bag <span class="math inline">\(X_i\)</span> in a path decomposition separates vertices that occur before bag <span class="math inline">\(i\)</span> and vertices that occur after bag <span class="math inline">\(i\)</span>.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A <strong>TREE decomposition</strong> of a graph <span class="math inline">\(G\)</span> is:</p>
+<p>A tree <span class="math inline">\(T\)</span> and a bag associated with each <em>node</em> of <span class="math inline">\(T\)</span> satisfying:</p>
+<ul>
+<li>Each vertex of <span class="math inline">\(G\)</span> in at least one of the bags.</li>
+<li>For each edge in <span class="math inline">\(G\)</span> there is a bag containing both of the edge’s endpoints.</li>
+<li>For each vertex <span class="math inline">\(v\)</span> the set of bags that contain <span class="math inline">\(v\)</span> induces a connected subtree of <span class="math inline">\(T\)</span>.</li>
+</ul>
+<p>Treewidth: size of largest bag minus 1</p>
+<p>Path decomposition: tree decomposition + <span class="math inline">\(T\)</span> must be a path.</p>
+<p>examples: cycle has tree width 2 tree / forest has tree width 1</p>
+<p>tree width of planar graph is <span class="math inline">\(O(\sqrt{n})\)</span> tree width of <span class="math inline">\(K_n\)</span> is <span class="math inline">\(n-1.\)</span></p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(ab\)</span> be an edge in <span class="math inline">\(T\)</span>.</p>
+<p>Let <span class="math inline">\(T_a\)</span> be the connected component resulting from deleting edge <span class="math inline">\(ab\)</span> and taking the component that contains <span class="math inline">\(a\)</span>. let <span class="math inline">\(T_b\)</span> be the other component.</p>
+<p>Let <span class="math inline">\(A\)</span> be the union over verices in <span class="math inline">\(T_a\)</span> of their bags. Let <span class="math inline">\(B\)</span> be similar for <span class="math inline">\(T_b\)</span>.</p>
+<p>Then <span class="math inline">\((A,B)\)</span> is a separation of <span class="math inline">\(G\)</span>.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <strong>nice tree decomp</strong></p>
+<p>three types of vertices:</p>
+<ul>
+<li>join: join two identical nodes</li>
+<li>introduce: node with a single child. This node’s bag has one extra element compared to child.</li>
+<li>forget: node with a single child. This node’s bag has one fewer element than its child.</li>
+</ul>
+<p>leaves and root empty</p>
+<p>Here’s a nice tree decomposition of a tree: <img src="src/images/ink_img010.png" alt="ink_img010" /></p>
+<p>as with path decomps there is an efficient algo to turn an arbitrary path decomp into a nice one</p>
+</div>
+<h1 id="now-some-algorithms">now some algorithms</h1>
+<p>note: - for now we’re just going to assume the algorithms get a tree decomp as part of input.</p>
+<ul>
+<li><p>later we are going to show how to do a pretty decent approx algo for tree width.</p></li>
+<li><p>even later we will show that sometimes thinking about tree width is useful even if we aren’t parameterizing by it. For example, if the treewidth is large then maybe we can instantly conclude our problem is a no-instance. in this win-win manner treewidth is helpful: either we get a tree decomp or an obstacle.</p></li>
+</ul>
+<h2 id="weighted-is">weighted IS</h2>
+<div class="pf envbox">
+<p><strong>Proof.</strong> In the DP each node in the tree computes, for all possible subsets of the nodes in its bag to include, what the best stuff is for its subtree.</p>
+<p>To prove correctness we analyze the four types of nodes:</p>
+<ul>
+<li>leaves (base case)</li>
+<li>introduce</li>
+<li>forget</li>
+<li>join</li>
+</ul>
+<p>The separation property lets us get nice algorithms.</p>
+<p>For instance, lets talk about introduce nodes: Let <span class="math inline">\(X_t\)</span> be an introduce node with child <span class="math inline">\(X_{t&#39;}\)</span>, where the vertex introduced at <span class="math inline">\(X_t\)</span>. Fix a subset <span class="math inline">\(S\subset X_t\)</span>. First, check if <span class="math inline">\(S\)</span> is independent. If not, set <span class="math inline">\(c[t, S] = -\infty\)</span>. Else, split into two cases:</p>
+<ul>
+<li>If <span class="math inline">\(v\notin S\)</span> then the answer is <span class="math inline">\(c[t&#39;,S]\)</span>. This is clear.</li>
+<li>If <span class="math inline">\(v\in S\)</span> then the answer is <span class="math inline">\(c[t&#39;, S\setminus\{v\}] + w(v)\)</span>. It’s pretty clear you can’t hope to do better than this. Slightly less obvious why you can do this well. The reason is, if you let <span class="math inline">\(\hat{S&#39;}\)</span> be the best set for <span class="math inline">\(c[t&#39;, S\setminus\{v\}]\)</span> then <span class="math inline">\(v\)</span> has no edges to <span class="math inline">\(\hat{S&#39;}\)</span> because <span class="math inline">\(v\)</span> has no edges in <span class="math inline">\(\hat{S&#39;}\cap X_{t&#39;}\)</span> due to <span class="math inline">\(S\)</span> being independent and <span class="math inline">\(S\setminus\{v\} = \hat{S&#39;}\cap X_{t&#39;}\)</span>. But also <span class="math inline">\(v\)</span> has no edges in <span class="math inline">\(\hat{S&#39;}\setminus X_{t&#39;}\)</span> by the separation property. Anyways this means you can take <span class="math inline">\(v\)</span>.</li>
+</ul>
+</div>
+<h2 id="dom-set">dom set</h2>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> graph of tree width <span class="math inline">\(k\)</span> has at msot <span class="math inline">\(kn\)</span> edges.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> We slightly modify the nice tree decomposition definition to be <strong>extra nice</strong>: now we have “introduce edge bags”.</p>
+<p>algorithm for turning a nice tree decomposition into an extra nice tree decomp: put the edge introduce bags between the highest node containing a vertex and the vertex forget bag that used to be that bag’s parent.</p>
+<p>Now instead of just looking at <span class="math inline">\(G[V_t]\)</span> the induced subgraph on the bag subtree rooted at <span class="math inline">\(t\)</span>, we look at <span class="math inline">\(G_t\)</span> which is like <span class="math inline">\(G[V_t]\)</span> except in only includes edges whose edge add bag are in the subtree rooted at <span class="math inline">\(t\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> dom set in graphs of bounded tree-width is FPT</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> instead of just having a 2 coloring of the vertices in each bag we now have a 3 coloring:</p>
+<ul>
+<li>black: must be included in partial solution</li>
+<li>white: not contained in partial solution, and must be dominated by the partial solution</li>
+<li>grey: not in partial solution. doesn’t matter whether they’re dominated by it or not.</li>
+</ul>
+<p>now we give the DP</p>
+<ul>
+<li>leaf node (base case): trivial</li>
+<li>introduce vertex node: added vertex is isolated. so, if it’s black <span class="math inline">\(+1\)</span>, if its white <span class="math inline">\(+\infty\)</span>, if its grey <span class="math inline">\(+0\)</span>.</li>
+<li>introduce edge node: adding an edge can allow you to relax stuff to grey</li>
+<li>forget node: force that guy not to be grey</li>
+<li>join node: if <span class="math inline">\(v\)</span> black in both then black in join. grey iff grey in both. white else.</li>
+</ul>
+</div>
+<h2 id="steiner-tree">steiner tree</h2>
+<p>connectivity. makes run-time slightly worse</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
