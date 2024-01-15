@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#74-monadic-logic-on-graphs" class="js-scroll-trigger">7.4 monadic logic on graphs</a> </li>
+<li> <a href="#other-interpretations-of-tree-width" class="js-scroll-trigger">other interpretations of tree-width</a> </li>
+<li> <a href="#path-width" class="js-scroll-trigger">path-width</a> </li>
+<li> <a href="#tree-width" class="js-scroll-trigger">tree-width</a> </li>
+<li> <a href="#computing-treewidth" class="js-scroll-trigger">computing treewidth</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><h1 id="monadic-logic-on-graphs">7.4 monadic logic on graphs</h1>
+<p>They define a certain logic on graphs. Let’s just write some examples.</p>
+<div class="ex envbox">
+<p><strong>Example.</strong></p>
+<p><strong>partition</strong>: given three vertex subsets, are they a partition of the vertices of the graph?</p>
+<p><span class="math display">\[\text{partition}(X_1,X_2,X_3) = \forall_{v\in V} v\in X_1 \lor v\in X_2 \lor v\in X_3.\]</span></p>
+<p><strong>indep</strong>: given a vertex subset, is it an independent set?</p>
+<p><span class="math display">\[\text{indep}(X) = \forall_{u,v \in X} uv\notin E.\]</span></p>
+<p><strong>3COLOR</strong>: is my graph three colorable?</p>
+<p><span class="math display">\[\exists_{X_1,X_2,X_3 \subseteq V} \text{partition}(X_1,X_2,X_3) \land \text{indep}(X_1) \land \text{indep}(X_2) \land \text{indep}(X_3).\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Courcelle’s theorem:</p>
+<p>Let <span class="math inline">\(G\)</span> be a graph with tree width <span class="math inline">\(t\)</span>, and let <span class="math inline">\(\varphi\)</span> be a formula in monadic second-order logic. Then, there is an algorithm that determines whether <span class="math inline">\(\varphi\)</span> is satisfied on <span class="math inline">\(G\)</span> in runnning time <span class="math inline">\(f(||\varphi||, t)\cdot n\)</span> for a computable function <span class="math inline">\(f\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> We can’t give good bounds on <span class="math inline">\(f\)</span>: if you alternate quantifiers a lot it can be really really really massive. Like much worse than tower. So this is more of a “if your problem is like this then its FPT” than the final word on parameterization by tree-width.</p>
+</div>
+<p>The following optimization version of Courcelle’s theorem is also useful, e.g., for vertex cover, where it’s not clear how to get a monadic formula thing that doesn’t have a <span class="math inline">\(k\)</span> dependence.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> If you have a formula and a pretty nice function you want to optimize, that’s FPT in <span class="math inline">\(||\varphi||\)</span> and tree-width too.</p>
+</div>
+<h1 id="other-interpretations-of-tree-width">other interpretations of tree-width</h1>
+<h2 id="path-width">path-width</h2>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> The following graph parameters are basically (up to a dumb <span class="math inline">\(\pm 1\)</span>) equivalent:</p>
+<ul>
+<li>node-search number</li>
+<li>interval width</li>
+<li>path width</li>
+</ul>
+</div>
+<p>Here is a hypothetical story (not real life) to explain node-search number.</p>
+<p>Blobby is on the run from the cops. Luckily Blobby is omniscient and has unbounded speed. He’s also invisible! Unforunately for him, the cops are really out to get him. They know his weakness: each of the cops has a box of pizza. If Blobby ever occupies the same vertex as a cop he will be sucked into the box of pizza. The cops start wherever and at each step you can do a <strong>place</strong> move: take a cop from the pool of unplaced cops and place it, or you can do a <strong>extract</strong> move: take a cop from the graph and put them into the unused cops pool.</p>
+<p>The node-search number of a graph is the fewest number of cops needed to catch Blobby.</p>
+<p>Here’s a picture that I think helps see why node-search number is related to interval width / path width:</p>
+<figure>
+<img src="src/images/ink_img011.png" alt="" /><figcaption>ink_img011</figcaption>
+</figure>
+<p>It might be hard to think of Blobby as being omniscient, unbounded speed and invisible. Instead, you can think of Blobby as being a gas that the cops are cleaning up. If there is gas on an edge it will spread to any edges that share a vertex with it, unless that vertex is blocked by a cop. If cops occupy both endpoints of an edge then the gas dies in that edge. But of course edges can be recontaminated.</p>
+<h2 id="tree-width">tree-width</h2>
+<p>Somewhat similar story for tree-width.</p>
+<p>Key difference: cops can see the Blobby in the tree chase version. And cops have to announce their next move, and Blobby gets to choose where to go after the cops announce move.</p>
+<p><strong>bramble</strong>: a collection of pairwise touching connected vertex subsets. (We say that two vertex subsets are <em>touching</em> if they share a vertex or if there is an edge between them).</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> treewidth <span class="math inline">\(k\)</span> iff bramble of order <span class="math inline">\(k+1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> one direction pretty clear, other apparently very tricky.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> cordal graph: Largest induced cycle is a triangle.</p>
+<p>cordal width: min max-clique in a chordal super graph.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong></p>
+<p>TFAE up to <span class="math inline">\(\pm 1\)</span></p>
+<ul>
+<li>treewidth</li>
+<li>chordal width</li>
+<li>max bramble</li>
+<li>cops to catch visible robber</li>
+</ul>
+</div>
+<h1 id="computing-treewidth">computing treewidth</h1>
+<p>unforunately tree-width exactly NP-hard. But we can settle for FPT algo / approx algo.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <span class="math inline">\(H\)</span> is a minor of <span class="math inline">\(G\)</span> if you can obtain <span class="math inline">\(H\)</span> from <span class="math inline">\(G\)</span> by some combination of deleting vertices, edges, and contracting edges.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Apparently you can efficiently test if a constant size graph is a minor of your graph. In like <span class="math inline">\(n^{3}\)</span> time. No idea how.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> MEME FPT algorithm for computing treewidth (i.e., determining whether treewidth is larger than <span class="math inline">\(k\)</span> or not).</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>tree-width is <strong>minor monotone</strong>: taking minors only decreases tree-width. Hence, the set of graphs with tree-width at most <span class="math inline">\(k\)</span> is closed under taking minors. Hence, there is a set of forbidden minors, whose size depends only on <span class="math inline">\(k\)</span>, such that a graph has tree-width at most <span class="math inline">\(k\)</span> iff it avoids the forbidden minors.</p>
+<p>Thus, to check if a graph has tree-width at most <span class="math inline">\(k\)</span> you just check for each of the forbidden minors whether it is a minor of your graph.</p>
+<p>This is not such a useful algorithm maybe because determining the set of forbidden minors seems really hard, and that set is going to be freaking massive.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Ok there is also an actual (uniform) algorithm. with run time <span class="math inline">\(k^{k^{3}} \cdot n\)</span>.</p>
+<p>But this is a bit slow, so we’re gonna just do an approx algo instead.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a <span class="math inline">\(8^{k}k^{2}n^2\)</span> algo that either constructs a tree decomposition of widdth at most <span class="math inline">\(4k+4\)</span> or outputs (correctly) that <span class="math inline">\(G\)</span> has treewidth larger than <span class="math inline">\(k\)</span>.</p>
+<p>Ok, more recently: There is a <span class="math inline">\(2^{O(k)}\cdot n\)</span> algo that either constructs a tree decomposition of widdth at most <span class="math inline">\(5k+5\)</span> or outputs (correctly) that <span class="math inline">\(G\)</span> has treewidth larger than <span class="math inline">\(k\)</span>.</p>
+<p>Anyways, we’re gonna prove the easier version. But it’s looking pretty intense, so prolly has to wait till after lunch.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>TODO</p>
+</div>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
