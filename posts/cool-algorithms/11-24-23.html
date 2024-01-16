@@ -14,6 +14,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 
@@ -32,66 +34,44 @@
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
             <div id="toc">
-            <li> <a href="#
-" class="js-scroll-trigger">
-</a> </li>
+            <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
         </div>
       </nav>
 
       <div id="content"> 
-      <p>Problems (from “Parameterized Algorithms” textbook):</p>
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>Problems (from “Parameterized Algorithms” textbook):</p>
 <blockquote>
 <p>Does a graph <span class="math inline">\(G\)</span> contain <span class="math inline">\(k\)</span> vertex-disjoint triangles?</p>
 </blockquote>
 <blockquote>
 <p>Does a graph <span class="math inline">\(G\)</span> contain a subgraph isomorphic to a <span class="math inline">\(k\)</span>-vertex tree <span class="math inline">\(T\)</span>?</p>
 </blockquote>
-<p><strong>At the moment this blog post is a bit of a failure</strong> because the bound claimed in the textbook is that we can give a <span class="math inline">\(2^{\mathcal{O}(k)}n^{\mathcal{O}(1)}\)</span> algorithm for both of these problems but my algorithms are more like <span class="math inline">\(k^{k}n^{\mathcal{O}(1)}\)</span> flavor. Hopefully I’ll fix this soon! If you have ideas lmk.</p>
+<p>In fact, these are both special cases of a more general result: there is (I’m pretty sure) a <span class="math inline">\(2^{O(k)}n^{O(1)}\)</span> algorithm for detecting whether any pattern graph of bounded treewidth occurs as a subgraph of your graph. Maybe I’ll try to think about how to do that in a moment.</p>
 <div class="thm envbox">
-<p><strong>Theorem.</strong> There is a <span class="math inline">\(k^{k}n^{\mathcal{O}(1)}\)</span> algorithm for this problem.</p>
+<p><strong>Theorem.</strong> <span class="math inline">\(2^{O(k)}n^{O(1)}\)</span> algorithm for triangle packing.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> Assume that <span class="math inline">\(G\)</span> is a yes-instance. <!-- We give an algorithm to find $k$ vertex-disjoint triangles in --> <!-- $G$ that succeeds with probability at least $2^{-\bigO(k)}$. --> <!-- By repeating this algorithm $2^{\Omega(k)}$ times we can get an --> <!-- algorithm that successfully finds $k$ such triangles with --> <!-- $\Omega(1)$ probability. --> <!-- In turn, if the algorithm fails to find these triangles then with --> <!-- probability $\Omega(1)$ $G$ is a no-instance.  --></p>
-<!-- Identify a vertex within each triangle. Call the set of these -->
-<!-- vertices $T$, with $|T|=k$. -->
-<!-- Randomly partition the vertices of $G$ into two parts $A\sqcup B -->
-<!-- = V(G)$. With probability $2^{-k}$ all of the vertices in $T$ are -->
-<!-- in $A$; assume that this happens.  -->
-<!-- Randomly color the vertices of $A$ with $k$ colors.  -->
-<!-- With probability at least $k!/k^{k}  \approx e^{-k}$ the vertices of $T$ -->
-<!-- recieve distinct colors; assume that this happens.  -->
-<!-- Now we form a bipartite graph on vertices $L\sqcup R$.  -->
-<!-- The vertices $L$ will be the edges in $G[B]$. -->
-<!-- The vertices $R$ will be the color classes in our coloring of -->
-<!-- $G[A]$. I.e., $|R|=k$ and each vertex of $R$ corresponds to the -->
-<!-- set of all vertices of a single color in $G[A]$. -->
-<!-- Place an edge between edge $e\in L$ and color class $C\in R$ if -->
-<!-- there is any vertex $v\in C$ which is in the common neighborhood -->
-<!-- of $e\in G[B]$. -->
-<!-- Now, using flow or some optimized flow variant determine whether -->
-<!-- there is a matching of size $k$ in the bipartite graph on -->
-<!-- $L\sqcup R$. -->
-<!-- **NO THIS DOESNT WORK I was allowing myself to repeat vertices** -->
-<!-- **some other ideas** -->
-<!-- we can partition into 3 parts.  -->
-<!-- 3DM is pretty tricky but what about k 3DM? -->
-<p><span class="math inline">\(k\)</span>-color the vertices. Hope that your triangles get highlighted. They do with probability <span class="math inline">\(\frac{1}{k^{2k}}\)</span>. If they get highlighted they’re easy to find.</p>
+<p><strong>Proof.</strong> Color code with <span class="math inline">\(3k\)</span> colors. Hope that each of the <span class="math inline">\(3k\)</span> vertices we need for our triangles got a distinct color, this happens with probability at least <span class="math inline">\(2^{-O(k)}\)</span>.</p>
+<p>Now we do dynamic programming. For any subset <span class="math inline">\(C\subseteq [3k]\)</span> of size a multiple of <span class="math inline">\(3\)</span> define Let <span class="math inline">\(S[C]\)</span> to be the boolean indicating whether there are <span class="math inline">\(|C|/3\)</span> vertex disjoint triangles that can be made by using each color from <span class="math inline">\(C\)</span> exactly once.</p>
+<p>Then we can recursively compute <span class="math inline">\(S[C]\)</span> as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="cf">for</span> c1,c2,c3 <span class="kw">in</span> C:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="cf">if</span> there <span class="kw">is</span> a c1,c2,c3 triangle <span class="kw">and</span> S[C <span class="op">-</span> c1c2c3]:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    YES</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="cf">else</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    NO</span></code></pre></div>
 </div>
-<div class="thm envbox">
-<p><strong>Theorem.</strong> <span class="math inline">\(k!n^{\mathcal{O}(1)}\)</span> algorithm for iso tree</p>
+<p>still can’t figure out trees actually. rip.</p>
 </div>
-<div class="pf envbox">
-<p><strong>Proof.</strong> Number the tree. Color the edges. Hope they got colored in the same way we numbered them. Do a DP: “can I make it so that this vertex is the right place to attach the next edge?”</p>
-</div>
-
       </div>
     </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
     <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
 
     <script charset="utf-8">
         var pres = document.querySelectorAll("pre>code");

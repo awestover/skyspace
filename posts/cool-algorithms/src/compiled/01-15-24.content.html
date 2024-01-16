@@ -133,3 +133,11 @@
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Not related to tree-width but I finally got around to fixing my image compilation script to only compile images in the file that I’m editting rather than all the images. I should probably still upgrade it to auto compile rather than manual compile. But this is a big step up: before now I was really scared to add images bc it took like 10sec to compile them. Now it’s back down to like 1sec. As I always like to say “blogging isn’t like ski rental because if someone breaks your legs you probably will end up writing more blog posts not less.”</p>
 </div>
+<h2 id="some-random-treewidth-related-problems">some random treewidth related problems</h2>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Trees have pathwidth <span class="math inline">\(O(\log n)\)</span>. And, there exists trees with pathwidth <span class="math inline">\(\Omega(\log n)\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> For the upper bound use a centroid decomposition. Let <span class="math inline">\(v\)</span> be a centroid and let <span class="math inline">\(x,y,z\)</span> be its neighbors (might be more or less than <span class="math inline">\(3\)</span>). Then our path decomp is, <span class="math inline">\(v\)</span>’s interval spans the whole way, but then we do <span class="math inline">\(T_x\)</span>’s interval graph, followed by <span class="math inline">\(T_y\)</span>’s and followed by <span class="math inline">\(T_z\)</span>’s.</p>
+<p>hmm, the book claims that it’s non-obvious that there are trees with pathwidth <span class="math inline">\(\Omega(\log n)\)</span>. But it seems to me that it’s pretty clear that e.g., binary trees have <span class="math inline">\(\Omega(\log n)\)</span> pathwidth. Not exactly sure how to prove though.</p>
+</div>
