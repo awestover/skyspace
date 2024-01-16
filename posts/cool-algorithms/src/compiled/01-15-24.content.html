@@ -94,7 +94,21 @@
 <p>It turns out that graphs of bounded tree-width also have “small separators”: if a graph has tree-width <span class="math inline">\(k\)</span> there is a set of size <span class="math inline">\(k+1\)</span> whose removal “splits the graph nicely”. We need a weighted version of this.</p>
 </div>
 <div class="lem envbox">
-<p><strong>Lemma.</strong> separation lemma</p>
+<p><strong>Lemma.</strong> separation lemma part 1:</p>
+<p>Let <span class="math inline">\(G\)</span> be a graph of treewidth at most <span class="math inline">\(k\)</span> and let <span class="math inline">\(w\)</span> be a function that assigns weights to the vertices of <span class="math inline">\(G\)</span>. Then, there exists a vertex set <span class="math inline">\(X\)</span> of size <span class="math inline">\(k+1\)</span> whose removal splits <span class="math inline">\(G\)</span> into some of connnected components, each of which has weight at most <span class="math inline">\(1/2\)</span> the total weight <span class="math inline">\(w(V(G))\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Consider a tree decomposition of <span class="math inline">\(G\)</span>. (This isn’t circular, we’re arguing existence of a separator, not giving an algorithm for anything yet).</p>
+<p>Arbitrarily root the tree <span class="math inline">\(T\)</span>. Find a vertex <span class="math inline">\(t\in V(T)\)</span> satisfying:</p>
+<ul>
+<li><span class="math inline">\(w(V_t)\ge \frac{1}{2}w(V(G))\)</span></li>
+<li>But, for any child <span class="math inline">\(t&#39;\)</span> of <span class="math inline">\(t\)</span> we have <span class="math inline">\(w(V_{t&#39;}) &lt; \frac{1}{2}w(V(G))\)</span>
+<ul>
+<li>This can be equivalently formulated as “the furthest vertex from the root whose subtree still has half the weight of the entire graph.”</li>
+</ul></li>
+</ul>
+<p>Anyways, the claim is that the bag <span class="math inline">\(X_t\)</span> is the separator that we want.</p>
+<p>And indeed, connected components of <span class="math inline">\(G-X_t\)</span> either live in <span class="math inline">\(V\setminus V_t\)</span>, which we already know has less than half the weight, or in a subtree of one of <span class="math inline">\(t\)</span>’s children, which also can’t have too much weight.</p>
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Not related to tree-width but I finally got around to fixing my image compilation script to only compile images in the file that I’m editting rather than all the images. I should probably still upgrade it to auto compile rather than manual compile. But this is a big step up: before now I was really scared to add images bc it took like 10sec to compile them. Now it’s back down to like 1sec. As I always like to say “blogging isn’t like ski rental because if someone breaks your legs you probably will end up writing more blog posts not less.”</p>
