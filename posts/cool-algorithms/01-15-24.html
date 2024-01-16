@@ -159,6 +159,26 @@
 <p>Anyways, the claim is that the bag <span class="math inline">\(X_t\)</span> is the separator that we want.</p>
 <p>And indeed, connected components of <span class="math inline">\(G-X_t\)</span> either live in <span class="math inline">\(V\setminus V_t\)</span>, which we already know has less than half the weight, or in a subtree of one of <span class="math inline">\(t\)</span>’s children, which also can’t have too much weight.</p>
 </div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> We can find a <span class="math inline">\(2/3\)</span>-balanced separation <span class="math inline">\((A,B)\)</span> of order at most <span class="math inline">\(k+1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We use the previous lemma, form two groups of connected components in a certain way to get the balance property.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Menger’s theorem (special case of max-flow = min-cut) says that that the minimum size of a separator between two sets is the maximum number of vertex disjoint paths between the two sets. This is very algorithmic, because we can run maxflow to get separators / paths.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> If you have a vertex subset <span class="math inline">\(S\)</span> of size <span class="math inline">\(3k+4\)</span> in a graph with treewidth <span class="math inline">\(k\)</span> then you can partition <span class="math inline">\(S\)</span> into two nicely sized sets such that the <span class="math inline">\(\mu(S_A, S_B)\le k+1\)</span>.</p>
+</div>
+<p>Anyways, seems pretty powerful. Now we prove the theorem.</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Assume <span class="math inline">\(G\)</span> connected and at most <span class="math inline">\(kn\)</span> edges.</p>
+<p>We have a recursive procedure <strong>DECOMPOSE</strong> for constructing the decomposition.</p>
+<p>First, we arbitrarily choose a subset <span class="math inline">\(\hat{S}\)</span> of <span class="math inline">\(W\)</span> with <span class="math inline">\(3k+4\)</span> elements. Applying the corollary from above we know that there should be a partition <span class="math inline">\(S_A, S_B\)</span> of <span class="math inline">\(\hat{S}\)</span> such that <span class="math inline">\(\mu_{G[W]}(S_A, S_b) \le k+1\)</span>, i.e., there is a separator of size at most <span class="math inline">\(k+1\)</span> separarting <span class="math inline">\(S_A, S_B\)</span> in <span class="math inline">\(G[W]\)</span>. We run maxflow to try and find this separator. If we can’t find it we conclude that the graph actually has large treewidth.</p>
+<p>Anyways, assuming we found this separator <span class="math inline">\(A,B\)</span> with <span class="math inline">\(|A\cap B|\le k+1\)</span> we then set <span class="math inline">\(\hat{S} = S\cup (A\cap B)\)</span>. This is going to be the root bag of our tree decomposition.</p>
+<p>We then recursively call the DECOMPOSE procedure on all connected components that arise by deleting the root bag.</p>
+</div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Not related to tree-width but I finally got around to fixing my image compilation script to only compile images in the file that I’m editting rather than all the images. I should probably still upgrade it to auto compile rather than manual compile. But this is a big step up: before now I was really scared to add images bc it took like 10sec to compile them. Now it’s back down to like 1sec. As I always like to say “blogging isn’t like ski rental because if someone breaks your legs you probably will end up writing more blog posts not less.”</p>
 </div>
