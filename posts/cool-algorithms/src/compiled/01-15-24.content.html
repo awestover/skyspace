@@ -88,9 +88,13 @@
 <p>Ok, more recently: There is a <span class="math inline">\(2^{O(k)}\cdot n\)</span> algo that either constructs a tree decomposition of widdth at most <span class="math inline">\(5k+5\)</span> or outputs (correctly) that <span class="math inline">\(G\)</span> has treewidth larger than <span class="math inline">\(k\)</span>.</p>
 <p>Anyways, we’re gonna prove the easier version. But it’s looking pretty intense, so prolly has to wait till after lunch.</p>
 </div>
-<div class="pf envbox">
-<p><strong>Proof.</strong></p>
-<p>TODO</p>
+<p>Before proving giving an FPT treewidth/decomposition approximation algorithm we need some graph theory lemmas.</p>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In a tree there is a “centroid”: a vertex whose removal splits the tree into some subtrees each with at most <span class="math inline">\(n/2\)</span> vertices.</p>
+<p>It turns out that graphs of bounded tree-width also have “small separators”: if a graph has tree-width <span class="math inline">\(k\)</span> there is a set of size <span class="math inline">\(k+1\)</span> whose removal “splits the graph nicely”. We need a weighted version of this.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> separation lemma</p>
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Not related to tree-width but I finally got around to fixing my image compilation script to only compile images in the file that I’m editting rather than all the images. I should probably still upgrade it to auto compile rather than manual compile. But this is a big step up: before now I was really scared to add images bc it took like 10sec to compile them. Now it’s back down to like 1sec. As I always like to say “blogging isn’t like ski rental because if someone breaks your legs you probably will end up writing more blog posts not less.”</p>
