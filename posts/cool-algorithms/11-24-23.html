@@ -49,7 +49,7 @@
 <blockquote>
 <p>Does a graph <span class="math inline">\(G\)</span> contain a subgraph isomorphic to a <span class="math inline">\(k\)</span>-vertex tree <span class="math inline">\(T\)</span>?</p>
 </blockquote>
-<p>In fact, these are both special cases of a more general result: there is (I’m pretty sure) a <span class="math inline">\(2^{O(k)}n^{O(1)}\)</span> algorithm for detecting whether any pattern graph of bounded treewidth occurs as a subgraph of your graph. Maybe I’ll try to think about how to do that in a moment.</p>
+<p>In fact, these are both special cases of a more general result: there is (I’m pretty sure) a <span class="math inline">\(2^{O(k)}n^{O(1)}\)</span> algorithm for detecting whether any <span class="math inline">\(k\)</span>-vertex pattern graph of treewidth <span class="math inline">\(100\)</span> (or whatever your favorite constant is, just be warned that the constant is gonna make its way into the big-O, because subgraph isomorphism for clique is probably W1-hard.) occurs as a subgraph of your graph. Maybe I’ll try to think about how to do that in a moment.</p>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> <span class="math inline">\(2^{O(k)}n^{O(1)}\)</span> algorithm for triangle packing.</p>
 </div>
@@ -63,7 +63,25 @@
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  <span class="cf">else</span>:</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    NO</span></code></pre></div>
 </div>
-<p>still can’t figure out trees actually. rip.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(2^{O(k)}n^{O(1)}\)</span> algorithm for subgraph isomorphism with a tree pattern graph.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Color code.</p>
+<p>Root the pattern tree, and for each vertex decide on a precednece order for its children. There is a certain class of subtrees, indexed by edges, that will be important for us. Namely, the subtree associated with the <span class="math inline">\(i\)</span>-th edge we call <span class="math inline">\(S_i\)</span> and it is defined as follows: let edge <span class="math inline">\(i\)</span> have vertex <span class="math inline">\(u\)</span> closer to the root and vertex <span class="math inline">\(v\)</span> farther from the root. So in <span class="math inline">\(S_i\)</span> we take <span class="math inline">\(u\)</span>, <span class="math inline">\(T_v\)</span> (the tree rooted at vertex <span class="math inline">\(v\)</span>), and then also <span class="math inline">\(w, T_w\)</span> for any children <span class="math inline">\(w\)</span> of <span class="math inline">\(u\)</span> which are higher precedence than <span class="math inline">\(v\)</span>.</p>
+<p>Now we define the dynamic program. For each vertex <span class="math inline">\(v\in V(G)\)</span>, each edge <span class="math inline">\(i\)</span> in the pattern graph and each color subset <span class="math inline">\(C\subseteq [k]\)</span> we will compute <span class="math inline">\(D[v, i, C]\)</span> which is the boolean “Can we find a copy of <span class="math inline">\(T_i\)</span> in <span class="math inline">\(G\)</span> where the root of <span class="math inline">\(T_i\)</span> is placed at vertex <span class="math inline">\(v\)</span> and we use precisely the colors <span class="math inline">\(C\)</span> for the edges of this copy of <span class="math inline">\(T_i\)</span>?”</p>
+<p>Now we show how to compute <span class="math inline">\(D\)</span> recursively. For edges <span class="math inline">\(i\)</span> corresponding to edges to low-precedence leaves in the tree its easy to fill in the DP: these guys are fine if <span class="math inline">\(v\)</span> has a color from <span class="math inline">\(C\)</span> and <span class="math inline">\(v\)</span> has a neighbor of the other color.</p>
+<p>There are two cases in the induction:</p>
+<ul>
+<li>sibling</li>
+<li>child</li>
+</ul>
+<p>Child is very easy: just itterate over neighbors of <span class="math inline">\(v\)</span> and check if any of them can do the subtree we need.</p>
+<p>Sibling is as follows: itterate over partitions of the colors that you’re allowed to use. Check for the “<span class="math inline">\(T_{i-1}\)</span>” i.e., it’s left sibling and also for the subtree thing that you need.</p>
+<figure>
+<img src="src/images/ink_img012.png" alt="" /><figcaption>ink_img012</figcaption>
+</figure>
+</div>
 </div>
       </div>
     </div>

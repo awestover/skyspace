@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#bidimensionality" class="js-scroll-trigger">bidimensionality</a> </li>
+<li> <a href="#a-very-simple-example-of-using-treewidth" class="js-scroll-trigger">a very simple example of using treewidth</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>A nice way to think about the “separation lemma” that is used in the treewidth approximation FPT scheme (credit to Tomas for pointint this out):</p>
+<div class="clm envbox">
+<p><strong>Claim.</strong> Suppose you choose any set of <span class="math inline">\(R\)</span> red vertices. Then there should be a bag of the tree-decomposition that you can take such that there at most <span class="math inline">\(R/2\)</span> red vertices in all the connected components left after the removal of that bag.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Direct the edges in the tree from “bag with fewer red vertices” to “bag with more red vertices” (arbitrarily break ties).</p>
+<p>Then find a sink bag. This sink bag is the bag you want.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Something I was confused about in the tree decomposition algorithm:</p>
+<p>Once we pick the set that we are going to separate and then turn into a bag we <strong>itterate over all partitions of that set into three parts</strong> and run min-cut between each possible tripple of ways the set could get split.</p>
+<p>By the lemma above there has to be a good way (or else we have a proof of large treewidth). We take that good partition.</p>
+<p>Then let’s call the partition <span class="math inline">\(S\setminus B, (S\cap (A\cap B)) \cup X, S\setminus A\)</span>.</p>
+<p>To recurse we then recurse on <span class="math inline">\(S\setminus B, (S\cap (A\cap B)) \cup X\)</span> and <span class="math inline">\(S\setminus A, (S\cap (A\cap B)) \cup X\)</span>. The idea is, <span class="math inline">\(B\)</span> interfaces only with <span class="math inline">\(S\setminus B, (S\cap (A\cap B)) \cup X\)</span>, and similar for <span class="math inline">\(A\)</span>. So this is what we want.</p>
+</div>
+<h1 id="bidimensionality">bidimensionality</h1>
+<p>win/win framework.</p>
+<p>Powerful theorem: large tree width implies you must have a large grid as a minor.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(G\)</span> be a planar graph with treewidth <span class="math inline">\(t\)</span>. Then <span class="math inline">\(G\)</span> contains an <span class="math inline">\(\Omega(t)\times \Omega(t)\)</span> grid as a minor!</p>
+</div>
+<p>Sometimes <em>minor</em> is a bit annoying to work with. Relation notion: “graph achievable by edge contractions.”</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(G\)</span> be a planar graph with treewidth <span class="math inline">\(t\)</span>. Then there is a sequence of edge contractions on <span class="math inline">\(G\)</span> that results in “<span class="math inline">\(\Gamma_t\)</span>”, which is a grid, and then you triangulate it, and then you have one corner vertex that is connected to all the boundary vertices.</p>
+</div>
+<h1 id="a-very-simple-example-of-using-treewidth">a very simple example of using treewidth</h1>
+<div class="ex envbox">
+<p><strong>Example.</strong> 3-coloring is FPT when parameterized by treewidth. Run time is <span class="math inline">\(O(3^{k}\cdot k\cdot n)\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>We use the “add edge bag” framework.</p>
+<p>Our DP is as follows: For each node <span class="math inline">\(t\)</span> in the tree decomposition and each 3-coloring <span class="math inline">\(f: X_t\to [3]\)</span> of the bag at <span class="math inline">\(t\)</span> let <span class="math inline">\(D[t, f]\)</span> denote “is there an extension of <span class="math inline">\(f\)</span> to <span class="math inline">\(f&#39;:G_t\to [3]\)</span> that is a valid 3-coloring of <span class="math inline">\(G_t\)</span>?”</p>
+<p>Now we recurse stuff as follows:</p>
+<ul>
+<li>leaf bags: let <span class="math inline">\(f: \varnothing \to [3]\)</span> is the “empty function” (color zero vertices). This is our only option for a coloring. We say <span class="math inline">\(D[t, f] = \top\)</span>. (yes I have started using <span class="math inline">\(\bot,  \top\)</span> for T/F because latex has pretty good support for them and because <span class="math inline">\(\bot\)</span> kinda looks like <span class="math inline">\(\perp\)</span>, which is my favorite binary relation).</li>
+<li>add vertex bags: at this point the vertex is isolated, so its fine as long as the restriction of <span class="math inline">\(f\)</span> to not color this vertex is fine</li>
+<li>add edge bags: as long as you don’t add an edge between two vertices with the same color you’re chilling</li>
+<li>forget vertex bags: try all the colors for the vertex that you’re forgetting. if any of them work then you’re good.</li>
+<li>join bags: take the intersection of the colorings for both childs.</li>
+</ul>
+</div>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
