@@ -18,11 +18,16 @@
 </div>
 <div class="defn envbox">
 <p><strong>Definition.</strong> Representation:</p>
-<p>some way of associating a matrix with a matroid.</p>
+<p>Some way of associating a matrix with a matroid.</p>
+<p>vandermonde matrix = rep of uniform matroid</p>
 </div>
 <div class="ex envbox">
 <p><strong>Example.</strong> graphical matroids</p>
 <p>matroid edges: edges in the graph isets: acyclic subgraphs.</p>
 <p>It’s not obvious that this is a matroid. Hereditary property is obvious but not exchange. I thought the proof was kind of clever. The proof is as follows.</p>
 <p>Let <span class="math inline">\(A,B \subseteq E(G)\)</span> be isets with <span class="math inline">\(|A|&lt; |B|\)</span>. Here’s how to run an exchange. <span class="math inline">\(B\)</span> can’t have more edges than <span class="math inline">\(A\)</span> in any of the connected components of <span class="math inline">\(A\)</span>. Hence <span class="math inline">\(B\)</span> has an edge going between two connected components of <span class="math inline">\(A\)</span>. This is a safe edge to exchange.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> representation of graphical matroids:</p>
+<p>you direct the edges somehow and then make a <span class="math inline">\(V\times E\)</span> matrix with a <span class="math inline">\(\pm 1\)</span> in entry <span class="math inline">\(v,e\)</span> if <span class="math inline">\(e\)</span> goes into / out of <span class="math inline">\(v\)</span>.</p>
 </div>
