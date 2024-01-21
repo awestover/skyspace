@@ -1,0 +1,3 @@
+LaTeX restate theorem
+
+Nifty LaTeX package.
