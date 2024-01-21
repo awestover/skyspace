@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#a-breif-classification-of-theorems-into-three-classes" class="js-scroll-trigger">a breif classification of theorems into three classes</a> </li>
+<li> <a href="#inaccessible-axioms" class="js-scroll-trigger">inaccessible axioms</a> </li>
+<li> <a href="#simple-axioms" class="js-scroll-trigger">simple axioms</a> </li>
+<li> <a href="#tautological-axioms" class="js-scroll-trigger">tautological axioms</a> </li>
+<li> <a href="#back-to-discussion-of-writing-a-research-paper" class="js-scroll-trigger">back to discussion of writing a research paper</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>Recently (essentially ~80% of my waking moments for the past 3 days or something) I’ve been polishing up / completely rewriting a paper that I’m submitting to a conference this week. I think it’s quite appropriate that I write this post <em>now</em> rather than after I’ve finished editting the paper or after the paper is (hopefully) accepted at some conference.</p>
+<p>So in this blog post I briefly share some learnings and contemplations about truth.</p>
+<p>A good proof will give you an understanding of why something is true. A <strong>great</strong> proof however, should actually make you see that the proven statement is a tautology. Let me explain.</p>
+<h1 id="a-breif-classification-of-theorems-into-three-classes">a breif classification of theorems into three classes</h1>
+<p>There are a lot of different states of being with respect to mathematical propositions.</p>
+<h3 id="inaccessible-axioms">inaccessible axioms</h3>
+<blockquote>
+<p>“The matrix multiplication constant <span class="math inline">\(\omega &lt; 2.4\)</span>” This is a statement that I believe because it is universally accepted in a community that I trust. I have some vague conception of how this could be possible: Strassen’s algorithm demonstrates that you can do MM in <span class="math inline">\(n^{\log_2(7)}&lt; n^{2.81}\)</span> and I can imagine that more complicated tensor decompositions allow one to improve over this, even if I only have the vaguest idea of what the “laser method” is.</p>
+</blockquote>
+<p>This is a prototypical example of a result that is incredibly complicated to the point that I don’t really have much desire to understand it except on a very high level. Some other theorems that probably fall in this boat include 4-color theorem. Robertson Seymour Forbidden Graph minors theorem. These theorem’s are characterized by being frequently useful, but with hopelessly long proofs. Let’s call these theorems <strong>inaccessible axioms</strong>.</p>
+<h3 id="simple-axioms">simple axioms</h3>
+<p>Take something like “The multiplicative group <span class="math inline">\(Z_{p^{k}}^{\times}\)</span> is cyclic”. I have no qualms using this fact. I even have written down a proof of this fact. But it doesn’t feel <em>obvious</em>. It is a fundamental part of my paradigm for thinking about <span class="math inline">\(\mathbb{F}_p\)</span>. But usually I’m just taking it as an axiom, that I believe because I tried it for <span class="math inline">\(p&lt;12\)</span> and it held there, and because everyone else believes it, and because I feel like I probably at some point had checked a proof of this. The proof is really not so complicated, I’m in danger of understanding it right now! The proof (for the prime case not the prime power case) simply stems from a bijection showing that <span class="math inline">\(\sum_{d\mid n} \phi(d) = n\)</span>. The bijection is simply: write down reduced fractions <span class="math inline">\(x/n\)</span> for each <span class="math inline">\(x\in [n]\)</span> and then group them by their denominator. For example, here is a proof that <span class="math inline">\(\mathbb{Z}_7^*\)</span> is cyclic: <span class="math display">\[(1/6, 5/6), (1/3 ,2/3), (1/2), (1/1) \iff \phi(6) = 2, \phi(3)=2, \phi(2)=1, \phi(1)=1\]</span> Why is this a proof? Well, The number of elements of order <span class="math inline">\(d\mid 6\)</span> in <span class="math inline">\(\mathbb{Z}_7^{*}\)</span> is at most <span class="math inline">\(\phi(d)\)</span>. Let <span class="math inline">\(x_d\)</span> denote the number of elements of order <span class="math inline">\(d\)</span> for each <span class="math inline">\(d\mid 6\)</span>. Then we have <span class="math inline">\(6 =x_1+x_2+x_3+x_6\)</span>. And the RHS is upper bounded by <span class="math inline">\(6\)</span>, so in order for equality to hold we simply must have <span class="math inline">\(x_6 = \phi(6)\)</span>. And that’s why I’m not so surprised to find that <span class="math inline">\(3,4\)</span> are generators for <span class="math inline">\(\mathbb{Z}_7^*\)</span>. So, after writing this, I have realized: this proof consists of two simple lemmas.</p>
+<ul>
+<li>Lemma 1: <span class="math inline">\(\sum_{d\mid n} \phi(d) = n\)</span>. There’s a nice bijection that explains this (see above).</li>
+<li>Lemma 2: <span class="math inline">\(|\mathbb{Z}_p^*| \le \sum_{d\mid n}\#\text{elements of order } d\)</span></li>
+<li>Lemma 3: For each <span class="math inline">\(d\mid n\)</span> there are at most <span class="math inline">\(\phi(d)\)</span> elements of order <span class="math inline">\(d\)</span>.</li>
+<li>Lemma 0: I guess technically I’m invoking Lagrange’s theorem implicitly to assert that all elements of <span class="math inline">\(\mathbb{Z}_p^{*}\)</span> have to have order <span class="math inline">\(d\mid |\mathbb{Z}_p^{*}|\)</span>.</li>
+</ul>
+<p>Ok so actually I think I learned something just while writing the above text. This second type of theorem that I wanted to taxonomize I shall call <strong>simple axioms</strong>. These theorems are characterized by having fairly simple proofs that are easy to bring into cache. Once brought into cache they should hopefully seem obvious. But they usually live outside of cache.</p>
+<h3 id="tautological-axioms">tautological axioms</h3>
+<p>Finally there is what I will call “tautological axioms”. As an example, consider something like the Cauchy-Shwarz inequality. My friend Peter has expressed the opinion “Cauchy-Schwarz is anything equivalent to <span class="math inline">\(x^2\ge 0\)</span>”. This highlights the fact that sometimes you can use Cauchy-Shwarz without even realizing it. The Cauchy-Scharz inequality really just says “if you have some budget that you can split amongst two numbers and then you’re going to square and combine the numbers, then the smallest possible result is if you split the budget evenly”. For instance <span class="math inline">\(3^2+7^2 \ge 5^2 + 5^2.\)</span> This is the type of theorem that the “tagline” when I’m retrieving it from memory includes the proof. This would be like including the proof of a statement in the title (or at least description) of a blog post! Oh gosh I have to do that sometime now.</p>
+<h1 id="back-to-discussion-of-writing-a-research-paper">back to discussion of writing a research paper</h1>
+<p>So, back to the discussion of writing a research paper. I have historically always complained a bit about having to edit my research papers to be <strong>correct</strong>. “It’s the ideas that are important, people can survive a few typos. It’s good for there to be typos, it’s like eating dirt it keeps your immune system strong, keeps you on your toes”.</p>
+<p>Ok, maybe I wasn’t that bad, but you get the point.</p>
+<p>I think I’m starting to change my appraisal of the editting process of a paper in a positive and healthy direction, that is towards seeing it as a highly valuable activity and not being upset with myself that my work would contain errors that need to be fixed.</p>
+<p>My usual approach for editting a paper is I go through and kind of simultaneously am in proof reading and fixing mistakes mode. However, this time through I’ve kind of switched to a slightly different model: first go through just in proof reading mode, and notice all the errors. Then go back later and fix the errors. I think this approach is good. My brain doesn’t have the RAM to run its error-finding software and its error-fixing software simultaneously. Or maybe these programs actually interfere with the operation of each other. Anyways.</p>
+<p>We come to the question that inspired this blog post:</p>
+<blockquote>
+<p>How much error can a proof contain before it ceases to be truth?</p>
+</blockquote>
+<p>The answer may surprise you.</p>
+<p>The answer is zero. Cero, Zéro, Null, Zero, Zero, Ноль, 零, ゼロ, صفر, शून्य, 제로, Sıfır, Nul, Noll (really hope the above line compiles…)</p>
+<p>Now, let’s be clear. This doesn’t mean that your paper is garbage if it has an unclear sentence.</p>
+<p>But it does mean that the responsibility I accept when writing a paper is to make it error-free. Think about the last time you read something and it had an error in it. It can make it 10x harder to understand the paper and destroy your confidence in it.</p>
+<p>Oft-times this level of editting involves seemingly silly things. Getting the floors, ceilings and edge cases right. But I think there’s no point in calling these things silly. Sometimes these problems even are real problems. Usually fixing them helps elucidate why an argument is actually working. There is a very beautiful aesthetic to an argument where you can clearly see where all the hypotheses are used and how the argument fits together.</p>
+<p>Sometimes it’s ok to not spell out details in the text. But it’s never ok to have not even spelled out the details yourself. If you don’t even care about the work enough to carefully read it, why should anyone else?</p>
+<p><a href="https://terrytao.wordpress.com/advice-on-writing-papers/">As a side note, I think Terry Tao gives some good advice on how to write papers.</a></p>
+<p>How much do you have to proof-read / edit a paper? Well, Bradon Sanderson takes a year to edit a book, including four drafts, and has a huge team that helps him check for problems. That kind of makes editting my little 10-20 page manuscript seem more doable.</p>
+<p><strong>Alek’s Rule of Truth</strong> states that “A paper is not true until you have read it without finding any errors. Preferably this reading happens at least a week after writing it.”</p>
+<p><strong>Alek’s Rule of Clarity</strong> states that a paper is not clear unless someone who you haven’t already told all about the problem has read it and could understand it.</p>
+<p>A final comment or two on writing papers which I hope my future self will read before the next time he writes a paper.</p>
+<p>It’s really important to have good organization. Optimal lemma length is like one page. If a proof starts to get longer than that it’s really hard to keep it all in memory.</p>
+<p>Splitting description into named paragraphs is a good idea. In the future I prefer avoiding the “3 lemmas nested in a theorem” style and going for the first prove 3 lemmas and then derive the theorem style. Within a proof you should start with a statement of the plan for the proof, and then at every paragraph it should be clear how you are advancing the plan.</p>
+<p>So this has actually ended up being a rather long bblog post. And I’m sure it contains some mistakes. And it maybe not super well-organized. Luckily I’m not publishing it in a journal. In the blog medium I don’t have a promise to the reader to have achieved any of these things. In fact, maybe the opposite: I promise this blog post contains errors and was just writen stream-of-conciousness and then never editted.</p>
+<p>But anyways maybe the key points are as follows:</p>
+<ol type="1">
+<li>Editting a paper to be true is a vital part of doing research.</li>
+<li>Editting a paper results in clearer simpler ideas.</li>
+<li>Editting a paper makes it so that other people (including future you!) can read your paper.</li>
+<li>In a well organized paper it is clear how the logic flows (and it there are any holes in it).</li>
+<li>Check edge cases. Run the argument on simple examples. At each line ask “is this really true?” and actually check.</li>
+<li>Have a separate “error-finding” mode where you assume the paper is false and try to find the error.</li>
+<li>Editting a paper makes something beautiful and helps you appreciate the results more.</li>
+</ol>
+<p>Ultimately, you are finished writing a paper when you finally realize “ah it really <em>is</em> <strong>true</strong>”.</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
