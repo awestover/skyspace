@@ -1,0 +1,28 @@
+<p>LA = linear algebra GT = graph theory</p>
+<p>Matroid theory = LA + GT.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A matroid is a set of “edges” <span class="math inline">\(U\)</span> and “independent sets” <span class="math inline">\(F\subset\mathcal{P}(U)\)</span> (not in the graph theory sense in the LA sense) which I shall call <strong>isets</strong> with the following properties:</p>
+<ol type="1">
+<li>empty set is an iset.</li>
+<li>subset of an iset is an iset. (hereditary property)</li>
+<li>If you have two isets with distinct sizes, then there is an element of the larger iset that you can add to the smaller iset and still get an iset. (exchange property)</li>
+</ol>
+<p><strong>Basis: inclusion-wise maximal set of edges forming an iset</strong> <strong>Circuit: inclusion-wise minimal set of edges forming not forming an iset</strong>. <strong>Rank: size of bases.</strong></p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> Uniform matroid: Fix <span class="math inline">\(r\)</span>. Every set of size at most <span class="math inline">\(r\)</span> is an iset.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> edges = set of vectors. isets = linearly independent sets of vectors</p>
+<p>this is a matroid.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Representation:</p>
+<p>some way of associating a matrix with a matroid.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> graphical matroids</p>
+<p>matroid edges: edges in the graph isets: acyclic subgraphs.</p>
+<p>It’s not obvious that this is a matroid. Hereditary property is obvious but not exchange. I thought the proof was kind of clever. The proof is as follows.</p>
+<p>Let <span class="math inline">\(A,B \subseteq E(G)\)</span> be isets with <span class="math inline">\(|A|&lt; |B|\)</span>. Here’s how to run an exchange. <span class="math inline">\(B\)</span> can’t have more edges than <span class="math inline">\(A\)</span> in any of the connected components of <span class="math inline">\(A\)</span>. Hence <span class="math inline">\(B\)</span> has an edge going between two connected components of <span class="math inline">\(A\)</span>. This is a safe edge to exchange.</p>
+</div>

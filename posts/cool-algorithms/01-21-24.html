@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>LA = linear algebra GT = graph theory</p>
+<p>Matroid theory = LA + GT.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> A matroid is a set of “edges” <span class="math inline">\(U\)</span> and “independent sets” <span class="math inline">\(F\subset\mathcal{P}(U)\)</span> (not in the graph theory sense in the LA sense) which I shall call <strong>isets</strong> with the following properties:</p>
+<ol type="1">
+<li>empty set is an iset.</li>
+<li>subset of an iset is an iset. (hereditary property)</li>
+<li>If you have two isets with distinct sizes, then there is an element of the larger iset that you can add to the smaller iset and still get an iset. (exchange property)</li>
+</ol>
+<p><strong>Basis: inclusion-wise maximal set of edges forming an iset</strong> <strong>Circuit: inclusion-wise minimal set of edges forming not forming an iset</strong>. <strong>Rank: size of bases.</strong></p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> Uniform matroid: Fix <span class="math inline">\(r\)</span>. Every set of size at most <span class="math inline">\(r\)</span> is an iset.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> edges = set of vectors. isets = linearly independent sets of vectors</p>
+<p>this is a matroid.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Representation:</p>
+<p>some way of associating a matrix with a matroid.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> graphical matroids</p>
+<p>matroid edges: edges in the graph isets: acyclic subgraphs.</p>
+<p>It’s not obvious that this is a matroid. Hereditary property is obvious but not exchange. I thought the proof was kind of clever. The proof is as follows.</p>
+<p>Let <span class="math inline">\(A,B \subseteq E(G)\)</span> be isets with <span class="math inline">\(|A|&lt; |B|\)</span>. Here’s how to run an exchange. <span class="math inline">\(B\)</span> can’t have more edges than <span class="math inline">\(A\)</span> in any of the connected components of <span class="math inline">\(A\)</span>. Hence <span class="math inline">\(B\)</span> has an edge going between two connected components of <span class="math inline">\(A\)</span>. This is a safe edge to exchange.</p>
+</div>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
