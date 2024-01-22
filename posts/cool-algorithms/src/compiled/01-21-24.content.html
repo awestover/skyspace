@@ -1,5 +1,6 @@
 <p>LA = linear algebra GT = graph theory</p>
 <p>Matroid theory = LA + GT.</p>
+<h1 id="basic-definitions-for-matroids">basic definitions for matroids</h1>
 <div class="defn envbox">
 <p><strong>Definition.</strong> A matroid is a set of “edges” <span class="math inline">\(U\)</span> and “independent sets” <span class="math inline">\(F\subset\mathcal{P}(U)\)</span> (not in the graph theory sense in the LA sense) which I shall call <strong>isets</strong> with the following properties:</p>
 <ol type="1">
@@ -29,7 +30,40 @@
 </div>
 <div class="ex envbox">
 <p><strong>Example.</strong> representation of graphical matroids:</p>
-<p>you direct the edges somehow and then make a <span class="math inline">\(V\times E\)</span> matrix with a <span class="math inline">\(\pm 1\)</span> in entry <span class="math inline">\(v,e\)</span> if <span class="math inline">\(e\)</span> goes into / out of <span class="math inline">\(v\)</span>.</p>
+<p>you direct the edges arbitrarily and then make a <span class="math inline">\(V\times E\)</span> matrix with a <span class="math inline">\(\pm 1\)</span> in entry <span class="math inline">\(v,e\)</span> if <span class="math inline">\(e\)</span> goes into / out of <span class="math inline">\(v\)</span>.</p>
 <p>edit:</p>
 <p>ok so it seems that the matrix representation needs to bring into correspondence isets and linearly indepdent combinations of vectors.</p>
+<p>Like in the matrix you have a column <span class="math inline">\(v_e\)</span> for each edge <span class="math inline">\(e\)</span>. And you need the property that for any iset <span class="math inline">\(A\subset U\)</span> the set <span class="math inline">\(\{v_e \mid e\in A\}\)</span> is a linearly independent set of vectors.</p>
+<p>Note that not all matroids are representable but nice ones are.</p>
 </div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Graphical Matroids admit a binary matrix representation</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>You direct the edges arbitrarily and then make a <span class="math inline">\(V\times E\)</span> matrix with a <span class="math inline">\(\pm 1\)</span> in entry <span class="math inline">\(v,e\)</span> if <span class="math inline">\(e\)</span> goes into / out of <span class="math inline">\(v\)</span>.</p>
+<p>Claim 1: if you have a subset of edges containing a cycle then that corresponds to a set of linearly dependent vectors. standard thing: walk around the cycle.</p>
+<p>Claim 2: If you have a set of edges which doesn’t contain a cycle then the vectors are linearly independent. Assume for contradiction that the vectors were linearly dependent. Take a non-trivial linear combination of them which makes zero. Then look at just the edges that have non-zero weight in this linear combination. One of those edges must be to a leaf node. But then that vertex doesn’t get non-zero weight in the sum, a contradiction.</p>
+<p>rmk: generally we can work in F2 where <span class="math inline">\(+1=-1\)</span> so we just have vertex edge incidence matrix.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Transversal Matroids</p>
+<p>Given a bipartite graph <span class="math inline">\(U\sqcup B\)</span> define the matroid as follows: universe is <span class="math inline">\(U\)</span>. <span class="math inline">\(S\subseteq U\)</span> is an iset if there is a matching saturating <span class="math inline">\(S\)</span>.</p>
+<p>Again, it’s not obvious why this is a matroid. Apparently you can prove it with “flows”.</p>
+</div>
+<p>some problems are hard on matroids and some are not.</p>
+<div class="ex envbox">
+<p><strong>Example.</strong></p>
+<ul>
+<li>minimum / maximum weight basis: greedy algo works (b/c of exchange principle)</li>
+<li>maximum circuit: NP-hard (HAM is a special case)</li>
+<li>minimum circuit: “even set”: given a collection of subsets <span class="math inline">\(X_i\)</span> of a universe, find the smallest number of items <span class="math inline">\(S\)</span> you can take so that <span class="math inline">\(|S\cap X_i|\)</span> is even for all <span class="math inline">\(i\)</span> NP-hard</li>
+</ul>
+<p>Apparently there are a bunch of hard open problems about whether certain matroid computations can be done in FPT. They mention some stuff that is known to be W1-hard, and some open stuff.</p>
+</div>
+<h1 id="some-algorithsm-for-matroid-problems">some algorithsm for matroid problems</h1>
+<p><span class="math inline">\(\ell\)</span>-Matroid intersection problem: Given <span class="math inline">\(\ell\)</span> matroids over the same universe and a value <span class="math inline">\(k\)</span>, determine whether there is a set <span class="math inline">\(S\subseteq U\)</span> of size at least <span class="math inline">\(k\)</span> which is independent in all the given matroids.</p>
+<p>Turns out the intersection of two Matroids is not generally a Matroid, or else this would be an easy question.</p>
+<p>In fact, 3-Matroid intersection is NP-complete.</p>
+<p>2-Matroid intersection is in P.</p>
+<p>More generally, Matroid Parity is in P.</p>
