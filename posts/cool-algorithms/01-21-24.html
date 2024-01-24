@@ -36,6 +36,7 @@
             <div id="toc">
             <li> <a href="#basic-definitions-for-matroids-" class="js-scroll-trigger">basic definitions for matroids </a> </li>
 <li> <a href="#some-algorithsm--for-matroid-problems" class="js-scroll-trigger">some algorithsm  for matroid problems</a> </li>
+<li> <a href="#fvs" class="js-scroll-trigger">FVS</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -58,6 +59,7 @@
 </div>
 <div class="ex envbox">
 <p><strong>Example.</strong> Uniform matroid: Fix <span class="math inline">\(r\)</span>. Every set of size at most <span class="math inline">\(r\)</span> is an iset.</p>
+<p>Partition matroid: a disjoint sum of uniform matroids</p>
 </div>
 <div class="ex envbox">
 <p><strong>Example.</strong> edges = set of vectors. isets = linearly independent sets of vectors</p>
@@ -113,6 +115,27 @@
 <p>In fact, 3-Matroid intersection is NP-complete.</p>
 <p>2-Matroid intersection is in P.</p>
 <p>More generally, Matroid Parity is in P.</p>
+<h2 id="fvs">FVS</h2>
+<p>Ok, so here’s an interesting fact:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> FVS is solvable in poly-time on graphs with max-degree <span class="math inline">\(3\)</span>.</p>
+</div>
+<p>Initially this might seem shocking: lots of problems (e.g., hamiltonicity) are hard in graphs wtih max-degree 3. However, I guess we are going to view the <span class="math inline">\(3\)</span> as a <span class="math inline">\(2\)</span> in disguise and then throw matroid parity at it.</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We apply a bunch of reductions / rules.</p>
+<p>And get it down to the following form:</p>
+<p>Have two independent sets <span class="math inline">\(A,B\)</span>. Each vertex in <span class="math inline">\(B\)</span> has exactly <span class="math inline">\(3\)</span> neighbors into <span class="math inline">\(A\)</span>. Your goal is to choose a subset <span class="math inline">\(S\subseteq A\)</span> of size <span class="math inline">\(k\)</span> such that <span class="math inline">\(G-S\)</span> is acyclic (i.e., <span class="math inline">\(S\)</span> is an FVS).</p>
+<p>You make a matroid by considering the graphical matroid of a clique on <span class="math inline">\(A\)</span>.</p>
+<p>For each <span class="math inline">\(u\in B\)</span>, with neighbors <span class="math inline">\(x,y,z\in A\)</span> you associate the pair of “edges” <span class="math inline">\(P_u = \{xy,yz\}\)</span> (matroid edges not actual edges, <span class="math inline">\(B\)</span> is an independent set).</p>
+<p>For <span class="math inline">\(X\subseteq B\)</span> define <span class="math inline">\(Z_X = \bigcup_{u\in X} P_u\)</span>. The hope is that <span class="math inline">\(G[A\sqcup X]\)</span> is acyclic iff <span class="math inline">\(Z_X\)</span> is an iset in the matroid, and furthermore the pairs in <span class="math inline">\(Z_X\)</span> are disjoint.</p>
+<p>One direction is fairly straightforward. If <span class="math inline">\(Z_X\)</span> is not an iset we find a cycle in <span class="math inline">\(G[A\sqcup X]\)</span> easily. If <span class="math inline">\(Z_X\)</span> has two non-disjoint pairs we also find a cycle in <span class="math inline">\(G[A\sqcup X]\)</span> easily.</p>
+<p>These are depicted below</p>
+<figure>
+<img src="src/images/ink_img013.png" alt="" /><figcaption>ink_img013</figcaption>
+</figure>
+<p>The other direction is more involved. Assume <span class="math inline">\(G[A\sqcup X]\)</span> has a cycle. We use it to show that we didn’t solve the matroid parity problem.</p>
+<p>Anyways this shows that solving matroid parity lets you solve this problem.</p>
+</div>
 </div>
       </div>
     </div>
