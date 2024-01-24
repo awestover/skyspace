@@ -37,6 +37,7 @@
             <li> <a href="#basic-definitions-for-matroids-" class="js-scroll-trigger">basic definitions for matroids </a> </li>
 <li> <a href="#some-algorithsm--for-matroid-problems" class="js-scroll-trigger">some algorithsm  for matroid problems</a> </li>
 <li> <a href="#fvs" class="js-scroll-trigger">FVS</a> </li>
+<li> <a href="#a-fun-game" class="js-scroll-trigger">a fun game</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -135,6 +136,25 @@
 </figure>
 <p>The other direction is more involved. Assume <span class="math inline">\(G[A\sqcup X]\)</span> has a cycle. We use it to show that we didn’t solve the matroid parity problem.</p>
 <p>Anyways this shows that solving matroid parity lets you solve this problem.</p>
+</div>
+<h1 id="a-fun-game">a fun game</h1>
+<p>For sets <span class="math inline">\(A,B\)</span> we use the notation <span class="math inline">\(A\perp B\)</span> to denote <span class="math inline">\(A\cap B = \varnothing\)</span>. For events <span class="math inline">\(X,Y\)</span> we use the notation <span class="math inline">\(X\perp Y\)</span> to denote that <span class="math inline">\(X,Y\)</span> are disjoint events. If we’re lucky, for integers <span class="math inline">\(x,y\)</span> we will use the notation <span class="math inline">\(x\perp y\)</span> to denote that <span class="math inline">\(x,y\)</span> are relatively prime. And maybe for vectors <span class="math inline">\(x\perp y\)</span> to denote orthogonal vectors. And maybe for vector spaces. Anyways, I am liable to use <span class="math inline">\(\perp\)</span> to mean literally anything that has the right vibes.</p>
+<p>Here’s a fun game:</p>
+<blockquote>
+<p>Alice is dealt a family of <span class="math inline">\(p\)</span>-element sets <span class="math inline">\(\mathcal{A}\)</span>. Bob is dealt a <span class="math inline">\(q\)</span>-element set <span class="math inline">\(B\)</span>. Alice knows <span class="math inline">\(q\)</span> but not <span class="math inline">\(B\)</span>. They sit around in silence. Then bob reveals <span class="math inline">\(B\)</span>. Alice wins if she can reveal <span class="math inline">\(A\in \mathcal{A}\)</span> with <span class="math inline">\(A\perp B\)</span>. Fun.</p>
+</blockquote>
+<p>Ok, let’s make it slightly more fun: Alice has bad memory but can’t stand losing. She wants to compute a q-representative subset of <span class="math inline">\(\mathcal{A}\)</span>. This set needs to satisfy:</p>
+<ul>
+<li>it’s just as good for the game as <span class="math inline">\(\mathcal{A}\)</span> (i.e., for any set <span class="math inline">\(B\)</span> that she could win on before she can still win).</li>
+<li>it’s as small as possible.</li>
+</ul>
+<p>Turns out that by a really sweet combinatorial lemma, Alice can find a “small” representative set (modulo your definition of small).</p>
+<p>Bolobas’s lemma:</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Suppose you have <span class="math inline">\(p\)</span>-element sets <span class="math inline">\(A_1,\ldots, A_m\)</span> and <span class="math inline">\(q\)</span>-element sets <span class="math inline">\(B_1,\ldots, B_m\)</span> with <span class="math inline">\(A_i\perp B_j\)</span> iff <span class="math inline">\(i=j\)</span>. Then <span class="math inline">\(m\le \binom{p+q}{p}.\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Randomly order the universe. Let <span class="math inline">\(X\le Y\)</span> denote the event <span class="math inline">\(x\le y\)</span> for all <span class="math inline">\(x\in X, y\in Y\)</span> with respect to this ordering. Let <span class="math inline">\(E_i\)</span> denote the event <span class="math inline">\(A_i\le B_i\)</span>. Observe that <span class="math inline">\(E_i\perp E_j\)</span> (disjoint events) (draw a picture). Hence, <span class="math display">\[m \le 1/\Pr[E_i].\]</span> But clearly <span class="math inline">\(1/\Pr[E_i] = \binom{p+q}{p}\)</span>, so we win.</p>
 </div>
 </div>
       </div>
