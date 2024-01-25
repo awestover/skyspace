@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#pie" class="js-scroll-trigger">PIE</a> </li>
+<li> <a href="#num-ham-cycles" class="js-scroll-trigger">num ham cycles</a> </li>
+<li> <a href="#fast-zeta-and-mobius-transforms" class="js-scroll-trigger">Fast Zeta and Mobius Transforms</a> </li>
+<li> <a href="#subset-convolution-and-cover-product" class="js-scroll-trigger">subset convolution and cover product</a> </li>
+<li> <a href="#longest-path" class="js-scroll-trigger">longest path</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>I’m actually super hyped for this chapter, it looks so fancy, and has “fourier guys”. I also just realized that I really want to understand Fourier analysis. So I will probably take a class on fourier analysis instead of a complexity theory class. Hard choice.</p>
+<p>Yeah, this chapter is low key my favorite!! I mean, color coding is still my favorite technique just because of how useful it is. But I really want to thoroughly understand this chapter because it is super cool.</p>
+<h1 id="pie">PIE</h1>
+<p>PIE says</p>
+<p><span class="math display">\[|\cap_i A_i| = \sum_{X\subseteq [n]} (-1)^{|X|} |\cap_{j\in X} U\setminus A_j|.\]</span></p>
+<p>Now, the whole “sum over <span class="math inline">\(2^{n}\)</span> subsets” approach might not seem good. But, let’s just do an application.</p>
+<h2 id="num-ham-cycles">num ham cycles</h2>
+<div class="ex envbox">
+<p><strong>Example.</strong> Fix some vertex <span class="math inline">\(v_0\)</span>. Let <span class="math inline">\(U\)</span> be the set of length <span class="math inline">\(n\)</span> closed walks starting at <span class="math inline">\(v_0\)</span>. Let <span class="math inline">\(A_v\)</span> be the set of length <span class="math inline">\(n\)</span> closed walks starting at <span class="math inline">\(v_0\)</span> that visit vertex <span class="math inline">\(v\)</span> at least once.</p>
+<p>Then, the number of hamiltonian cycles in the graph is</p>
+<p><span class="math display">\[\left|\bigcap_v A_v \right|\]</span></p>
+<p>But we can actually compute the terms on the RHS: <span class="math display">\[\bigcap_{v\in X} U\setminus A_v\]</span> is the number of closed walks of length <span class="math inline">\(n\)</span> starting from <span class="math inline">\(v_0\)</span> in the graph <span class="math inline">\(G-X\)</span>. We can compute this with MM.</p>
+<p>So we get a <span class="math inline">\(2^{n}n^{O(1)}\)</span> time algo for computing number of HAM-cycles in a graph. Polynomial space, so that’s a plus.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> Ok now we are going to try to do Steiner Tree. In HAM cycle the key insight was that walks are easier to count than paths. Here we are going to do something similar: we are going to count “branching walks” instead of trees.</p>
+<p>Branching walks are ordered homomorphic trees. Basically, you give me a tree with some numbers on it (subject to the stipulation that numbers on children have to be larger than numbers on their parents). And then I need to map it’s vertices to the graph. But I’m allowed to do homomorphic stuff.</p>
+<p>So we run PIE again, and get the problem of counting the number of branching walks in certain graphs.</p>
+<p>This can be computed with a clever DP:</p>
+<p>Let <span class="math inline">\(b_j(a)\)</span> denote the number of length <span class="math inline">\(j\)</span> branching walks starting from <span class="math inline">\(a\)</span>. As the base case we have <span class="math inline">\(b_0(a) = 1\)</span>. For <span class="math inline">\(j&gt;0\)</span> we have <span class="math display">\[b_j(a) = \sum_{t\in N_G(a)} \sum_{j_1+j_2 = j-1} b_{j_1}(a)
+b_{j_2}(t).\]</span> The neat thing here is that we just peal off a bit of stuff from the branching walk and recurse-anate the rest.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> Chromatic Number</p>
+<p>Let <span class="math inline">\(k\in O(1)\)</span>. Note that a proper <span class="math inline">\(k\)</span>-coloring of <span class="math inline">\(V(G)\)</span> can be thought of as a cover of <span class="math inline">\(G\)</span> by <span class="math inline">\(k\)</span> independent sets.</p>
+<p>To start we compute the numbers of independent subsets of each vertex set via dynamic programming in <span class="math inline">\(2^{n}n^{O(1)}\)</span> time. Let <span class="math inline">\(U\)</span> be the set of <span class="math inline">\(k\)</span>-tuples of independent sets.</p>
+<p>Let <span class="math inline">\(A_v\)</span> be the set of <span class="math inline">\(k\)</span>-tuples of independent sets <span class="math inline">\(I_1,\ldots, I_k\)</span> such that <span class="math inline">\(v\in \bigcup_i I_i\)</span>.</p>
+<p>Then for any <span class="math inline">\(X\subseteq V\)</span> the quantity <span class="math inline">\(\bigcap_{v\in X} A_v\)</span> is the number of <span class="math inline">\(k\)</span>-tuples of independent sets in <span class="math inline">\(G-X\)</span>. We can compute this easily: it’s the number of independent sets in <span class="math inline">\(G-X\)</span> raised to the <span class="math inline">\(k\)</span>-th power.</p>
+<p>Then we PIE and win.</p>
+<p>If you wanna do this in poly space the only solutions ppl know require <span class="math inline">\((2+\Omega(1))^{n}\)</span> time. A <span class="math inline">\(3^{n}n^{O(1)}\)</span> solution is to compute the number of independent subsets on the fly rather than storing all of them.</p>
+</div>
+<h1 id="fast-zeta-and-mobius-transforms">Fast Zeta and Mobius Transforms</h1>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <span class="math display">\[(\zeta f)(X) = \sum_{Y\subseteq X} f(Y).\]</span> <span class="math display">\[(\mu f)(X) = \sum_{Y\subseteq X} (-1)^{|X\setminus Y|} f(Y).\]</span> <span class="math display">\[(\sigma f)(X) = (-1)^{|X|}f(X).\]</span></p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong></p>
+<p><span class="math display">\[\zeta = \sigma \mu \sigma\]</span> <span class="math display">\[\mu = \sigma \zeta \sigma\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Inversion formula ( this is kinda like PIE) <span class="math inline">\(\mu\zeta = \zeta\mu = \id.\)</span></p>
+</div>
+<p>We can view the PIE stuff as doing zeta and mobius transforms. Ok, I don’t yet get why this is a good idea. But you can do it.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Fast Zeta / Mobius Transform</p>
+<p>Can compute all the values of <span class="math inline">\(\zeta f, \mu f\)</span> in <span class="math inline">\(O(2^{n}\cdot n)\)</span> time.</p>
+</div>
+<h1 id="subset-convolution-and-cover-product">subset convolution and cover product</h1>
+<p><span class="math display">\[(f*g)(Y) = \sum_{X\subseteq Y}f(X)g(Y\setminus X).\]</span></p>
+<p>cover product: <span class="math display">\[(f\star g)(Y) = \sum_{A\cup B  = Y} f(A)g(B)\]</span></p>
+<p>let’s see an application first, because it’s hard to see where we’re going.</p>
+<div class="ex envbox">
+<p><strong>Example.</strong> Counting colorings via fast subset convolution:</p>
+<p>Define <span class="math inline">\(s(X): \mathcal{P}(V)\to \left\{ 0,1\right\}\)</span> to be <span class="math inline">\(1\)</span> iff <span class="math inline">\(X\)</span> is an independent set. Then</p>
+<p><span class="math display">\[(s*s*\cdots * s)(X)\]</span> i.e., <span class="math inline">\(s\)</span> convolved with itself <span class="math inline">\(k\)</span> times is the number of <span class="math inline">\(k\)</span>-colorings of <span class="math inline">\(G[X]\)</span>.</p>
+</div>
+<h1 id="longest-path">longest path</h1>
+<p>looks like they spend most of the tools that they develop working on longest path problem, to give an alternative to the color coding stuff.</p>
+<p>anyways, I’ll read that tomorrow.</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
