@@ -39,6 +39,8 @@
 <li> <a href="#fast-zeta-and-mobius-transforms" class="js-scroll-trigger">Fast Zeta and Mobius Transforms</a> </li>
 <li> <a href="#subset-convolution-and-cover-product" class="js-scroll-trigger">subset convolution and cover product</a> </li>
 <li> <a href="#longest-path" class="js-scroll-trigger">longest path</a> </li>
+<li> <a href="#algebraic-longest-path" class="js-scroll-trigger">algebraic longest path</a> </li>
+<li> <a href="#faster-longest-path" class="js-scroll-trigger">faster longest path</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -95,17 +97,50 @@ b_{j_2}(t).\]</span> The neat thing here is that we just peal off a bit of stuff
 <p>Can compute all the values of <span class="math inline">\(\zeta f, \mu f\)</span> in <span class="math inline">\(O(2^{n}\cdot n)\)</span> time.</p>
 </div>
 <h1 id="subset-convolution-and-cover-product">subset convolution and cover product</h1>
-<p><span class="math display">\[(f*g)(Y) = \sum_{X\subseteq Y}f(X)g(Y\setminus X).\]</span></p>
+<p>subset convolution: <span class="math display">\[(f*g)(Y) = \sum_{X\subseteq Y}f(X)g(Y\setminus X).\]</span></p>
 <p>cover product: <span class="math display">\[(f\star g)(Y) = \sum_{A\cup B  = Y} f(A)g(B)\]</span></p>
+<p>pointwise product: <span class="math display">\[(f\cdot g)(Y) = f(Y)\cdot g(Y)\]</span></p>
+<p>Observe:</p>
+<p><span class="math display">\[\zeta(f\star g) = (\zeta f) \cdot (\zeta g).\]</span></p>
+<p>This, combined with the inversion formula let’s us compute cover product fast.</p>
+<p>Then, we can decompose <span class="math inline">\(f*g\)</span> into a small number of cover products.</p>
 <p>let’s see an application first, because it’s hard to see where we’re going.</p>
 <div class="ex envbox">
 <p><strong>Example.</strong> Counting colorings via fast subset convolution:</p>
 <p>Define <span class="math inline">\(s(X): \mathcal{P}(V)\to \left\{ 0,1\right\}\)</span> to be <span class="math inline">\(1\)</span> iff <span class="math inline">\(X\)</span> is an independent set. Then</p>
 <p><span class="math display">\[(s*s*\cdots * s)(X)\]</span> i.e., <span class="math inline">\(s\)</span> convolved with itself <span class="math inline">\(k\)</span> times is the number of <span class="math inline">\(k\)</span>-colorings of <span class="math inline">\(G[X]\)</span>.</p>
 </div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong></p>
+<p>Sometimes you might care about something like <span class="math display">\[\min_{A\cup B = Y, A\perp B} f(A)+g(B)\]</span> or <span class="math display">\[\min_{A\cup B = Y} f(A)+g(B).\]</span></p>
+<p>You can interpret these as subset convolutions / cover products over min-sum semiring.</p>
+<p>Then you could well ask, can we compute this stuff fast? Of course the mobius transform is not at all defined over these wacky semirings becuase they have no notion of <span class="math inline">\(-1\)</span>. But if the numbers are small you can embed them and then do fast stuff. Like you literally write them as bit vectors or whatever.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> why you might care:</p>
+<p>Suppose you wanted to compute the min-cost coloring of a graph. So, there is a function <span class="math inline">\(c(v,i)\)</span> which says “coloring <span class="math inline">\(v\)</span> color <span class="math inline">\(i\)</span> costs <span class="math inline">\(c(v,i)\)</span>”. You can express this as a convolution over a min-sum semiring.</p>
+</div>
 <h1 id="longest-path">longest path</h1>
 <p>looks like they spend most of the tools that they develop working on longest path problem, to give an alternative to the color coding stuff.</p>
 <p>anyways, I’ll read that tomorrow.</p>
+<p>ok this is super off-topic but, I was trying to come up with an algorithm for longest path in graphs of bounded tree-width. One reason you might care about such a thing is that it’d imply a <span class="math inline">\(2^{\widetilde{O}(\sqrt{n})}\)</span> time algorithm for longest path in planar graphs.</p>
+<p>I have a sketch of an idea, not totally sure if it works, writing it down here and hopefully can more carefully check at some point.</p>
+<p>the idea is:</p>
+<ul>
+<li>state = store a partition of <span class="math inline">\(X_t\)</span> into connected components of paths and also store how the stuff within each part is connected up.</li>
+<li>specifically, for the partition and ordering etc you are storing the optimal length path-forest</li>
+<li>forget vertex bag: take the stuff that used to be valid and push that vertex out of the bag, and then that is still valid.</li>
+<li>add edge bag: try to splice the new edge in. Note that because <span class="math inline">\(X_t\)</span> is a separator it can’t connect down to stuff.</li>
+<li>join bag: idk, maybe take a look at the steiner tree one in the book.</li>
+</ul>
+<p>Remark chapter 11 has a fancy “cut and count” technique that is supposed to be better for connectivity sensitive bounded treewidth DPs. Worth checking out at some point.</p>
+<p>hmm, not very confident in this. Anyways, back to algebraic techniques.</p>
+<h1 id="algebraic-longest-path">algebraic longest path</h1>
+<p>Let <span class="math inline">\(S_k\)</span> denote the set of permutations of <span class="math inline">\([k]\)</span>.</p>
+<p>We define monomials corresponding to labelled walks. We will have variables <span class="math inline">\(x_{uv}\)</span> for whether edges are included in the walk, and variables <span class="math inline">\(y_{v,i}\)</span> for whether vertex <span class="math inline">\(v\)</span> got a label of <span class="math inline">\(i\)</span> in the walk (note <span class="math inline">\(y_{v,i}, y_{v,j}\)</span> can both be true even if <span class="math inline">\(i\neq j\)</span>). Now for a fixed labelled walk <span class="math inline">\(W,\ell\)</span> we can test it’s existence with the following polynomial: <span class="math display">\[\text{mon}_{W,\ell}(x,y) = \prod x_{v_i, v_{i+1}} \prod y_{v_i, \ell(i)}.\]</span> Then, write the polynomial: <span class="math display">\[P(x,y) = \sum_{\text{walks } W=v_1,v_2,\ldots, v_k} \sum_{\ell \in S_k} \text{mon}_{W,\ell}(x,y).\]</span></p>
+<p>Let’s say we are working over a field of characteristic <span class="math inline">\(2\)</span>, namely <span class="math inline">\(\mathbb{F}_{2^{\left\lceil 8\log k \right\rceil}}\)</span>. Then we claim that the non-path walks in the above sum cancel out. So, <span class="math inline">\(P\)</span> is distinct from the zero polynomial (in this field) iff <span class="math inline">\(P\)</span> has a <span class="math inline">\(k\)</span>-path. Then we run polynomial identity testing. It’s kind of tricky to evaluate the polynomial, but turns out you can do it with weighted PIE and some DP stuff.</p>
+<h1 id="faster-longest-path">faster longest path</h1>
+<p>Next they describe some modifications to get better run time. But I think that’s enough for now.</p>
 </div>
       </div>
     </div>
