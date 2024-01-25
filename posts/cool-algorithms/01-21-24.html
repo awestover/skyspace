@@ -38,6 +38,8 @@
 <li> <a href="#some-algorithsm--for-matroid-problems" class="js-scroll-trigger">some algorithsm  for matroid problems</a> </li>
 <li> <a href="#fvs" class="js-scroll-trigger">FVS</a> </li>
 <li> <a href="#a-fun-game" class="js-scroll-trigger">a fun game</a> </li>
+<li> <a href="#applications" class="js-scroll-trigger">applications</a> </li>
+<li> <a href="#some-problems" class="js-scroll-trigger">some problems</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -155,6 +157,46 @@
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> Randomly order the universe. Let <span class="math inline">\(X\le Y\)</span> denote the event <span class="math inline">\(x\le y\)</span> for all <span class="math inline">\(x\in X, y\in Y\)</span> with respect to this ordering. Let <span class="math inline">\(E_i\)</span> denote the event <span class="math inline">\(A_i\le B_i\)</span>. Observe that <span class="math inline">\(E_i\perp E_j\)</span> (disjoint events) (draw a picture). Hence, <span class="math display">\[m \le 1/\Pr[E_i].\]</span> But clearly <span class="math inline">\(1/\Pr[E_i] = \binom{p+q}{p}\)</span>, so we win.</p>
+</div>
+<p>Ok, now we generalize this “game” to a “game” on matroids.</p>
+<p>We say that <span class="math inline">\(A\)</span> <em>fits</em> <span class="math inline">\(B\)</span> (wrt some matroid) if <span class="math inline">\(A\perp B\)</span> and <span class="math inline">\(A\sqcup B\)</span> is an iset in the matroid.</p>
+<p>Now Alice’s goal is when Bob reveals his set to have a set that <em>fits</em> it.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Alice can still forget all but <span class="math inline">\(\binom{p+q}{p}\)</span> of her sets. And we can somehow use MM to compute what she should forget.</p>
+</div>
+<h1 id="applications">applications</h1>
+<p>Now we use the representative set stuff to get FPT algorithms for some problems.</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Ed-Hitting Set and <span class="math inline">\(d\)</span>-hitting set have kernels with universe size at most <span class="math inline">\(\binom{k+d}{d}\cdot d\)</span> and at most <span class="math inline">\(\binom{k+d}{d}\)</span> sets.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Apply the theorem that says we can in poly-time compute the rep set. rep set is a kernel.</p>
+</div>
+<h1 id="some-problems">some problems</h1>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> transversal matroid is a matroid.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> only hard part is exchange.</p>
+<p>flow / augmenting paths?</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Intersection of Matroids needn’t be a matroid</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Consider the Matroids <span class="math inline">\(M_L, M_R\)</span> where <span class="math inline">\(M_L\)</span> is the matroid where a set of edges is an iset if “each vertex in <span class="math inline">\(L\)</span> touched by at most two of your edges.” <span class="math inline">\(M_R\)</span> is defined symmetrically.</p>
+<p>Then <span class="math inline">\(M_L\cap M_R\)</span> is not a matroid. Draw a certain cycle and a path, and you can show that you can’t do an exchange.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Intersection of uniform matroid with another matroid produces a matroid. Furthermore, if you had a representation of the matroid you are intersecting with you can compute a representation of the matroid obtained by intersecting with the uniform matroid.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> It is obvious that this is a matroid.</p>
+<p>However, I think the computing the representation question is cute! Here’s how to do it: Take a random projection of your original matrix down to a matrix of the appropriate size.</p>
+<p>Ok, so when does this work? Well, you need your original matrix to be over a field of size <span class="math inline">\(p\gg r|U|^{r}\)</span> where <span class="math inline">\(r\)</span> is the rank of the uniform matrix you are intersecting with.</p>
+<p>If you think of <span class="math inline">\(r\)</span> as a constant then this is still just <span class="math inline">\(O(\log |U|)\)</span> bits to write down: not bad!</p>
+<p>Why does this work? Well, we union bound the following expression:</p>
+<p>If you take <span class="math inline">\(r\)</span> vectors which are linearly independent and project them down to <span class="math inline">\(\mathbb{F}_p^r\)</span> the chance that they are still linearly independent is like <span class="math inline">\((1-1/p^{r})(1-1/p^{r-1})\cdots (1-1/p)\)</span>. Which yay we can union bound.</p>
 </div>
 </div>
       </div>
