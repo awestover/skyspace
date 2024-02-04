@@ -108,8 +108,16 @@
 <li>ex: <span class="math inline">\(0\to X \to Y \to 0\)</span> means that <span class="math inline">\(X,Y\)</span> is an isomorphism</li>
 </ul></li>
 </ul>
-<h1 id="nt-chapter-1">NT chapter 1</h1>
-<p><span class="math display">\[x\mapsto x^{p}\]</span> is an automorphism</p>
+<h2 id="nt-1.1-existence">NT 1.1 existence</h2>
+<ul>
+<li>An Algebraicly Closed Field of characteristic <span class="math inline">\(p\)</span>:
+<ul>
+<li>the existence of this is somehow tied to axiom of choice / zorn’s lemma.</li>
+<li>vaguely speaking the idea is to make a poset with “K is a field extension of F being the order relation” and then finding an upper bound</li>
+</ul></li>
+</ul>
+<p>Throughout the post we take <span class="math inline">\(p\)</span> prime and <span class="math inline">\(q\)</span> a power of <span class="math inline">\(p\)</span>.</p>
+<p>Note: <span class="math inline">\(x\mapsto x^{p}\)</span> is an automorphism of <span class="math inline">\(\mathbb{F}_q\)</span>, because if <span class="math inline">\(x^{p}=y^{p}\)</span> then <span class="math inline">\((x-y)^{p} = 0\)</span> and hence <span class="math inline">\(x=y\)</span>.</p>
 <ol type="i">
 <li>Field have prime characteristic (or else it violates the fact that fields have no zero-divisors).</li>
 </ol>
@@ -120,6 +128,96 @@
 <p>Observe that the derivative of <span class="math inline">\(x^{q}-x\)</span> is nowhere zero. This means that it has no repeated roots. Thus it has <span class="math inline">\(q\)</span> distinct roots.</p>
 <p>For the uniqueness part, if <span class="math inline">\(K\)</span> is a subfield of <span class="math inline">\(\Omega\)</span> with <span class="math inline">\(q\)</span> elements, then for any <span class="math inline">\(x\in K^{*}\)</span> we have <span class="math inline">\(x^{q-1}=1\)</span>, by Lagrange’s theorem: the multiplicative group <span class="math inline">\(K^*\)</span> is a group with <span class="math inline">\(q-1\)</span> elements so the order of each element must divide into <span class="math inline">\(q-1\)</span>. Hence <span class="math inline">\(x^{q}=x\)</span> for all <span class="math inline">\(x\in K\)</span>. But then <span class="math inline">\(K\subseteq \mathbb{F}_q\)</span>. They have the same cardinality so are actually equal.</p>
 <ol start="3" type="i">
-<li><span class="math inline">\(\mathbb{F}_q\)</span> is unique.</li>
+<li><div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(\mathbb{F}_q\)</span> is unique.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Take <span class="math inline">\(K/\mathbb{F}_p\)</span> of order <span class="math inline">\(q\)</span>. So we can embed <span class="math inline">\(K\)</span> in <span class="math inline">\(\Omega\)</span>. But we said already there is a unique subfield of <span class="math inline">\(\Omega\)</span> with <span class="math inline">\(q\)</span> elements.</p>
+</div></li>
 </ol>
-<p>(not sure why this is so yet)</p>
+<h2 id="nt-1.2-cyclic">NT 1.2 cyclic</h2>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(\mathbb{F}_q^{*}\)</span> is cyclic.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The number of <span class="math inline">\(x\)</span> with <span class="math inline">\(x^{d}=1\)</span> is at most <span class="math inline">\(d\)</span> because we are working in a field. Suppose that <span class="math inline">\(x^{d}=1\)</span>. Then <span class="math inline">\((x)\)</span> is an order <span class="math inline">\(d\)</span> subgroup of the group, and consists of <span class="math inline">\(d\)</span> (i.e., <em>all</em>) solutions to the equation <span class="math inline">\(x^{d}=1\)</span>. Suppose that <span class="math inline">\(y\)</span> is an element of order <span class="math inline">\(d\)</span>. Then we must have <span class="math inline">\(y = x^{i}\)</span> for some <span class="math inline">\(i\in \mathbb{Z}_d^{*}\)</span>. Hence, there are at most <span class="math inline">\(\phi(d)\)</span> elements of order <span class="math inline">\(d\)</span> in <span class="math inline">\(\mathbb{F}_q^{*}\)</span>.</p>
+<p>Then of course <span class="math display">\[|\mathbb{F}_q^{*}| \le \sum_{d\mid q-1} \phi(d) = q-1.\]</span> But then we must have equality in all the cases. In particular, there are <span class="math inline">\(\phi(q-1)\ge 1\)</span> elements of order <span class="math inline">\(q-1\)</span>.</p>
+<p>Recall that the lemmma <span class="math inline">\(\sum_{d\mid n}\phi(d) = n\)</span> is true because we can partition <span class="math inline">\([n]\)</span> based on the gcd of numbers with <span class="math inline">\(n\)</span> into classes of size <span class="math inline">\(\phi(n/d)\)</span>.</p>
+</div>
+<h2 id="nt-2.1-sums">NT 2.1 sums</h2>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> For any positive integer <span class="math inline">\(c\)</span> we have <span class="math display">\[\sum_{x\in K} x^{(q-1)c} = -1.\]</span></p>
+<p>For any positive integer <span class="math inline">\(u\notin (q-1)\mathbb{Z}\)</span> we have <span class="math display">\[\sum_{x\in K} x^{u} = 0.\]</span> In fact <span class="math inline">\(\sum_{x\in K} x^{0} = 0\)</span> is also true, using the convention that <span class="math inline">\(x^{0}=1\)</span> for all <span class="math inline">\(x\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>The first statement is clear: all the values that we are summing are <span class="math inline">\(1\)</span> and there are <span class="math inline">\(q-1\)</span> many values.</p>
+<p>For the second statement we use the fact that there must be a generator <span class="math inline">\(g\)</span> satisfying <span class="math inline">\(g^{u}\neq 1\)</span>. Hence,</p>
+<p><span class="math display">\[\sum_{x\in K} x^{u} = \sum_{x\in K} (gx)^{u} = g^{u}\sum_{x\in K} x^{u}.\]</span> But this means <span class="math inline">\(\sum_{x\in K}x^{u} = 0.\)</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Suppose you have a set of polynomials <span class="math inline">\(f_\alpha \in [X_1,\ldots, X_n]\)</span> with <span class="math inline">\(\sum_\alpha \deg f_\alpha &lt; n\)</span>, and let <span class="math inline">\(V\)</span> be the set of common zeros of your polynomials. Then <span class="math inline">\(|V|\in p\mathbb{Z}.\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>The function <span class="math inline">\(P=\prod_\alpha (1-f_\alpha^{q-1})\)</span> indicates <span class="math inline">\(V\)</span> (i.e., is 1 on <span class="math inline">\(V\)</span> and zero elsewhere).</p>
+<p>Observe that <span class="math inline">\(\deg P &lt; n(q-1)\)</span>. Hence <span class="math inline">\(P\)</span> is a linear combination of monomials, where in each monomial there is some variable <span class="math inline">\(X_i\)</span> whose degree is smaller than <span class="math inline">\(q-1\)</span>.</p>
+<p>Hence, <span class="math inline">\(\sum_{X\in K^{n}} X_i^{u} = 0\)</span> by the earlier lemma. But this actually means <span class="math inline">\(\sum_{X\in K^{n}} P(X) = 0\)</span> as well.</p>
+<p>Now observe that <span class="math inline">\(\sum_{X\in K^{n}}P(X)\)</span> is exactly <span class="math inline">\(|V| \mod p\)</span>. So we have the desired result.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> If <span class="math inline">\(\sum_\alpha \deg f_\alpha &lt; n\)</span> and the <span class="math inline">\(f_\alpha\)</span>’s don’t have constant terms then the <span class="math inline">\(f_\alpha\)</span>’s have a nontrivial common zero.</p>
+</div>
+<h2 id="nt-3.1-qr">NT 3.1 QR</h2>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> If <span class="math inline">\(p=2\)</span> then all elements of <span class="math inline">\(\mathbb{F}_q\)</span> are squares.</p>
+<p>If <span class="math inline">\(p\neq 2\)</span> then the <span class="math inline">\(QR_q\)</span> forms a subgroup of <span class="math inline">\(\mathbb{F}_q^{*}\)</span> of index <span class="math inline">\(2\)</span>. Specifically, <span class="math inline">\(QR_q = \ker (x\mapsto x^{(q-1)/2})\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>For the case <span class="math inline">\(p=2\)</span> recall that the Frobenius map <span class="math inline">\(x\mapsto x^2\)</span> is an automorphism. Thus, all elements of <span class="math inline">\(\mathbb{F}_q\)</span> are squares.</p>
+<p>For the case <span class="math inline">\(p\neq 2\)</span> take any <span class="math inline">\(x \in K\)</span> and let <span class="math inline">\(y\)</span> be the solution to the equation <span class="math inline">\(y^2=x\)</span> (<span class="math inline">\(y\)</span> lives in the algebraic closure of <span class="math inline">\(\mathbb{F}_q\)</span> not necessarily <span class="math inline">\(\mathbb{F}_q\)</span> itself).</p>
+<p>Then we have that <span class="math inline">\(y^{q-1} = x^{(q-1)/2}\in \pm 1\)</span>. If <span class="math inline">\(y^{q-1} = -1\)</span> then clearly that is bad, <span class="math inline">\(x\)</span> is not a QR. If <span class="math inline">\(y^{q-1}=1\)</span> then clearly that is good, <span class="math inline">\(y\in K\)</span> because <span class="math inline">\(K\)</span> is literally defined as the roots of <span class="math inline">\(X^{q}-X\)</span>. Thus, <span class="math inline">\(x\)</span> would indeed by a QR in this case.</p>
+<p>Why are half the numbers QRs? We can invoke the cyclicity of <span class="math inline">\(\mathbb{F}_q^{*}\)</span>.</p>
+</div>
+<h2 id="nt-3.2-legendre">NT 3.2 Legendre</h2>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Fix odd prime <span class="math inline">\(p\)</span>.</p>
+<p><span class="math inline">\(-1\)</span> is a QR iff <span class="math inline">\(p\equiv 1 \mod 4\)</span>. <span class="math inline">\(2\)</span> is a QR iff <span class="math inline">\(p\equiv \pm 1 \mod 8\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Only analyze the case of <span class="math inline">\(2\)</span>.</p>
+<p>Let <span class="math inline">\(\alpha\)</span> be a primitive 8th root of unity (i.e., its an 8th root of unity but not a <span class="math inline">\(4\)</span>th root of unity). Then <span class="math inline">\(y=\alpha+\alpha^{-1}\)</span> is a square root of <span class="math inline">\(2\)</span>, where <span class="math inline">\(y\)</span> is an element of the algebraic closure of <span class="math inline">\(\mathbb{F}_p\)</span>. Then, <span class="math inline">\(y^{p} = \alpha^{p}+\alpha^{-p}\)</span>.</p>
+<p>If <span class="math inline">\(p\equiv \pm 1 \mod 8\)</span> then we find <span class="math inline">\(y^{p} = y\)</span> and <span class="math inline">\(y\in \mathbb{F}_q\)</span>. Else we find <span class="math inline">\(y\notin \mathbb{F}_q\)</span>.</p>
+</div>
+<h2 id="nt-3.3-quadratic-reciprocity">NT 3.3 Quadratic reciprocity</h2>
+<p>Let <span class="math inline">\(m(x)\)</span> be <span class="math inline">\(0\)</span> if <span class="math inline">\(x\equiv 1\mod 4\)</span> and <span class="math inline">\(1\)</span> if <span class="math inline">\(x\equiv 3\mod 4\)</span>.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(p,r\)</span> be odd primes. Then <span class="math display">\[\genfrac{(}{)}{}{}{r}{p} = \genfrac{(}{)}{}{}{p}{r} \cdot (-1)^{m(r)m(p)}.\]</span></p>
+</div>
+<p>For primitive $r-th root of unity <span class="math inline">\(w\)</span> define the “Gauss Sum” <span class="math display">\[y = \sum_{x\in \mathbb{F}_r} \genfrac{(}{)}{}{}{x}{r} w^{x}.\]</span></p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math display">\[y^2=r\cdot (-1)^{m(r)}.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math display">\[y^2 = \sum_{x,z}\genfrac{(}{)}{}{}{xz}{r} w^{x+z} = \sum_{u} w^{u} \sum_{t} \genfrac{(}{)}{}{}{t(u-t)}{r}.\]</span></p>
+<p>Let <span class="math display">\[C_u = \sum_{t\in \mathbb{F}_r^*} \genfrac{(}{)}{}{}{t^2}{r}\genfrac{(}{)}{}{}{1-ut^{-1}}{r},\]</span> where of course <span class="math display">\[\genfrac{(}{)}{}{}{t^2}{r}=1\]</span> for all <span class="math inline">\(t\in \mathbb{F}_r^*\)</span>. Then we have <span class="math display">\[y^2 = (-1)^{m(r)}\sum_{u\in\mathbb{F}_r} w^{u} C_u.\]</span></p>
+<p>When <span class="math inline">\(u=0\)</span> we have <span class="math inline">\(C_0 = r-1\)</span>. When <span class="math inline">\(u\neq 0\)</span> we have <span class="math inline">\(C_u = -1\)</span> because the sum is basically just the difference between number of QRs and non-QRs, except minus <span class="math inline">\(1\)</span>. Then we use the lemma from earlier to understand <span class="math inline">\(\sum_{u}w^u\)</span>, and conclude.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math display">\[y^{p-1} = \genfrac{(}{)}{}{}{p}{r}.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We have <span class="math display">\[y^{p} = \sum_{x\in \mathbb{F}_r} \genfrac{(}{)}{}{}{x}{p} w^{xp} = \sum_{z\in
+\mathbb{F}_r} \genfrac{(}{)}{}{}{zp^{-1}}{r} w^{z} = \genfrac{(}{)}{}{}{p^{-1}}{r} y  =
+\genfrac{(}{)}{}{}{p}{r}y.\]</span></p>
+</div>
+Now we can prove the theorem:
+<div class="pf envbox">
+<p><strong>Proof.</strong> By the first lemma <span class="math inline">\((-1)^{m(r)} r\)</span> is a square modulo <span class="math inline">\(p\)</span> iff <span class="math inline">\(y\in \mathbb{F}_p\)</span>, which is true iff <span class="math inline">\(y^{p-1}=1\)</span>. By the second lemma we know that <span class="math inline">\(y^{p-1} = \genfrac{(}{)}{}{}{p}{r}\)</span></p>
+<p>This gives <span class="math display">\[\genfrac{(}{)}{}{}{(-1)^{m(r)}r}{p} = \genfrac{(}{)}{}{}{p}{r}.\]</span> Finally, we have <span class="math display">\[\genfrac{(}{)}{}{}{r}{p} (-1)^{m(r)m(p)} = \genfrac{(}{)}{}{}{p}{r}.\]</span></p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> We can compute Legendre symbols in euclid algo esque manner.</p>
+</div>
+<h3 id="another-proof-of-quadratic-reciprocity-later">Another proof of quadratic reciprocity: later</h3>
