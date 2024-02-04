@@ -22,7 +22,7 @@
 <ul>
 <li>ex: <span class="math inline">\(\mathbb{Z}[x]\)</span>
 <ul>
-<li>we spend quite a bit of time talking about when polynomials are irreducible iirc</li>
+<li>we spend quite a bit of time talking about when polynomials are irreducible iirc. You can do things like Einstein criterion I guess.</li>
 </ul></li>
 <li>module: like a vector space but scalars are from a ring rather than a field. These can be wacky.</li>
 </ul></li>
@@ -108,9 +108,7 @@
 <li>another thing: if a polynomial is irreducible over <span class="math inline">\(\mathbb{F}_p[X]\)</span> then it is also irreducible over <span class="math inline">\(\mathbb{Z}[X]\)</span></li>
 </ul></li>
 <li><strong>minimal polynomial</strong>:</li>
-<li>given <span class="math inline">\(\alpha\in K\supset F\)</span> the minimal polynomial of</li>
-<li><span class="math inline">\(\alpha\)</span> over <span class="math inline">\(F\)</span> is the (unique, irreducible) polynomial of</li>
-<li>minimum degree in <span class="math inline">\(F[x]\)</span> that has <span class="math inline">\(\alpha\)</span> as a root.</li>
+<li>given <span class="math inline">\(\alpha\in K\supset F\)</span> the minimal polynomial of <span class="math inline">\(\alpha\)</span> over <span class="math inline">\(F\)</span> is the (unique, irreducible) polynomial of minimum degree in <span class="math inline">\(F[x]\)</span> that has <span class="math inline">\(\alpha\)</span> as a root.</li>
 </ul>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Let <span class="math inline">\(\alpha\in K\)</span> be algebraic over <span class="math inline">\(F\)</span>. Then we say that a monic polynomial <span class="math inline">\(f\in F[x]\)</span> with <span class="math inline">\(\alpha\)</span> as a root is the (unique) minimal polynomial for <span class="math inline">\(\alpha\)</span> over <span class="math inline">\(F\)</span> if the following equivalent conditions hold:</p>
@@ -170,6 +168,16 @@
 <li>ex: <span class="math inline">\(0\to X \to Y \to 0\)</span> means that <span class="math inline">\(X,Y\)</span> is an isomorphism</li>
 </ul></li>
 </ul>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <strong>algebraic closure</strong>:</p>
+<p>I think the following is a reasonable way to think about the algebraic closure of <span class="math inline">\(\mathbb{F}_p\)</span>:</p>
+<p><span class="math display">\[\Omega = \bigcup_{k=1}^{\infty} \mathbb{F}_{p^{k}}.\]</span></p>
+<p>Basically, if you have <span class="math inline">\(x,y\in \Omega\)</span>, then you can find <span class="math inline">\(k\)</span> such that <span class="math inline">\(x,y\in \mathbb{F}_{p^{k}}\)</span> because <span class="math inline">\(\mathbb{F}_{p^{k}}\subset \mathbb{F}_{p^{kc}}\)</span> for integer <span class="math inline">\(c\)</span> where this is maybe slight abuse of notation because finite fields are only defined up to isomorphism but you get the idea.</p>
+<p>Anyways, this shows that <span class="math inline">\(x+y,x\cdot y, x^{-1},-x\)</span> are well defined objects in <span class="math inline">\(\Omega\)</span>.</p>
+<p>Why does <span class="math inline">\(\Omega\)</span> have solutions to all the polynomials over Fp?</p>
+<p>oh, hmm. still not clear to me why this is algebraicly closed.</p>
+<p>Maybe a better way to think about the existence of <span class="math inline">\(\overline{\mathbb{F}_p}\)</span> is that there are a countable infinity of finite polynomials and then just repeatedly adjoin roots of them.</p>
+</div>
 <h2 id="nt-1.1-existence">NT 1.1 existence</h2>
 <ul>
 <li>An Algebraicly Closed Field of characteristic <span class="math inline">\(p\)</span>:
