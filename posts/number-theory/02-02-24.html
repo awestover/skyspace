@@ -40,6 +40,7 @@
 <li> <a href="#nt-31--qr-" class="js-scroll-trigger">NT 3.1  QR </a> </li>
 <li> <a href="#nt-32-legendre" class="js-scroll-trigger">NT 3.2 Legendre</a> </li>
 <li> <a href="#nt-33-quadratic-reciprocity" class="js-scroll-trigger">NT 3.3 Quadratic reciprocity</a> </li>
+<li> <a href="#my-lecture-notes" class="js-scroll-trigger">my lecture notes!</a> </li>
 <li> <a href="#another-proof-of-quadratic-reciprocity:-later" class="js-scroll-trigger">Another proof of quadratic reciprocity: later</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
@@ -323,10 +324,15 @@ Alternate proof:
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Let <span class="math inline">\(p,r\)</span> be odd primes. Then <span class="math display">\[\genfrac{(}{)}{}{}{r}{p} = \genfrac{(}{)}{}{}{p}{r} \cdot (-1)^{m(r)m(p)}.\]</span></p>
 </div>
-<p>For primitive <span class="math inline">\(r\)</span>-th root of unity <span class="math inline">\(w\)</span> define the “Gauss Sum” <span class="math display">\[y = \sum_{x\in \mathbb{F}_r} \genfrac{(}{)}{}{}{x}{r} w^{x}.\]</span></p>
+<p>For primitive <span class="math inline">\(r\)</span>-th root of unity <span class="math inline">\(w\in \overline{\mathbb{F}_p}\)</span> define the “Gauss Sum” <span class="math display">\[y = \sum_{x\in \mathbb{F}_r} \genfrac{(}{)}{}{}{x}{r} w^{x}.\]</span></p>
+<div class="ex envbox">
+<p><strong>Example.</strong> Ok to see why the Gauss sum is a good candidate square-root we really just need to try some examples.</p>
+<p><span class="math inline">\(p=3\)</span>. Let <span class="math inline">\(w\)</span> be a primite third root of unity. Then <span class="math inline">\(y = w-w^2\)</span>, and <span class="math display">\[y^2 = w^2-w^3-w^3+w^{4}  = w+w^2+w^3-3w^3 = -3w^{3}.\]</span></p>
+<p>How about for <span class="math inline">\(p=5\)</span>. Let <span class="math inline">\(w\)</span> be a fifth root of unity. <span class="math inline">\(y = w+w^{4}-w^2-w^3\)</span>. Then <span class="math display">\[y^2 = -w-w^2-w^{3}-w^{4}-w^{5}+5w^{5} = 5w^{5}.\]</span></p>
+<p>So. Somehow this is just good.</p>
+</div>
 <div class="lem envbox">
 <p><strong>Lemma.</strong> <span class="math display">\[y^2=r\cdot (-1)^{m(r)}.\]</span></p>
-<p><strong>TODO: do an example to see why <span class="math inline">\(y\)</span> is a reasonable guess for the square-root.</strong></p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> <span class="math display">\[y^2 = \sum_{x,z}\genfrac{(}{)}{}{}{xz}{r} w^{x+z} = \sum_{u} w^{u} \sum_{t} \genfrac{(}{)}{}{}{t(u-t)}{r}.\]</span></p>
@@ -349,6 +355,11 @@ Now we can prove the theorem:
 <div class="rmk envbox">
 <p><strong>Remark.</strong> We can compute Legendre symbols in euclid algo esque manner.</p>
 </div>
+<h2 id="my-lecture-notes">my lecture notes!</h2>
+<iframe title="PDF" src="../../pdf_mwe/web0/viewer.html?file=../../posts/number-theory/src/images/lec1.pdf
+.pdf" width="100%" height="700px">
+</iframe>
+<p><span class="citation" data-cites="importpdf">@importpdf</span>: images/lec1.pdf</p>
 <h3 id="another-proof-of-quadratic-reciprocity-later">Another proof of quadratic reciprocity: later</h3>
 </div>
       </div>
