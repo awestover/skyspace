@@ -36,6 +36,7 @@
             <div id="toc">
             <li> <a href="#topology" class="js-scroll-trigger">topology</a> </li>
 <li> <a href="#complex-analysis" class="js-scroll-trigger">complex analysis</a> </li>
+<li> <a href="#memomorphic-functions" class="js-scroll-trigger">memomorphic functions</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -44,7 +45,12 @@
 
       <div id="content"> 
         <!-- ***DECRYPT 1443849234234*** -->
-        <div id="actual-content"><h2 id="topology">topology</h2>
+        <div id="actual-content"><p>References:</p>
+<ul>
+<li>topology: wikipedia</li>
+<li>complex analysis: Evan Chen, The Napkin</li>
+</ul>
+<h2 id="topology">topology</h2>
 <ul>
 <li><p><strong>compact</strong>: every open cover has a finite sub-cover.</p></li>
 <li><p><strong>complete</strong>: limits of cauchy sequences exist</p></li>
@@ -70,16 +76,50 @@
 <p>Countour integrals</p>
 <p><span class="math display">\[\oint_\alpha f(z) dz = \int_a^{b} f(\alpha(t)) \alpha&#39;(t) dt\]</span></p>
 <div class="thm envbox">
-<p><strong>Theorem.</strong> <span class="math display">\[\oint \frac{1}{z} dz = 2\pi i.\]</span></p>
-<p>For any integer <span class="math inline">\(m\neq -1\)</span>, <span class="math display">\[\oint z^{m} dz  = 0.\]</span></p>
+<p><strong>Theorem.</strong> Let <span class="math inline">\(\gamma\)</span> parameterize the unit circle. Then <span class="math display">\[\oint_\gamma \frac{1}{z} dz = 2\pi i.\]</span></p>
+<p>For any integer <span class="math inline">\(m\neq -1\)</span>, <span class="math display">\[\oint_\gamma z^{m} dz  = 0.\]</span></p>
 </div>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> <span class="math inline">\(\gamma\)</span> a loop, <span class="math inline">\(f\)</span> holomorphic</p>
 <p><span class="math display">\[\oint_\gamma f(z) dz = 0.\]</span></p>
+<p>Another way of saying this is, if you have two different curves with the same endpoints then the contour integrals will be the same.</p>
 </div>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Let <span class="math inline">\(D\)</span> be a disk, and <span class="math inline">\(\gamma\)</span> parameterize the boundary <span class="math inline">\(t\mapsto R\exp(it)\)</span>. Let <span class="math inline">\(f\)</span> be holomorphic. For any <span class="math inline">\(a\)</span> in the interior of <span class="math inline">\(D\)</span> we have</p>
 <p><span class="math display">\[f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz.\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Over a disk, a holomorphic function is given exactly by its Taylor Series.</p>
+</div>
+<p>Some important results:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(f\)</span> be entire, and suppose <span class="math inline">\(|f(z)|&lt; 1000\)</span> for all <span class="math inline">\(z\)</span>. Then <span class="math inline">\(f\)</span> is the constant function.</p>
+</div>
+<h3 id="memomorphic-functions">memomorphic functions</h3>
+<ul>
+<li>holomorphic: proto-ex: polynomials</li>
+<li>memomorphic: proto-ex: rational functions</li>
+</ul>
+<p>memomorphic functions are basically holomorphic everywhere except for a couple of “poles”.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong></p>
+<p>memomorphic function: not identically zero on any open neighborhood.</p>
+<p>so basically just has a bunch of isolated poles.</p>
+<p>Another way of defining memomorphic functions is in terms of Laurent Series:</p>
+<p>For a function to be memormophic it should be holomorphic in neighborhoods of all points except for a “small” number of poles. (this is allowed to be infinite, e.g., like <span class="math inline">\(1/\sin(z)\)</span> is memomorphic) but the poles must have non-intersecting open balls around them). If <span class="math inline">\(a\)</span> is a pole then it is required to, in some neighborhood of <span class="math inline">\(a\)</span> admit a series expansion <span class="math display">\[f(z)  = \frac{c_{-m}}{(z-a)^{m}} + \cdots + c_0 + c_1 (z-a) +
+\cdots .\]</span></p>
+<p>So it’s like a Taylor series but we can have some pole crap at the front.</p>
+<p>In the expression <span class="math inline">\(\frac{c}{z^{m}}\)</span> <span class="math inline">\(c\)</span> is callled the residue, <span class="math inline">\(m\)</span> the order of the pole (simple pole is <span class="math inline">\(m=1\)</span>)</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong></p>
+<p>Winding number: Let <span class="math inline">\(\gamma\)</span> be a loop.</p>
+<p><span class="math display">\[\frac{1}{2\pi i}\oint_\gamma \frac{1}{z-p} dz\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong></p>
+<p><span class="math display">\[\frac{1}{2\pi i}\oint_\gamma f(z) dz = \sum_{\text{pole } p}
+\text{winding}(\gamma, p) Res(f; p)\]</span></p>
 </div>
 </div>
       </div>
