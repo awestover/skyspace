@@ -1,0 +1,37 @@
+<h2 id="topology">topology</h2>
+<ul>
+<li><p><strong>compact</strong>: every open cover has a finite sub-cover.</p></li>
+<li><p><strong>complete</strong>: limits of cauchy sequences exist</p></li>
+<li><p><strong>open set</strong> (in a metric space): <span class="math inline">\(\forall x\in U, \exists  \varepsilon&gt;0\)</span> such that <span class="math inline">\(\left\{ y\; : \;d(x,y)&lt;\varepsilon \right\}\subseteq U\)</span>.</p></li>
+<li><p><strong>discrete topology</strong>: all sets are open</p>
+<ul>
+<li>is compact iff finite</li>
+</ul></li>
+<li><p><strong>product topology</strong>: minimal amount of open sets to make projections <span class="math inline">\(\pi_i : \prod_j X_j \mapsto X_i\)</span> continuous for each <span class="math inline">\(i\)</span>.</p>
+<ul>
+<li><strong>continuous</strong>: <span class="math inline">\(f^{-1}(\text{open set}) =\text{open set}\)</span></li>
+</ul></li>
+<li><p>open sets in the product topology are unions of sets of the form <span class="math display">\[\prod_i U_i\]</span></p>
+<ul>
+<li>where <span class="math inline">\(U_i\)</span> is open in <span class="math inline">\(X_i\)</span> and <span class="math inline">\(U_i\neq X_i\)</span> for only finitely many <span class="math inline">\(i\)</span>.</li>
+</ul></li>
+<li><p><strong>Tychonoff’s theorem</strong>: product of compact spaces is compact</p></li>
+</ul>
+<h2 id="complex-analysis">complex analysis</h2>
+<p>Derivative: <span class="math display">\[\lim_{h\to 0} \frac{f(x+h)-f(x)}{h},\]</span> if it exists, which is a high bar because <span class="math inline">\(h\to 0\)</span> means complex limit.</p>
+<p><strong>holomorphic</strong> / entire: complex differentiable on domain / all of <span class="math inline">\(\mathbb{C}\)</span>.</p>
+<p>ex: polynomials, <span class="math inline">\(\exp\)</span>, nice compositions of holomorphic functions.</p>
+<p>Countour integrals</p>
+<p><span class="math display">\[\oint_\alpha f(z) dz = \int_a^{b} f(\alpha(t)) \alpha&#39;(t) dt\]</span></p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[\oint \frac{1}{z} dz = 2\pi i.\]</span></p>
+<p>For any integer <span class="math inline">\(m\neq -1\)</span>, <span class="math display">\[\oint z^{m} dz  = 0.\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(\gamma\)</span> a loop, <span class="math inline">\(f\)</span> holomorphic</p>
+<p><span class="math display">\[\oint_\gamma f(z) dz = 0.\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(D\)</span> be a disk, and <span class="math inline">\(\gamma\)</span> parameterize the boundary <span class="math inline">\(t\mapsto R\exp(it)\)</span>. Let <span class="math inline">\(f\)</span> be holomorphic. For any <span class="math inline">\(a\)</span> in the interior of <span class="math inline">\(D\)</span> we have</p>
+<p><span class="math display">\[f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz.\]</span></p>
+</div>
