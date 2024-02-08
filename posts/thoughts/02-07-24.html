@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#stochastic-processes" class="js-scroll-trigger">stochastic processes</a> </li>
+<li> <a href="#boolean-functions" class="js-scroll-trigger">boolean functions</a> </li>
+<li> <a href="#geometric-algos" class="js-scroll-trigger">geometric algos</a> </li>
+<li> <a href="#nt" class="js-scroll-trigger">NT</a> </li>
+<li> <a href="#writing-stories" class="js-scroll-trigger">writing stories</a> </li>
+<li> <a href="#misc-thoughts" class="js-scroll-trigger">misc thoughts</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><blockquote>
+<p>What classes are you taking?<br />
+- literally everyone. Not that it’s a bad question, in-fact it’s probably a rather good question. But it just feels a tad over-used atm.</p>
+</blockquote>
+<ul>
+<li>stochastic processes</li>
+<li>analysis of boolean functions</li>
+<li>geometric algorithms</li>
+<li>seminar in number theory</li>
+<li>writing short stories (afaict? although there was some mess-up with the registration so I’m not sure).</li>
+<li>NOT: advanced complexity. [Note to self: drop this once the HASS situation is clarified.]</li>
+</ul>
+<h2 id="stochastic-processes">stochastic processes</h2>
+<p>This is probably the class I’m most excited for.</p>
+<p>First class we talked about the threshold at which <span class="math inline">\(G(n,p_n)\)</span> is connected. Turns out it is precisely <span class="math inline">\(p_n = \frac{\ln n}{n}\)</span>.</p>
+<p>proof sketch:</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> If <span class="math inline">\(p_n &lt; \frac{\ln n}{n}\)</span> then whp the graph is disconnected.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> For each <span class="math inline">\(v\in V\)</span> let <span class="math inline">\(I_v\)</span> denote the event that <span class="math inline">\(v\)</span> is <strong>isolated</strong> (no edges incident to <span class="math inline">\(v\)</span> survive). Let <span class="math inline">\(X\)</span> be the number of isolated vertices. For any fixed <span class="math inline">\(v\)</span> we have <span class="math display">\[\Pr[I_v] = (1- p_n)^{n-1} \approx \exp(-(n-1)p_n) \approx 1/n.\]</span></p>
+<p>Hence, <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[X] &gt; 1\)</span>.</p>
+<p>Analyze the variance, it’s well-concentrated. Hence, whp at least one isolated vertex. Isolated vertex means in particular that graph is disconnected.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> If <span class="math inline">\(p_n &gt; \frac{\ln n}{n}\)</span> then whp the graph is connected.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Given disjoint vertex subsets <span class="math inline">\(X, Y\)</span> let <span class="math inline">\(E_{X,Y}\)</span> be the event that <span class="math inline">\(X\times Y \cap E\)</span> is empty.</p>
+<p>I think we union bound over all disjoint vertex subsets <span class="math inline">\(X,Y\)</span> to show that the chance of any <span class="math inline">\(E_{X,Y}\)</span> event is small. In particular this would imply the graph is connected.</p>
+<p>If I had to guess the way we bound the probability is by 2nd moment method: showing that with good probability there is some edge between sets and then showing that the count is concentrated. These are my vague vibes at least.</p>
+<p><strong>TODO:</strong> actually figure this out more.</p>
+</div>
+<p>Today we talked about branching processes. You have an infinite <span class="math inline">\(d\)</span>-ary tree and you delete each edge with probability <span class="math inline">\(p\)</span>. This is apparently a special case of “percolation”.</p>
+<p>One question of interest is, “What is the chance that there is an infinite component?”</p>
+<p>Turns out the answer is that there is a threshold at <span class="math inline">\(p=1/d\)</span>.</p>
+<p><strong>TODO: think a bit more about why looking at root component is all you need to do: does that pr threshold as well?</strong></p>
+<p>One really interesting thing about this was that we used / proved the Payley-Zygmund inequality, which is really trippy in some sense, because it almost seems like the opposite of chebyshev. It’s proof is just “Cauchy Shwarz” but I still want to understand intuition more.</p>
+<p><strong>TODO: get more intuition for this inequality</strong></p>
+<h2 id="boolean-functions">boolean functions</h2>
+<p>We did definitions and motivations. But it just seems very elegant.</p>
+<p>Let me prove some basic things really as a way of writing down stuff to remember it:</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> <span class="math display">\[\mathop{\mathrm{\mathbb{E}}}f = f(\varnothing), \mathop{\mathrm{\text{Var}}}f = \sum_{S\neq \varnothing} \hat{f}(S)^2.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Recall the characters are defined as, for each <span class="math inline">\(S\subseteq [n]\)</span>, <span class="math display">\[\chi_S: \{\pm 1\}^{n} \to \pm 1, x\mapsto \prod_{i\in S} x_i.\]</span></p>
+<p>Recall we define the inner product as <span class="math display">\[\langle f,g \rangle = \mathop{\mathrm{\mathbb{E}}}_x f(x) g(x).\]</span> Thus <span class="math display">\[\mathop{\mathrm{\mathbb{E}}}f = \langle f, 1 \rangle = \langle f, \chi_\varnothing \rangle = f(\varnothing).\]</span></p>
+<p>Let <span class="math inline">\(g=f-\mathop{\mathrm{\mathbb{E}}}f.\)</span> We claim that <span class="math inline">\(\hat{g}(S)\)</span> is the same as <span class="math inline">\(\hat{f}(S)\)</span> on all non-empty <span class="math inline">\(S\)</span>, but that <span class="math inline">\(\hat{g}(\varnothing) = 0\)</span>.</p>
+<p>Recall, <span class="math display">\[\hat{g}(S) = \langle g, \chi_S \rangle = \mathop{\mathrm{\mathbb{E}}}_x g(x)\chi_S(x) = \mathop{\mathrm{\mathbb{E}}}_x f(x)
+\chi_S(x) - \mathop{\mathrm{\mathbb{E}}}_x\chi_S(x) \mathop{\mathrm{\mathbb{E}}}f.\]</span> Now the important fact is that <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}\chi_S = 0\)</span> unless <span class="math inline">\(S=\varnothing\)</span>, in which case <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}\chi_\varnothing = 1.\)</span> Hence, <span class="math display">\[\hat{g}(S) = \hat{f}(S) - 1_{S=\varnothing} \cdot f(\varnothing).\]</span> Thus our claim about the fourier spectrum of <span class="math inline">\(g\)</span> is correct.</p>
+<p>Finally, we compute <span class="math inline">\(\mathop{\mathrm{\text{Var}}}f = ||g||^2\)</span> using Parseval’s Equality, which says</p>
+<p><span class="math display">\[||g||^2 = \sum_{S\subseteq [n]} \hat{g}(S)^2.\]</span> Which concludes the proof.</p>
+</div>
+<h2 id="geometric-algos">geometric algos</h2>
+<p>closest pair:</p>
+<ul>
+<li>sort y coord</li>
+<li>split in half horizontally</li>
+<li>then there is a vertical column left</li>
+<li>sweep line on the vertical column</li>
+<li>sweep line is OP because by packing argument it’s O(1) checks per point</li>
+</ul>
+<p>even faster:</p>
+<ul>
+<li>“gridding”: hash stuff to boxes.</li>
+</ul>
+<p>As a historical note, closest pair is probably the first algorithm I ever cared about, in particular due to needing to solve this for a video game “theland”</p>
+<h2 id="nt">NT</h2>
+<p>This class is seeming likely to be my most challenging class. In the combinatorics / algorithms classes I feel very comfortable. The ideas are neat and novel, but I understand the language.</p>
+<p>NT is a foreign language so far. Partly I think this is a result of the textbook. The textbook assumes that the reader is really comfortable with basic results of algebra / topology / analysis; however, I’m a bit rusty.</p>
+<p>This all said, I think it’ll be a great time. This is very likely the final non-(algorithms, combinatorics) math class I’ll ever take. I don’t think algebra / analysis will ever end up being super relevant to stuff I do. But I think it’ll be fun to pick up a little foreign language, and just learn some really different stuff than what I’m used to.</p>
+<p>I hope this can also be an opportunity to learn some other skills along the lines of “doing hard things”. I’m not saying that “doing hard things” is intrinsically meaningful in general. But it often can be. And I’ve been curious about NT for a while. I think algebra / analysis is kinda fancy and neat.</p>
+<p>So, why am I taking this class? Because I think numbers are kinda cool and want to know some ridiculously heavy machinery for looking at numbers.</p>
+<p>That said, note to self, <em>do not take commutative algebra, analysis or number theory in the future… stick to algos+combo :p</em>.</p>
+<h2 id="writing-stories">writing stories</h2>
+<p>should be fun time, hope I can take it.</p>
+<h2 id="misc-thoughts">misc thoughts</h2>
+<p>Anyways, all in all, I’m taking some interesting classes and it can be a good time.</p>
+<p>But it’s also important to remember to do other stuff, like making good food, walking around boston, and doing research.</p>
+<p>add oil!</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
