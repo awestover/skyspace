@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#danger-extreme-intensity" class="js-scroll-trigger">DANGER EXTREME INTENSITY</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>In chapter 2 we define the p-adics and develop some stuff about them.</p>
+<p>We use <span class="math inline">\(\mathbb{Z}_p, \mathbb{Q}_p\)</span> to denote the q-adic integers and q-adic rationals repsectively. We use <span class="math inline">\(\mathbb{Z}/p\mathbb{Z}\)</span> to denote the cyclic group with <span class="math inline">\(p\)</span> elements. Sorry about that!</p>
+<blockquote>
+<p>Question: What metrics, besides the standard absolute value, can you put on <span class="math inline">\(\mathbb{Q}\)</span>?</p>
+</blockquote>
+<p>In particular, this question is probably modulo the topology induced by the metric. That is, if two metrics induce the same topology then they aren’t “super different”.</p>
+<p>For instance, <span class="math inline">\(|x|\)</span> and <span class="math inline">\(|x|^{1/2}\)</span> (or <span class="math inline">\(|x|^{\alpha}\)</span> for any <span class="math inline">\(\alpha\in (0,1]\)</span>) where <span class="math inline">\(|\cdot|\)</span> denotes the standard absolute value, induce the same topology on <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> There are only two types of norms that you can put on <span class="math inline">\(\mathbb{Q}\)</span>: the standard absolute value, and the <span class="math inline">\(p\)</span>-adic norm.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>First, suppose there is some <span class="math inline">\(n\in \mathbb{N}\)</span> such that <span class="math inline">\(||n|| &gt; 1\)</span>. In this case we will show that the norm is equivalent to the absolute value norm. Let <span class="math inline">\(n_0\)</span> be the smallest <span class="math inline">\(n\in \mathbb{N}\)</span> with norm larger than <span class="math inline">\(1\)</span>. Take <span class="math inline">\(\alpha\in \mathbb{R}_{&gt;0}\)</span> such that <span class="math inline">\(||n_0|| = n_0^{\alpha}\)</span>. Write any number <span class="math inline">\(n\)</span> in base <span class="math inline">\(n_0\)</span>. By the triangle inequality we derive that there exists a constant <span class="math inline">\(C\)</span> such that <span class="math display">\[||n||\le C n^{\alpha}.\]</span> Then you can boost this by replacing <span class="math inline">\(n\)</span> with <span class="math inline">\(n^2\)</span> whereby we obtain <span class="math display">\[||n||\le \sqrt{C} n^{\alpha}.\]</span> Continuing we can make <span class="math inline">\(C\to 1\)</span>. You can by similar means also show <span class="math inline">\(||n||\ge n^{\alpha}\)</span>. And then you can extend to all of <span class="math inline">\(\mathbb{Q}\)</span>.</p>
+<p>Then consider the case that <span class="math inline">\(||n||\le 1\)</span> for all <span class="math inline">\(n\in \mathbb{N}\)</span>.</p>
+<p>Then you find that <span class="math inline">\(||n||\)</span> must be of the form <span class="math inline">\(||n|| = \rho^{\nu_p(n)}\)</span> for some <span class="math inline">\(\rho\in(0,1)\)</span> and <span class="math inline">\(p\)</span> prime.</p>
+</div>
+<blockquote>
+<p>Question: Why do we care about the p-adic numbers?</p>
+</blockquote>
+<p>They can sometimes help you find/count roots of polynomials in <span class="math inline">\(\mathbb{Z}[x_1,x_2,\ldots, x_n]\)</span>, which is one of the main goals of NT.</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Suppose you have some polynomials with a common zero in <span class="math inline">\(\mathbb{Z}_p^{m}\)</span> This is equivalent to the polynomials having a common zero in <span class="math inline">\(\mathbb{Z}/p^{n}\mathbb{Z}\)</span> for all <span class="math inline">\(n&gt;1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>“<strong>projective limit</strong>”</p>
+<p>think of a projective limit as just saying “if you can extend something from <span class="math inline">\(\mathbb{Z}/p^{n}\mathbb{Z}\)</span> to <span class="math inline">\(\mathbb{Z}/p^{n+1}\mathbb{Z}\)</span> then you can extend it all the way to <span class="math inline">\(\mathbb{Z}_p\)</span>”.</p>
+<p>You ususally need some kind of “plays nice under projections” property / some diagram commutes for this to be well-defined.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Some kind of crazy way to lift solutions all the way using Taylor Series.</p>
+<p>Basically, if you have <span class="math inline">\(\nu_p(f(x))\ge n\)</span> and <span class="math inline">\(\nu_p(f&#39;(x))&lt;n/2-1\)</span> then you can lift this to a solution in <span class="math inline">\(\mathbb{Z}_p\)</span></p>
+<p>This even works in some multivariable setting, and you only need one partial derivative to have this property.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> Every simple zero of the reduction modulo <span class="math inline">\(p\)</span> lifts to a zero in <span class="math inline">\(\mathbb{Z}_p\)</span>.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> something about lifting solutions to quadratic forms.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> <span class="math inline">\(x\in \mathbb{Z}_p\)</span> invertible iff <span class="math inline">\(p\not\mid x\)</span>.</p>
+<p><span class="math inline">\(\mathbb{Z}_p\)</span> is an integral domain.</p>
+<p>Let <span class="math inline">\(U\)</span> denote the units. Then <span class="math inline">\(\mathbb{Z}_p \cong \mathbb{Z}\times U\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> invertability: taylor series for <span class="math inline">\(\frac{1}{1-pz}\)</span>.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong></p>
+<p>I think this diagram roughly means <span class="math display">\[\mathbb{Z}_p / p^{n} \mathbb{Z}_p \cong \mathbb{Z}/p^{n}\mathbb{Z}.\]</span></p>
+<figure>
+<img src="src/images/ink_img001.png" alt="" /><figcaption>ink_img001</figcaption>
+</figure>
+</div>
+<h2 id="danger-extreme-intensity">DANGER EXTREME INTENSITY</h2>
+<p>Now we say some stuff about the units in <span class="math inline">\(\mathbb{Z}_p\)</span>.</p>
+<p>Ok, now here is the theorem that I spent like forever trying to understand. It was good, I had to come up with special case that I could understand and then slowly was able to figure out a proof.</p>
+<p>Let <span class="math inline">\(U_n = 1+p^{n}\mathbb{Z}_p\)</span>.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[U = V\times U_1\]</span> where <span class="math inline">\(V = \left\{ x\in U\; : \;x^{p-1}=1 \right\}\cong \mathbb{F}_p^{\times}\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<figure>
+<img src="src/images/ink_img002.png" alt="" /><figcaption>ink_img002</figcaption>
+</figure>
+<p>Claim 1: <span class="math display">\[V_n = \left\{ x^{p-1}\; : \;x\in U/U_n \right\}\subseteq U_1/U_n.\]</span> Proof: if you consider the reduction of <span class="math inline">\(x^{p-1}\)</span> modulo <span class="math inline">\(p\)</span> it is <span class="math inline">\(1\)</span>.</p>
+<p>Claim 2: <span class="math display">\[U/U_n = U_1/U_n \oplus V_n.\]</span> Proof: Any <span class="math inline">\(x\in U/U_n\)</span> can be expressed as <span class="math display">\[x = x^{(p-1)s}x^{p^{n-1}r}\]</span> because <span class="math inline">\(p^{n-1}\perp (p-1)\)</span>.</p>
+<p>Observe that <span class="math inline">\((x^{p^{n-1}})^{p-1} = 1\)</span> because <span class="math inline">\(|U/U_n| = (p-1)p^{n-1}\)</span>. Thus, <span class="math inline">\(x^{p^{n-1}r} \in V_n\)</span>. Also, <span class="math inline">\(x^{p-1}\)</span> we showed in claim 1 is in <span class="math inline">\(U_1/U_n\)</span>. Thus we have the direct sum decomposition.</p>
+<p>Then we “projective limit”-anate <span class="math inline">\(V_n\)</span> to get <span class="math inline">\(V\)</span>.</p>
+<p>And <span class="math inline">\(\lim U/U_n = U.\)</span></p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Let <span class="math inline">\(p\neq 2\)</span>. <span class="math inline">\(U_1\cong \mathbb{Z}_p\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Consider <span class="math inline">\((1+p)^{p^{i}}\)</span>. This is a generator for <span class="math inline">\(U_1/U_n\)</span>.</p>
+<p>some diagram commutes.</p>
+<p>Hence we can projective limit lift lift lift.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> Let <span class="math inline">\(p\neq 2\)</span>. Then <span class="math inline">\(\mathbb{Q}_p^{\times} \cong \mathbb{Z}\times \mathbb{Z}_p \times \mathbb{Z}/(p-1)\mathbb{Z}\)</span>.</p>
+</div>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
