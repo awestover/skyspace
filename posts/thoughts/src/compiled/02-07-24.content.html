@@ -36,7 +36,13 @@
 <p>Turns out the answer is that there is a threshold at <span class="math inline">\(p=1/d\)</span>.</p>
 <p><strong>TODO: think a bit more about why looking at root component is all you need to do: does that pr threshold as well?</strong></p>
 <p>One really interesting thing about this was that we used / proved the Payley-Zygmund inequality, which is really trippy in some sense, because it almost seems like the opposite of chebyshev. It’s proof is just “Cauchy Shwarz” but I still want to understand intuition more.</p>
-<p><strong>TODO: get more intuition for this inequality</strong></p>
+<div class="ex envbox">
+<p><strong>Example.</strong> Ok, so Payley-Zygmund inequality roughly goes like this:</p>
+<p>Suppose you have a non-negative random variable and you want to say that it’s actually positive.</p>
+<p>Typically with Chebyshev inequality you need <span class="math inline">\(\sigma &lt; \frac{1}{4}\mu\)</span> to be able to say “stuff is well concentrated around the mean”.</p>
+<p>However, with Payley-Zygmund you can get away with <span class="math inline">\(\sigma &lt; 1000\mu\)</span>.</p>
+<p>Neat!</p>
+</div>
 <h2 id="boolean-functions">boolean functions</h2>
 <p>We did definitions and motivations. But it just seems very elegant.</p>
 <p>Let me prove some basic things really as a way of writing down stuff to remember it:</p>
