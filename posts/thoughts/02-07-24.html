@@ -65,7 +65,7 @@
 <p>First class we talked about the threshold at which <span class="math inline">\(G(n,p_n)\)</span> is connected. Turns out it is precisely <span class="math inline">\(p_n = \frac{\ln n}{n}\)</span>.</p>
 <p>proof sketch:</p>
 <div class="prop envbox">
-<p><strong>Proposition.</strong> If <span class="math inline">\(p_n &lt; \frac{\ln n}{n}\)</span> then whp the graph is disconnected.</p>
+<p><strong>Proposition.</strong> Fix constant <span class="math inline">\(\lambda &lt; 1\)</span> If <span class="math inline">\(p_n = \lambda \frac{\ln n}{n}\)</span> then whp the graph is disconnected.</p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> For each <span class="math inline">\(v\in V\)</span> let <span class="math inline">\(I_v\)</span> denote the event that <span class="math inline">\(v\)</span> is <strong>isolated</strong> (no edges incident to <span class="math inline">\(v\)</span> survive). Let <span class="math inline">\(X\)</span> be the number of isolated vertices. For any fixed <span class="math inline">\(v\)</span> we have <span class="math display">\[\Pr[I_v] = (1- p_n)^{n-1} \approx \exp(-(n-1)p_n) \approx 1/n.\]</span></p>
@@ -73,7 +73,7 @@
 <p>Analyze the variance, it’s well-concentrated. Hence, whp at least one isolated vertex. Isolated vertex means in particular that graph is disconnected.</p>
 </div>
 <div class="prop envbox">
-<p><strong>Proposition.</strong> If <span class="math inline">\(p_n &gt; \frac{\ln n}{n}\)</span> then whp the graph is connected.</p>
+<p><strong>Proposition.</strong> Fix constant <span class="math inline">\(\lambda &gt; 1\)</span>. If <span class="math inline">\(p_n = \lambda \frac{\ln n}{n}\)</span> then whp the graph is connected.</p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong></p>
