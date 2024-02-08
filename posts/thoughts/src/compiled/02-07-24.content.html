@@ -18,19 +18,18 @@
 <p><strong>Proposition.</strong> Fix constant <span class="math inline">\(\lambda &lt; 1\)</span> If <span class="math inline">\(p_n = \lambda \frac{\ln n}{n}\)</span> then whp the graph is disconnected.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> For each <span class="math inline">\(v\in V\)</span> let <span class="math inline">\(I_v\)</span> denote the event that <span class="math inline">\(v\)</span> is <strong>isolated</strong> (no edges incident to <span class="math inline">\(v\)</span> survive). Let <span class="math inline">\(X\)</span> be the number of isolated vertices. For any fixed <span class="math inline">\(v\)</span> we have <span class="math display">\[\Pr[I_v] = (1- p_n)^{n-1} \approx \exp(-(n-1)p_n) \approx 1/n.\]</span></p>
-<p>Hence, <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[X] &gt; 1\)</span>.</p>
+<p><strong>Proof.</strong> For each <span class="math inline">\(v\in V\)</span> let <span class="math inline">\(I_v\)</span> denote the event that <span class="math inline">\(v\)</span> is <strong>isolated</strong> (no edges incident to <span class="math inline">\(v\)</span> survive). Let <span class="math inline">\(X\)</span> be the number of isolated vertices. For any fixed <span class="math inline">\(v\)</span> we have <span class="math display">\[\Pr[I_v] = (1- p_n)^{n-1} \approx \exp(-(n-1)p_n) \approx 1/n^{\lambda}.\]</span> For example this could be <span class="math inline">\(1/n^{.999}\)</span>.</p>
+<p>Hence, <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}[X] \approx n^{1-\lambda}\)</span>, which you can think of as <span class="math inline">\(n^{.001} \to \infty\)</span>. So, in expectation we have a very large number of isolated vertices, which is great.</p>
 <p>Analyze the variance, it’s well-concentrated. Hence, whp at least one isolated vertex. Isolated vertex means in particular that graph is disconnected.</p>
 </div>
 <div class="prop envbox">
 <p><strong>Proposition.</strong> Fix constant <span class="math inline">\(\lambda &gt; 1\)</span>. If <span class="math inline">\(p_n = \lambda \frac{\ln n}{n}\)</span> then whp the graph is connected.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong></p>
-<p>Given disjoint vertex subsets <span class="math inline">\(X, Y\)</span> let <span class="math inline">\(E_{X,Y}\)</span> be the event that <span class="math inline">\(X\times Y \cap E\)</span> is empty.</p>
-<p>I think we union bound over all disjoint vertex subsets <span class="math inline">\(X,Y\)</span> to show that the chance of any <span class="math inline">\(E_{X,Y}\)</span> event is small. In particular this would imply the graph is connected.</p>
-<p>If I had to guess the way we bound the probability is by 2nd moment method: showing that with good probability there is some edge between sets and then showing that the count is concentrated. These are my vague vibes at least.</p>
-<p><strong>TODO:</strong> actually figure this out more.</p>
+<p><strong>Proof.</strong> For any <span class="math inline">\(S\subseteq V\)</span> with <span class="math inline">\(|S|\le |V|/2\)</span>, define the <span class="math inline">\(E_S\)</span> as the event that there are no edges between <span class="math inline">\(S, V\setminus S\)</span>. Then <span class="math display">\[\Pr[\text{graph disconnected}] \le \sum_{S} \Pr[E_S] \le
+\sum_{k=1}^{\left\lfloor n/2 \right\rfloor} \binom{n}{k} \Pr[[k]\times([n]\setminus
+[k]) \cap E = \varnothing] \le \sum_{k=1}^{\left\lfloor n/2 \right\rfloor}(1-p)^{k(n-k)} \binom{n}{k}.\]</span></p>
+<p>And it turns out that this goes to <span class="math inline">\(0\)</span> as <span class="math inline">\(n\to \infty\)</span>.</p>
 </div>
 <p>Today we talked about branching processes. You have an infinite <span class="math inline">\(d\)</span>-ary tree and you delete each edge with probability <span class="math inline">\(p\)</span>. This is apparently a special case of “percolation”.</p>
 <p>One question of interest is, “What is the chance that there is an infinite component?”</p>
