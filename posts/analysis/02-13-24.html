@@ -52,14 +52,17 @@
 <li>Any union of elements of <span class="math inline">\(\tau\)</span> is an element of <span class="math inline">\(\tau\)</span>.</li>
 <li>Any intersection of finitely many elements of <span class="math inline">\(\tau\)</span> is an element of <span class="math inline">\(\tau\)</span>.</li>
 </ol>
-<p>Often we work in metric space.</p>
-<p>In a metric space:</p>
+<ul>
+<li><strong>complete space</strong>: limits exist.</li>
+<li><span class="math inline">\(Y\)</span> is <strong>compact</strong> if every open cover has a finite sub-cover</li>
+</ul>
+<p>Often we work in metric space. In a metric space:</p>
 <ul>
 <li><span class="math inline">\(Y\)</span> is an <strong>open set</strong> iff for every point <span class="math inline">\(y\in Y\)</span> there is a ball (aka neighborhood) of <span class="math inline">\(y\)</span> contained in <span class="math inline">\(Y\)</span>.</li>
 <li><span class="math inline">\(Y\)</span> is a <strong>closed set</strong> iff for every convergent sequence <span class="math inline">\(y_1,y_2,\ldots \in Y\)</span> the limit is contained in <span class="math inline">\(Y\)</span>.</li>
-<li><span class="math inline">\(Y\)</span> is <strong>compact</strong> if every open cover has a finite sub-cover</li>
-<li><strong>complete space</strong>: limits exist.</li>
+<li><strong>sequentially compact</strong>: every sequence has a convergent subsequence.</li>
 </ul>
+<p><strong>Metric spaces are compact iff they are sequential compact.</strong></p>
 <p>Some usefull things to know: A closed subset <span class="math inline">\(Y\)</span> of a compact set <span class="math inline">\(X\)</span> is compact. Proof is nice. Take an open cover of <span class="math inline">\(Y\)</span>. Extend to an open cover of <span class="math inline">\(X\)</span> by adding <span class="math inline">\(Y\setminus X\)</span> which is an open set because <span class="math inline">\(Y\)</span> is a closed set. Then find a finite subcover for <span class="math inline">\(X\)</span>. Then toss <span class="math inline">\(Y\setminus X\)</span> from that subcover if it was in it. This is now a finite subcover for <span class="math inline">\(Y\)</span>.</p>
 </div>
       </div>
