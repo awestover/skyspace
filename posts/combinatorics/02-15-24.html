@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><blockquote>
+<p>Shatar: Hey JJ what’s cooking?<br />
+JJ: At this point in time I personally am not cooking anything. However I intuit that your meaning is more metaphorical, similar to the phrase “what’s up”. Thanks much for your inquiry. Lately I’ve been studying boolean functions, specifically Chapter 2 of O’Donnel’s book which discusses social choice theory.<br />
+Shatar: Oh no way! Wait I actually love that topic. You know the best voting rule?<br />
+JJ: The answer to your question depends on the metric you use to evaluate the voting rule.<br />
+Shatar: The metric is obviously <em>coolness</em> and <em>makes the most sense</em>. Anyways, here’s probably the best voting rule:</p>
+</blockquote>
+<blockquote>
+<p>You have a bunch of little groups, called “tribes” of people. Each of these groups is debating whether or not to go feed this cat that they saw sitting out in the rain. Within each tribe here is what happens: either, everyone unanimously votes in favor of helping the cat, in which case the tribe will go help the cat / elect the cat as president. However, if anyone in the group opposes the decision to help the cat the group will just argue about philosophy and ignore the cat. The cat is elected as president / saved off the side of the road iff at least one tribe decides to help it.</p>
+</blockquote>
+<blockquote>
+<p>JJ: Ah yes this is called the “tribes” voting rule.<br />
+Shatar: It’s so logical, right! Anyways, one reason why it’s cool is that it apparently gives essentially the smallest possible influence to each person.</p>
+</blockquote>
+<p>Recall:</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <span class="math display">\[I_i[f] = \Pr_x[f(x)\neq f(x\cdot e_i)] = \Theta(1)\cdot
+||\partial_i f||_2^{2}.\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> If you set <span class="math inline">\(w = \log n-\log \log n\)</span> and <span class="math inline">\(s = n/w\)</span> then TRIBES with <span class="math inline">\(s\)</span> size-<span class="math inline">\(w\)</span> tribes is a balanced function that gives each coordinate influence only <span class="math display">\[\O(1)\cdot \frac{\log n}{n}\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>First, we show it’s balanced. The chance that no-one helps the cat is <span class="math display">\[(1-2^{-w})^{s} \approx (1 - \frac{\log n}{n})^{n/\log n} \approx 1/2.\]</span></p>
+<p>Next, we compute the influence of each variable. It is: <span class="math display">\[2(1-2^{-w})^{s-1}2^{-(w-1)}\approx 1/2^{w} = \frac{\log n}{n}.\]</span></p>
+</div>
+<blockquote>
+<p>JJ: That’s pretty interesting. Thanks for telling me about it!<br />
+Shatar: What’s your vote?</p>
+</blockquote>
+<p><img src='../../images/cat.png' width='25%'></p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

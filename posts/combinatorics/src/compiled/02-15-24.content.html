@@ -1,0 +1,32 @@
+<blockquote>
+<p>Shatar: Hey JJ what’s cooking?<br />
+JJ: At this point in time I personally am not cooking anything. However I intuit that your meaning is more metaphorical, similar to the phrase “what’s up”. Thanks much for your inquiry. Lately I’ve been studying boolean functions, specifically Chapter 2 of O’Donnel’s book which discusses social choice theory.<br />
+Shatar: Oh no way! Wait I actually love that topic. You know the best voting rule?<br />
+JJ: The answer to your question depends on the metric you use to evaluate the voting rule.<br />
+Shatar: The metric is obviously <em>coolness</em> and <em>makes the most sense</em>. Anyways, here’s probably the best voting rule:</p>
+</blockquote>
+<blockquote>
+<p>You have a bunch of little groups, called “tribes” of people. Each of these groups is debating whether or not to go feed this cat that they saw sitting out in the rain. Within each tribe here is what happens: either, everyone unanimously votes in favor of helping the cat, in which case the tribe will go help the cat / elect the cat as president. However, if anyone in the group opposes the decision to help the cat the group will just argue about philosophy and ignore the cat. The cat is elected as president / saved off the side of the road iff at least one tribe decides to help it.</p>
+</blockquote>
+<blockquote>
+<p>JJ: Ah yes this is called the “tribes” voting rule.<br />
+Shatar: It’s so logical, right! Anyways, one reason why it’s cool is that it apparently gives essentially the smallest possible influence to each person.</p>
+</blockquote>
+<p>Recall:</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> <span class="math display">\[I_i[f] = \Pr_x[f(x)\neq f(x\cdot e_i)] = \Theta(1)\cdot
+||\partial_i f||_2^{2}.\]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> If you set <span class="math inline">\(w = \log n-\log \log n\)</span> and <span class="math inline">\(s = n/w\)</span> then TRIBES with <span class="math inline">\(s\)</span> size-<span class="math inline">\(w\)</span> tribes is a balanced function that gives each coordinate influence only <span class="math display">\[\O(1)\cdot \frac{\log n}{n}\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>First, we show it’s balanced. The chance that no-one helps the cat is <span class="math display">\[(1-2^{-w})^{s} \approx (1 - \frac{\log n}{n})^{n/\log n} \approx 1/2.\]</span></p>
+<p>Next, we compute the influence of each variable. It is: <span class="math display">\[2(1-2^{-w})^{s-1}2^{-(w-1)}\approx 1/2^{w} = \frac{\log n}{n}.\]</span></p>
+</div>
+<blockquote>
+<p>JJ: That’s pretty interesting. Thanks for telling me about it!<br />
+Shatar: What’s your vote?</p>
+</blockquote>
+<p><img src='../../images/cat.png' width='25%'></p>

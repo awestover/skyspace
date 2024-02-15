@@ -1,0 +1,4 @@
+tribes
+
+I explore a remark that was made today in Dor Minzer's class on
+analysis of boolean functions.
