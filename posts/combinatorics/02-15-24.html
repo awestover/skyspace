@@ -61,8 +61,12 @@ Shatar: It’s so logical, right! Anyways, one reason why it’s cool is that it
 <p><strong>Definition.</strong> <span class="math display">\[I_i[f] = \Pr_x[f(x)\neq f(x\cdot e_i)] = \Theta(1)\cdot
 ||\partial_i f||_2^{2}.\]</span></p>
 </div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In the following theorem it is actually important what base the logs are! So I’ve written it explicitly.</p>
+<p>I feel like there are a couple times lately when log bases are important. E.g., <span class="math inline">\(\ln (1+x)\le x\)</span>. Whatever.</p>
+</div>
 <div class="thm envbox">
-<p><strong>Theorem.</strong> If you set <span class="math inline">\(w = \log n-\log \log n\)</span> and <span class="math inline">\(s = n/w\)</span> then TRIBES with <span class="math inline">\(s\)</span> size-<span class="math inline">\(w\)</span> tribes is a balanced function that gives each coordinate influence only <span class="math display">\[\O(1)\cdot \frac{\log n}{n}\]</span></p>
+<p><strong>Theorem.</strong> If you set <span class="math inline">\(w = \log_2 (n/\log_2)\)</span> and <span class="math inline">\(s = n/w\)</span> then TRIBES with <span class="math inline">\(s\)</span> size-<span class="math inline">\(w\)</span> tribes is a balanced function that gives each coordinate influence only <span class="math display">\[\mathcal{O}(1)\cdot \frac{\log n}{n}\]</span></p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong></p>
