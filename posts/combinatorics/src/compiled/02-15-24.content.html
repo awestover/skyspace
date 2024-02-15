@@ -35,7 +35,7 @@ Shatar: What’s your vote?</p>
 </blockquote>
 <p><img src='../../images/cat.png' width='25%'></p>
 <hr />
-<p>An unrelated remark:</p>
+<p>Now I just review several things from the first two weeks of class. Reference: Dor Minzer’s lecture notes.</p>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Random resetrictions are important. Here are some of their crucial properties:</p>
 <p>For any <span class="math inline">\(S\subseteq \hat{J}\)</span>, <span class="math display">\[\widehat{f_{J\to y}}(S) = \sum_{T\subseteq J} \hat{f}(S\sqcup T) \chi_T(y).\]</span> That is, to get the fourier coefficient at <span class="math inline">\(S\)</span> you smear the fourier coefficients at <span class="math inline">\(S\sqcup T\)</span> for all <span class="math inline">\(T\)</span> in the subset of indices that we fixed. Specifically when doing this smearing it is weighted based on the <span class="math inline">\(T\)</span> character evaluated at the value we restrict to.</p>
@@ -47,4 +47,18 @@ Shatar: What’s your vote?</p>
 <li>make some functions like AND drop out to constants</li>
 <li>in general simplify your function</li>
 </ul>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Given <span class="math inline">\(T\subseteq J \subseteq [n]\)</span> and membership queries to boolean function <span class="math inline">\(f\)</span> you can, with good probability, approximate <span class="math display">\[\sum_{S: S\cap J = T} \hat{f}(S)^2.\]</span></p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Say that a function <span class="math inline">\(f\)</span> is <span class="math inline">\(t\)</span>-sparse if its fourier spectrum <span class="math inline">\(\hat{f}\)</span> is supported on at most <span class="math inline">\(t\)</span> characters.</p>
+<p>Say <span class="math inline">\(f,g\)</span> are <span class="math inline">\(\varepsilon\)</span>-close if <span class="math inline">\(||f-g||_2^{2}\le \varepsilon\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Given a function which is <span class="math inline">\(\varepsilon\)</span>-close to being <span class="math inline">\(t\)</span>-sparse, we can, with good probability, efficiently learn a function <span class="math inline">\(g\)</span> that is close to <span class="math inline">\(f\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Suffices to focus on heavy coefficients.</p>
+<p>Key step: using the key lemma we can estimate, e.g., <span class="math display">\[\sum_{S: S\cap \left\{ 1\right\}=\left\{ 1\right\}} \hat{f}(S)^2.\]</span> If it’s big it means that there must be some heavy fourier coefficient containing <span class="math inline">\(1\)</span>. We build a tree and find everything.</p>
 </div>
