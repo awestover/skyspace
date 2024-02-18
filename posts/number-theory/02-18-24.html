@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#main-theorem:-some-relationship-between-hilbert-symbol-and-legendre-symbol" class="js-scroll-trigger">main theorem: some relationship between hilbert symbol and legendre symbol</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>Hilbert symbol: <span class="math inline">\((a,b)=1\)</span> if <span class="math inline">\(z^2-ax^2-by^2=0\)</span> has a non-trivial solution and <span class="math inline">\(-1\)</span> else.</p>
+<p>Norm map: <span class="math inline">\(N_{K/F}(\alpha)\)</span> is the determinant of the map <span class="math inline">\(x\mapsto \alpha x\)</span>. For example, If <span class="math inline">\(K\)</span> is an extension of <span class="math inline">\(F\)</span> by adjoining <span class="math inline">\(\sqrt{\beta}\)</span> then <span class="math inline">\(N(z+\sqrt{\beta}y) = z^2-\beta y^2.\)</span></p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> <span class="math inline">\((a,b)=1\)</span> iff <span class="math inline">\(a\in Nk[\sqrt{b}]^{*}\)</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> If <span class="math inline">\(b\)</span> is a square this is clear. If <span class="math inline">\(b\)</span> is a non-square then it is also true.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> The hilbert symbol satisfies: <span class="math inline">\((a,b)=(b,a)\)</span>, <span class="math display">\[(a,c^2)=(a,-a) = (a,1-a) = 1,\]</span> <span class="math display">\[(a,b) =1 \implies (aa&#39;,b)=(a&#39;,b),\]</span> <span class="math display">\[(a,b)=(a,-ab) = (a, (1-a)b).\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The implication <span class="math inline">\((a,b)=1\implies (aa&#39;,b)=(a&#39;,b)\)</span> seems interesting. It’s true because we characterized <span class="math inline">\(\left\{ x\; : \;(x,b)=1 \right\}\)</span> as <span class="math inline">\(Nk[\sqrt{b}]^{*}\)</span>. So, because <span class="math inline">\(a\in Nk[\sqrt{b}]^{*}\)</span> we have <span class="math inline">\(aa&#39;\in Nk[\sqrt{b}]^{*} \iff a&#39;\in Nk[\sqrt{b}]^{*}\)</span>.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math inline">\((aa&#39;,b)=(a,b)(a&#39;,b).\)</span></p>
+</div>
+<p>Hilbert symbol is somehow related to legendre symbol.</p>
+<h1 id="main-theorem-some-relationship-between-hilbert-symbol-and-legendre-symbol">main theorem: some relationship between hilbert symbol and legendre symbol</h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> In reals this is easy to compute. As always there is something different in the case that <span class="math inline">\(p=2\)</span>. We just state for odd <span class="math inline">\(p\)</span>.</p>
+<p>Write <span class="math inline">\(a=p^{\alpha}u, b = p^{\beta}v.\)</span> In the <span class="math inline">\(p\)</span>-adics we have <span class="math inline">\((a,b) = (-1)^{\alpha \beta \varepsilon(p)} \genfrac{(}{)}{}{}{u}{p}^{\beta} \genfrac{(}{)}{}{}{v}{p}^{\alpha}\)</span></p>
+<p>where <span class="math inline">\(\varepsilon(u) = \frac{u-1}{2}\mod 2\)</span>, and where legendre symbol of element of <span class="math inline">\(\mathbb{Z}_p^{*}\)</span> actually means first take the element’s reduction modulo <span class="math inline">\(p\)</span> and then take the legendre symbol.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> If <span class="math inline">\(b\)</span> is not a square then group <span class="math inline">\(Nk_b^{*}\)</span> is a subgroup of index <span class="math inline">\(2\)</span> in <span class="math inline">\(K^{*}\)</span>.</p>
+</div>
+<p>Recall: a point in <span class="math inline">\(\mathbb{Z}_p^{m}\)</span> is primitive if one of the <span class="math inline">\(x_i\)</span>’s in the vector is invertable (not div by <span class="math inline">\(p\)</span>).</p>
+<p>recall lemma: it you have non-trivial zero then you can find primitive zero.</p>
+now we have:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(v\in U\)</span>. if <span class="math inline">\(z^2-px^2-vy^2=0\)</span> has nontrivial solution in <span class="math inline">\(\mathbb{Q}_p\)</span> then it has one with <span class="math inline">\(z,y\in U, x\in \mathbb{Z}_p\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> First get a primitive zero. Then take stuff mod p it can’t work unless <span class="math inline">\(z,y\)</span> are units.</p>
+<p>The proof is kind of interesting. suppose our solution didn’t have <span class="math inline">\(y,z\)</span> being units. Then at least one of them is div by <span class="math inline">\(p\)</span>. But taking reduction <span class="math inline">\(\mod p\)</span> we find that both must be <span class="math inline">\(0\)</span>. But then <span class="math inline">\(px^2\equiv 0 \mod p^2\)</span> so <span class="math inline">\(x,y,z\)</span> all div by <span class="math inline">\(p\)</span> contradicting the primitiveness of the zero.</p>
+</div>
+<p>Now we prove the theorem</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Split to three cases. The reason there are only three cases is by symmetry and the fact that multiplying stuff by squares doesn’t change the hilbert symbol.</p>
+<p><strong>Case 1:</strong> <span class="math inline">\(\alpha =\beta = 0\)</span>. Then we want to prove <span class="math inline">\((u,v) = 1\)</span>. The equation <span class="math inline">\(z^2-ux^2-vy^2 = 0\)</span> is a quadratic form in 3 vars so has a solution modulo <span class="math inline">\(p\)</span>. Furthermore, the discriminant of the quadratic form is a <span class="math inline">\(p\)</span>-adic unit: <span class="math inline">\(uv\)</span>. Thus by that other lemma “newton’s method” this lifts to a <span class="math inline">\(p\)</span>-adic solution.</p>
+<p><strong>Case 2:</strong> <span class="math inline">\(\alpha =0, \beta = 1\)</span>. Here the claim is [ (pu,v) =  ] Using a non-trivial fact from earlier in this blog post (the first two propositions) we have in this case that <span class="math inline">\((pu,v)=(p,v)\)</span>. If <span class="math inline">\(v\)</span> is a square then both <span class="math inline">\((p,v)\)</span> and <span class="math inline">\(\genfrac{(}{)}{}{}{v}{p}\)</span> are <span class="math inline">\(1\)</span> clearly. Else, if <span class="math inline">\(v\)</span> is not a square then we had this theorem earlier that said <span class="math inline">\(p^{n}u\)</span> is a square iff <span class="math inline">\(n\)</span> is even and <span class="math inline">\(u\mod p\)</span> is a square in <span class="math inline">\(\mathbb{F}_p\)</span>. So then <span class="math inline">\(\genfrac{(}{)}{}{}{v}{p} = -1\)</span>.</p>
+<p>Now using that lemma from earlier that somewhat conspicuously had a <span class="math inline">\(z^2-px^2-vy^2=0\)</span> going on in it, an indication that it would be useful for understanding <span class="math inline">\((v,p)\)</span>, we see that if <span class="math inline">\((v,p)\neq -1\)</span> then we would get units <span class="math inline">\(z,y\)</span>, and p-adic integer <span class="math inline">\(x\)</span> such that <span class="math inline">\(z^2-px^2-vy^2=0\)</span>. But this is ridiculous because then <span class="math inline">\(v \equiv (zy^{-1})^2 \mod p\)</span>, while we know <span class="math inline">\(v\)</span> is not a square.</p>
+<p><strong>Case 3:</strong> <span class="math inline">\(\alpha =\beta = 1\)</span>.</p>
+<p>We use another interesting formula, <span class="math inline">\((a,b)=(a,-ab)\)</span> to reduce this to case 2.</p>
+<p>And the bilinearity thing follows from the fact that the legendre symbols and other stuff in our formula is bilinear.</p>
+</div>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
