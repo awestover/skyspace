@@ -1,0 +1,4 @@
+subset sums
+
+Jacob Foxs gave a nice talk about subset sums today. I summarize
+what I remember from it.
