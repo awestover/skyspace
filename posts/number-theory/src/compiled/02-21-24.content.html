@@ -1,0 +1,39 @@
+<p>Throughout the post I use <span class="math inline">\((q\mid p)\)</span> to denote the legendre symbol bc I’m lazy.</p>
+<p>I’ve seen quite a few proofs of QRLaw. According to wikipedia there are hundreds. I don’t know how credible that is, but here’s some ones I’ve seen:</p>
+<ul>
+<li>Geometric proof due to Einstein:
+<ul>
+<li><span class="math display">\[(q\mid p) = (-1)^{\sum_{u=1}^{(p-1)/2}\left\lfloor 2qu/p \right\rfloor}.\]</span></li>
+<li><span class="math inline">\(\sum_{u=1}^{(p-1)/2}\left\lfloor 2qu/p \right\rfloor\)</span> is counting the number of lattice points in a certain triangle. You can do some symmetry and stuff.</li>
+</ul></li>
+<li>Gauss sums: you “guess” a square root in the algebraic closure in terms of a gauss sum.
+<ul>
+<li>you then analyze when this square root is actually contained in the right field not just the algebraic closure.</li>
+</ul></li>
+<li>Zolotarev’s lemma: this post</li>
+</ul>
+<p>This proof is rather neat. I like it because we get to use permutations, which are one of my favorite objects.</p>
+<p><a href="https://planetmath.org/zolotarevslemma">my source</a></p>
+<p>First, recall an important combinatorial property of permutations: the signature of a permutation is the number of inversions – <span class="math inline">\(i,j\)</span> with <span class="math inline">\(i&lt;j, \pi_i &gt; \pi_j\)</span> – in it mod 2. Equivalently, it is the number of transpositions to make the permutation.</p>
+<div class="ex envbox">
+<p><strong>Example.</strong> A cycle of length <span class="math inline">\(k\)</span> has signature <span class="math inline">\((-1)^{k-1}\)</span>.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(\pi_m\)</span> be the map <span class="math inline">\(x\mapsto mx \mod p.\)</span> Then <span class="math inline">\((m\mid p) = \mathop{\mathrm{sgn}}(\pi_m)\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Recall that <span class="math inline">\(a^{(p-1)/2} = 1\)</span> iff QR.</p>
+<p>Notice that <span class="math inline">\(\pi_m\)</span> consists of <span class="math inline">\((p-1)/\text{ord}_p(m)\)</span> many cycles, all of length <span class="math inline">\(\text{ord}_p(m)\)</span>. So you can just compute the signature and check that it matches the legendre symbol.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> QR LAW:</p>
+<p><span class="math display">\[ (p\mid q) = (q\mid p) \cdot (-1)^{\binom{p}{2}\binom{q}{2}}. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Let <span class="math inline">\(\pi: \mathbb{Z}_{pq}\to \mathbb{Z}_p \times Z_q\)</span> be the canonical isomorphism between these rings. Namely, <span class="math inline">\(aq+bp \mapsto (a,b)\)</span>. Let <span class="math inline">\(\alpha,\beta\)</span> be permutations of <span class="math inline">\(\mathbb{Z}_p \times \mathbb{Z}_q\)</span> defined as <span class="math display">\[ \alpha(x,y) = qx+y,y \]</span> <span class="math display">\[ \beta(x,y) = x, x+py. \]</span> Define a permutation <span class="math inline">\(\lambda\)</span> on <span class="math inline">\(\mathbb{Z}_{pq}\)</span> as <span class="math inline">\(\lambda(x+qy) = px+y\)</span>.</p>
+<p>Observe that</p>
+<p><span class="math display">\[ \pi \lambda \pi^{-1} \alpha = \beta. \]</span></p>
+<p>by the lemma above <span class="math inline">\(\mathop{\mathrm{sgn}}(\alpha) = (q\mid p)\)</span> and <span class="math inline">\(\mathop{\mathrm{sgn}}(\beta)  = (p\mid q)\)</span>.</p>
+<p>By counting inversions in <span class="math inline">\(\lambda\)</span> we see that <span class="math inline">\(\mathop{\mathrm{sgn}}(\lambda) = (-1)^{\binom{p}{2}\binom{q}{2}}\)</span>.</p>
+</div>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>Throughout the post I use <span class="math inline">\((q\mid p)\)</span> to denote the legendre symbol bc I’m lazy.</p>
+<p>I’ve seen quite a few proofs of QRLaw. According to wikipedia there are hundreds. I don’t know how credible that is, but here’s some ones I’ve seen:</p>
+<ul>
+<li>Geometric proof due to Einstein:
+<ul>
+<li><span class="math display">\[(q\mid p) = (-1)^{\sum_{u=1}^{(p-1)/2}\left\lfloor 2qu/p \right\rfloor}.\]</span></li>
+<li><span class="math inline">\(\sum_{u=1}^{(p-1)/2}\left\lfloor 2qu/p \right\rfloor\)</span> is counting the number of lattice points in a certain triangle. You can do some symmetry and stuff.</li>
+</ul></li>
+<li>Gauss sums: you “guess” a square root in the algebraic closure in terms of a gauss sum.
+<ul>
+<li>you then analyze when this square root is actually contained in the right field not just the algebraic closure.</li>
+</ul></li>
+<li>Zolotarev’s lemma: this post</li>
+</ul>
+<p>This proof is rather neat. I like it because we get to use permutations, which are one of my favorite objects.</p>
+<p><a href="https://planetmath.org/zolotarevslemma">my source</a></p>
+<p>First, recall an important combinatorial property of permutations: the signature of a permutation is the number of inversions – <span class="math inline">\(i,j\)</span> with <span class="math inline">\(i&lt;j, \pi_i &gt; \pi_j\)</span> – in it mod 2. Equivalently, it is the number of transpositions to make the permutation.</p>
+<div class="ex envbox">
+<p><strong>Example.</strong> A cycle of length <span class="math inline">\(k\)</span> has signature <span class="math inline">\((-1)^{k-1}\)</span>.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(\pi_m\)</span> be the map <span class="math inline">\(x\mapsto mx \mod p.\)</span> Then <span class="math inline">\((m\mid p) = \mathop{\mathrm{sgn}}(\pi_m)\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Recall that <span class="math inline">\(a^{(p-1)/2} = 1\)</span> iff QR.</p>
+<p>Notice that <span class="math inline">\(\pi_m\)</span> consists of <span class="math inline">\((p-1)/\text{ord}_p(m)\)</span> many cycles, all of length <span class="math inline">\(\text{ord}_p(m)\)</span>. So you can just compute the signature and check that it matches the legendre symbol.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> QR LAW:</p>
+<p><span class="math display">\[ (p\mid q) = (q\mid p) \cdot (-1)^{\binom{p}{2}\binom{q}{2}}. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Let <span class="math inline">\(\pi: \mathbb{Z}_{pq}\to \mathbb{Z}_p \times Z_q\)</span> be the canonical isomorphism between these rings. Namely, <span class="math inline">\(aq+bp \mapsto (a,b)\)</span>. Let <span class="math inline">\(\alpha,\beta\)</span> be permutations of <span class="math inline">\(\mathbb{Z}_p \times \mathbb{Z}_q\)</span> defined as <span class="math display">\[ \alpha(x,y) = qx+y,y \]</span> <span class="math display">\[ \beta(x,y) = x, x+py. \]</span> Define a permutation <span class="math inline">\(\lambda\)</span> on <span class="math inline">\(\mathbb{Z}_{pq}\)</span> as <span class="math inline">\(\lambda(x+qy) = px+y\)</span>.</p>
+<p>Observe that</p>
+<p><span class="math display">\[ \pi \lambda \pi^{-1} \alpha = \beta. \]</span></p>
+<p>by the lemma above <span class="math inline">\(\mathop{\mathrm{sgn}}(\alpha) = (q\mid p)\)</span> and <span class="math inline">\(\mathop{\mathrm{sgn}}(\beta)  = (p\mid q)\)</span>.</p>
+<p>By counting inversions in <span class="math inline">\(\lambda\)</span> we see that <span class="math inline">\(\mathop{\mathrm{sgn}}(\lambda) = (-1)^{\binom{p}{2}\binom{q}{2}}\)</span>.</p>
+</div>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

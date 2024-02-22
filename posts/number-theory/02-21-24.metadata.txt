@@ -1,0 +1,3 @@
+quadratic reciprocity: Zolotarev's lemma
+
+An intruiging proof of quadratic reciprocity.
