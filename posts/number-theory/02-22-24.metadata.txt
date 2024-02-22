@@ -1,0 +1,5 @@
+Analytic Number Theory - Part 1
+
+I've found a cool set of lecture notes from Harvard that talks
+about analytic number theory. In this post I give some of the
+basic ideas presented in the first couple notes.

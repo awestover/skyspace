@@ -1,0 +1,45 @@
+<h1 id="introducing-euler-product-zeta-function">introducing euler product / zeta function</h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> The Euler Product: The birth of AnalyticNT. For all <span class="math inline">\(s\in \mathbb{C}\)</span> with <span class="math inline">\(\mathrm{Re}[s]&gt;1\)</span> we have <span class="math display">\[\zeta(s) =  \sum_{n=1}^{\infty} n^{-s} = \prod_p \frac{1}{1-p^{-s}}. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Thus sum on the left converges absolutely, so you can re-arrange terms however you want.</p>
+<p>If we expand out the sum <span class="math display">\[ \prod_p \sum_{i=1}^{\infty} p^{-i} \]</span> We get a terms <span class="math inline">\(n^{-s}\)</span> for every <span class="math inline">\(n\in \mathbb{N}\)</span>.</p>
+<p>This is by the fundamental theorem of numbers: you can decompose them into prime factors.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> An interesting consequence of this Euler Product thing is that the prime counting function <span class="math inline">\(\pi\)</span> (how many primes are there up to a certain point) satisfies <span class="math inline">\(\pi(n) &gt; \Omega(n^{1-\varepsilon})\)</span> for any <span class="math inline">\(\varepsilon&gt;0\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Suppose that <span class="math inline">\(\pi(n) \le O(n^{1-\varepsilon})\)</span>. Fix <span class="math inline">\(s = 1-\varepsilon/2\)</span>.</p>
+<p>Fix some <span class="math inline">\(n_0\)</span> and let <span class="math inline">\(A\)</span> denote the set of primes between <span class="math inline">\(n_0,2n_0\)</span>. Then, <span class="math display">\[ \prod_{p\in A} \frac{1}{1-p^{-s}} \approx (1+\frac{1}{n_0^{1-\varepsilon/2}})^{n_0^{1-\varepsilon/2-\varepsilon/2}} \approx e^{n_0^{-\varepsilon/2}}. \]</span></p>
+<p>So, <span class="math display">\[ \prod_p \frac{1}{1-p^{-s}} \approx \exp\left(\sum_{n=1}^{\infty} (2^{-\varepsilon})^{n}\right) &lt;\infty.\]</span> But this is ridiculuous because <span class="math inline">\(\zeta(1-\varepsilon/2) = \infty\)</span>.</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> A sometimes useful estimate: <span class="math display">\[ \frac{1}{s-1} \le \zeta(s) \le \frac{1}{s-1}+1.\]</span></p>
+<p>Follows from basic calculus</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For any <span class="math inline">\(s\in (1,2)\)</span>, <span class="math display">\[ \left|\sum_{p} p^{-s} - \log \frac{1}{s-1}\right| \le O(1). \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> By taylor series / desmos: <span class="math display">\[ \log\zeta(s) = \sum_p -\log(1-p^{-s}) \approx \sum_p p^{-s}. \]</span></p>
+<p>From earlier (calculus): <span class="math display">\[ \log\zeta(s) \in ( \frac{1}{s-1}, \frac{1}{s-1} + 10). \]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[ \sum_p p^{-s} =  s\int_1^{\infty} \pi(y) y^{-s-1} dy. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Well, <span class="math inline">\(p^{-s} = s\int_p^{\infty}y^{-s-1}dy.\)</span> If you do <span class="math display">\[ \sum_p  \int_p^{\infty} y^{-s-1}\]</span> you indeed pick up <span class="math inline">\(\pi(y)\)</span> terms <span class="math inline">\(y^{-s-1}\)</span>.</p>
+<p>This is sometimes called the mellin transform. It’s maybe a sort of laplace transform?</p>
+</div>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> Meme: The fact that <span class="math inline">\(\zeta(2)= \pi^2/6\notin \mathbb{Q}\)</span> implies that there are infinitely many primes.</p>
+<p>In fact there are some theorems that show that <span class="math inline">\(\pi\)</span> is “very far from rational”. But these still only allow you to prove really weak things like <span class="math inline">\(\pi(n) &gt; \log\log n\)</span>.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> There are <span class="math inline">\(n^2/\zeta(2) + O(n\log n)\)</span> ordered pairs of relatively prime numbers in <span class="math inline">\([n]^2\)</span>.</p>
+</div>
+<h1 id="dirichlet-characters">dirichlet characters</h1>
+<p>Towards Dirichlet’s theorem.</p>
