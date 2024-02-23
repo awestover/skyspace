@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#part-1:-matrix-hacks-allowed" class="js-scroll-trigger">part 1: matrix hacks allowed</a> </li>
+<li> <a href="#part-2:-no-matrix-hacks-allowed" class="js-scroll-trigger">part 2: no matrix hacks allowed</a> </li>
+<li> <a href="#also-todo:" class="js-scroll-trigger">also TODO:</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><h1 id="part-1-matrix-hacks-allowed">part 1: matrix hacks allowed</h1>
+<p>Fix <span class="math inline">\(x\approx .53\)</span>. Fix <span class="math inline">\(C=22\)</span>. The value of <span class="math inline">\(C\)</span> is not particularly important, any sufficiently large constant will do. Let <span class="math inline">\(\omega(1,y,1)\)</span> denote the time it takes to multiply <span class="math inline">\(n\times n^{y}\)</span> matrices. The trivial algorithm for MM gives <span class="math inline">\(\omega(1,y,1)\le 2+y\)</span>. We have by fancy tensor stuff that <span class="math inline">\(\omega(1,.47,1)\approx 2.03\)</span>.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> We can do a <span class="math inline">\(+2\)</span> approx to paths of length at most <span class="math inline">\(C\)</span> containing a vertex of degree at least <span class="math inline">\(n^{x}\)</span> in time <span class="math inline">\(\omega(1,1-x,1)\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(D_i\)</span> be a random set of <span class="math inline">\(2^{i}\)</span> vertices. Let <span class="math inline">\(E_i\)</span> be the set of all edges where both endpoints have degree at most <span class="math inline">\(n/2^{i}.\)</span></p>
+<p>Compute a BFS in <span class="math inline">\((V, E_i)\)</span> out of each vertex in <span class="math inline">\(D_i\)</span> for all <span class="math inline">\(i\)</span> with <span class="math inline">\(n/2^{i} &gt; n^{x}\)</span>. This takes total time <span class="math inline">\(\widetilde{\mathcal{O}}(n^2)\)</span>.</p>
+<p>Then, do bounded size <span class="math inline">\((\min,+)\)</span> MM to compute</p>
+<p><span class="math display">\[ \min_{w\in \bigcup_{j&lt;(1-x)\log n} C_j} \delta(w, u) + \delta(w, v) .\]</span></p>
+</div>
+beg fact There is a <span class="math inline">\(+\beta\)</span> approx to APSP in running time <span class="math inline">\(n^{2+\frac{2}{3\beta-2}}\)</span>. [Dor, Halperin, Zwick.] end fact
+<div class="rmk envbox">
+<p><strong>Remark.</strong> This remark means that if we only care about a <span class="math inline">\(\cdot 2\)</span> approx then the super long paths are free because we can afford to do trash additive approximations on them.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a <span class="math inline">\(\cdot 2\)</span> approximation for APSP with run time <span class="math inline">\(\tilde{O}(m\sqrt{n} + n^2)\)</span>. [Baswana Kavitha, FOCS06]</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This appears to be rather cool.</p>
+<p>According to their introduction, the idea is:</p>
+<pre><code>&quot;Compute shortest paths from a large set of vertices in a sparse subgraph and from a
+small set of vertices in a dense subgraph.&quot; 
+...
+hierarchy of $k + 1$ subsets S0 ⊇ S1 ⊇ · · · ⊇ Sk of vertices of the given graph. 
+We use random sampling to construct this hierarchy. For each set Si, we define a subset of edges ESi ⊆ E suitably which captures the above idea naturally as follows. If the set Si
+is very large, the set ESi is very sparse, and vice versa.&quot;</code></pre>
+<p>More specifically for their <span class="math inline">\(\cdot 2\)</span> approx algorithm, which is the one I’m trying to understand at the moment, they initialize this structure as follows:</p>
+<ul>
+<li><p>Base <span class="math inline">\(S_0 = V\)</span></p></li>
+<li><p><span class="math inline">\(S_i\)</span> is <span class="math inline">\(S_{i-1}\)</span> downsampled at rate <span class="math inline">\(1/\sqrt{2}\)</span></p></li>
+<li><p>final <span class="math inline">\(S_k\)</span> is of size <span class="math inline">\(\sqrt{n}\)</span>. I.e., you repeat for <span class="math inline">\(\log n\)</span> levels.</p>
+<p>We continue the discussion of this theorem in the next environnment.</p></li>
+</ul>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> They work in weighted graphs the whole time. I’m not sure how important this is. They don’t do anything insane like having negative edge weights. Seems like a convenience thing. Sometimes they use weight <span class="math inline">\(0\)</span> edges, ok ig.</p>
+<ul>
+<li>Let <span class="math inline">\(\delta(v,S)\)</span> denote the distance from <span class="math inline">\(\delta\)</span> to the closest point in <span class="math inline">\(S\)</span>.</li>
+<li>Let <span class="math inline">\(p_S(v)\)</span> denote the closest vertex to <span class="math inline">\(v\)</span> in <span class="math inline">\(S\)</span>.</li>
+<li>Let <span class="math inline">\(E(v)\)</span> denote the set of edges incident to <span class="math inline">\(v\)</span>.</li>
+<li>Let <span class="math inline">\(E_S(v)= \setof{\text{edges (u,v) such that } \delta(v, u) &lt; \delta(v, S)}\)</span></li>
+<li>Let <span class="math inline">\(E_S = \bigcup_{v\in V} E_S(v)\)</span>.
+<ul>
+<li>As far as I can tell, in an <strong>unweighted graph</strong>, i.e., set all weights to <span class="math inline">\(1\)</span> (and maybe to infinity for non-edges) <span class="math inline">\(E_S\)</span> consists of edges which both (a) contain no endpoint in <span class="math inline">\(S\)</span>, and (b) at least one endpoint has zero neighbors in <span class="math inline">\(S\)</span>.</li>
+<li>note that I am probably just going to assume everything is unweighted everywhere unless there is a super compelling reason not too. I mean it’s super impressive if their algo works for weighted too. And maybe that’s exploitable. But I wanna understand the simplest possible version of the argument.</li>
+</ul></li>
+</ul>
+<p>Ok now lemma statement:</p>
+<ul>
+<li>If <span class="math inline">\(\delta(u,v)&lt; \delta(u, p_S(u))\)</span> then the subgraph <span class="math inline">\((V, E_S)\)</span> preserves the exact distance between <span class="math inline">\(u,v\)</span>.</li>
+<li>The subgraph <span class="math inline">\(V, E_S\cup E(p_S(u))\)</span> preserves the exact distance between <span class="math inline">\(u,p_S(u)\)</span>.</li>
+</ul>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The second statement is a corollary of the first.</p>
+<p>The first statement is completely obvious in graphs where all the weights are one (although it did take me an hour of staring at it to realize this sigh).</p>
+<p>Like what this is saying is “if its quicker to get from u to v than it is to get from u to S then cutting all the edges touching S can’t impact your u to v trip” And yes, <span class="math inline">\(E_S\)</span> does literally just mean cut all the edges incident to vertices in <span class="math inline">\(S\)</span> in <strong>unweighted</strong> graphs.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Suppose <span class="math inline">\(S\)</span> is formed by randomly taking vertices independently with probability <span class="math inline">\(q\)</span> each. Then <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}|E_S| = O(n/q)\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let’s just prove this for unweighted graphs. Consider <span class="math inline">\(\mathop{\mathrm{\mathbb{E}}}|E_S(v)|\)</span>. In a mildly strange move, we are going to bound this by <span class="math inline">\(O(1/q)\)</span>. I guess this makes more sense in the weighted case.</p>
+<p>In the unweighted case the bound you should get is <span class="math inline">\(O(\overline{q}^{d(v)} d(v))\)</span>. And like yeah <span class="math inline">\(1/q\)</span> upper bounds this, but it is such a strage upper bound imo.</p>
+<p><strong>TODO: can we win anything by doing this tighter?</strong></p>
+</div>
+<p>Now we describe their algorithm:</p>
+<pre><code>for i = 0, 1, ..., k-1:
+  for each u in V: 
+    compute dist(u, Si), pi(u)
+    initialize the distance estimate d[pi(u), u] to dist(u, Si)
+  for each s in Si:
+    Run Dijstra on subgraph of edges E[i+1] cup E(s)
+    and update distance estimates</code></pre>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> To finish their super fast algorithm we combine [Baswana Kavitha] for paths with all low degree vertices, [Dor, Halperin, Zwick] for really long paths, and the min+ MM thing from above.</p>
+</div>
+<h1 id="part-2-no-matrix-hacks-allowed">part 2: no matrix hacks allowed</h1>
+<p><strong>TODO</strong></p>
+<h1 id="also-todo">also TODO:</h1>
+<ul>
+<li>read about graph spanners and</li>
+<li>distance oracles</li>
+</ul>
+<p>sound important.</p>
+<p>virginia’s mm class has notes about these.</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
