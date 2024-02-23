@@ -1,0 +1,31 @@
+<p>Very often you have some norms and you want to compare them.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Let <span class="math inline">\(f:\left\{ -1,1\right\}\to \mathbb{R}\)</span>. Define the p-norm as <span class="math display">\[ ||f||_p = \left(\mathop{\mathrm{\mathbb{E}}}_x |f(x)|^{p}\right)^{1/p}. \]</span></p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> <span class="math display">\[ ||f||_1 = \mathop{\mathrm{\mathbb{E}}}_x |f(x)|, \]</span> <span class="math display">\[ ||f||_\infty = \sup_x |f(x)|. \]</span></p>
+</div>
+<p>It is easy to see that for all <span class="math inline">\(p&lt;q\)</span> we have <span class="math display">\[ ||f||_p \le ||f||_q. \]</span></p>
+<p>But what if you wanted the inequality to point the other way? It turns out that for nice enough functions you can get something kind of like this.</p>
+<p>Intuition: If <span class="math inline">\(f = \sum_i a_i x_i\)</span>, i.e., a centered degree-1 function, then <span class="math inline">\(f(x)\)</span> for random <span class="math inline">\(x\)</span> in the hypercube should by tightly concentrated around zero.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> If <span class="math inline">\(f\)</span> is degree at most <span class="math inline">\(d\)</span> then we have</p>
+<p><span class="math display">\[ ||f||_q \le \sqrt{q-1}^{d} ||f||_2.  \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Induction and Cauchy-Shwarz</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> There is another interpretation of this in terms of the noisy hypercube.</p>
+<p>Noisy hypercube is a Markov Chain. Starting from a vertex for each coordinate independently you either stay or resample the value uniformly randomly.</p>
+<p>You can think of this as a weighted graph too.</p>
+<p>Or as a linear operator that does smoothing.</p>
+<p>You can prove that the smoothed version of <span class="math inline">\(f\)</span> with this noisy thing has <span class="math display">\[ ||T_\rho f||_q \le ||f||_p \]</span> for <span class="math inline">\(1\le p\le q\le \infty\)</span> and <span class="math inline">\(0\le \rho \le \sqrt{\frac{p-1}{q-1}}\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> There is an interpretation of this in terms of small-set-expanders.</p>
+<p>I think it says that if you think about <span class="math inline">\(T_\rho\)</span> as a weighted grpah then it is a small-set-expander.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> There was some kind of fancy chernoff-like bound based on this.</p>
+</div>
