@@ -1,0 +1,33 @@
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Effron-Stein Inequailty.</p>
+<p><span class="math display">\[ \mathop{\mathrm{\text{Var}}}[F] \le \frac{1}{2} \sum_{i=1}^{n} \mathop{\mathrm{\mathbb{E}}}_{X_1,X_2,\ldots, X_n, X_i&#39;}(F(X_1,\ldots, X_i, \ldots, X_n) -F(X_1,\ldots, X_i&#39;, \ldots, X_n))^2 \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We can prove a weaker version (just drop the <span class="math inline">\(1/2\)</span>) by induction on <span class="math inline">\(n\)</span>. The formula reduces to Jensen’s Inequality if you set <span class="math inline">\(n=1\)</span>.</p>
+<p>Now, lets try to do <span class="math inline">\(n=2\)</span>. The extension from <span class="math inline">\(n\)</span> to <span class="math inline">\(n+1\)</span> should just follow the same pattern.</p>
+<p>It turns out that you can prove the inequality <strong>point-wise</strong>. I.e., fix <span class="math inline">\(Y\)</span> and condition on it. You do some algebra and apply Cauchy-Shwarz and/or Jensens and it works.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> You can use this to show that MAXCUT of a random graph concentrates. weird rmk: we don’t actually know what it concentrates around! Of course it is <span class="math inline">\(\Theta(n)\)</span> [the setting is <span class="math inline">\(G(n,d/n)\)</span> for constant <span class="math inline">\(d\)</span> ]. But the precise value is an open question.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Azuma-Hoeffding Bound</p>
+<p>Suppose you have a martingale with almost surely bounded differences, namely, <span class="math inline">\(|X_k-X_{k-1}|\le d_k\)</span>.</p>
+<p>Then we have <span class="math display">\[ \Pr[|X-\mathop{\mathrm{\mathbb{E}}}X| &gt; t] \le 2\exp( \frac{-t^2}{2\sum d_k^2}.  ) \]</span></p>
+<p>In the special case where the increment bounds <span class="math inline">\(d_k\)</span> are all the same this is</p>
+<p><span class="math display">\[ \Pr[|X-\mathop{\mathrm{\mathbb{E}}}X| &gt; t] \le 2\exp( \frac{-t^2}{2nd^2}.  ) \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>As always we do the Chernoff trick: Markov the exponential MGF. We bound the exponential MGF by some convexity argument that works using the boundedness of the increments.</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> McDiarmid’s Inequality</p>
+<p>Suppose <span class="math inline">\(F(X_1,\ldots, X_n)\)</span>, where $X_1,, $ are iid, is lipschitz: i.e., if you mess with a few coordinates you don’t mess with it v much.</p>
+<p>Then we also get a chernoff-like tail bound concentration thing.</p>
+<p>For instance, if messing with one variable can change the value by at most <span class="math inline">\(d\)</span> then we have</p>
+<p><span class="math display">\[ \Pr[|F(X_1,\ldots, X_n) - \mathop{\mathrm{\mathbb{E}}}F| &gt; t] \le 2\exp( \frac{-2t^2}{nd^2} ). \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This is actually the special case of Azuma Hoeffding applied to the Doob Martingale defined by sequentially revealing more information about the variables feeding into <span class="math inline">\(F\)</span>.</p>
+</div>

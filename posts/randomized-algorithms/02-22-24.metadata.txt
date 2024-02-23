@@ -1,0 +1,9 @@
+Concentration Inequalities
+
+Concentration inequalities are super useful. 
+I write some down that I've heard lately so that they don't leak
+out of my brain. Or rather, so that they leak more slowly and so
+that hopefully by the time I realize I'm starting to forget I
+have an easy reference. Or maybe they will be so frequently useful that
+I won't have time to forget, unclear. Anyways, writing them down
+will increase Pr I remember to use them.
