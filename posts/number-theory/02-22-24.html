@@ -44,7 +44,8 @@
 
       <div id="content"> 
         <!-- ***DECRYPT 1443849234234*** -->
-        <div id="actual-content"><h1 id="introducing-euler-product-zeta-function">introducing euler product / zeta function</h1>
+        <div id="actual-content"><p><a href="https://people.math.harvard.edu/~elkies/M229.22/index.html">Awesome Lecture notes</a></p>
+<h1 id="introducing-euler-product-zeta-function">introducing euler product / zeta function</h1>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> The Euler Product: The birth of AnalyticNT. For all <span class="math inline">\(s\in \mathbb{C}\)</span> with <span class="math inline">\(\mathrm{Re}[s]&gt;1\)</span> we have <span class="math display">\[\zeta(s) =  \sum_{n=1}^{\infty} n^{-s} = \prod_p \frac{1}{1-p^{-s}}. \]</span></p>
 </div>
@@ -85,10 +86,41 @@
 <p>In fact there are some theorems that show that <span class="math inline">\(\pi\)</span> is “very far from rational”. But these still only allow you to prove really weak things like <span class="math inline">\(\pi(n) &gt; \log\log n\)</span>.</p>
 </div>
 <div class="ex envbox">
+<p><strong>Example.</strong> Problem 7 on the first pset is to get some understanding of <span class="math inline">\(\phi(n)\)</span>. I think I should do this one before trying the next two.</p>
+</div>
+<div class="ex envbox">
+<p><strong>Example.</strong> There are <span class="math inline">\(n/\zeta(2) + O(\sqrt{n})\)</span> squarefree numbers in <span class="math inline">\([n]\)</span>.</p>
+<p>Hmm, so I kinda get that approximately the pr of a number being square free is kinda like</p>
+<p><span class="math display">\[ \prod_p \left(1-\frac{1}{p^2}\right) = \frac{1}{\zeta(2)}. \]</span> But I really am not yet sure how to reason about the error terms.</p>
+</div>
+<div class="ex envbox">
 <p><strong>Example.</strong> There are <span class="math inline">\(n^2/\zeta(2) + O(n\log n)\)</span> ordered pairs of relatively prime numbers in <span class="math inline">\([n]^2\)</span>.</p>
 </div>
 <h1 id="dirichlet-characters">dirichlet characters</h1>
 <p>Towards Dirichlet’s theorem.</p>
+<p>Define <span class="math inline">\(\chi_4(x)\)</span> as <span class="math inline">\(+1\)</span> if <span class="math inline">\(x\equiv 1\mod 4\)</span>, <span class="math inline">\(-1\)</span> if <span class="math inline">\(x\equiv -1 \mod 4\)</span> and <span class="math inline">\(0\)</span> else.</p>
+<p>Then we define an <span class="math inline">\(L\)</span>-series. <span class="math display">\[ L(s, \chi_4) = \sum_{n=1}^{\infty} \chi_4(n) n^{-s}. \]</span></p>
+<p>We get another product formula.</p>
+<p>Let <span class="math inline">\(\pi(x) = \sum_{p\le x}\chi_4(p)\)</span>.</p>
+<p>We can show: For all <span class="math inline">\(s\in (1,2)\)</span>, <span class="math display">\[ s\int_1^{\infty} \pi(y, \chi_4) y^{-1-s}dy = O(1) \]</span></p>
+<p>This allows us to conclude that there are infinitely many primes congruent to both <span class="math inline">\(1 \mod 4\)</span> and <span class="math inline">\(-1 \mod 4\)</span>. It also shows the “logarithmic density” of <span class="math inline">\(1\mod 4\)</span> primes is <span class="math inline">\(1/2\)</span>. Logarithmic density is somehthing which is apparently not necessarily equivalent to actual density. not writing it down.</p>
+<div class="defn envbox">
+<p><strong>Definition.</strong> Fix positive integer <span class="math inline">\(q\)</span>. <strong>Dirichlet character</strong> modulo <span class="math inline">\(q\)</span> is a function <span class="math inline">\(\chi:\mathbb{Z}\to \mathbb{C}\)</span> that is</p>
+<ul>
+<li><span class="math inline">\(q\)</span>-periodic: <span class="math inline">\(n\equiv n&#39; \mod q \implies \chi(n)=\chi(n&#39;)\)</span></li>
+<li>For <span class="math inline">\(n\in \mathbb{Z}\)</span>, <span class="math inline">\(\chi(n)= 0 \iff n\not\perp q\)</span>.</li>
+<li>multiplicative: <span class="math inline">\(\chi(mn)=\chi(m)\chi(n)\)</span> for all integers <span class="math inline">\(m,n\)</span></li>
+</ul>
+<p>Associated Dirichlet <span class="math inline">\(L\)</span>-series: For <span class="math inline">\(s&gt;1\)</span> <span class="math display">\[ L(s, \chi) = \sum_{n=1}^{\infty} \chi(n)n^{-s} = \prod_p \frac{1}{1-\chi(p)p^{-s}}. \]</span></p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> The characters mod <span class="math inline">\(q\)</span> form a group under pointwise multiplication with identity the trivial character <span class="math inline">\(\chi_0\)</span> and <span class="math inline">\(\chi^{-1}= \overline{\chi}.\)</span></p>
+<p>This group is the <strong>Pontrjagin dual</strong> of <span class="math inline">\((\mathbb{Z}/q\mathbb{Z})^{*}\)</span>. It is homomorphisms to the unit circle extended by zero lifted to Z. Apparently this means it is a discrete fourier transform or something.</p>
+</div>
+<div class="defn envbox">
+<p><strong>Definition.</strong> For a finite abelian group its Pontrjagin dual is homomorhpisms to unit circle in <span class="math inline">\(\mathbb{C}\)</span>.</p>
+</div>
+<p>at this point it got a bit facny and we actually proved dirichlet’s theorem afaict. probably a story for a different day though.</p>
 </div>
       </div>
     </div>
