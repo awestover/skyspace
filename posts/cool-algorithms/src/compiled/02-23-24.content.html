@@ -71,10 +71,18 @@ is very large, the set ESi is very sparse, and vice versa.&quot;</code></pre>
 <pre><code>for i = 0, 1, ..., k-1:
   for each u in V: 
     compute dist(u, Si), pi(u)
-    initialize the distance estimate d[pi(u), u] to dist(u, Si)
+    set the distance estimate d[pi(u), u] to dist(u, Si)
   for each s in Si:
     Run Dijstra on subgraph of edges E[i+1] cup E(s)
     and update distance estimates</code></pre>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> This algorithm has running time</p>
+<p><span class="math display">\[ O(\min(mn^{1-\alpha}, n^{2+\frac{\beta-\alpha}{k}})). \]</span></p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Some clever modified Dijkstra’s algorithm for computing balls.</p>
+</div>
+<p><strong>XXX</strong> finish</p>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> To finish their super fast algorithm we combine [Baswana Kavitha] for paths with all low degree vertices, [Dor, Halperin, Zwick] for really long paths, and the min+ MM thing from above.</p>
 </div>
