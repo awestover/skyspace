@@ -1,0 +1,80 @@
+<div class="rmk envbox">
+<p><strong>Remark.</strong> In this blog post <span class="math inline">\(O\)</span> generally means “ignoring both constants and logarithmic factors”. I’m not saying log-shaving isn’t interesting here. It could be. Just not atm.</p>
+</div>
+<h1 id="some-apsp-stuff">some APSP stuff</h1>
+<p>weird idea:</p>
+<ul>
+<li>if two vertices have a <em>really long</em> shortest path between them, them you can take a hitting set of size large enough that it’ll hit a vertex on the path :O. Now that’s crazy.</li>
+<li>if two vertices have a fairly short longest path between them then you can catch it with MM.</li>
+</ul>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> You can do APSP in directed unweighted graphs in <span class="math inline">\(n^{(\omega+3)/2}\)</span> time.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Throughout proof <span class="math inline">\(c=2.37\)</span> denotes the current best value of <span class="math inline">\(\omega\)</span>. Set <span class="math inline">\(k=n^{(3-c)/2}\approx n^{.35}\)</span>. Find short long paths in time <span class="math inline">\(kn^{c} \approx n^{2.7}\)</span> just via successive MM. Do hitting sets for paths of length longer than <span class="math inline">\(k\)</span> which costs <span class="math inline">\(n^{3}/k \approx n^{2.7}\)</span>.</p>
+<p>Overall cost is <span class="math inline">\(n^{(3+c)/2}\)</span>.</p>
+</div>
+<p>This might seem supa slow. But it’s impressive that it handles directed graphs: directed graphs are pretty hard.</p>
+<h1 id="seidels-algorithm">Seidel’s Algorithm</h1>
+<p>Now we focus on undirected graphs, and give an <span class="math inline">\(O(n^{\omega}\log n)\)</span> algorithm.</p>
+<p>interesting observation: Suppose that <span class="math inline">\(u\)</span> is a neighbor of <span class="math inline">\(v\)</span>. Then for any other vertex <span class="math inline">\(w\)</span> we have <span class="math inline">\(d(w, v) \in d(w, u)+[-1,1]\)</span>. In particular <span class="math inline">\(d(w,v)\equiv d(w,u)\mod 2\implies d(w,v)=d(w,u)\)</span>.</p>
+<p>I think this is important in Seidel’s <span class="math inline">\(O(n^{\omega}\log n)\)</span>-time APSP alg. Like I think his alg is you repeatedly square the adjacency matrix and then some how compute parity of path lengths using some corollaries of the above observation and MM.</p>
+<h1 id="additive-graph-spanners">additive graph spanners</h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> +2 spanner with <span class="math inline">\(n^{3/2}\)</span> edges.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> So a graph spanner is a (hopefully) sparse subgraph that approximately preserves distance information.</p>
+<p>This one is exactly what you would expect: keep edges incident to vertices of degree smaller than <span class="math inline">\(\sqrt{n}\)</span>, and take all edges out of a random hitting set of size <span class="math inline">\(\sqrt{n}\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Let <span class="math inline">\(P\)</span> be a shortest path. Then any vertex has at most <span class="math inline">\(3\)</span> neighbors on <span class="math inline">\(P\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> If shortest path <span class="math inline">\(P\)</span> has at least <span class="math inline">\(L\)</span> nodes of degree at least <span class="math inline">\(D\)</span> then there are <span class="math inline">\(\Omega(LD)\)</span> distinct neighbors of the path <span class="math inline">\(P\)</span>.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Very interesting: [due to Abboud]</p>
+<p>There exist graphs that don’t admit <span class="math inline">\(n^{4/3-\varepsilon}\)</span> edge spanners with additive error <span class="math inline">\(+\mathcal{O}(1)\)</span>.</p>
+<p>In fact, there are graphs such that any <span class="math inline">\(n^{4/3-\varepsilon}\)</span> edge subgraph has additive error at least <span class="math inline">\(n^{\delta}\)</span>.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a <span class="math inline">\(+4\)</span> spanner with <span class="math inline">\(O(n^{7/5})\)</span> edges.</p>
+<p><strong>TODO</strong>: It is open whether you can do <span class="math inline">\(n^{4/3}\)</span> here.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We have two parameters: <span class="math inline">\(L, D\)</span>. <span class="math inline">\(D\)</span> is a degree threshold: higher than D degree is high degree, lower than <span class="math inline">\(D\)</span> is low degree. L is a number of high degree vertices on a path before we consider that path <strong>fancy</strong>.</p>
+<p>Our spanner is as follows: (rmk this is existential not an algo)</p>
+<p>Let <span class="math inline">\(S\)</span> be of size <span class="math inline">\(n/D\)</span> be a hitting set for high degree vertices. Let <span class="math inline">\(T\)</span> be of size <span class="math inline">\(n/(DL)\)</span> be a hitting set for fancy paths. (i.e., every fancy path has a neighbor in <span class="math inline">\(T\)</span>). For high degree vertex <span class="math inline">\(x\)</span> let <span class="math inline">\(r(x)\)</span> be the representative of <span class="math inline">\(x\)</span> in <span class="math inline">\(S\)</span>. i.e., an arbitrarily chosen neighbor of <span class="math inline">\(x\)</span> in <span class="math inline">\(S\)</span>.</p>
+<ul>
+<li>Take all edges incident to low degreee vertices. Cost <span class="math inline">\(nD\)</span></li>
+<li>Take full BFS trees out of all vertices in <span class="math inline">\(T\)</span>. Cost <span class="math inline">\(n^2/(DL)\)</span>.</li>
+<li>Take <span class="math inline">\((x, r(x))\)</span> edges for each high degree <span class="math inline">\(x\)</span>.</li>
+<li>For each pair of distinct vertices <span class="math inline">\(s,s&#39;\)</span> in <span class="math inline">\(S\)</span>, let <span class="math inline">\(P_{s,s&#39;}\)</span> be the set of all non-fancy shortest paths between a neighbor of <span class="math inline">\(s\)</span> and a neighbor of <span class="math inline">\(s&#39;\)</span>.
+<ul>
+<li>Let <span class="math inline">\(p^{*}\)</span> denote the shortest path in <span class="math inline">\(P_{s, s&#39;}\)</span>. Add edges from the endpoints of <span class="math inline">\(p^{*}\)</span> to <span class="math inline">\(s,s&#39;\)</span> based on where the endpoints of <span class="math inline">\(p^{*}\)</span> came from.</li>
+<li>Now take all the edges in path <span class="math inline">\(p^{*}\)</span>. I guess you don’t need to take edges that we’ve already taken, in particular, let’s not re-take edges touching low degree vertices.</li>
+<li>With this convention the total number of edges taking to do this <span class="math inline">\(s,s&#39;\)</span> link is <span class="math inline">\(O(L)\)</span>.</li>
+<li>Thus overall this step takes <span class="math inline">\(O((n/D)^2 L)\)</span> edges.</li>
+</ul></li>
+</ul>
+<p>Set <span class="math inline">\(L=n^{1/5}, D = n^{2/5}.\)</span> Then this is the desired sparsity.</p>
+<p><strong>claim</strong> this is a <span class="math inline">\(+4\)</span> spanner. proof:</p>
+<p>It’s pretty clear that this can take care of fancy paths and take care of paths with no high degree vertices. Remaining case is paths with non-zero, but also non-alot many high degree vertices. This is explained in the following picture.</p>
+<figure>
+<img src="src/images/ink_img003.png" alt="" /><figcaption>ink_img003</figcaption>
+</figure>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a <span class="math inline">\(+6\)</span> spanner with <span class="math inline">\(O(n^{4/3})\)</span> edges. Clearly by the remark above you can’t hope to do any sparser than this.</p>
+</div>
+<blockquote>
+<p><strong>TODO:</strong> read this it seems cool</p>
+</blockquote>
+<h1 id="multiplicative-graph-spanners">multiplicative graph spanners</h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Every <span class="math inline">\(n\)</span> vertex graph contains a <span class="math inline">\((2k-1)\)</span>-spanner (multiplicative approx to distances) with <span class="math inline">\(O(n^{1+1/k})\)</span> edges. This is tight assuming Erdos girth conjecture.</p>
+</div>
+<blockquote>
+<p><strong>TODO:</strong> read this it seems cool</p>
+</blockquote>

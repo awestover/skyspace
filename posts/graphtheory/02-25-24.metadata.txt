@@ -1,0 +1,5 @@
+random APSP ideas from graphalg lecture notes
+images/ink_img003.png
+I reread a few lecture notes from virginia's graph algo class
+specifically focussing on ones that seemed vaguely related to
+APSP.
