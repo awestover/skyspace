@@ -45,3 +45,67 @@ now we have:
 <p>We use another interesting formula, <span class="math inline">\((a,b)=(a,-ab)\)</span> to reduce this to case 2.</p>
 <p>And the bilinearity thing follows from the fact that the legendre symbols and other stuff in our formula is bilinear.</p>
 </div>
+<h1 id="section-2">section 2</h1>
+<p>We use <span class="math inline">\(\mathbb{Q}_\infty\)</span> to denote <span class="math inline">\(\mathbb{R}\)</span>. We count <span class="math inline">\(\infty\)</span> as a prime number. Let <span class="math inline">\((a,b)_p\)</span> be the hilbert symbol in <span class="math inline">\(\mathbb{Q}_p\)</span>.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\((a,b)_p = 1\)</span> for all but finitely many <span class="math inline">\(p\)</span> and also <span class="math display">\[ \prod_p (a,b)_p =1\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>Suffices to consider case that <span class="math inline">\(a,b\)</span> are <span class="math inline">\(-1\)</span> or primes. Due to bilinearity.</p>
+<ul>
+<li><p>Case 1: <span class="math inline">\(a=-1,b=-1\)</span>. I.e., <span class="math inline">\(x^2+y^2+z^2=0.\)</span></p></li>
+<li><p>We have <span class="math inline">\((-1,-1)_\infty = (-1,-1)_2 = -1\)</span> (clear in <span class="math inline">\(\mathbb{R}\)</span>, look at it <span class="math inline">\(\mod 4\)</span> to deduce the thing about <span class="math inline">\(\mathbb{Q}_2\)</span>).</p></li>
+<li><p>and, <span class="math inline">\((-1,-1)_p = 1\)</span> for <span class="math inline">\(p\neq 2\)</span>. This is because the quadratic form <span class="math inline">\(x^2+y^2+z^2\)</span> has a non-trivial solution modulo p by that one lemma that we really like, and then that solution lifts to a p-adic solution because you can’t have all the partial derivatives be zero at the solution: the derivative is just <span class="math inline">\(2(x+y+z)\)</span>.</p></li>
+<li><p>Case 2: <span class="math inline">\(a=-1, b=2\)</span></p></li>
+<li><p>that is, <span class="math inline">\(x^2+y^2-2z^2 =0\)</span></p></li>
+</ul>
+<p>Then <span class="math inline">\((-1,2)_2 = 1\)</span>. You can see this by one of the op quadratic form lemmas. For instance <span class="math inline">\((1,1,1)\)</span> is a solution modulo <span class="math inline">\(8\)</span>, and the matrix defining the quadratic form has non-zero determinant modulo <span class="math inline">\(4\)</span>.</p>
+<p>And clearly <span class="math inline">\((-1,2)_p = 1\)</span>: op quadratic form stuff.</p>
+<ul>
+<li><p>Case 3: <span class="math inline">\(a=-1, b=p\neq 2\)</span>.</p></li>
+<li><p>Case 4:</p></li>
+<li><p>this is basically just quadratic reciprocity</p></li>
+</ul>
+</div>
+<h1 id="existence-of-rationals-with-given-hilbert-symbols">Existence of rationals with given hilbert symbols</h1>
+<p>Now the section I present for the class!</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(a_i\)</span> be a <em>finite</em> fam of elts in <span class="math inline">\(\mathbb{Q}^{*}\)</span> and let <span class="math inline">\(\varepsilon_{i,p}\)</span> be a fam of signs <span class="math inline">\(\pm 1\)</span>.</p>
+<p>Suppose that there was <span class="math inline">\(x\in \mathbb{Q}^{*}\)</span> such that <span class="math display">\[ (a_i, x)_v = \varepsilon_{i,v} \]</span> for all <span class="math inline">\(i,v\)</span>.</p>
+<p>By the theorem above, we know that in order for this to possibly happen we need the following conditions:</p>
+<ol type="1">
+<li>Almost all <span class="math inline">\(\varepsilon_{i,v}\)</span> are <span class="math inline">\(1\)</span>.</li>
+<li>For all <span class="math inline">\(i\)</span> we have <span class="math inline">\(\prod \varepsilon_{i,v} = 1\)</span>.</li>
+<li>For all <span class="math inline">\(v\in V\)</span> there exists <span class="math inline">\(x_v\in \mathbb{Q}_v^{*}\)</span> such that <span class="math inline">\((a_i, x_v)_v = \varepsilon_{i,v}\)</span> for all <span class="math inline">\(i\)</span>.</li>
+</ol>
+<p>It turns out these are sufficient as well.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> The reason it’s interesting to have <span class="math inline">\(I\)</span> is that we are finding a single <span class="math inline">\(x\)</span> that works for all of them.</p>
+</div>
+<p>We need some lemmas.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Chinese remainder theorem:</p>
+<p>Let <span class="math inline">\(m_1,\ldots, m_n\)</span> be rel prime. Then for any set of <span class="math inline">\(a_i\)</span>’s there is a solution to the simultaneous set of equations <span class="math display">\[ a\equiv a_i \mod m_i. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math inline">\(\left\{ m_1z\bmod m_2\; : \;z\in \mathbb{Z} \right\} = \mathbb{Z}/m_2\mathbb{Z}.\)</span> Then do induction.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Approximation theorem</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(S\)</span> be a finite subset of <span class="math inline">\(V=\text{primes}\cup \infty\)</span>. The image of <span class="math inline">\(\mathbb{Q}\)</span> in <span class="math inline">\(\prod_{v\in S} \mathbb{Q}_v\)</span> is dense in the product topology.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Dirichlet’s Theorem. Let <span class="math inline">\(a\perp m\)</span>. Then there are infinitely many primes in the AP <span class="math inline">\(a+m\mathbb{Z}\)</span>.</p>
+</div>
+Finally, proof of the theorem
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p><strong>TODO</strong>: this is a problem for tomorrow</p>
+</div>
