@@ -99,13 +99,28 @@ now we have:
 <p><strong>Proof.</strong> Let <span class="math inline">\(S\)</span> be a finite subset of <span class="math inline">\(V=\text{primes}\cup \infty\)</span>. The image of <span class="math inline">\(\mathbb{Q}\)</span> in <span class="math inline">\(\prod_{v\in S} \mathbb{Q}_v\)</span> is dense in the product topology.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong></p>
+<p><strong>Proof.</strong> Assume wlog that <span class="math inline">\(\infty\in S\)</span>. Fix <span class="math inline">\(\varepsilon&gt;0\)</span> and <span class="math inline">\(x_\infty, x_1,x_2,\ldots, x_n \in \prod \mathbb{Q}_v\)</span>. Our goal is to find <span class="math inline">\(x\in \mathbb{Q}\)</span> such that <span class="math inline">\(|x-x_v|_v &lt; \varepsilon\)</span> for each <span class="math inline">\(v\in S\)</span>.</p>
+<p>It’s nicer to work with <span class="math inline">\(x_1,\ldots, x_n\)</span> being <span class="math inline">\(p\)</span>-adic integers. We can accomplish this by scaling them by a large number integer. This isn’t gonna make it harder to get a <span class="math inline">\(\mathbb{Q}\)</span>-approximation to them. Fix <span class="math inline">\(k\in \mathbb{N}\)</span> such that <span class="math inline">\(2^{-k}&lt;\varepsilon\)</span>. Now, we can solve by CRT the simultaneous equations <span class="math inline">\(z \equiv x_i \mod p_i^{k}\)</span>. Let <span class="math inline">\(z_0\)</span> be the solution. This is a good approx to the p-adic dudes but a lousy approx to the real dude.</p>
+<p>Let <span class="math inline">\(q\perp p_i\)</span> for all <span class="math inline">\(i\)</span>. Then we take <span class="math inline">\(x = z_0+\frac{a}{q^m}p_1^{k}\cdots p_n^{k}\)</span> where <span class="math inline">\(m\)</span> is large enough that <span class="math inline">\(\frac{1}{q^{m}}&lt;\varepsilon\)</span>. This is still a great p-adic approx to all the dudes. But now it is also a good real approx to the dudes, for appropriate choice of <span class="math inline">\(a\)</span>.</p>
 </div>
 <div class="lem envbox">
 <p><strong>Lemma.</strong> Dirichlet’s Theorem. Let <span class="math inline">\(a\perp m\)</span>. Then there are infinitely many primes in the AP <span class="math inline">\(a+m\mathbb{Z}\)</span>.</p>
 </div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Dirichlet characters :O</p>
+</div>
 Finally, proof of the theorem
 <div class="pf envbox">
-<p><strong>Proof.</strong></p>
-<p><strong>TODO</strong>: this is a problem for tomorrow</p>
+<p><strong>Proof.</strong> We start by multiplying the <span class="math inline">\(a_i\)</span>’s by the square of integers to make the <span class="math inline">\(a_i\)</span>’s into integers. This is wlog because square of integer doesn’t impact hilbert symbol.</p>
+<p>Let <span class="math inline">\(S\)</span> be $2,, $ and the prime factors of the <span class="math inline">\(a_i\)</span>’s. Let <span class="math inline">\(T\)</span> be the set of <span class="math inline">\(v\in V\)</span> such that for some <span class="math inline">\(i\)</span> we have <span class="math inline">\(\varepsilon_{i,v} = -1.\)</span> Note that these sets are finite by assumption.</p>
+<p><strong>Case 1:</strong> <span class="math inline">\(S \cap T = \varnothing\)</span>.</p>
+<p>Define <span class="math inline">\(a = \prod_{t\in T \setminus \infty} t\)</span>. Define <span class="math inline">\(m = 8 \prod_{s\in S\setminus \left\{ 2,\infty\right\}} s.\)</span></p>
+<p>We have <span class="math inline">\(a\perp m\)</span>.</p>
+<p>Let <span class="math inline">\(p\)</span> be a prime not contained in <span class="math inline">\(S\cup T\)</span>; exists by Dirichlet’s theorem.</p>
+<p>Claim: <span class="math inline">\(x=ap\)</span> has the desired property! We do some QRrocity and use the product formula for the Hilbert Symbol.</p>
+<ul>
+<li>Take <span class="math inline">\(v\in S\)</span>. We must check <span class="math inline">\((a_i, x)_v = 1\)</span>.</li>
+<li>First, <span class="math inline">\((a_i, x)_\infty = 1\)</span>: can take square-roots because <span class="math inline">\(x&gt;0\)</span>.</li>
+</ul>
+<p><strong>TODO</strong></p>
 </div>
