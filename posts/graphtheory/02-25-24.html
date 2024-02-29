@@ -34,7 +34,8 @@
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
             <div id="toc">
-            <li> <a href="#lower-bound" class="js-scroll-trigger">lower bound</a> </li>
+            <li> <a href="#new:-summarizing-dor-halperin-zwicks-additive-+k-approx-in-n^{2+1/k}-time" class="js-scroll-trigger">new: summarizing Dor, Halperin, Zwick's additive $+k$ approx in $n^{2+1/k}$ time.</a> </li>
+<li> <a href="#lower-bound" class="js-scroll-trigger">lower bound</a> </li>
 <li> <a href="#some-apsp-stuff" class="js-scroll-trigger">some APSP stuff</a> </li>
 <li> <a href="#seidels-algorithm" class="js-scroll-trigger">Seidel's Algorithm</a> </li>
 <li> <a href="#additive-graph-spanners" class="js-scroll-trigger">additive graph spanners</a> </li>
@@ -50,6 +51,12 @@
         <div id="actual-content"><div class="rmk envbox">
 <p><strong>Remark.</strong> In this blog post <span class="math inline">\(O\)</span> generally means “ignoring both constants and logarithmic factors”. I’m not saying log-shaving isn’t interesting here. It could be. Just not atm.</p>
 </div>
+<h1 id="new-summarizing-dor-halperin-zwicks-additive-k-approx-in-n21k-time.">new: summarizing Dor, Halperin, Zwick’s additive <span class="math inline">\(+k\)</span> approx in <span class="math inline">\(n^{2+1/k}\)</span> time.</h1>
+<p>I have been known for introducing lots of notation. It’s a bad habbit that I’m trying to cut back on (with the exception of using <span class="math inline">\(\perp\)</span> to denote <span class="math inline">\(\gcd\)</span> which is the one exception I will allow myself). This paper by Dor Halperin Zwick is <strong>so clear and beautifully written</strong>. The only thing I can say about it is including this screenshot. And maybe writing the analysis that they omitted of why this algo works. (The analysis is in a later paper, “Cohen, Zwick, All pairs small stretch paths”. I might also dig up that paper.)</p>
+<figure>
+<img src="src/images/dorHalprinZwick.png" title="pseudocode" alt="" /><figcaption>pseudocode</figcaption>
+</figure>
+<p>One really interesting thing is that they claim that this algorithm is a <span class="math inline">\(\cdot 3\)</span> approx, not just a <span class="math inline">\(+k\)</span> approx. That is pretty overpowered.</p>
 <h1 id="lower-bound">lower bound</h1>
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Suppose you were really clever and thought you found a really fast <span class="math inline">\(\cdot 1.9\)</span> approximation algorithm for APASP, where fast means faster then matrix multiplication. Then actually that’s impossible.</p>
