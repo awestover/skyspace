@@ -1,0 +1,8 @@
+circle method and selberg sieve
+
+Two of the things that sound the coolest in Analytic Number
+theory are the circle method and sieves, e.g., selberg sieve and
+large sieve.
+
+I'm slowly learning about these. 
+Here are some preliminary things I've learned.

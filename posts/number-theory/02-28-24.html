@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#sieve-" class="js-scroll-trigger">sieve </a> </li>
+<li> <a href="#circle-method" class="js-scroll-trigger">circle method</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>Disclaimer: everything in this post will likely be toy examples.</p>
+<h1 id="sieve">sieve</h1>
+<p>(references: Elkies 259 notes, Maynard IAS talk)</p>
+<p>Suppose you want to determine the number of primes in <span class="math inline">\([n,2n]\)</span>. You could write down an “inclusion-exclusion” formula.</p>
+<p><span class="math display">\[n - \text{num multiples of 2} - \text{num multiples of 3} +
+\text{multiples of 6} + \cdots\]</span></p>
+<p>But it doesn’t really work. Everything is wrong. The error term completely eats everything.</p>
+<p>But say you were interested in a different quantity. How many numbers between <span class="math inline">\([n,2n]\)</span> have all their prime factors larger than <span class="math inline">\(z\)</span>?</p>
+<p>Then we have a nice truncated inclusion exclusion. If <span class="math inline">\(z&lt;\log n\)</span> say, then the error term isn’t swamped.</p>
+<p>Let <span class="math inline">\(D\subset [n,2n]\)</span> be the set of numbers that have all of their prime divisors smaller than <span class="math inline">\(z\)</span>. Let <span class="math inline">\(\mu(d)\)</span> be <span class="math inline">\(-1^{\text{number of divisors of d}}\)</span> if <span class="math inline">\(d\)</span> is square-free and <span class="math inline">\(0\)</span> otherwise. We get <span class="math display">\[ \sum_{d\in D} \mu(d) (\frac{n}{d} +O(1)) \le n \prod_{p\le z} (1- \frac{1}{p}) + O(2^{\pi(z)}) = \frac{nc}{\log z}+O(2^{\pi(z)}).\]</span></p>
+<p>I think in Elkies lecture notes he uses the Selberg sieve to prove something like a mildly quantitative version of dirichlet’s theorem?</p>
+<p>can’t state it here yet, it’s rather technical.</p>
+<h1 id="circle-method">circle method</h1>
+<p>https://terrytao.wordpress.com/2012/05/20/heuristic-limitations-of-the-circle-method/ https://en.wikipedia.org/wiki/Hardy%E2%80%93Ramanujan%E2%80%93Littlewood_circle_method</p>
+<p>In fact, I think the resource I’m eventually going to use to learn more about this is “Additive Number Theory: The Classical Bases” By Nathanson. It looks to be approachably written. It also talks about sieve theory. So yeah, a book worth checking out for sure. Apostol’s “Intro to Analytic Number Theory” also seems like a resource worth reading. As do the Elkies lecture notes of course.</p>
+<p>Suppose we have some (usually infinite) set <span class="math inline">\(A\)</span> and we want to count the number of solutions to the equation <span class="math inline">\(n = a_1+a_2+a_3\)</span> with <span class="math inline">\(a_1,a_2,a_3\in A\)</span>. Let <span class="math inline">\(r_3(n)\)</span> denote the number of such solutions.</p>
+<p>Lots of problems can be described like this.</p>
+<ul>
+<li>Goldbach’s conjecture: all even numbers larger than 2 can be written as the sum of two primes</li>
+<li>Harding Warring problem: express numbers as sum of a bounded number of powers</li>
+</ul>
+<p>Let <span class="math display">\[f(z) = \sum_{n\ge 0} \mathbbm{1}_A(n) z^{n}.\]</span> Observe that <span class="math display">\[ f(z)^{3} = \sum_{n\ge 0} r_3(n) z^{n}.\]</span></p>
+<p>So, the question becomes, is there a nice way to extract the coefficient we want from this sum? The answer is, maybe if you’re lucky.</p>
+<p>Consider <span class="math display">\[ \frac{f(z)^{3}}{z^{n+1}}. \]</span> The coefficient of the <span class="math inline">\(1/z\)</span> term in this is precisely the thing we want: <span class="math inline">\(r_3(n)\)</span>.</p>
+<p>So I guess we have <span class="math display">\[ r_3(n) = \oint_\gamma \frac{f(z)^{3}}{z^{n+1}} .\]</span></p>
+<p>Here’s a funny example from the “mathgeeks” youtube channel which I recently ran across (which has some videos half in chinese! which I’ve enjoyed)</p>
+<p>Let <span class="math inline">\(A = \mathbb{N}\)</span>. So <span class="math inline">\(r_3(n)\)</span> is the number of ways to have three numbers that sum to <span class="math inline">\(n\)</span>. Of course this is trivial to compute: <span class="math inline">\(\binom{n+2}{2}\)</span> I believe. But here’s how you can do it with analytic number theory:</p>
+<p><span class="math display">\[ f(z) = \sum_{n\ge 0}z^{n} =  \frac{1}{1-z}.\]</span> So we need to compute <span class="math display">\[ \oint_\gamma \frac{1}{(1-z)^{3}} \frac{1}{z^{n+1}} \]</span> You do a Laurent expansion for <span class="math inline">\(\frac{1}{(1-z)^{3}}\)</span> around <span class="math inline">\(0\)</span> and then you use cauchy integral formula or whatever. I think we have by the negative binomial formula <span class="math display">\[ (1-z)^{-3} = \sum_{k\ge 0} \binom{-3}{k} (-z)^{k} \]</span></p>
+<p>Recall negative binomial coefficient is defined as <span class="math display">\[ \binom{-5}{3} = \frac{(-5)(-4)(-3)}{3!}. \]</span></p>
+<p>Anyways we do the integral thing and it turns out to extract the correct coefficient.</p>
+<p>So usually when you do the circle method you aren’t going to actually exactly compute the integral in question. You’ll approximate it.</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
