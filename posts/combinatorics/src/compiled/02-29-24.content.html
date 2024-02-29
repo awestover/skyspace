@@ -1,0 +1,13 @@
+<p>brevity is <del>the soul of wit</del> fast ig</p>
+<h1 id="fkg">FKG</h1>
+<p>FKG says if <span class="math inline">\(F,G\)</span> are <strong>increasing</strong> functions of independent random variables <span class="math inline">\(X_1,\ldots, X_n\)</span> then we have</p>
+<p><span class="math display">\[ \mathop{\mathrm{\mathbb{E}}}[FG] \ge \mathop{\mathrm{\mathbb{E}}}[F]\mathop{\mathrm{\mathbb{E}}}[G]. \]</span></p>
+<p>For instance, suppose that <span class="math inline">\(X_1,\ldots, X_n\)</span> are whether edges exist in erdos renyi graph. And <span class="math inline">\(F\)</span> was the indicator of “existence of a 4-clique” and <span class="math inline">\(G\)</span> was the indicator of “graph is connected”. Then the inequality reads</p>
+<p>“Probability of being connected and containing a 4-clique is larger than if you pretended like these were independent events.”</p>
+<p>Or if <span class="math inline">\(F\)</span> was “number of triangles in graph” then you have “expected number of triangles conditional on having a 4-clique is larger than expected number of triangles with no conditioning.”</p>
+<p>This makes a lot of sense: positively correlated things should help each other out.</p>
+<h1 id="janson">janson</h1>
+<p><a href="https://ocw.mit.edu/courses/18-226-probabilistic-method-in-combinatorics-fall-2020/mit18_226f20_lec15-16.pdf">yufei’s notes</a></p>
+<p>Let <span class="math inline">\(R\)</span> be a random subset of <span class="math inline">\([n]\)</span> generated somehow. Let <span class="math inline">\(A_i\)</span> be the event that <span class="math inline">\(S_i\subseteq R\)</span>. Let <span class="math inline">\(X = \sum_i \mathbb{1}_{A_i}\)</span>. Define <span class="math display">\[ \Delta = \sum_{A\neq B, A\not\perp B} \mathop{\mathrm{\mathbb{E}}}[I_A I_B] \]</span></p>
+<p>Then you get a tail bound <span class="math display">\[ \Pr[X\le \mathop{\mathrm{\mathbb{E}}}X - t]\le \exp(\frac{-t^2}{2(\mu+\Delta)}). \]</span></p>
+<p>prototypical example: analyze number of triangles in graph.</p>
