@@ -1,4 +1,4 @@
-<p>Disclaimer: everything in this post will likely be toy examples.</p>
+<p>Disclaimer: everything in this post will be toy examples.</p>
 <h1 id="sieve">sieve</h1>
 <p>(references: Elkies 259 notes, Maynard IAS talk)</p>
 <p>Suppose you want to determine the number of primes in <span class="math inline">\([n,2n]\)</span>. You could write down an “inclusion-exclusion” formula.</p>
@@ -19,7 +19,7 @@
 <li>Goldbach’s conjecture: all even numbers larger than 2 can be written as the sum of two primes</li>
 <li>Harding Warring problem: express numbers as sum of a bounded number of powers</li>
 </ul>
-<p>Let <span class="math display">\[f(z) = \sum_{n\ge 0} \mathbbm{1}_A(n) z^{n}.\]</span> Observe that <span class="math display">\[ f(z)^{3} = \sum_{n\ge 0} r_3(n) z^{n}.\]</span></p>
+<p>Let <span class="math display">\[f(z) = \sum_{n\ge 0} \mathbb{1}_A(n) z^{n}.\]</span> Observe that <span class="math display">\[ f(z)^{3} = \sum_{n\ge 0} r_3(n) z^{n}.\]</span></p>
 <p>So, the question becomes, is there a nice way to extract the coefficient we want from this sum? The answer is, maybe if you’re lucky.</p>
 <p>Consider <span class="math display">\[ \frac{f(z)^{3}}{z^{n+1}}. \]</span> The coefficient of the <span class="math inline">\(1/z\)</span> term in this is precisely the thing we want: <span class="math inline">\(r_3(n)\)</span>.</p>
 <p>So I guess we have <span class="math display">\[ r_3(n) = \oint_\gamma \frac{f(z)^{3}}{z^{n+1}} .\]</span></p>
