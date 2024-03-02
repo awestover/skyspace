@@ -36,6 +36,7 @@
             <div id="toc">
             <li> <a href="#fkg" class="js-scroll-trigger">FKG</a> </li>
 <li> <a href="#janson-" class="js-scroll-trigger">janson </a> </li>
+<li> <a href="#martingales" class="js-scroll-trigger">martingales</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -54,9 +55,17 @@
 <p>This makes a lot of sense: positively correlated things should help each other out.</p>
 <h1 id="janson">janson</h1>
 <p><a href="https://ocw.mit.edu/courses/18-226-probabilistic-method-in-combinatorics-fall-2020/mit18_226f20_lec15-16.pdf">yufei’s notes</a></p>
-<p>Let <span class="math inline">\(R\)</span> be a random subset of <span class="math inline">\([n]\)</span> generated somehow. Let <span class="math inline">\(A_i\)</span> be the event that <span class="math inline">\(S_i\subseteq R\)</span>. Let <span class="math inline">\(X = \sum_i \mathbb{1}_{A_i}\)</span>. Define <span class="math display">\[ \Delta = \sum_{A\neq B, A\not\perp B} \mathop{\mathrm{\mathbb{E}}}[I_A I_B] \]</span></p>
-<p>Then you get a tail bound <span class="math display">\[ \Pr[X\le \mathop{\mathrm{\mathbb{E}}}X - t]\le \exp(\frac{-t^2}{2(\mu+\Delta)}). \]</span></p>
+<p>Let <span class="math inline">\(R\)</span> be a random subset of <span class="math inline">\([n]\)</span> generated somehow. Let <span class="math inline">\(A_i\)</span> be the event that <span class="math inline">\(S_i\subseteq R\)</span>. Let <span class="math inline">\(X = \sum_i \mathbb{1}_{A_i}\)</span>. Define <span class="math display">\[ \Delta = \sum_{A\not\perp B} \mathop{\mathrm{\mathbb{E}}}[I_A I_B] \]</span></p>
+<p>Then you get a tail bound <span class="math display">\[ \Pr[X\le \mathop{\mathrm{\mathbb{E}}}X - t]\le \exp(\frac{-t^2}{2\Delta}). \]</span></p>
 <p>prototypical example: analyze number of triangles in graph.</p>
+<div class="ex envbox">
+<p><strong>Example.</strong></p>
+<p>Let <span class="math inline">\(R\)</span> be, you choose some edges (edros renyi graph). Index the <span class="math inline">\(\binom{n}{3}\)</span> potential triangles in the graph. Define event <span class="math inline">\(A_i\)</span> to be the event that all edges in the <span class="math inline">\(i\)</span>-th triangle exist. Then <span class="math inline">\(\Delta = \Theta(p^3 n^3 + p^{5}\binom{n}{4}).\)</span></p>
+<p>So you can say some nice things about the triangle counts in your graph.</p>
+<p>Like this is pretty neat. Usually if you were just second-moment-methoding your probabiltiy bounds start kicking in at the same place, but they are <em>way weaker</em>.</p>
+</div>
+<h1 id="martingales">martingales</h1>
+<p>After working with martingales for a bit on the pset I’m not sure I have a great intuition for them. But the vague idea that I have is, you wanna find some kind of invariant. Feels like hoping to transform your RV into at least a supermartingale / submartingale seems like a pretty general and reasonable thing to do. Probably do more examples to get a better sense for when it’s useful.</p>
 </div>
       </div>
     </div>
