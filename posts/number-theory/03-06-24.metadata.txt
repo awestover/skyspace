@@ -1,0 +1,10 @@
+number theory classical additive bases: chapter 4
+
+A major topic in additive number theory is the following
+question: given a set $A\subseteq \N$, can every sufficiently
+large positive integer be expressed as the sum of a bounded
+number of elements of $A$? If so, in how many ways can number $n$
+be represented. 
+We say that the set $A$ is an **additive basis** of order $h$ if
+every positive integer can be written as the sum of at most $h$
+elements from $A$.

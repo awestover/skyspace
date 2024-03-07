@@ -1,0 +1,62 @@
+<p>A major topic in additive number theory is the following question: given a set <span class="math inline">\(A\subseteq \mathbb{N}\)</span>, can every sufficiently large positive integer be expressed as the sum of a bounded number of elements of <span class="math inline">\(A\)</span>? If so, in how many ways can number <span class="math inline">\(n\)</span> be represented. We say that the set <span class="math inline">\(A\)</span> is an <strong>additive basis</strong> of order <span class="math inline">\(h\)</span> if every positive integer can be written as the sum of at most <span class="math inline">\(h\)</span> elements from <span class="math inline">\(A\)</span>.</p>
+<p>In this chapter of the book I’m reading we prove some really neat inequalities that will be helpful in doing circle method stuff. As you probably know, I kind of self-discovered “the circle method” in some form during my <a href="https://arxiv.org/pdf/2307.13016.pdf">hashing</a> project. I’m moderately hopeful that seeing some of this stuff in more detail / seeing the books take on it will be helpful for hashing. In any case it sounds rather neat.</p>
+<h1 id="definitions">definitions</h1>
+<p>Throughout the post we use <span class="math inline">\(||\alpha||\)</span> to denote the distance from real <span class="math inline">\(\alpha\)</span> to the nearest integer. We also use <span class="math inline">\(e(t)\)</span> to denote <span class="math inline">\(\exp(2\pi i t)\)</span>.</p>
+<h1 id="some-preperatory-lemmas">some preperatory lemmas</h1>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math display">\[ \sum_{n=N_1}^{N_2} e(\alpha n)  \le \mathcal{O}(N_2-N_1, ||\alpha||^{-1}).\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Think about <span class="math inline">\(e(\alpha n)\)</span> as going around the circle at stride <span class="math inline">\(||\alpha||^{-1}\)</span>. Then this is clear. Ofc if <span class="math inline">\(||\alpha||^{-1}\)</span> it is sometimes more productive to just say look there are only <span class="math inline">\(N_2-N_1\)</span> total terms in my sum.</p>
+</div>
+<p>We say <span class="math inline">\(\alpha\in\mathbb{R}\)</span> is <strong>Farey-q-adjacent</strong> if <span class="math inline">\(\alpha\)</span> is distance at most <span class="math inline">\(1/q^2\)</span> away from some reduced fraction of denominator <span class="math inline">\(q\)</span>.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Suppose <span class="math inline">\(\alpha\)</span> is Farey-q-adjacent. Then <span class="math display">\[ \sum_{r=1}^{q/2}\frac{1}{||\alpha r||} \le \mathcal{O}(q\log q). \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> How to think about this: you got a bunch of points they all be really close to the <span class="math inline">\(1/q\)</span> fractions. So it makes a lotta sense that we get basically</p>
+<p><span class="math display">\[ \sum_{s=1}^{q/2} \frac{}{s/q} \]</span> which is just what we wanted.</p>
+<p>Anyways now we be more formal a bit</p>
+<p>Ok so the first thing that’s worth being rather worried about is, are we ever dividing by zero?</p>
+<p>Luckily you can show that this doesn’t happen. In fact <span class="math display">\[ ||\alpha r|| \ge 1/(2q) \]</span> for all <span class="math inline">\(r\in [q/2]\)</span>.</p>
+</div>
+<p>Similar vibes lemma:</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Suppose <span class="math inline">\(\alpha\)</span> is Farey-q-adjacent. Then for any integer <span class="math inline">\(h\)</span> <span class="math display">\[ \sum_{r=1}^{q}\min(V, \frac{1}{||\alpha (hq+r)||} \le \mathcal{O}(V+ q\log q). \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Same vibes as previous lemma except I guess we might need to take a <span class="math inline">\(V\)</span> hit <span class="math inline">\(\mathcal{O}(1)\)</span> times.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(\alpha\)</span> be Farey-q-adjacent. Then, <span class="math display">\[ \sum_{k=1}^{U} \min(n/k, 1/||\alpha k||) \le \mathcal{O}( (n/q+U+q)(\log 2qU) ). \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> afaict you just split up the sum and apply the above lemmas</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Suppose <span class="math inline">\(\alpha\)</span> is Farey-q-adjacent. Then <span class="math display">\[ \sum_{r=1}^{U}\min(n, \frac{1}{||\alpha r||}) \le \mathcal{O}( (q+U+n+\frac{Un}{q})\max(1,\log q)). \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Seems like the vibes are just to split up the sum based on values of <span class="math inline">\(r\)</span> and win.</p>
+</div>
+<h1 id="now-we-do-the-important-lemmas">now we do the important lemmas</h1>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math display">\[S(f) = \sum_{n=N_1}^{N_2} e(f(n)).\]</span> Then <span class="math display">\[ |S(f)|^2 = \sum_{|d|&lt;N} \sum_{n\in I(d)} e(\Delta_d(f)(n)) \]</span></p>
+<p>discrete derivative interval.</p>
+<p>We also need some version of this for <span class="math display">\[ |S(f)|^{2^{\ell}} \]</span> It’s super gross for some reason. looks like they just Cauchy Shwarz the ez version</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> WEYL’s INEQUALITY!</p>
+<p>Let <span class="math inline">\(f(x) = \alpha x^{k}+\cdots\)</span> be a degree <span class="math inline">\(k\)</span> polynomial. Suppose that <span class="math inline">\(\alpha\)</span> is Farey-q-adjacent. Let <span class="math inline">\(S(f) = \sum_{n\in [N]} e(f(n)).\)</span> Let <span class="math inline">\(K = 2^{k-1}\)</span> and <span class="math inline">\(\epsilon&gt;0\)</span>. Then <span class="math display">\[ S(f)\le \mathcal{O}( N^{1+\varepsilon} (N^{-1}+q^{-1}+N^{-k}q)^{1/K} ). \]</span></p>
+</div>
+<p>weyl differencing</p>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> For each <span class="math inline">\(k\ge 2\)</span> there exists <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(\sqrt{N}\le q \le N^{k-1/2}.\)</span> <span class="math display">\[ \sum_{n=1}^{N} e(an^{k}/q) \le \mathcal{O}(N^{1-\delta}) \]</span></p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Hua’s Lemma</p>
+<p>Let <span class="math display">\[ T(\alpha)  = \sum_{n\in[N]} e(\alpha n^{k}).\]</span> Then <span class="math display">\[ \int_0^{1} |T(\alpha)|^{2^{k}} d\alpha \le O(N^{2^{k}-k+\varepsilon}).\]</span></p>
+</div>
+<p>anyways, it’s kind of hard to see why these are useful until we actually apply it i guess.</p>
+<p>Also I didn’t realize but hardy-littlewood or whatever actually have an asymptotic formula for number of ways to write a number as sum of k-th powers. that’s insane.</p>
+<p>also note to self should probably just try to go through the theorem with some easy setting like <span class="math inline">\(k=2\)</span> in mind.</p>
