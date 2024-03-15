@@ -1,0 +1,19 @@
+<p>we’ve done a lot of really neat algos in geo lately. I only have 5 mins so I briefly summarize.</p>
+<p>I really like that the algorithms are simple and have really cool randomized analysis.</p>
+<ol type="1">
+<li>closest pair in linear time!</li>
+</ol>
+<p>first we give an approx algo: choose a random point, search for his NN, grid based on that distance. Toss points which are isolated at this granularity of grid.</p>
+<p>With probability <span class="math inline">\(1/2\)</span> we kill <span class="math inline">\(1/2\)</span> the points at least. So this is short. And closest pair is not become isolated until we’re basically at the right distance.</p>
+<p>Now for actual closest pair once we have this approximation guarantee what we do is also grid and then there aren’t allowed to be too many points in a ball around each point by virtue of our lower bound on shortest distance.</p>
+<ol start="2" type="1">
+<li><p>given <span class="math inline">\(n\)</span> points count the number of points above each line connecting two of the points. There is a neat <span class="math inline">\(n^2\)</span> time solution using arrangements. Here is an <span class="math inline">\(n^2\log n\)</span> solution due to Peter. Algo is just, for each point sort other points by angle and itterate over the points in this sorted order.</p></li>
+<li><p>all nearest neighbors in linear time!</p></li>
+</ol>
+<p>you create increasingly larger circles around each point. you increment the grid granualarity. The neat part is that you use “backwards analysis” (i.e., thinking about how many points I am NN to) to bound run time.</p>
+<ol start="4" type="1">
+<li>exact LP in constant dimensions in linear time</li>
+</ol>
+<p>add constraints in a random order. keep track of where opt is. if constraint doesn’t invalidate opt keep opt. else: search over the line intersection points with the new line you added for the new opt.</p>
+<p>pr that <span class="math inline">\(i\)</span>-th added line invalidates opt is at most <span class="math inline">\(d/i\)</span> where <span class="math inline">\(d\)</span> is the dimension.</p>
+<p>expected time is hence <span class="math inline">\(O(n)\)</span>.</p>

@@ -1,0 +1,3 @@
+closest pair
+
+what we've been up to in geometry class lately
