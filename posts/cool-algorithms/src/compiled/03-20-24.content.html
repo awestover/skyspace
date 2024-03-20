@@ -1,0 +1,21 @@
+<p>disambiguation:</p>
+<ul>
+<li><p>A <strong>segment tree</strong> is a DS that let’s you do things like query for range sums and range maxes in an array (dynamically). This is not at all related to what I talk about today.</p></li>
+<li><p>An <strong>interval tree</strong> is a DS that stores some intervals, and on a query point returns the set of intervals containing that point.</p></li>
+</ul>
+<p>Interval tree:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">def</span> build_interval_tree(intervals):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  middlept <span class="op">=</span> median</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  left_intervals <span class="op">=</span> [interval I <span class="cf">if</span> I <span class="kw">is</span> completely to the left of middlept]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>  right_intervals <span class="op">=</span> [ditto but right]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  center_intervals <span class="op">=</span> [intervals that touch the middlept]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  store build_interval_tree(left_intervals)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>  store build_interval_tree(right_intervals)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>  store <span class="bu">sorted</span> <span class="bu">list</span> of center_intervals (keyed by left endpoint <span class="kw">and</span> by right endpoint).</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="kw">def</span> handle_query(interval_tree, point):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>  wlog let point be to the left of center</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>  recursively handle_query(left_interval_tree, point)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  <span class="bu">list</span> <span class="bu">all</span> the center_intervals <span class="cf">with</span> start coord before point.</span></code></pre></div>
+<p>maybe it’s more complicated to make this dynamic?</p>
