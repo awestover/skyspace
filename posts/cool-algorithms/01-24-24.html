@@ -41,6 +41,10 @@
 <li> <a href="#longest-path" class="js-scroll-trigger">longest path</a> </li>
 <li> <a href="#algebraic-longest-path" class="js-scroll-trigger">algebraic longest path</a> </li>
 <li> <a href="#faster-longest-path" class="js-scroll-trigger">faster longest path</a> </li>
+<li> <a href="#update-faster-longest-path" class="js-scroll-trigger">update faster longest path</a> </li>
+<li> <a href="#bipartite-(undirected-only)" class="js-scroll-trigger">bipartite (undirected only)</a> </li>
+<li> <a href="#interlude:-hardness" class="js-scroll-trigger">interlude: hardness</a> </li>
+<li> <a href="#full-undirected-better" class="js-scroll-trigger">full undirected better</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -141,6 +145,23 @@ b_{j_2}(t).\]</span> The neat thing here is that we just peal off a bit of stuff
 <p>Let’s say we are working over a field of characteristic <span class="math inline">\(2\)</span>, namely <span class="math inline">\(\mathbb{F}_{2^{\left\lceil 8\log k \right\rceil}}\)</span>. Then we claim that the non-path walks in the above sum cancel out. So, <span class="math inline">\(P\)</span> is distinct from the zero polynomial (in this field) iff <span class="math inline">\(P\)</span> has a <span class="math inline">\(k\)</span>-path. Then we run polynomial identity testing. It’s kind of tricky to evaluate the polynomial, but turns out you can do it with weighted PIE and some DP stuff.</p>
 <h1 id="faster-longest-path">faster longest path</h1>
 <p>Next they describe some modifications to get better run time. But I think that’s enough for now.</p>
+<h1 id="update-faster-longest-path">update faster longest path</h1>
+<h3 id="bipartite-undirected-only">bipartite (undirected only)</h3>
+<p>Call the bipartition <span class="math inline">\(A\sqcup B = V\)</span>. Here it’s pretty easy. You only label vertices on one side. We have to ban paths with a <span class="math inline">\(C_2\)</span> in them though: these are impossible to reverse. Now our reversing procedure is: If walk repeats a vertex in <span class="math inline">\(A\)</span> then we swap the labels. If the walk repeats a vertex in <span class="math inline">\(B\)</span> we reverse that part of the path. This is find because its undirected and gives a new path because the path has length at least <span class="math inline">\(2\)</span>.</p>
+<p>and in our DP we can keep track of previous two vertices.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a <span class="math inline">\(\sqrt{2}^{n} n^{O(1)}\)</span> time algo for ham in undirected bipartite graphs (generalizes to <span class="math inline">\(k\)</span>-path as well).</p>
+</div>
+<h3 id="interlude-hardness">interlude: hardness</h3>
+<figure>
+<img src="src/images/ink_img014.png" alt="" /><figcaption>ink_img014</figcaption>
+</figure>
+<p>You can prove some kind of exponential lower bound if you make some assumptions about <span class="math inline">\(3SAT\)</span> hardness. I think each vertex only gets an edge in from <span class="math inline">\(1\)</span> clause. So number of these middle vertices is like <span class="math inline">\(\sim m\)</span>.</p>
+<h3 id="full-undirected-better">full undirected better</h3>
+<p>You decrease the number of labels by randomly partitioning, labelling vertices on one side and internal edges on the other side. You just Markov and have a tiny chance of the partitioning working as desired but it’s like inverse polynomial so you don’t care.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[ 2^{.75k} \]</span></p>
+</div>
 </div>
       </div>
     </div>
