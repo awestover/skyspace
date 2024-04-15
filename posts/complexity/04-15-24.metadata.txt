@@ -1,0 +1,9 @@
+random coloring
+
+For my stochastic processes final project I'm reading a paper
+about understanding the solution geometry of random coloring
+instances. The paper is:
+Dimitris Achlioptas, and Amin Coja-Oghlan. "Algorithmic barriers from phase transitions." 2008 49th Annual IEEE Symposium on Foundations of Computer Science. IEEE, 2008.
+I think it's quite neat. 
+In this post I will organize some thoughts that I had after
+reading the proof sketches.

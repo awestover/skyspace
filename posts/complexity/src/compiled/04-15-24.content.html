@@ -1,0 +1,90 @@
+<h1 id="introduction">Introduction</h1>
+<p>To introduce the subject of the paper we begin with the illustrative example of <span class="math inline">\(k\)</span>-coloring a random graph.</p>
+<p>The random <span class="math inline">\(k\)</span>-coloring problem is defined as follows:</p>
+<blockquote>
+<p>Let <span class="math inline">\(G\)</span> be a random graph (I think they use the “configuration model”, i.e., sample a random graph based on the number of edges, but this is basically the same as Erdos Renyi) with average degree <span class="math inline">\(d\)</span>. Is it possible properly <span class="math inline">\(k\)</span>-color the vertices of <span class="math inline">\(G\)</span>?</p>
+</blockquote>
+<p>The answer to this existential problem is, that there is a threshold at <span class="math inline">\(d=2k\ln k\)</span>.</p>
+<div class="prop envbox">
+<p><strong>Proposition.</strong> If <span class="math inline">\(d&gt; (2+\varepsilon)k\ln k\)</span> then the answer is almost certainly no [TODO: prove]. On the other hand, a second moment method calculation [TODO: do it] shows that if <span class="math inline">\(d&lt;(2-\varepsilon)k\ln k\)</span> then with probability <span class="math inline">\(1-o(1)\)</span> [TODO: is the probability expo good?] <span class="math inline">\(G\)</span> is <span class="math inline">\(k\)</span>-colorable.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The proof of existence of a solution is non-constructive: we use the second moment method.</p>
+</div>
+A closely related algorithmic question is to give an efficient algorithm for finding a <span class="math inline">\(k\)</span>-coloring of a random graph. The state-of-the-art for this problem is:
+<div class="prop envbox">
+<p><strong>Proposition.</strong> If <span class="math inline">\(d&lt;k\ln k\)</span> then there is an efficient algorithm for <span class="math inline">\(k\)</span>-coloring <span class="math inline">\(G\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The algorithm is as follows:</p>
+<pre><code>while not all vertices are colored:
+  Let v be a vertex with the fewest remaining choices for its color
+  Assign v a random available color</code></pre>
+<p>[TODO: prove that this works]</p>
+</div>
+<p>Let the <strong>algorithmic threshold</strong> denote the largest edge density where we have efficient algorithms for <span class="math inline">\(k\)</span>-coloring. Let the <strong>existence threshold</strong> denote the largest edge density where we are guaranteed (with good probability) that a <span class="math inline">\(k\)</span>-coloring exists. Note that there is a gap between the algorithmic threshold and the existence threshold. This is a quite general phenomenon across many CSPs; for instance it also occurs for <span class="math inline">\(k\)</span>-SAT. Achiloptas and Coja-Oghlan’s goal in this paper is to provide an explanation of the gap between these thresholds. They do so by giving a description of the solution space geometry, and showing that this space undergoes a dramatic change when we cross the threshold below which we have efficient algorithms for <span class="math inline">\(k\)</span>-coloring.</p>
+<p>First we define what we mean by solution space geometry, and describe qualitatively the phase transition that occurs. The space of <span class="math inline">\(k\)</span>-colorings is simply <span class="math inline">\([k]^{n}\)</span>. We can think of this as a “landscape”. The <strong>height</strong> in the landscape corresponds to the number of violated constraints (i.e., monochromatic edges). The <strong>height</strong> of a path between two colorings is the largest height at any coloring along the path. The <strong>distance</strong> between two colorings is the number of vertices that they assign different colors. Below the algorithmic threshold they show that there is a “giant ball” of solutions: this ball is large, and it is easy to move between solutions, in the sense that starting from a given solution there is a nearby solution that you can walk to along a low heigh path. In contrast, above the algorithmic threshold (but still below the existence threshold so that solutions exist) the solution space <strong>shatters</strong> and looks like an “error correcting code”. More specifically, the solution space transitions to consisting of an exponential number of regions, none of which are very large, and such that the regions are very far apart and separated by large heights (or “energy barriers”).</p>
+<p>The most important idea in their analysis is a <strong>transfer principle</strong>. Roughly speaking this principle says that the view of the landscape from a random valley is basically the same as the view from a <strong>planted</strong> valley. In a <strong>planted</strong> instance of random <span class="math inline">\(k\)</span>-coloring instead of uniformly randomly choosing a graph <span class="math inline">\(G\)</span> of appropriate average degree, we first fix a coloring <span class="math inline">\(\sigma\in [k]^{n}\)</span> and then select <span class="math inline">\(G\)</span> from amongst graphs with the appropriate average degree which are properly colored by <span class="math inline">\(\sigma\)</span>. Intuitively, if a random coloring instance has a very large number of solutions on average then adding one more solution won’t change its landscape too much. However, reasoning about the planted model turns out to be <em>much</em> easier than reasoning about the uniform model.</p>
+<p>Now we develop these notions more formally. For graph <span class="math inline">\(G\)</span> and coloring <span class="math inline">\(\sigma\in [k]^{n}\)</span> let <span class="math inline">\(H_G(\sigma)\)</span> count the number of violated constraints (monochromatic edges) if we color <span class="math inline">\(G\)</span> via <span class="math inline">\(\sigma\)</span>. Let <span class="math inline">\(S(G)\)</span> denote the set of colorings <span class="math inline">\(\sigma\)</span> with height <span class="math inline">\(H_G(\sigma) = 0\)</span>; that is, <span class="math inline">\(S(G)\)</span> is the set of proper <span class="math inline">\(k\)</span>-colorings of <span class="math inline">\(G\)</span>. Define the <strong>distance</strong> between two colorings to be the number of vertices which they assign different colors. A <strong>cluster</strong> of <span class="math inline">\(G\)</span> is a connected component of <span class="math inline">\(S(G)\)</span>, where two colorings are considered <strong>adjacent</strong> if they have distance <span class="math inline">\(1\)</span> (differ on a single vertex). A <strong>region</strong> is a non-empty union of clusters.</p>
+Then, the <strong>shattering</strong> phenomenon can be formalized as follows:
+<div class="defn envbox">
+<p><strong>Definition.</strong> There exists a partition of <span class="math inline">\(S(G)\)</span> into regions such that:</p>
+<ul>
+<li>The number of regions is at most <span class="math inline">\(\exp(\beta n)\)</span>,</li>
+<li>The distance between distinct regions is at least <span class="math inline">\(\zeta n\)</span>,</li>
+<li>All paths between distinct regions have height at least <span class="math inline">\(\theta  n\)</span>.</li>
+</ul>
+</div>
+They show:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Shattering happens right above the algorithm threshold for <span class="math inline">\(k\)</span>-coloring.</p>
+</div>
+<p>Fix graph <span class="math inline">\(G\)</span> and a proper <span class="math inline">\(k\)</span>-coloring <span class="math inline">\(\sigma\)</span> of <span class="math inline">\(G\)</span>. We say that a vertex <span class="math inline">\(v\)</span> is <strong><span class="math inline">\(f(n)\)</span>-rigid</strong> (with respect to <span class="math inline">\(G,\sigma\)</span>) if every coloring <span class="math inline">\(\tau\in S(G)\setminus \left\{ \sigma\right\}\)</span> is distance at least <span class="math inline">\(f(n)\)</span> away from <span class="math inline">\(\sigma\)</span>. Otherwise we say that vertex <span class="math inline">\(v\)</span> is <strong><span class="math inline">\(f(n)\)</span>-loose</strong>. They show:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Below algorithm threshold all variables are loose (with good pr). Above algorithm threshold a most variables are rigid.</p>
+</div>
+<h1 id="proof-sketches">proof sketches</h1>
+<p>A convincing example of why the transfer principle is reasonable: Let <span class="math inline">\(M\)</span> be a matrix. Same number of 1s in each row, same number of 1s in each col. Then, sample row and then 1 or col and then 1 is the same distr.</p>
+<p>We don’t actually need each row and each col to have same number of 1s, just “close to this” in some sense.</p>
+<p>To show: property holds wupp for random <span class="math inline">\(G,\sigma\)</span> suffices to show holds whp for planted <span class="math inline">\(G,\sigma\)</span>.</p>
+<p>important step: show number of <span class="math inline">\(k\)</span>-colorings of random graph concentrates really well.</p>
+<strong>TRANSFER THEOREM</strong>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> D: prop that holds for random E: some prop</p>
+<p>If you can show <span class="math inline">\(\Pr \text{planted}[G,\sigma \text{ has } E | G \text{ has } D]\)</span> is super close to one then <span class="math inline">\(\Pr \text{unif}[G,\sigma \text{ has } E]\)</span> is decent.</p>
+</div>
+<h2 id="loose-vars-below-thresh">Loose vars below thresh</h2>
+<p>notion: list-chromatic num</p>
+<p>Algo for finding a nearby solution: awake, asleep, dead vertices. subcritical branching process!</p>
+<p>Then use the list-chromatic thing to handle the dead guys.</p>
+<h2 id="rigid-vars-above-thresh">Rigid vars above thresh</h2>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> There is a big subgraph <span class="math inline">\(G_*\)</span> of <span class="math inline">\(G\)</span> with the property that every vertex has a lot of neighbors of each other color.</p>
+</div>
+We use the transfer property to trade for a problem in planted model.
+<div class="lem envbox">
+<p><strong>Lemma.</strong> solve planted version</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> bound on expansion</p>
+</div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> It’s pretty easy to show from the theorem that no vertex in <span class="math inline">\(G_*\)</span> can have a close coloring.</p>
+</div>
+<h2 id="shattering">shattering</h2>
+<p>Now we will prove shattering. They want some notion of distance that plays nicely with permuting colors, not exactly sure why but whatever.</p>
+<p>Define <span class="math inline">\(M_{\sigma,\tau}^{ij} = \frac{1}{n} |\sigma^{-1}(i)\cap \tau^{-1}(j)|\)</span>. Our notion of distance between <span class="math inline">\(\sigma, \tau\)</span> is now gonna be frobenius norm of <span class="math inline">\(M_{\sigma, \tau}\)</span>. Checking for <span class="math inline">\(\sigma = \tau\)</span> it is much bigger than if <span class="math inline">\(\sigma,\tau\)</span> are “uncorrelated”.</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> shattering. more specifically,</p>
+<p>there are zero solutions at medium distance from <span class="math inline">\(\sigma\)</span>. There are not so many solutions which are pretty close to <span class="math inline">\(\sigma\)</span>.</p>
+</div>
+<p>It is clear how this allows us to define regions.</p>
+<p>ok so to prove the theorem</p>
+<p>step 1: transfer principle ofc.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> step 2: prove in planted model.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> I think we just compute expectations.</p>
+</div>
+<p>gg</p>
