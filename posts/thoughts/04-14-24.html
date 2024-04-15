@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#the-butterfly-effect" class="js-scroll-trigger">The Butterfly Effect</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>Alek Westover, Short Story 2</p>
+<h1 id="the-butterfly-effect">The Butterfly Effect</h1>
+<p>“Comrades! It has been a glorious fight, but the enemy is defeated! And next week, we will be rich beyond imagining!”<br />
+“Woo!” Nate and Gauri cheered on cue. Eliot cheered as well, so as not to be the odd one out. Alice conspicuously remained silent.<br />
+The room fell silent, save for the hum of GPU fans and the sound of cars passing on the street above, muffled by the thick walls of the basement that Max rented as their office and his house. Eliot studied the faces in the room lit by several bright lamps that left shadows in the corners of the room. His gaze was first drawn to Max, who dominated the room standing while the rest of the team sat on two couches facing the whiteboard. Max was dressed in a white dress shirt which he thought made him look rather professional, and Eliot had to admit that if you didn’t look closely Max’s sweat pants could be mistaken for dress pants. Max stood at the whiteboard inspecting his flow charts and graphs depicting the steps by which they would deploy their trading algorithm to both high-speed trading and larger investing projects. How they would invest the initial profits into better hardware to improve their models; Max was loathe to use cloud computing as he did not trust Amazon. Half a year ago Max’s dramatic proclamation would probably have sent the whole basement chuckling. Now it was more complicated. There was exhaustion. Gauri and Nate were genuinely excited. Preliminary tests had seemed promising. Too promising in Eliot’s opinion. He was scared.<br />
+His gaze moved to the other couch. Gauri was studying the whiteboard critically, nodding to himself. Nate was staring off into the distance, maybe planning a long procrastinated trip to the beach. Whenever Eliot talked to Nate about non-work-related subjects Nate would always animatedly describe how he liked to fly a kite and collect shells and bask in the sun, despite the fact that Eliot knew Nate had been too busy for the past few months to go to the 25 miles away Malibu beach.<br />
+Finally he glanced at Alice, sitting next to him. She was wearing her favorite purple butterfly shirt. She was looking at him expectantly. She silently drummed her fingers against her jeans, a nervous tic.<br />
+“Um, Max–” Eliot started.<br />
+“Really, call me Mr. Fu” Max insisted, smiling at his own cleverness. “Remember? It means ‘Good Luck’”. Max was a bit obsessed with cdrama, and by extension Chinese.<br />
+Eliot nervously traced the blue butterfly stitched onto his hat which he was holding in his hand. “Um, ok, not to spoil the enthusiasm but we’re actually really not that confident it will work–”.<br />
+“No, no, no.” Alice interrupted impatiently.<br />
+Everyone turned to face her. She straightened her back looked at Max.<br />
+Alice continued “What we’re actually worried about is that it will work.”<br />
+Max was confused. “Um, that’s kind of the whole point? Our algorithm iteratively improves itself until it has unparalleled trading skills, and then we dominate the trading market and Nate can buy an entire mansion on the beach and we can all learn how to surf.”<br />
+Alice tried to explain. “Ok, how to explain it, I mean think about the differential equation x’=kx. Like it’s really bad. Like imagine you have a system that can improve itself and it improves itself a little and then becomes capable of further improving itself, and …”<br />
+Max was now looking annoyed. Eliot interrupted. “Or, think of it like this. Normal ML is like I have some data, maybe some time series data for a couple of stocks. I feed in the data the ML circuit does some computation and then it spits out a prediction of future stock prices and maybe suggests what stocks to buy.” “But what we’re doing is different. This is like, you’re taking the ML circuit and then you’re plugging it into itself. You tell it to improve itself. And code is really expressive. So imagine that this code was smart enough to improve itself just a tiny bit. And it does, and then that slightly smarter code goes and looks for a slightly even smarter code, and so on until some physical limit is reached. Do you understand the implications of self-improving code?”<br />
+“We get super rich?” Max guessed.<br />
+“No, its a short-circuit. Stuff lights on fire or explodes. We really just don’t know what will happen. I mean maybe we get lucky and its good. Or maybe we’ve created an extremely intelligent entity that will replicate and take over the economy and dominate humanity resulting in our eventual extinction.”<br />
+Max chewed on this. “Remember, we have good luck! It seems like you would need extraordinarily bad luck for something that drastic to happen”.<br />
+“But,” Alice said “drastic outcomes are quite relevant to expected utility calculations even if we don’t have precise lower bounds on their probability of occurrence.”<br />
+“What are you proposing?” Max asked. “I hear a lot of pessimism and vague worries but no actionables.”<br />
+“We need to go slower. We need to be careful and be confident that this is a good idea before we go ahead. Or maybe we should create some sort of proof of concept and use it as a tool to influence political leaders to join together in a coalition to stringently regulate ML.”<br />
+Max looked like he wanted to punch her, but composed himself. “Maybe you’re right.” Max finally said “Let’s take the next week off and let things cool down a bit.”<br />
+“Thanks Max”, Alice said cheerfully, surprised. “That seems like a very responsible thing to do.”<br />
+“That’s why they call me Mr. Fu, ‘fortune favors the responsible’, right?”<br />
+“To be sure, Mr. Fu” Alice declared.<br />
+“Anyways let’s call it a day, it’s late. Anyone want to stay for dinner? I’ll order a drone delivery of dumplings.”<br />
+“Me!” Gauri and Nate chimed. Eliot also assented but Alice murmured an excuse and left. Eliot knew that she actually left because she thought dumplings smelled bad.<br />
+</p>
+<p>7 minutes later Max’s watch buzzed announcing the arrival of the drone delivering their dumplings. This interrupted Eliot’s detailed description of the various parts of his recently acquired tattoo “富”; Eliot was pretty sure from high school Chinese that Max had accidentally chosen the wrong character, but didn’t have the heart to tell his friend.<br />
+Gauri and Eliot moved over two tables and then they sat at the couch and ate the dumplings, the hot broth inside searing their mouths, the strong smell of beef clashing with the tree-scented air freshener in the room.<br />
+“Well Mr. Fu”, Nate said once they had all had a few dumplings. “What are you going to do with your unexpected vacation next week? I know what I’m going to do!”<br />
+“Hmm.” Max replied, a sly grin on his face. “Well, as fun as going to the beach sounds, I actually have other plans for next week.”<br />
+“Oh?”<br />
+“Well, I was thinking I might try my hand at high frequency trading. You know what they actually say, ‘fortune favors the bold’”.<br />
+“But I thought you just told Alice…” Eliot trailed off.<br />
+“Yes, well.” Max said, “It might be best if Alice thought that we had all gone off to the beach. You should invite her, but she will say no because she has to feed her butterflies. Eliot, can you invite Alice to the beach next week?”<br />
+A million objections flew through his head. What will we do when she finds out? Lying is wrong? What if Alice is right and we’re making a horrible mistake? But the pressure was too much for Eliot.<br />
+“Alright”, he said, and instantly regretted it, but it was too late now.<br />
+“Thanks for the dumplings, I’d better go.” Eliot retreated to the door.<br />
+“See you on Monday”, Max called.<br />
+</p>
+<p>The following afternoon at 5pm Eliot arrived at Alice’s apartment to make pasta, as had been their tradition for the past few weeks. He still hadn’t told her the lie about going to the beach; it was hard, and he had decided he could afford to delay until tomorrow. He pressed a button on his watch and said “tell Alice ‘I’m here’”. A moment later Alice came to the door.<br />
+“How did you know I was here? I didn’t even send the text yet!”<br />
+“I heard your voice. Come in! The water’s basically boiling.”<br />
+Alice put in the pasta and then brought Eliot to her mini-garden where dozens of caterpillar host plants were being consumed by caterpillar and a handful of butterflies flew around. A butterfly landed on Alice’s head.<br />
+“Why do you like butterflies so much?” Eliot asked.<br />
+</p>
+<p>“Three reasons,” Alice smiled. “Number one: The Butterfly Effect. These little insects might seem small. But, what’s the saying? A small change to the initial conditions of a chaotic system can drastically alter the system’s trajectory?”<br />
+Eliot said “I think Lorenz phrased it as ‘A butterfly’s flaps its wings in Brazil and sets off a tornado in Texas’, but tomato, tomato”.<br />
+“In any case,” Alice continued, “if butterflies can have such a big impact on the world, then maybe I can too. Although hopefully more intentionally and predictably.”<br />
+Eliot thought about it. He often felt like he couldn’t have a big impact on the world. But maybe he could. He was at a critical position. Of course his actions could have a large impact. And he really did have the ability to chose. He could go through with Max’s plan. But he also could probably shut down the project. Maybe inform the authorities, or talk to Gauri and Nate and get them to confront Max with him. But he was just Eliot. Could he really do something that scary? Betray his friends? Even if it was the right thing to do? Maybe not.<br />
+“I wish I could be as influential as a butterfly” Eliot sighed, “and not merely the tornado created by the butterflies flapping wings”.<br />
+“Well,” Alice went on, “that brings me to the second reason I like butterflies.” She directed his gaze towards a leaf under her hand, and the tiny caterpillar eating it. “They don’t start out as butterflies. They become them. I like to watch them as they transform. It reminds me that we can transform too.”<br />
+Eliot wanted to transform like a butterfly. To be brave and do the right thing. “What’s the final reason?”<br />
+“The final reason is that they’re beautiful.”<br />
+</p>
+<p>Eliot’s was filled with a fire of courage. “Alice there’s something I need to tell you. Max wasn’t serious about pausing the project. He just wanted to have you not meddle in it. I was supposed to tell you we went on vacation to the beach, but we were going to just train the model and start testing it in the trading market. But I don’t know what to do. I know it’s not safe to train the model. But I’m not sure Max, Gauri or Nate will see it the same way. Do we involve the police? But I don’t want to get them in trouble.”<br />
+“That rotten egg!” Alice swore. “Well, step 1 is pretty clear: we smuggle you into Max’s house and you sabotage the model. Step 2 is a bit more complicated. We can’t involve the authorities, at least not immediately, there’s too much danger of someone getting a hold of the technology. But I’m sure we can think of some way of turning this into an advantage for creating a global policy of stringent regulations against training of ML models. Yeah, I’m not exactly sure what the play is but we have to do something. It’s not too long before another group thinks of using linear hashing as a technique for dimensionality reduction and then achieves superhuman levels of intelligence. But step 1 first.”<br />
+“Thank you Alice. Thank you for being my training data for learning to act ethically.”<br />
+</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
