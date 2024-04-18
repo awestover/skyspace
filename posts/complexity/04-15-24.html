@@ -36,7 +36,7 @@
             <div id="toc">
             <li> <a href="#introduction" class="js-scroll-trigger">Introduction</a> </li>
 <li> <a href="#proof-sketches" class="js-scroll-trigger">proof sketches</a> </li>
-<li> <a href="#loose-vars-below-thresh" class="js-scroll-trigger">Loose vars below thresh</a> </li>
+<li> <a href="#loose-variables-below-the-algorithm-threshold" class="js-scroll-trigger">Loose Variables Below the Algorithm Threshold</a> </li>
 <li> <a href="#rigid-vars-above-thresh" class="js-scroll-trigger">Rigid vars above thresh</a> </li>
 <li> <a href="#shattering" class="js-scroll-trigger">shattering</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
@@ -144,8 +144,14 @@ Then, the <strong>transfer theorem</strong> says:
 <div class="thm envbox">
 <p><strong>Theorem.</strong> Let <span class="math inline">\(d = 2m/n \le (2-\varepsilon)k\ln k\)</span>. There exists <span class="math inline">\(f(n)=o(n)\)</span> such that the following is true. Let <span class="math inline">\(D\)</span> be any graph property such that <span class="math inline">\(G_{n,m}\)</span> has <span class="math inline">\(D\)</span> with probability <span class="math inline">\(1-o(1)\)</span> and let <span class="math inline">\(E\)</span> be any property of pairs <span class="math inline">\(G,\chi\)</span> where <span class="math inline">\(\chi\)</span> properly colors <span class="math inline">\(G\)</span>. Suppose that <span class="math display">\[ \Pr_{P_{n,m}}[(G, \sigma) \text{ has } E \mid G \text{ has } D]\ge 1-\exp(-f(n)). \]</span> Then, <span class="math display">\[ \Pr_{U_{n,m}}[(G,\sigma) \text{ has } E] \ge 1-o(1). \]</span></p>
 </div>
-<h2 id="loose-vars-below-thresh">Loose vars below thresh</h2>
-<p>notion: list-chromatic num</p>
+<div class="pf envbox">
+<p><strong>Proof.</strong> [TODO: why does this follow from the concentration of solutions that we saw above]</p>
+</div>
+<p>In the remainder of the note we will show how to use the transfer principle to prove their results about loose/rigid variables and about shattering/non-shattering.</p>
+<h2 id="loose-variables-below-the-algorithm-threshold">Loose Variables Below the Algorithm Threshold</h2>
+<p>In this section we show that below the algorithm threshold with good probability all variables are loose. Recall what this means: for any proper coloring <span class="math inline">\(\chi\)</span> of our graph and any vertex <span class="math inline">\(i\in [n]\)</span> we want to exhibit a “nearby” coloring <span class="math inline">\(\tau\)</span> – nearby in the sense that we want <span class="math inline">\(\tau,\chi\)</span> to assign different colors to at most <span class="math inline">\(o(n)\)</span> vertices – with <span class="math inline">\(\tau(i)\neq \chi(i)\)</span>. To show this we give a simple algorithm that give <span class="math inline">\(\chi,i\)</span> finds such a nearby coloring where <span class="math inline">\(i\)</span>’s color is flipped.</p>
+<p>The analysis of the algorithm will use notion of <strong>list chromatic number</strong>. We say that graph <span class="math inline">\(G\)</span> is <strong><span class="math inline">\(\eta\)</span>-list-colorable</strong> if for any set of color lists <span class="math inline">\(C_1,\ldots, C_n \in \binom{[k]}{\eta}\)</span> there exists a proper coloring <span class="math inline">\(\chi_1,\ldots, \chi_n\)</span> of the vertices with <span class="math inline">\(\chi_i \in C_i\)</span> for all <span class="math inline">\(i\)</span>. We remark that the list-chromatic number of a graph (the smallest <span class="math inline">\(\eta\)</span> for which <span class="math inline">\(G\)</span> is <span class="math inline">\(\eta\)</span>-list-colorable) is at least as large, and possibly larger, than the chromatic number of <span class="math inline">\(G\)</span>.</p>
+<p>Now we define the properties <span class="math inline">\(D,E\)</span> which we will use in the transfer principle.</p>
 <p>Algo for finding a nearby solution: awake, asleep, dead vertices. subcritical branching process!</p>
 <p>Then use the list-chromatic thing to handle the dead guys.</p>
 <h2 id="rigid-vars-above-thresh">Rigid vars above thresh</h2>
