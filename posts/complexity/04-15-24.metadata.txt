@@ -1,5 +1,5 @@
 random coloring
-
+images/ink_img005.png
 For my stochastic processes final project I'm reading a paper
 about understanding the solution geometry of random coloring
 instances. The paper is:
