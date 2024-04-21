@@ -56,3 +56,16 @@ The hardness proof is based on the following simpler but equivalent variant of E
 <li>Is guarding the boundary <span class="math inline">\(\exists \mathbb{R}\)</span> complete? Actually this was recently resolved by Jack Stade.</li>
 <li>interesting note: you can guard the boundary without guarding the interior.</li>
 </ul>
+<h1 id="line-guard-problem">line guard problem</h1>
+<p>In the line guard problem you are given a polygon and number <span class="math inline">\(k\)</span>. The question is, can you draw <span class="math inline">\(k\)</span> line segments inside the polygon such that if you had guards patrolling those line segments then every point in the polygon would be visible at <em>some</em> point in time? This is called <em>weak visibility</em>. There is also the notion of <em>strong visibility</em>; which kind of sounds freaking cool. I’ll consider it next. But first weak visibility.</p>
+<p>Now we try to adapt the <span class="math inline">\(\exists \mathbb{R}\)</span> containment proof from above to the line guard problem (weak visibility variant first).</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> (hopefully will prove this)</p>
+<p>Deciding whether an art gallery polygon <span class="math inline">\(P\)</span> is weakly-line-guardable by <span class="math inline">\(k\)</span> guards is solvable in <span class="math inline">\(\exists \mathbb{R}\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong></p>
+<p>First we write a formula with (illegal) <span class="math inline">\(\forall\)</span> quantifiers. I’m cautiously optimistic that the same “witness points” from above can help us just <span class="math inline">\(\forall\)</span> over a finite set of witness points (aka, finite <span class="math inline">\(\land\)</span>, which is legal) rather than the continuum of points in the interior of the polygon. Anyways the formula looks like this:</p>
+<p><span class="math display">\[ \exists (a_1,b_1,c_1,d_1),\ldots,(a_k,b_k,c_k,d_k) \mid
+\forall x,y: \exists t_1,\ldots,t_k\]</span> such that <span class="math display">\[ \text{INSIDE POLYGON}(x,y) \implies \bigwedge_i t_i\in [0,1] \bigvee_{i} (a_i,b_i)t+(c_i,d_i)(1-t) \text{ SEES } x,y. \]</span></p>
+</div>
