@@ -1,0 +1,58 @@
+<h1 id="introduction">introduction</h1>
+<p>An <span class="math inline">\(\exists \mathbb{R}\)</span> formula (<strong>ETR</strong>) is defined as follows: You form a sentance <span class="math inline">\(\Phi\)</span> using variables $X_1,, <span class="math inline">\(, the symbols &quot;\)</span>, , , 0, 1, +, -, , (,),=, &lt;, $". The formula is then <span class="math display">\[ \exists X_1,X_2,\ldots, X_n\in \mathbb{R}\mid \Phi(X_1,\ldots, X_n). \]</span> The language <span class="math inline">\(\exists \mathbb{R}\)</span> is the set of all true <span class="math inline">\(\exists \mathbb{R}\)</span> formulas.</p>
+<p>Note that we can encode constants other than <span class="math inline">\(0,1\)</span> by adding <span class="math inline">\(1\)</span> to itself many times and then dividing. However, the length in bits of the numerator and denominator of a rational fraction will influence the formula length.</p>
+<p>A simple example of an <span class="math inline">\(\exists \mathbb{R}\)</span> formula is a formula for checking if an intersection of half-planes with rational slopes is empty. To build such a formula we first note that the determinant can be used to check if one vector is to the left or to the right of another vector. For rational numbers <span class="math inline">\(a_1,b_1,a_2,b_2\)</span> we define the proposition <span class="math inline">\(\Phi_{L((a_1,b_1),(a_2,b_2))}(x,y)\)</span> for checking if point <span class="math inline">\(x,y\)</span> lies above the line that passes through <span class="math inline">\((a_1,b_1), (a_2,b_2)\)</span> as follows: <span class="math display">\[ (a_2-a_1)(y-b_1)-(x-a_1)(b_2-b_1) \ge 0. \]</span> Now, given several half-planes we can write a formula of the form <span class="math display">\[ \exists x,y \mid \Phi_{L((a_1,b_1),(a_2,b_2))} \land \Phi_{L((a_3,b_3),(a_4,b_4))} \land \Phi_{L((a_5,b_5),(a_6,b_6))} \]</span> and this formula is satisfied by some <span class="math inline">\(x,y\in \mathbb{R}\)</span> if and only if the intersection of half-planes described by the formula is non-empty.</p>
+<p>It is also worth noting that you can force variables to take irrational values (although the values will always be algebraic). For instance, the formula: <span class="math display">\[ \exists x \mid x\cdot x = 2, \]</span> forces <span class="math inline">\(x=\sqrt{2}\)</span>.</p>
+<h1 id="containment-in-exists-mathbbr">Containment in <span class="math inline">\(\exists \mathbb{R}\)</span></h1>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(P,g\)</span> be an instance of the art gallery problem, where <span class="math inline">\(P\)</span> is a polygon with <span class="math inline">\(n\)</span> vertiecs, each of which has rational coordinates represented by at most <span class="math inline">\(B\)</span> bits. There is a polynomial time algorithm that turns <span class="math inline">\(P,g\)</span> into an <span class="math inline">\(\exists \mathbb{R}\)</span> formula <span class="math inline">\(\Phi\)</span> such that the <span class="math inline">\(\exists \mathbb{R}\)</span> formula has length <span class="math inline">\(O(n^{14}B^2)\)</span> and such that the <span class="math inline">\(\Phi\)</span> is satisfiable if and only if <span class="math inline">\(P\)</span> can be guarded by <span class="math inline">\(g\)</span> guards.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> First we show how to turn an art gallery problem into a simple formula which is not quite in the <span class="math inline">\(\exists \mathbb{R}\)</span> class of formulas, but is quite close. Specifically, the problem will be that it has a <span class="math inline">\(\forall\)</span> quantifier. The formula is as follows: <span class="math display">\[ \Psi := \exists x_1,y_1,\ldots, x_k, y_k \forall p_x,p_y \mid
+\text{INSIDE-POLYGON}(p_x,p_y)\implies \lor_{i=1}^{k} \text{SEES}(x_i,y_i,p_x,p_y).\]</span> Now we expand out the INSIDE-POLYGON and SEES sub-formulas. INSIDE-POLYGON can be implemented by triangulating the polygon and doing an <span class="math inline">\(\lor\)</span> of checks for if the point <span class="math inline">\(p_x,p_y\)</span> is in each of the triangles. To check containment in a triangle we can exactly use the formula described earlier in this note for checking intersection of half planes. We simply orient the edges of the trianlge counter-clockwise and then check if the point is to the left of each of these edges. The INSIDE-POLYGON predicate has length <span class="math inline">\(O(nB)\)</span>.</p>
+<p>For the SEES predicate we insert, for every pair of consecutive edges, a predicate that checks if <span class="math inline">\(e_1,e_2\)</span> blocks the line of sight between <span class="math inline">\(p_x,p_y\)</span> and <span class="math inline">\(x_i,y_i\)</span>; this can be done with a constant number of determinants.</p>
+<p>To convert the formula <span class="math inline">\(\Psi\)</span> into an ETR formula we create a <strong>witness set</strong>: a small subset of points such that if these points are guarded then it guarantees that the entire polygon is guarded.</p>
+<p>Roughly speaking the witness set is constructed as follows: Let <span class="math inline">\(L\)</span> denote the set of lines containing either an edge of <span class="math inline">\(P\)</span> or a guard <span class="math inline">\(g\)</span> and a corner <span class="math inline">\(v\)</span> of the polygon (modulo an issue that this is not well defined if a guard is placed on a corner). The lines divide <span class="math inline">\(\mathbb{R}^2\)</span> into <strong>regions</strong> (faces of the arrangement). The set of regions satisfies:</p>
+<ul>
+<li>each region is an open convex polygon</li>
+<li>each region is either fully inside the polygon or fully outside</li>
+<li>the closure of the union of the regions inside the polygon gives the entire polygon including the boundary</li>
+<li>For each region <span class="math inline">\(R\)</span> and each guard <span class="math inline">\(g\)</span> we have that <span class="math inline">\(g\)</span> either sees all of <span class="math inline">\(R\)</span> or none of <span class="math inline">\(R\)</span>.</li>
+</ul>
+<p>So, what we will do is, for each region <span class="math inline">\(R\)</span> contained in the polygon we choose a point in the interior of <span class="math inline">\(R\)</span>, namely the centriod of <span class="math inline">\(3\)</span> distinct points. Then we add a check for if there is a guard that can see this internal point. The entire polygon is guarded if and only if each of these internal points is seen by some guard.</p>
+<p>The way they handle the possibly degenerate lines and the possibility of parallel lines is kind of as follows:</p>
+<ul>
+<li>for each pair of (potentially degenerate) lines they have a formula that asserts that either (a) one of the lines is degenerate, or (b) the lines are parallel, or (c) some variable gets assigned to have value equal to this intersection point.</li>
+<li>then they a condition that says, for each triple of points, if those three points are all defined, then force some variable to be made equal to the centroid and if that centroid is inside the polygon, then force some guard to see it.</li>
+</ul>
+</div>
+<h1 id="exists-mathbbr-hardness"><span class="math inline">\(\exists \mathbb{R}\)</span> hardness</h1>
+<p>The first hint that the art gallery problem might be harder than NP-hard is that there are polygons where it is necessary to place the guards at irrational points.</p>
+<p>[TODO: draw example]</p>
+The hardness proof is based on the following simpler but equivalent variant of ETR, which they call <strong>ETRINV</strong>:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> The variables <span class="math inline">\(x_1,x_2,\ldots, x_n\)</span> all must be within <span class="math inline">\([1/2,2]\)</span>. The allowed constraints are of the following form:</p>
+<ul>
+<li><span class="math inline">\(x_i = 1\)</span></li>
+<li><span class="math inline">\(x_i + x_j = x_k\)</span></li>
+<li><span class="math inline">\(x_i\cdot x_j = 1\)</span></li>
+</ul>
+<p>Deciding satisfiability of ETRINV is just as hard as deciding satisfiability of ETR.</p>
+<p>The proof of this theorem is some rather involved algebra.</p>
+</div>
+<p>Now we outline the components of their proof. They will have variable gadgets at the bottom and clause gadgets on the sides.</p>
+<p>The variable gadgets look like this:</p>
+<figure>
+<img src="src/images/ink_img006.png" alt="" /><figcaption>ink_img006</figcaption>
+</figure>
+<p>The idea is, in order for a guard to be able to see all of the 4 corners it needs to be somewhere on the “guard segment”. The location on the guard segment will encode the variable’s value.</p>
+<p>They also need a variation of this with some extra pockets to enforce <span class="math inline">\(x_i = 1\)</span> constraints.</p>
+<p>Next they need a copy gadget.</p>
+<p>Then they need an addition gadget.</p>
+<p>Finally they need an <span class="math inline">\(x=1/y\)</span> gadget.</p>
+<p>These gadgets are cool but very tricky to construct and required some computer search.</p>
+<h1 id="open-questions">open questions</h1>
+<ul>
+<li>Is guarding the boundary <span class="math inline">\(\exists \mathbb{R}\)</span> complete? Actually this was recently resolved by Jack Stade.</li>
+<li>interesting note: you can guard the boundary without guarding the interior.</li>
+</ul>
