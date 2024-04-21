@@ -70,6 +70,8 @@ The hardness proof is based on the following simpler but equivalent variant of E
 <p><span class="math display">\[ \exists (a_1,b_1,c_1,d_1),\ldots,(a_k,b_k,c_k,d_k) \mid
 \forall x,y: \exists t_1,\ldots,t_k\]</span> such that <span class="math display">\[ \text{INSIDE POLYGON}(x,y) \implies \bigwedge_i t_i\in [0,1] \bigvee_{i} (a_i,b_i)t+(c_i,d_i)(1-t) \text{ SEES } (x,y). \]</span></p>
 <p>Yeah, so tldr is I think the witnes set thing from earlier is also going to just win this one.</p>
-<p>Like, here’s the idea. Imagine we had a set <span class="math inline">\(W\)</span> of polynomial size with the following property: <span class="math display">\[ \forall (x,y)\in W \exists (x&#39;,y&#39;) \in S \mid (x&#39;,y&#39;) \text{ SEES } (x,y) \implies \forall (x,y)\in P \exists (x&#39;,y&#39;) \in S \mid (x&#39;,y&#39;) \text{ SEES } (x,y).\]</span></p>
+<p>Like, here’s the idea. <strong>TODO: NO THIS IS NOT RIGHT</strong> Imagine we had a set <span class="math inline">\(W\)</span> of polynomial size with the following property: <span class="math display">\[ \forall (x,y)\in W \exists (x&#39;,y&#39;) \in S \mid (x&#39;,y&#39;) \text{ SEES } (x,y) \implies \forall (x,y)\in P \exists (x&#39;,y&#39;) \in S \mid (x&#39;,y&#39;) \text{ SEES } (x,y).\]</span></p>
 <p>Let <span class="math inline">\(W = (x_1,y_1),(x_2,y_2),\ldots.\)</span> Then, we’d be pretty happy with the following formula: <span class="math display">\[ \exists (a_i,b_i,c_i,d_i)_{i\in [k]} (t_{ij})_{i\in [k], j\in [|W|]}\]</span> such that <span class="math display">\[\bigwedge_{ij} t_{ij}\in[0,1] \bigwedge_{j\in [|W|]} \bigvee_{i} (a_i,b_i)t_{ij}+(c_i,d_i)(1-t_{ij}) \text{ SEES } (x_j,y_j). \]</span></p>
+<p>Anyways, I think this is basically what their witness set is.</p>
+<p>ok actually I need to be more careful, because the definition of the witness set thing depends on the coordinates of the guards. so yeah let’s do take 2.</p>
 </div>
