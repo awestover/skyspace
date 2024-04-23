@@ -1,4 +1,4 @@
-dirichlet, warmup
+Dirichlet's Theorem
 
 In this post I will give a proof of Dirichlet's Theorem: in any
 (reasonable) infinite arithmetic progression there are infinitely
