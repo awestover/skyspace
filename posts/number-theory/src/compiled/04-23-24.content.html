@@ -9,9 +9,10 @@
 <h2 id="simple-euler-products">Simple Euler Products</h2>
 <p>We have seen an intruiging proof of the infinitude of the primes. We now extend this to proving that there are infinitely many primes in <span class="math inline">\(4\mathbb{N}+1\)</span> and <span class="math inline">\(4\mathbb{N}+3\)</span>.</p>
 <p>The following proofs are taken from Andreescu and Dospinescu’s book again, but should probably be attributed to Dirichlet.</p>
-<p>Let <span class="math inline">\(\lambda\)</span> be the character with <span class="math inline">\(\lambda(2k) = 0, \lamba(4k+1)=1, \lambda(4k+3)=0\)</span>. Define <span class="math display">\[L(s, \lambda) = \sum_{n\ge 1} \frac{\lambda(n)}{n^{s}}.\]</span> For any <span class="math inline">\(s&gt;1\)</span> we have absolute convergence, and thus can re-arrange terms to achieve: <span class="math display">\[ \ln L(s)  = \sum_p \left(1-\frac{\lambda(p)}{p^{s}}\right).\]</span> Using basic taylor series one can show <span class="math display">\[ \left|\ln L(s) - \sum_p \lambda(p)/p^{s}\right| \le O(1). \]</span> From here we derive that <span class="math display">\[ \left|\sum_{p} \lambda(p)/p^{s}\right| = O(1). \]</span> On the other hand, we know that <span class="math display">\[ \lim_{s\to 1} \sum_p p^{-s} \to \infty. \]</span> Thus, there must be a large amount of cancellation occuring in the sum <span class="math inline">\(\sum_{p} \lambda(p)/p^{s}\)</span>. In particular, we must have that there are infinitely many primes in both <span class="math inline">\(4\mathbb{N}+1\)</span> and <span class="math inline">\(4\mathbb{N}+3\)</span>.</p>
+<p>Let <span class="math inline">\(\lambda\)</span> be the character with <span class="math inline">\(\lambda(2k) = 0, \lambda(4k+1)=1, \lambda(4k+3)=0\)</span>. Define <span class="math display">\[L(s, \lambda) = \sum_{n\ge 1} \frac{\lambda(n)}{n^{s}}.\]</span> For any <span class="math inline">\(s&gt;1\)</span> we have absolute convergence, and thus can re-arrange terms to achieve: <span class="math display">\[ \ln L(s)  = \sum_p \left(1-\frac{\lambda(p)}{p^{s}}\right).\]</span> Using basic taylor series one can show <span class="math display">\[ \left|\ln L(s) - \sum_p \lambda(p)/p^{s}\right| \le O(1). \]</span> From here we derive that <span class="math display">\[ \left|\sum_{p} \lambda(p)/p^{s}\right| = O(1). \]</span> On the other hand, we know that <span class="math display">\[ \lim_{s\to 1} \sum_p p^{-s} \to \infty. \]</span> Thus, there must be a large amount of cancellation occuring in the sum <span class="math inline">\(\sum_{p} \lambda(p)/p^{s}\)</span>. In particular, we must have that there are infinitely many primes in both <span class="math inline">\(4\mathbb{N}+1\)</span> and <span class="math inline">\(4\mathbb{N}+3\)</span>.</p>
 <h1 id="dirichlet-characters">Dirichlet Characters</h1>
-<p>To generalize this idea we need Dirichlet Characters. <a href="https://web.stanford.edu/~thaipham/papers/MIT_18.104_Review_Paper.pdf">Credit to this is due to this paper by Thai Pham, a previous MIT student.</a> For an abelian group <span class="math inline">\(G\)</span> we define the dual <span class="math inline">\(\hat{G}\)</span> as the set of homomorphisms from <span class="math inline">\(G\)</span> to <span class="math inline">\(\mathbb{C}\setminus\left\{ 0\right\}\)</span>.</p>
+<p>To generalize this idea we need Dirichlet Characters. <a href="https://web.stanford.edu/~thaipham/papers/MIT_18.104_Review_Paper.pdf">Credit to this is due to this paper by Thai Pham, a previous MIT student.</a> The following resource was also useful: Garrett, Paul, Primes in arithmetic progressions, 2011. http : //www.math.umn.edu/ ∼ garrett/m/mf ms/notes c/dirichlet.pdf as was wikipedia for <a href="https://awestover.github.io/skyspace/posts/analysis/02-07-24.html">complex analysis background</a>.</p>
+<p>For an abelian group <span class="math inline">\(G\)</span> we define the dual <span class="math inline">\(\hat{G}\)</span> as the set of homomorphisms from <span class="math inline">\(G\)</span> to <span class="math inline">\(\mathbb{C}\setminus\left\{ 0\right\}\)</span>.</p>
 For example, if <span class="math inline">\(G=(\mathbb{Z}/p\mathbb{Z})^{*}\)</span> then <span class="math inline">\(\hat{G}\)</span> is functions <span class="math inline">\(x\mapsto e(xk/p)\)</span> for each <span class="math inline">\(k\in (\mathbb{Z}/p\mathbb{Z})^{*}\)</span>. This illustrates a general fact:
 <div class="thm envbox">
 <p><strong>Theorem.</strong> <span class="math inline">\(\hat{G}\)</span> is isomorphic to <span class="math inline">\(G\)</span>.</p>
@@ -25,17 +26,84 @@ A useful property of the dual group is:
 <p><strong>Lemma.</strong> We have:</p>
 <ul>
 <li><span class="math inline">\(\sum_{g\in G}\chi(g) = 0\)</span> unless <span class="math inline">\(g=1\)</span> in which case the sum is <span class="math inline">\(|G|\)</span></li>
-<li><span class="math inline">\(\sum_{\chi\in \hat{G}} \chi(g) = 0\)</span> unless <span class="math inline">\(\chi=\id\)</span> in which case the sum is <span class="math inline">\(|\hat{G}|\)</span>.</li>
+<li><span class="math inline">\(\sum_{\chi\in \hat{G}} \chi(g) = 0\)</span> unless <span class="math inline">\(\chi=id\)</span> in which case the sum is <span class="math inline">\(|\hat{G}|\)</span>.</li>
+<li><span class="math inline">\(\langle \chi, \phi \rangle = \sum_{g} \chi(g)\overline{\phi(g)} = \mathbb{1}_{\chi=\phi}.\)</span></li>
 </ul>
-<p><span class="math display">\[ \langle \chi, \phi \rangle = \sum_{g} \chi(g)\overline{\phi(g)} = \mathbb{1}_{\chi=\phi}. \]</span></p>
 </div>
 <p>These are standard and we omit the proofs.</p>
 <h1 id="dirichlet-series">Dirichlet Series</h1>
-<p>Now we proceed with the proof of the theorem.</p>
+<p>Now we proceed with the proof of the theorem. Throughout the section we fix <span class="math inline">\(m\)</span>. Our goal will be to show that for every <span class="math inline">\(a\perp m\)</span> the set <span class="math inline">\(m\mathbb{N}+a\)</span> contains infinitely many primes. The idea of the theorem is to assert the divergence of a certain sum. The following result will be helpful:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(D(s) = \sum_{n\ge 1} a_n/n^{s}\)</span>. Suppose that <span class="math inline">\(D(s_0)\)</span> converges. Then <span class="math inline">\(D\)</span> is analytic on <span class="math inline">\(\mathrm{Re}(s)&gt;\mathrm{Re}(s_0)\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We omit the proof.</p>
+</div>
+We will also need the <strong>Dirichlet <span class="math inline">\(L\)</span>-series</strong>, defined as <span class="math display">\[ L(s, \chi) = \sum_{n\ge 1} \frac{\chi(n)}{n^{s}}. \]</span> The <span class="math inline">\(L\)</span>-series obey the following property:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Fix any non-trivial <span class="math inline">\(\chi\)</span>. Then, <span class="math inline">\(L(s,\chi)\)</span> converges and is analytic in <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>.</p>
+<p>Furthermore, if <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> then <span class="math inline">\(L(s,\chi)\)</span> converges absolutely, and satisfies the product formula <span class="math display">\[ L(s, \chi) = \prod_{p\perp m} \frac{1}{1-\chi(p)p^{-s}}. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This follows by Abel’s summation formula and the fact that if you sum all the <span class="math inline">\(\phi(m)\)</span>-th roots of unity then you get <span class="math inline">\(0\)</span>.</p>
+<p>If <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> then the sum is absolutely convergent, allowing us to arbitrarily re-arrange the terms.</p>
+</div>
 <p>A key character in the proof will be the Reimann Zeta function. This is defined as follows.</p>
 <div class="lem envbox">
 <p><strong>Lemma.</strong> Let <span class="math inline">\(\zeta(s)\)</span> denote the analytic extension of <span class="math inline">\(\sum_{n\ge 1}n^{-s}\)</span> for <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> to a meromomorphic function on the whole complex plane. This extension exists and is holomorphic except for a pole at <span class="math inline">\(s=1\)</span>.</p>
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> The typical way that analytic extensions work is by having a functional equation that extends the definition of your function. We will actually only require the Reimann zeta function on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>, for which we can perform the extension using the following simple observation: <span class="math display">\[\sum_{n\ge 1} n^{-s} - 2 (2n)^{-s} = \zeta(s)\left(1 - 1/2^{s-1}\right) = \sum_{n\ge 1} (-1)^{n-1}/n^{s}. \]</span> The RHS converges for all <span class="math inline">\(s\)</span> with <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>. Thus, for <span class="math inline">\(s\in \mathbb{C}\)</span> with <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> and <span class="math inline">\(s\neq 1\)</span> we can define <span class="math display">\[ \zeta(s) = \frac{1}{1-2^{1-s}} \sum_{n\ge 1} \frac{(-1)^{n-1}}{n^{s}}.\]</span></p>
+<p>This seems like a nice enough proof. For sake of completeness I’ll include the other proof that I’ve seen in a lot of places: Using integration to estimate the sum defining the zeta function for <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> gives: <span class="math display">\[ \zeta(s) - \frac{1}{s-1} \le O(\sum_n 1/n^{s+1}).\]</span> And, the RHS is holomorphic for <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> so this extension makes sense.</p>
 </div>
+<div class="cor envbox">
+<p><strong>Corollary.</strong> Let <span class="math inline">\(\chi_0\)</span> denote the trivial character. Then <span class="math inline">\(L(s,\chi_0)\)</span> extends to a meromorphic function in <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> with the only pole at <span class="math inline">\(s=1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This follows immediately from the similar statement about <span class="math inline">\(\zeta(s)\)</span>.</p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math display">\[ \left| L(s, \chi) - \sum_p \frac{\chi(p)}{p^{s}}\right| \le 1618.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> For any <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> we have <span class="math display">\[ \log L(s, \chi) = -\sum_p \log(1 - \chi(p)p^{-s}). \]</span> Then, using the same Taylor Series tricks that we did in the simple <span class="math inline">\(m=4\)</span> case we conclude the lemma.</p>
+</div>
+Now we use the orthogonality relations developed for the characters to extract the sum that we want:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> For any <span class="math inline">\(a\perp m\)</span>, and all <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span>, <span class="math display">\[ \sum_{p \equiv a  \mod m} p^{-s} \ge \frac{1}{\phi(m)} \sum_\chi \overline{\chi(a)}\log L(s,\chi) - 100m.\]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We apply the orthogonality relations to the previous lemma.</p>
+</div>
+<p>Our goal is to show that the sum on the LHS of the above lemma diverges as <span class="math inline">\(s\to 1\)</span>. We already know that <span class="math inline">\(L(s, \chi_0)\to \infty\)</span> where <span class="math inline">\(\chi_0\)</span> is the trivial character. Thus, all that remains is to prove that for any <span class="math inline">\(\chi\neq \chi_0\)</span>, the positive contribution from <span class="math inline">\(L(s, \chi_0)\)</span> is not cancelled out by <span class="math inline">\(L(s, \chi)\)</span>. We already know that these <span class="math inline">\(L(s,\chi)\)</span> are convergent for <span class="math inline">\(s=1\)</span>. However, we are taking <span class="math inline">\(\log L(s,\chi)\)</span>, so it would still be problematic if <span class="math inline">\(L(s,\chi)=0\)</span>. So, to finish, we will establish that for all <span class="math inline">\(\chi\neq \chi_0\)</span> we have <span class="math inline">\(L(1,\chi)\neq 0\)</span>.</p>
+<p style="red">
+ok interesting note: we are considering <span class="math inline">\(\log\)</span> as a function on <span class="math inline">\(\mathbb{C}\)</span>. gosh complex analysis is weird. In any case, according to chatgpt <span class="math inline">\(\log(z)\)</span> is defined as long as <span class="math inline">\(z\neq 0\)</span>.
+</p>
+<p style="red">
+ok, side question, why was taking logarithms even a good move? I mean I guess estimating sums was easier than estimating products?
+</p>
+<p>It seems like a somewhat strange concern. I would have guessed that one can make a simple argument, just grouping the terms of the sum appropriately, to show boundedness away from zero. But that does seem a bit gross. Anyways, to finish the proof we will prove this non-vanishing.</p>
+<h1 id="non-vanishing-of-non-trivial-characters-at-s1.">Non-vanishing of non-trivial characters at <span class="math inline">\(s=1\)</span>.</h1>
+<p>We define the function <span class="math display">\[ \zeta_m(s) = \prod_\chi L(s, \chi). \]</span></p>
+We will need two lemmas.
+<div class="lem envbox">
+<p><strong>Lemma.</strong> [Landau] Let <span class="math inline">\(f(s) = \sum_{n\ge 1} a_n / n^{s}\)</span> with real coefficients <span class="math inline">\(a_n\ge 0\)</span>. Suppose that this series converges for <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span>. Suppose further that <span class="math inline">\(f\)</span> extends to a holomorphic function on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>. Then the series defining <span class="math inline">\(f(s)\)</span> converges for <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>.</p>
+</div>
+<p>We omit the proof (for now at least).</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> If <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> then <span class="math display">\[ \zeta_m(s) = \prod_{p \perp m} \left(\frac{1}{1-p^{-ord(p)s}}\right)^{\frac{\phi(m)}{ord(p)}}. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This is cool but pretty straightforward omitting for now.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For any non-trivial character <span class="math inline">\(\chi\)</span> we have <span class="math inline">\(\L(1, \chi)\neq 0\)</span>.</p>
+</div>
+<div class="pf envbox">
+<strong>Proof.</strong> We aim to show that <span class="math inline">\(\zeta_m(s)\)</span> cannot be analytic on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>.
+<p style="color=&#39;red&#39;">
+no I lost the logic here.
+</p>
+<p>Basically we are somehow going to use Landau’s theorem to evaluate the thing at a point where it blows up and get a contradiction.</p>
+</div>
+<p>Apostol’s Intro to ANYNT seems to contain a pretty reasonable proof. Probably possible to syntehsize with what I have so far.</p>
