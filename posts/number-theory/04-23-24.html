@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#simple-proofs-that-p_3p_1-are-infinite" class="js-scroll-trigger">Simple proofs that $P_3,P_1$ are infinite</a> </li>
+<li> <a href="#baby-euler-products-" class="js-scroll-trigger">baby euler products </a> </li>
+<li> <a href="#lets-do-better" class="js-scroll-trigger">let's do better</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><h2 id="simple-proofs-that-p_3p_1-are-infinite">Simple proofs that <span class="math inline">\(P_3,P_1\)</span> are infinite</h2>
+<p>Assume that <span class="math inline">\(p_1,\ldots, p_n\)</span> is a complete list of the primes congruent to <span class="math inline">\(3\)</span> modulo <span class="math inline">\(4\)</span>, excluding <span class="math inline">\(3\)</span>. Then <span class="math display">\[ 4 p_1\cdots p_n + 3 \]</span> must be divisible by some prime congruent to <span class="math inline">\(3\)</span> mod <span class="math inline">\(4\)</span>. Of course <span class="math inline">\(p_1\cdots p_n\)</span> is not divisible by <span class="math inline">\(3\)</span> so <span class="math inline">\(4p_1\cdots p_n + 3\)</span> isn’t either. Thus the product must be divisible by one of <span class="math inline">\(p_1,\ldots, p_n\)</span>. But this is impossible by Euclid’s algorithm.</p>
+<p>Assume <span class="math inline">\(q_1,\ldots, q_n\)</span> complete list of primes congruent to <span class="math inline">\(1\)</span> modulo <span class="math inline">\(4\)</span>. Then, <span class="math display">\[ (q_1 q_2 \cdots q_n)^2 +1 \]</span> is not divisible by any <span class="math inline">\(P_3\)</span> primes, and is divisible by <span class="math inline">\(2\)</span> only once. Thus it should be divisible by <span class="math inline">\(q_i\)</span>, which is impossible by Euclid’s algorithm.</p>
+<blockquote>
+<p>however, these proofs leave something to be desired: <strong>density statements!</strong></p>
+</blockquote>
+<blockquote>
+<p>Also these proofs don’t generalize well to handling arbitrary APs.</p>
+</blockquote>
+<p>The following proof turns out to generalize nicely to tell you things about density.</p>
+<p>Primes are infinite: <span class="math display">\[ \sum_n \frac{1}{n^s}  = \prod_p \frac{1}{1-p^{-s}} \]</span></p>
+<p>divergence of LHS as <span class="math inline">\(s\to 1^{+}\)</span> implies divergence of RHS, and thus the infinitude of primes, if you’re careful.</p>
+<h2 id="baby-euler-products">baby euler products</h2>
+<p>Define <span class="math inline">\(L(s) = 1-1/3^{s}+1/5^{s}-\cdots\)</span>. Observe carefully <span class="math display">\[ \ln L(s)  = \sum_p 1-\frac{\lambda(p)}{p^{s}}.\]</span> Here <span class="math inline">\(\lambda\)</span> is a character <span class="math inline">\(1,0,-1,0,\ldots\)</span>.</p>
+<p>Then using basic taylor series one can show</p>
+<p><span class="math display">\[ \left\ln L(s) - \sum_p \lambda(p)/p^{s}\right \le O(1). \]</span></p>
+<p>And you can derive that <span class="math display">\[ \sum_{p\in P_1} 1/p^{s} - \sum_{p\in P_3}1/p^{s} = O(1). \]</span></p>
+<p>And this is what we wanted.</p>
+<h1 id="lets-do-better">let’s do better</h1>
+<p><a href="https://web.stanford.edu/~thaipham/papers/MIT_18.104_Review_Paper.pdf">an article about it</a> elkies notes are good resource as well. maybe serre</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
