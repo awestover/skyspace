@@ -1,3 +1,6 @@
 dirichlet, warmup
 
-
+In this post I will give a proof of Dirichlet's Theorem: in any
+(reasonable) infinite arithmetic progression there are infinitely
+many primes. Actually we will probably get a nice density
+statement that is stronger than this.

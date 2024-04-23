@@ -34,9 +34,10 @@
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
             <div id="toc">
-            <li> <a href="#simple-proofs-that-p_3p_1-are-infinite" class="js-scroll-trigger">Simple proofs that $P_3,P_1$ are infinite</a> </li>
-<li> <a href="#baby-euler-products-" class="js-scroll-trigger">baby euler products </a> </li>
-<li> <a href="#lets-do-better" class="js-scroll-trigger">let's do better</a> </li>
+            <li> <a href="#simple-proofs-that-4\n+1-4\n+3-contain-infinitely-many-primes" class="js-scroll-trigger">Simple proofs that $4\N+1, 4\N+3$ contain infinitely many primes</a> </li>
+<li> <a href="#simple-euler-products-" class="js-scroll-trigger">Simple Euler Products </a> </li>
+<li> <a href="#dirichlet-characters" class="js-scroll-trigger">Dirichlet Characters</a> </li>
+<li> <a href="#dirichlet-series" class="js-scroll-trigger">Dirichlet Series</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -45,26 +46,47 @@
 
       <div id="content"> 
         <!-- ***DECRYPT 1443849234234*** -->
-        <div id="actual-content"><h2 id="simple-proofs-that-p_3p_1-are-infinite">Simple proofs that <span class="math inline">\(P_3,P_1\)</span> are infinite</h2>
+        <div id="actual-content"><p>We start with a couple simple ad-hoc proofs for some simple cases of Dirichlet’s theorem. They are very natural, but don’t generalize to the result we want, and don’t give you any type of density result.</p>
+<h2 id="simple-proofs-that-4mathbbn1-4mathbbn3-contain-infinitely-many-primes">Simple proofs that <span class="math inline">\(4\mathbb{N}+1, 4\mathbb{N}+3\)</span> contain infinitely many primes</h2>
+<p>The following two proofs are taken from “Problems from the Book” by Titu Andreescu and Gabriel Dospinescu, but are standard.</p>
 <p>Assume that <span class="math inline">\(p_1,\ldots, p_n\)</span> is a complete list of the primes congruent to <span class="math inline">\(3\)</span> modulo <span class="math inline">\(4\)</span>, excluding <span class="math inline">\(3\)</span>. Then <span class="math display">\[ 4 p_1\cdots p_n + 3 \]</span> must be divisible by some prime congruent to <span class="math inline">\(3\)</span> mod <span class="math inline">\(4\)</span>. Of course <span class="math inline">\(p_1\cdots p_n\)</span> is not divisible by <span class="math inline">\(3\)</span> so <span class="math inline">\(4p_1\cdots p_n + 3\)</span> isn’t either. Thus the product must be divisible by one of <span class="math inline">\(p_1,\ldots, p_n\)</span>. But this is impossible by Euclid’s algorithm.</p>
 <p>Assume <span class="math inline">\(q_1,\ldots, q_n\)</span> complete list of primes congruent to <span class="math inline">\(1\)</span> modulo <span class="math inline">\(4\)</span>. Then, <span class="math display">\[ (q_1 q_2 \cdots q_n)^2 +1 \]</span> is not divisible by any <span class="math inline">\(P_3\)</span> primes, and is divisible by <span class="math inline">\(2\)</span> only once. Thus it should be divisible by <span class="math inline">\(q_i\)</span>, which is impossible by Euclid’s algorithm.</p>
-<blockquote>
-<p>however, these proofs leave something to be desired: <strong>density statements!</strong></p>
-</blockquote>
-<blockquote>
-<p>Also these proofs don’t generalize well to handling arbitrary APs.</p>
-</blockquote>
-<p>The following proof turns out to generalize nicely to tell you things about density.</p>
-<p>Primes are infinite: <span class="math display">\[ \sum_n \frac{1}{n^s}  = \prod_p \frac{1}{1-p^{-s}} \]</span></p>
-<p>divergence of LHS as <span class="math inline">\(s\to 1^{+}\)</span> implies divergence of RHS, and thus the infinitude of primes, if you’re careful.</p>
-<h2 id="baby-euler-products">baby euler products</h2>
-<p>Define <span class="math inline">\(L(s) = 1-1/3^{s}+1/5^{s}-\cdots\)</span>. Observe carefully <span class="math display">\[ \ln L(s)  = \sum_p \left(1-\frac{\lambda(p)}{p^{s}}\right).\]</span> Here <span class="math inline">\(\lambda\)</span> is a character <span class="math inline">\(1,0,-1,0,\ldots\)</span>.</p>
-<p>Then using basic taylor series one can show</p>
-<p><span class="math display">\[ \left|\ln L(s) - \sum_p \lambda(p)/p^{s}\right| \le O(1). \]</span></p>
-<p>And you can derive that <span class="math display">\[ \left|\sum_{p\in P_1\cup P_3} \lambda(p)/p^{s}\right| = O(1). \]</span></p>
-<p>And this is what we wanted.</p>
-<h1 id="lets-do-better">let’s do better</h1>
-<p><a href="https://web.stanford.edu/~thaipham/papers/MIT_18.104_Review_Paper.pdf">an article about it</a> elkies notes are good resource as well. maybe serre</p>
+<p>These proofs are very elementary, although the second proof already relies on a non-trivial fact about the classification of prime factors of numbers of the form <span class="math inline">\(n^2+1\)</span>. However, they are fairly ad-hoc. Furthermore, these proofs seem to have no hope of proving a density statement.</p>
+<p>It turns out that the following proof generalizes more nicely, and also gives you density statements.</p>
+<p>The Euler Product Formula states that for any real <span class="math inline">\(s&gt;1\)</span> the following series/products exist and are equal. <span class="math display">\[ \sum_{n\ge 1} \frac{1}{n^s}  = \prod_p \frac{1}{1-p^{-s}} \]</span> It is implicit throughout this note that <span class="math inline">\(p\)</span> runs over primes when written as an index in a sum or product. The veracity of the Euler Product Formula is immediate from the Fundamenal Theorem of Numbers – the fact that all numbers can be uniquely decomposed into prime factors – along with viewing <span class="math inline">\(\frac{1}{1-p^{-s}}\)</span> as the sum <span class="math inline">\(\sum_{n\ge 0} p^{-ns}\)</span>, and noting that for absolutely convergent sums it is legal to rearrange terms arbitrarily. Of course we know that <span class="math display">\[ \lim_{s\to 1} \sum_{n\ge 1} n^{-s} = \infty. \]</span> This fact is incompatible with having finitely many primes: the product on the RHS can’t grow unboundedly if it is a product over finitely many terms.</p>
+<h2 id="simple-euler-products">Simple Euler Products</h2>
+<p>We have seen an intruiging proof of the infinitude of the primes. We now extend this to proving that there are infinitely many primes in <span class="math inline">\(4\mathbb{N}+1\)</span> and <span class="math inline">\(4\mathbb{N}+3\)</span>.</p>
+<p>The following proofs are taken from Andreescu and Dospinescu’s book again, but should probably be attributed to Dirichlet.</p>
+<p>Let <span class="math inline">\(\lambda\)</span> be the character with <span class="math inline">\(\lambda(2k) = 0, \lamba(4k+1)=1, \lambda(4k+3)=0\)</span>. Define <span class="math display">\[L(s, \lambda) = \sum_{n\ge 1} \frac{\lambda(n)}{n^{s}}.\]</span> For any <span class="math inline">\(s&gt;1\)</span> we have absolute convergence, and thus can re-arrange terms to achieve: <span class="math display">\[ \ln L(s)  = \sum_p \left(1-\frac{\lambda(p)}{p^{s}}\right).\]</span> Using basic taylor series one can show <span class="math display">\[ \left|\ln L(s) - \sum_p \lambda(p)/p^{s}\right| \le O(1). \]</span> From here we derive that <span class="math display">\[ \left|\sum_{p} \lambda(p)/p^{s}\right| = O(1). \]</span> On the other hand, we know that <span class="math display">\[ \lim_{s\to 1} \sum_p p^{-s} \to \infty. \]</span> Thus, there must be a large amount of cancellation occuring in the sum <span class="math inline">\(\sum_{p} \lambda(p)/p^{s}\)</span>. In particular, we must have that there are infinitely many primes in both <span class="math inline">\(4\mathbb{N}+1\)</span> and <span class="math inline">\(4\mathbb{N}+3\)</span>.</p>
+<h1 id="dirichlet-characters">Dirichlet Characters</h1>
+<p>To generalize this idea we need Dirichlet Characters. <a href="https://web.stanford.edu/~thaipham/papers/MIT_18.104_Review_Paper.pdf">Credit to this is due to this paper by Thai Pham, a previous MIT student.</a> For an abelian group <span class="math inline">\(G\)</span> we define the dual <span class="math inline">\(\hat{G}\)</span> as the set of homomorphisms from <span class="math inline">\(G\)</span> to <span class="math inline">\(\mathbb{C}\setminus\left\{ 0\right\}\)</span>.</p>
+For example, if <span class="math inline">\(G=(\mathbb{Z}/p\mathbb{Z})^{*}\)</span> then <span class="math inline">\(\hat{G}\)</span> is functions <span class="math inline">\(x\mapsto e(xk/p)\)</span> for each <span class="math inline">\(k\in (\mathbb{Z}/p\mathbb{Z})^{*}\)</span>. This illustrates a general fact:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math inline">\(\hat{G}\)</span> is isomorphic to <span class="math inline">\(G\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> This is clear for cyclic groups and all finite abelian groups can be written as a direct sum of cyclic groups.</p>
+</div>
+<p>We will only consider the case <span class="math inline">\(G=(\mathbb{Z}/mZ)^{*}\)</span>. In this case the elements of <span class="math inline">\(G\)</span> are in correspondence with <span class="math inline">\(\phi(m)\)</span>-th roots of unity.</p>
+A useful property of the dual group is:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> We have:</p>
+<ul>
+<li><span class="math inline">\(\sum_{g\in G}\chi(g) = 0\)</span> unless <span class="math inline">\(g=1\)</span> in which case the sum is <span class="math inline">\(|G|\)</span></li>
+<li><span class="math inline">\(\sum_{\chi\in \hat{G}} \chi(g) = 0\)</span> unless <span class="math inline">\(\chi=\id\)</span> in which case the sum is <span class="math inline">\(|\hat{G}|\)</span>.</li>
+</ul>
+<p><span class="math display">\[ \langle \chi, \phi \rangle = \sum_{g} \chi(g)\overline{\phi(g)} = \mathbb{1}_{\chi=\phi}. \]</span></p>
+</div>
+<p>These are standard and we omit the proofs.</p>
+<h1 id="dirichlet-series">Dirichlet Series</h1>
+<p>Now we proceed with the proof of the theorem.</p>
+<p>A key character in the proof will be the Reimann Zeta function. This is defined as follows.</p>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> Let <span class="math inline">\(\zeta(s)\)</span> denote the analytic extension of <span class="math inline">\(\sum_{n\ge 1}n^{-s}\)</span> for <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> to a meromomorphic function on the whole complex plane. This extension exists and is holomorphic except for a pole at <span class="math inline">\(s=1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The typical way that analytic extensions work is by having a functional equation that extends the definition of your function. We will actually only require the Reimann zeta function on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>, for which we can perform the extension using the following simple observation: <span class="math display">\[\sum_{n\ge 1} n^{-s} - 2 (2n)^{-s} = \zeta(s)\left(1 - 1/2^{s-1}\right) = \sum_{n\ge 1} (-1)^{n-1}/n^{s}. \]</span> The RHS converges for all <span class="math inline">\(s\)</span> with <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>. Thus, for <span class="math inline">\(s\in \mathbb{C}\)</span> with <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> and <span class="math inline">\(s\neq 1\)</span> we can define <span class="math display">\[ \zeta(s) = \frac{1}{1-2^{1-s}} \sum_{n\ge 1} \frac{(-1)^{n-1}}{n^{s}}.\]</span></p>
+</div>
 </div>
       </div>
     </div>
