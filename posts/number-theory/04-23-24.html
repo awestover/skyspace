@@ -39,7 +39,7 @@
 <li> <a href="#dirichlet-characters" class="js-scroll-trigger">Dirichlet Characters</a> </li>
 <li> <a href="#dirichlet-series" class="js-scroll-trigger">Dirichlet Series</a> </li>
 <li> <a href="#non-vanishing-of-non-trivial-characters-at-s=1" class="js-scroll-trigger">Non-vanishing of non-trivial characters at $s=1$.</a> </li>
-<li> <a href="#tricky-part-of-the-argument:" class="js-scroll-trigger">tricky part of the argument:</a> </li>
+<li> <a href="#tldr:" class="js-scroll-trigger">TLDR:</a> </li>
 <li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
@@ -87,7 +87,7 @@ A useful property of the dual group is:
 <p><strong>Theorem.</strong> Let <span class="math inline">\(D(s) = \sum_{n\ge 1} a_n/n^{s}\)</span>. Suppose that <span class="math inline">\(D(s_0)\)</span> converges. Then <span class="math inline">\(D\)</span> is analytic on <span class="math inline">\(\mathrm{Re}(s)&gt;\mathrm{Re}(s_0)\)</span>.</p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> We omit the proof.</p>
+<p><strong>Proof.</strong> This is basically just saying that <span class="math inline">\(s\mapsto \exp(s)\)</span> is complex differentiable and that convergent sums play nicely with differentiation.</p>
 </div>
 We will also need the <strong>Dirichlet <span class="math inline">\(L\)</span>-series</strong>, defined as <span class="math display">\[ L(s, \chi) = \sum_{n\ge 1} \frac{\chi(n)}{n^{s}}. \]</span> The <span class="math inline">\(L\)</span>-series obey the following property:
 <div class="lem envbox">
@@ -130,7 +130,7 @@ Now we use the orthogonality relations developed for the characters to extract t
 <p>ok interesting note: we are considering <span class="math inline">\(\log\)</span> as a function on <span class="math inline">\(\mathbb{C}\)</span>. gosh complex analysis is weird. In any case, according to chatgpt <span class="math inline">\(\log(z)\)</span> is defined as long as <span class="math inline">\(z\neq 0\)</span>.</p>
 </blockquote>
 <blockquote>
-<p>ok, side question, why was taking logarithms even a good move? I mean I guess estimating sums was easier than estimating products?</p>
+<p>ok, side question, why was taking logarithms even a good move? I mean I guess estimating sums was easier than estimating products.</p>
 </blockquote>
 <p>It seems like a somewhat strange concern. I would have guessed that one can make a simple argument, just grouping the terms of the sum appropriately, to show boundedness away from zero. But that does seem a bit gross. Anyways, to finish the proof we will prove this non-vanishing.</p>
 <h1 id="non-vanishing-of-non-trivial-characters-at-s1.">Non-vanishing of non-trivial characters at <span class="math inline">\(s=1\)</span>.</h1>
@@ -144,7 +144,7 @@ We will need two lemmas.
 <div class="thm envbox">
 <p><strong>Theorem.</strong> [Landau] Let <span class="math inline">\(f(s) = \sum_{n\ge 1} a_n / n^{s}\)</span> with real coefficients <span class="math inline">\(a_n\ge 0\)</span>. Suppose that this series converges for <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span>. Suppose that <span class="math inline">\(f\)</span> extends to an analytic function on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> with no poles. Then the series defining <span class="math inline">\(f(s)\)</span> converges for <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>.</p>
 </div>
-<p>We omit the proof (for now at least, see Garrett).</p>
+<p>We will prove this theorem in the TLDR version of the proof far below.</p>
 Let <span class="math inline">\(ord(p)\)</span> denote the order of <span class="math inline">\(p\)</span>’s image in the group <span class="math inline">\(G\)</span>.
 <div class="lem envbox">
 <p><strong>Lemma.</strong> If <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> then <span class="math display">\[ \zeta_m(s) = \prod_{p \perp m} \left(\frac{1}{1-p^{-ord(p)s}}\right)^{\frac{\phi(m)}{ord(p)}}. \]</span></p>
@@ -162,13 +162,16 @@ Let <span class="math inline">\(ord(p)\)</span> denote the order of <span class=
 <p><strong>Proof.</strong> Assume for sake of contradiction that <span class="math inline">\(L(1, \chi) = 0\)</span> for some non-trivial <span class="math inline">\(\chi\)</span>. Then, <span class="math inline">\(\zeta_m(s)\)</span> extends analytically to <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> with no poles. Then, by Landau’s theorem the series that defined <span class="math inline">\(\zeta_m(s)\)</span> on <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> converges for <span class="math inline">\(\mathrm{Re}(s)\in (0,1)\)</span>. However, we can show that <span class="math display">\[ \zeta_m(s) \ge \sum_{n\perp m} \frac{1}{n} = \infty. \]</span> But this contradicts our assumption that <span class="math inline">\(\zeta_m(s)\)</span> has no poles.</p>
 </div>
 <p>Apostol’s Intro to ANYNT seems to contain a pretty reasonable proof. Probably possible to synthesize with what I have so far.</p>
-<h2 id="tricky-part-of-the-argument">tricky part of the argument:</h2>
+<h1 id="tldr">TLDR:</h1>
 <p>Define <span class="math inline">\(L(s,\chi) = \sum_{n\ge 1} \chi(n)/n^{s}\)</span>.</p>
 <ol type="1">
 <li><strong><span class="math inline">\(L(s, \chi)\)</span> is analytic on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> for <span class="math inline">\(\chi\neq \chi_0\)</span></strong>. The convergence is clear. I’ll explain the analyticness below.</li>
 <li><span class="math inline">\(L(s,\chi_0)-\frac{1}{s-1}\)</span> extends analytically to a function on <span class="math inline">\(\mathrm{Re}(s&gt;0)\)</span> with a single pole, namely at <span class="math inline">\(s=1\)</span>. The convergence is not too hard to show and basically implies the analyticness.</li>
 <li>The product <span class="math inline">\(\zeta_m(s) = \prod_\chi L(s, \chi)\)</span> turns out to be a Dirichlet series with real positive coefficients at least on <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span>.</li>
 <li><strong>Landau’s Theorem</strong> states that because <span class="math inline">\(\zeta_m(s)\)</span> is analytic and is represented by a Dirichlet series with real positive coefficients, then <strong>IF</strong> <span class="math inline">\(\zeta_m(s)\)</span> had no poles on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>, then we would get that the product formula defining <span class="math inline">\(\zeta_m(s)\)</span> actually is also valid for all <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>, but this is absurd, because the product formula blows up for small enough <span class="math inline">\(s\in (0,1)\)</span>.</li>
+<li><span class="math inline">\(\left| L(s,\chi) - \sum_p \frac{\chi(p)}{p^{s}} \right| \le 1618\)</span> for all <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span>. This is basically just by Taylor Series.</li>
+<li>Summing the expression from (5) gives <span class="math inline">\(\sum_{p\equiv a \mod m} p^{-s} \ge \frac{1}{\phi(m)} \left|\sum_\chi \overline{\chi(a)}L(s, \chi)\right| - 100m.\)</span> This is by the orthogonality relations.</li>
+<li>Observe that in (6) we know a good lower bound on <span class="math inline">\(L(s, \chi_0)\)</span>. So, if we can assert that the other <span class="math inline">\(L(s,\chi)\)</span> guys are not unboundedly pointing in the wrong direction then we are good. We do this with the non-vanishing stuff that I’ve already described above.</li>
 </ol>
 <div class="lem envbox">
 <p><strong>Lemma.</strong> <span class="math inline">\(e^{z}\)</span> is complex differentiable.</p>
