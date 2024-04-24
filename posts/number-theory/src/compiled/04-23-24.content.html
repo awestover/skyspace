@@ -114,8 +114,31 @@ We will need two lemmas.
 <h2 id="tricky-part-of-the-argument">tricky part of the argument:</h2>
 <p>Define <span class="math inline">\(L(s,\chi) = \sum_{n\ge 1} \chi(n)/n^{s}\)</span>.</p>
 <ol type="1">
-<li><strong><span class="math inline">\(L(s, \chi)\)</span> is analytic on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> for <span class="math inline">\(\chi\neq \chi_0\)</span></strong> (the convergence is clear; presumably the analytic-ness just happens because it’s a reasonable function).</li>
-<li><span class="math inline">\(L(s,\chi_0)-\frac{1}{s-1}\)</span> extends analytically to a function on <span class="math inline">\(\mathrm{Re}(s&gt;0)\)</span> with a single pole, namely at <span class="math inline">\(s=1\)</span>. (again, the convergence is clear, but the analytic-ness, my complex analysis is a bit weak.)</li>
+<li><strong><span class="math inline">\(L(s, \chi)\)</span> is analytic on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> for <span class="math inline">\(\chi\neq \chi_0\)</span></strong>. The convergence is clear. I’ll explain the analyticness below.</li>
+<li><span class="math inline">\(L(s,\chi_0)-\frac{1}{s-1}\)</span> extends analytically to a function on <span class="math inline">\(\mathrm{Re}(s&gt;0)\)</span> with a single pole, namely at <span class="math inline">\(s=1\)</span>. The convergence is not too hard to show and basically implies the analyticness.</li>
 <li>The product <span class="math inline">\(\zeta_m(s) = \prod_\chi L(s, \chi)\)</span> turns out to be a Dirichlet series with real positive coefficients at least on <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span>.</li>
 <li><strong>Landau’s Theorem</strong> states that because <span class="math inline">\(\zeta_m(s)\)</span> is analytic and is represented by a Dirichlet series with real positive coefficients, then <strong>IF</strong> <span class="math inline">\(\zeta_m(s)\)</span> had no poles on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>, then we would get that the product formula defining <span class="math inline">\(\zeta_m(s)\)</span> actually is also valid for all <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>, but this is absurd, because the product formula blows up for small enough <span class="math inline">\(s\in (0,1)\)</span>.</li>
 </ol>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math inline">\(e^{z}\)</span> is complex differentiable.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> <span class="math display">\[\lim_{z\to 0} \frac{e^{z}-e^{0}}{z} = 1.\]</span></p>
+</div>
+<div class="lem envbox">
+<p><strong>Lemma.</strong> If <span class="math inline">\(\sum_{n\ge 1} a_n/n^{s}\)</span> converges for all <span class="math inline">\(\mathrm{Re}(s)&gt;\sigma_0\)</span> then it is analytic on this domain.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Convergence means we can basically consider a truncated version of the sum; finite sums play nice with complex differentiability.</p>
+</div>
+<p>So Landau’s theorem is the main technical lemma I have yet to understand.</p>
+Let me state Landau’s theorem again and present the proof from Garrett:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Suppose that <span class="math inline">\(f(s) = \sum_{n\ge 1} \frac{a_n}{n^{s}}\)</span> is a Dirichlet Series with all <span class="math inline">\(a_n\)</span> being real and non-negative, where the series converges for all <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span>. Suppose that <span class="math inline">\(f(s)\)</span> extends analytically to all of <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> and that <span class="math inline">\(f\)</span> has no poles in <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>, i.e., there is a holomorphic extension of <span class="math inline">\(f\)</span> on all of <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>. Then the series defining <span class="math inline">\(f\)</span> on <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> actually converges for all <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> We take the derivatives of <span class="math inline">\(f\)</span> at <span class="math inline">\(s=1\)</span>; this is well defined because we are assuming <span class="math inline">\(f\)</span> is holomorphic on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>. We get that the <span class="math inline">\(k\)</span>-th derivative, taken at <span class="math inline">\(s=1\)</span> is <span class="math display">\[ f^{(k)}(1)  = (-1)^{i} \sum_n \frac{(\log n)^{k}a_n}{n}. \]</span></p>
+<p>So the Taylor series for <span class="math inline">\(f\)</span> is <span class="math display">\[ f(s) = \sum_{k\ge 0} \frac{f^{(k)}(1)}{k!}(s-1)^{k}, \]</span> which holds for <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>.</p>
+<p>Now we have <span class="math display">\[ f(s) = \sum_{k} \frac{(1-s)^{k}}{k!}\sum_n \frac{(\log n)^{k}}{n}a_n .\]</span> We are guaranteed that this sum converges, and by assumption all terms in the sum are positive. Hence we are free to arbitrarily re-arrange the terms in the sum.</p>
+<p>Doing so we find: <span class="math display">\[ f(s) = \sum_n \frac{a_n}{n} \sum_k \frac{(\log n)^{k}(1-s)^{k}}{k!} = \sum_n \frac{a_n}{n^{s}}.\]</span> Thus, this final sum on the RHS, which is exactly the sum we cared about, must converge.</p>
+</div>
