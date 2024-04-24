@@ -95,11 +95,12 @@ We will need two lemmas.
 <p><strong>Theorem.</strong> [Landau] Let <span class="math inline">\(f(s) = \sum_{n\ge 1} a_n / n^{s}\)</span> with real coefficients <span class="math inline">\(a_n\ge 0\)</span>. Suppose that this series converges for <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span>. Suppose that <span class="math inline">\(f\)</span> extends to an analytic function on <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span> with no poles. Then the series defining <span class="math inline">\(f(s)\)</span> converges for <span class="math inline">\(\mathrm{Re}(s)&gt;0\)</span>.</p>
 </div>
 <p>We omit the proof (for now at least, see Garrett).</p>
+Let <span class="math inline">\(ord(p)\)</span> denote the order of <span class="math inline">\(p\)</span>’s image in the group <span class="math inline">\(G\)</span>.
 <div class="lem envbox">
 <p><strong>Lemma.</strong> If <span class="math inline">\(\mathrm{Re}(s)&gt;1\)</span> then <span class="math display">\[ \zeta_m(s) = \prod_{p \perp m} \left(\frac{1}{1-p^{-ord(p)s}}\right)^{\frac{\phi(m)}{ord(p)}}. \]</span></p>
 </div>
 <div class="pf envbox">
-<p><strong>Proof.</strong> This proof is nice but pretty straightforward and I’m omitting it for now.</p>
+<p><strong>Proof.</strong> Note that <span class="math display">\[ 1-x^{ord(p)} = \prod_{\omega \in U_{ord(p)}}(1-\omega x). \]</span> Thus, <span class="math display">\[ \prod_{\chi}(1-\chi(p)x) = \left(\prod_{\omega\in U_{ord(p)}}(1-\omega x)\right)^{\frac{\phi(m)}{ord(p)}} =  (1-x^{ord(p)})^{\frac{\phi(m)}{ord(p)}}.\]</span></p>
 </div>
 <div class="rmk envbox">
 <p><strong>Remark.</strong> Now magically, <span class="math display">\[ \frac{1}{1-p^{-ord(p)s}} \]</span> is a Dirichlet series with positive real coefficients, and so thus <span class="math inline">\(\zeta_m(s)\)</span> is as well. So we can use Landau’s Theorem.</p>
