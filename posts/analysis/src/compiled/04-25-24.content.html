@@ -1,0 +1,22 @@
+<blockquote>
+<p>Question:<br />
+Suppose <span class="math inline">\(f\)</span> is a polynomial with small integer coefficients and that <span class="math inline">\(f(0)\neq 0\)</span>. Then, how small can the smallest root of <span class="math inline">\(f\)</span> be in absolute value?</p>
+</blockquote>
+Wikipedia said that <a href="https://en.wikipedia.org/wiki/Gershgorin_circle_theorem">Gershgorin Circle Theorem</a> was relevant. I’m not sure why so yet, but here’s a proof of that theorem anyways:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Fix complex matrix <span class="math inline">\(A\)</span>. Let <span class="math inline">\(R_i = \sum_{j\neq i} |a_{ij}|\)</span>. Define <span class="math inline">\(D(x, r)\)</span> to be a disc in the complex plane of radius <span class="math inline">\(r\)</span> centered at <span class="math inline">\(x\)</span>.</p>
+<p>All eigenvalues of <span class="math inline">\(A\)</span> lie in <span class="math inline">\(\bigcup_{i} D(a_{ii}, R_i)\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(x\)</span> be an eigenvector with <span class="math inline">\(Ax=\lambda x\)</span> and let <span class="math inline">\(x_i\)</span> be the largest absolute value coordinate of <span class="math inline">\(x\)</span>. Then <span class="math display">\[ \sum_j a_{ij} x_j = \lambda x_i \]</span> and so <span class="math display">\[ |\lambda - a_ii| = \sum_{j\neq i} a_{ij} x_j/x_i.  \]</span> Using the triangle inequality we have <span class="math display">\[ |\lambda - a_ii| \le \sum_{j\neq i} |a_{ij}| = R_i.  \]</span></p>
+</div>
+<p><a href="https://en.wikipedia.org/wiki/Geometrical_properties_of_polynomial_roots">actually relevant wiki page</a></p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(P(x) =a_0+a_1x + \cdots + a_n x^{n}\)</span> be a polynomial with <span class="math inline">\(a_0,a_n\neq 0\)</span>. Then the absolute values of the roots of <span class="math inline">\(x\)</span> are all at most <span class="math inline">\(1+\max_i \frac{|a_i|}{|a_n|}\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(z\)</span> be a root with absolute value larger than <span class="math inline">\(1\)</span>. <span class="math display">\[ |a_n||z^{n}| = | \sum_{i=0}^{n-1} a_i z^{i}| \le \sum_{i=0}^{n-1}|a_i||z|^{i} \le \max_i |a_i| \sum_{i=0}^{n-1}|z|^{i} .\]</span> Re-arranging it works.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> The roots of <span class="math display">\[a_0 + a_1x + \cdots a_n x^{n}\]</span> and <span class="math display">\[ a_n + a_{n-1}x +\cdots + a_0x^{n} \]</span> are inverses of each other. So upper bounds on the absolute values of roots for one of them can be translated into lower bounds for the other.</p>
+</div>
