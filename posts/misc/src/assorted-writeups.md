@@ -11,10 +11,10 @@ A compilation of some technical writeups and slides.
 - Fractional PRGs: (TODO: add once I'm done editting it)
 - Alek Westover [Notes on Hilbert Symbols](src/images/hilbert.pdf)
 
-![canada](src/images/canada.png)
-![pcp](src/images/pcp.png)
-
 @importpdf: images/PCP
 @importpdf: images/6_854_final_project
+
+![canada](src/images/canada.png)
+![pcp](src/images/pcp.png)
 
 
