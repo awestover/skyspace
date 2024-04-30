@@ -56,19 +56,35 @@
 \newcommand{\abs}[1]{\left| #1 \right|}
 
 
-- Alek Westover, Nathan Sheffield, Ryan Chang. [Canadian Traveller](src/images/6_854_final_project.pdf)
-- Alek Westover, Nathan Sheffield, Andrei. [PCPs](src/images/PCP.pdf)
-- Fractional PRGs: (TODO: add once I'm done editting it)
-- Alek Westover [Notes on Hilbert Symbols](src/images/hilbert.pdf)
+- Ryan Chang, Nathan Sheffield, Alek Westover. [Canadian Traveller](src/images/6_854_final_project.pdf)
+- Nathan Sheffield, Andrei, Alek Westover. [PCPs](src/images/PCP.pdf)
+- Addison, Alek Fractional PRGs: (TODO: add once I'm done editting it)
+- Alek [Notes on Hilbert Symbols](src/images/hilbert.pdf)
+- Nathan, Alek [art gallery](src/images/geo_presentation.pdf)
 
-<iframe title="PDF" src="../../pdf_mwe/web0/viewer.html?file=../../posts/misc/src/images/PCP
-.pdf" width="100%" height="700px" ></iframe>
-@importpdf: images/PCP
-<iframe title="PDF" src="../../pdf_mwe/web0/viewer.html?file=../../posts/misc/src/images/6_854_final_project
-.pdf" width="100%" height="700px" ></iframe>
-@importpdf: images/6_854_final_project
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+---- ---- ---- ---- <br>
+
+<embed src="src/images/geo_presentation
+.pdf" type="application/pdf" width="90%" height="900px" view="Fit" />@importpdf: images/geo_presentation
+
+<embed src="src/images/PCP
+.pdf" type="application/pdf" width="90%" height="900px" view="Fit" />@importpdf: images/PCP
+
+<embed src="src/images/6_854_final_project
+.pdf" type="application/pdf" width="90%" height="900px" view="Fit" />@importpdf: images/6_854_final_project
 
 ![canada](src/images/canada.png)
+
 ![pcp](src/images/pcp.png)
 
 

@@ -1,3 +1,3 @@
 Some writeups
-images/pcp.png
+images/canada.png
 A compilation of some technical writeups and slides.

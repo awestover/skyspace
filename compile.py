@@ -84,7 +84,9 @@ def augment_md(body, folder):
         if "@importpdf:" in row:
             xxx = row.replace("@importpdf: ", "")
             #  out_text += f'<iframe src="src/{xxx}.pdf" width="100%" height="700px">\n'
-            out_text += f'<iframe title="PDF" src="../../pdf_mwe/web0/viewer.html?file=../../posts/{folder}/src/{xxx}.pdf" width="100%" height="700px" ></iframe>\n'
+            #  out_text += f'<iframe title="PDF" src="../../pdf_mwe/web0/viewer.html?file=../../posts/{folder}/src/{xxx}.pdf" width="100%" height="700px" ></iframe>\n'
+            out_text += f'<embed src="src/{xxx}.pdf" type="application/pdf" width="90%" height="900px" view="Fit" />'
+
 
         elif "images/ink_img" in row:
             xxx = row.replace("images/ink_img", "src/images/ink_img")
