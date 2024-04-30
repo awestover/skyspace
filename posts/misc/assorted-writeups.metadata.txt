@@ -1,0 +1,3 @@
+Some writeups
+images/canada.png
+A compilation of some technical writeups and slides.

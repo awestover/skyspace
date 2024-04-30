@@ -1,3 +1,0 @@
-PCP thm
-images/pcp.png
-
