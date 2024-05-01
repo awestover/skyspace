@@ -1,0 +1,25 @@
+<h1 id="modular-forms">modular forms</h1>
+<p>So why do we care about the modular group <span class="math inline">\(G=SL_2(\mathbb{Z})/\left\{ -1,1\right\}\)</span>?</p>
+<p>Well actually the answer has to do with complex lattices. The most important thing to know about complex lattices is the following fact:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[ \left\{ 1,z\right\}, \left\{ az+b, cz+d\right\} \]</span> generate the <strong>same</strong> lattice, when <span class="math inline">\(ad-bc=1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The first lattice is obviously contained in the second. The fact that the matrix abcd is invertible in <span class="math inline">\(SL_2(\mathbb{Z})\)</span> shows the other inclusion.</p>
+</div>
+<p>So what does this mean? Well, suppose that we consider <span class="math inline">\(\left\{ (u,w)\; : \;u,w\in \mathbb{C} \right\}\)</span> modulo we consider <span class="math inline">\((u,w)\equiv (u&#39;,w&#39;)\)</span> if <span class="math inline">\(u/w = u&#39;/w&#39;\)</span>. This is called <strong>homothety</strong>. Of course this is in correspondence with <span class="math inline">\(\mathbb{C}\)</span>. But then there is an interesting and natural way to define an action of <span class="math inline">\(SL_2(\mathbb{Z})\)</span> on this equivalence class of vectors: matrix multiplication.</p>
+So FACT:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(H\)</span> be the upper half plane, <span class="math inline">\(G\)</span> the modular group, <span class="math inline">\(R\)</span> the set of complex lattices and <span class="math inline">\(R/\mathbb{C}\)</span> mean lattices modulo homothety. Then, $H/G R/. $</p>
+</div>
+<p>Ok, so lattices are actually something rather interesting and motivated so now it maybe makes a bit more sense why we care about the modular group.</p>
+<p>Here’s an example of a modular form: <span class="math display">\[ G_k(\Gamma) = \sum_{\gamma\in \Gamma}\frac{1}{|\gamma|^{2k}}.  \]</span></p>
+<p>Yeah so that’s a very nice object and it’s related to the modular group because we showed that the modular group is in some sense related to lattices.</p>
+<h1 id="boolean-anlaysis">boolean anlaysis</h1>
+<p>A trick for sampling things in a <span class="math inline">\(p\)</span>-biased measure when you want them to have disjoint supports. You put them in buckets and then sample with <span class="math inline">\(1/2\)</span> measure.</p>
+<h1 id="coupling">coupling</h1>
+<p>Talked about coupling in probability class.</p>
+<p>So, what is this why do we care. Well, there’s this notion of TV distance between distributions:</p>
+<p><span class="math display">\[ d_{TV}(P,Q) = \frac{1}{2}\sum_x |P(x)-Q(x)| = \sup_{\text{events }A} P(A)-Q(Q) = \inf_{\text{couplings }X,Y} \Pr[P(X)\neq P(Y)].\]</span></p>
+<p>So we are interested in analyzing mixing times of markov chains: how many steps do you have to go before the TV distance is small?</p>
+<p>And a nice way to do this is by giving a coupling and arguing “locally” that the coupling causes <span class="math inline">\(P(X)\neq P(Y)\)</span> to decrease.</p>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#modular-forms" class="js-scroll-trigger">modular forms</a> </li>
+<li> <a href="#boolean-anlaysis" class="js-scroll-trigger">boolean anlaysis</a> </li>
+<li> <a href="#coupling" class="js-scroll-trigger">coupling</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><h1 id="modular-forms">modular forms</h1>
+<p>So why do we care about the modular group <span class="math inline">\(G=SL_2(\mathbb{Z})/\left\{ -1,1\right\}\)</span>?</p>
+<p>Well actually the answer has to do with complex lattices. The most important thing to know about complex lattices is the following fact:</p>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> <span class="math display">\[ \left\{ 1,z\right\}, \left\{ az+b, cz+d\right\} \]</span> generate the <strong>same</strong> lattice, when <span class="math inline">\(ad-bc=1\)</span>.</p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> The first lattice is obviously contained in the second. The fact that the matrix abcd is invertible in <span class="math inline">\(SL_2(\mathbb{Z})\)</span> shows the other inclusion.</p>
+</div>
+<p>So what does this mean? Well, suppose that we consider <span class="math inline">\(\left\{ (u,w)\; : \;u,w\in \mathbb{C} \right\}\)</span> modulo we consider <span class="math inline">\((u,w)\equiv (u&#39;,w&#39;)\)</span> if <span class="math inline">\(u/w = u&#39;/w&#39;\)</span>. This is called <strong>homothety</strong>. Of course this is in correspondence with <span class="math inline">\(\mathbb{C}\)</span>. But then there is an interesting and natural way to define an action of <span class="math inline">\(SL_2(\mathbb{Z})\)</span> on this equivalence class of vectors: matrix multiplication.</p>
+So FACT:
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(H\)</span> be the upper half plane, <span class="math inline">\(G\)</span> the modular group, <span class="math inline">\(R\)</span> the set of complex lattices and <span class="math inline">\(R/\mathbb{C}\)</span> mean lattices modulo homothety. Then, $H/G R/. $</p>
+</div>
+<p>Ok, so lattices are actually something rather interesting and motivated so now it maybe makes a bit more sense why we care about the modular group.</p>
+<p>Here’s an example of a modular form: <span class="math display">\[ G_k(\Gamma) = \sum_{\gamma\in \Gamma}\frac{1}{|\gamma|^{2k}}.  \]</span></p>
+<p>Yeah so that’s a very nice object and it’s related to the modular group because we showed that the modular group is in some sense related to lattices.</p>
+<h1 id="boolean-anlaysis">boolean anlaysis</h1>
+<p>A trick for sampling things in a <span class="math inline">\(p\)</span>-biased measure when you want them to have disjoint supports. You put them in buckets and then sample with <span class="math inline">\(1/2\)</span> measure.</p>
+<h1 id="coupling">coupling</h1>
+<p>Talked about coupling in probability class.</p>
+<p>So, what is this why do we care. Well, there’s this notion of TV distance between distributions:</p>
+<p><span class="math display">\[ d_{TV}(P,Q) = \frac{1}{2}\sum_x |P(x)-Q(x)| = \sup_{\text{events }A} P(A)-Q(Q) = \inf_{\text{couplings }X,Y} \Pr[P(X)\neq P(Y)].\]</span></p>
+<p>So we are interested in analyzing mixing times of markov chains: how many steps do you have to go before the TV distance is small?</p>
+<p>And a nice way to do this is by giving a coupling and arguing “locally” that the coupling causes <span class="math inline">\(P(X)\neq P(Y)\)</span> to decrease.</p>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>
