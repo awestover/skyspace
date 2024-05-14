@@ -1,0 +1,31 @@
+<h1 id="remarks-before-the-survey">remarks before the survey</h1>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> This paper uses the convention I dislike for <span class="math inline">\(k\)</span>-paths, i.e., they call a path with <span class="math inline">\(3\)</span> edges a <span class="math inline">\(P_4\)</span>. I <strong>do not adopt this convention</strong>. For me a path with <span class="math inline">\(3\)</span> edges is called a <span class="math inline">\(P_3\)</span>. You have been warned.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> “Universal algorithm for induced SI”: <span class="math inline">\(n^{k\omega}\)</span> time to detect a <span class="math inline">\(3k\)</span> vertex pattern.</p>
+<p>You compute this huge <span class="math inline">\(3\)</span>-partite graph where vertices are labelled <span class="math inline">\(k\)</span>-vertex subsets. Then you run triangle detection on this massive graph.</p>
+</div>
+Now for a discussion of their results.
+<div class="thm envbox">
+<p><strong>Theorem.</strong> Combinatorial <span class="math inline">\(O(n^{k-2})\)</span> algo for induced <span class="math inline">\(P_k,C_k\)</span> problems.</p>
+</div>
+<div class="thm envbox">
+<p><strong>Theorem.</strong> For a couple specific values of <span class="math inline">\(k\in [5,9]\)</span> they are able to boost the MM based algo for <span class="math inline">\(P_k,C_k\)</span>’s by doing their arithmetic circuits with matrices. But they weren’t able to get this in full generality.</p>
+</div>
+<div class="rmk envbox">
+<p><strong>Remark.</strong> Oh, apparently Virginia had some algorithms for, e.g., <span class="math inline">\(K_k-e\)</span> that run in time <span class="math inline">\(O(n^{k-1})\)</span>. Worth reading at some point.</p>
+<p>Seems like these guys also do something impressive about SI <a href="https://www.sciencedirect.com/science/article/pii/S0304397515007914?via%3Dihub">nk-1 SI for lots of graphs</a> they prove some conditional lower bounds too.</p>
+<p>Maybe also relevant is the paper “Finding Four-Node Subgraphs in Triangle Time” where Virginia et al show how to do all <span class="math inline">\(4\)</span>-vertex patterns.</p>
+</div>
+<h1 id="introduction-motivation">introduction / motivation</h1>
+<p>A very cool and very classic algorithm that I’ve discussed previously on this blog is Ryan Williams’ <span class="math inline">\(k\)</span>-path subgraph isomorphism algorithm.</p>
+<p>I may have just stated it for hamiltonicity, but it works for general <span class="math inline">\(k\)</span>.</p>
+<p>The idea is as follows. You write down a polynomial with terms corresponding to possible homomorphic copies of the pattern in your graph. And then you hope that it’s easy to evaluate and that whether or not it is identically zero can tell you something about it.</p>
+<p>Ok, you might say, but what does this have to do with <strong>induced</strong> paths/cycles?</p>
+<p>You can write some polynomial like this:</p>
+<p><span class="math display">\[ I_{P_3,n} = \prod_{a,b,c,d\mid a&lt;d} x_{a,b}x_{b,c}x_{c,d} (1-x_{a,c})(1-x_{a,d})(1-x_{b,d}) \]</span> Then you expand this polynomial out and look at it modulo <span class="math inline">\(2\)</span>. You get <span class="math display">\[ I_{P_3,n} \equiv N_{P_3,n} \mod 2.\]</span> So this is rather suprising. There are a lot of scary looking terms that drop out when you take the mod.</p>
+<p><span class="math inline">\(N_{P_3, n}\)</span> is the polynomial for not-necessarily induced <span class="math inline">\(P_3\)</span>’s.</p>
+<blockquote>
+<p>note to self: section 6 looks particularly relevant. sections 3,4 seem to be prerequisite to understanding any of this stuff.</p>
+</blockquote>
