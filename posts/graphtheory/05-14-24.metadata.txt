@@ -1,5 +1,5 @@
 Graph Pattern Polynomials
-
+images/ink_img006.png
 I write some notes about an article by Markus Bläser, Balagopal
 Komarath, Karteek Sreenivasaiah on detecting induced cycles and
 paths in graphs.

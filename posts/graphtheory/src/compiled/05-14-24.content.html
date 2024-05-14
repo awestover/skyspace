@@ -24,7 +24,9 @@ Now for a discussion of their results.
 <p>The idea is as follows. You write down a polynomial with terms corresponding to possible homomorphic copies of the pattern in your graph. And then you hope that it’s easy to evaluate and that whether or not it is identically zero can tell you something about it.</p>
 <p>Ok, you might say, but what does this have to do with <strong>induced</strong> paths/cycles?</p>
 <p>You can write some polynomial like this:</p>
-<p><span class="math display">\[ I_{P_3,n} = \prod_{a,b,c,d\mid a&lt;d} x_{a,b}x_{b,c}x_{c,d} (1-x_{a,c})(1-x_{a,d})(1-x_{b,d}) \]</span> Then you expand this polynomial out and look at it modulo <span class="math inline">\(2\)</span>. You get <span class="math display">\[ I_{P_3,n} \equiv N_{P_3,n} \mod 2.\]</span> So this is rather suprising. There are a lot of scary looking terms that drop out when you take the mod.</p>
+<p><span class="math display">\[ I_{P_3,n} = \prod_{a,b,c,d\mid a&lt;d} x_{a,b}x_{b,c}x_{c,d} (1-x_{a,c})(1-x_{a,d})(1-x_{b,d}) \]</span></p>
+<p>Here’s a picture of expanding this: <img src="src/images/ink_img006.png" alt="ink_img006" /></p>
+<p>Then you expand this polynomial out and look at it modulo <span class="math inline">\(2\)</span>. You get <span class="math display">\[ I_{P_3,n} \equiv N_{P_3,n} \mod 2.\]</span> So this is rather suprising. There are a lot of scary looking terms that drop out when you take the mod.</p>
 <p><span class="math inline">\(N_{P_3, n}\)</span> is the polynomial for not-necessarily induced <span class="math inline">\(P_3\)</span>’s.</p>
 <blockquote>
 <p>note to self: section 6 looks particularly relevant. sections 3,4 seem to be prerequisite to understanding any of this stuff.</p>
