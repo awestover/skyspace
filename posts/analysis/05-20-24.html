@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>skyspace</title>
+
+    <link href="../../formatting/pandoc.css" rel="stylesheet">
+    <link href="../../formatting/envbox.css" rel="stylesheet">
+    <link href="../../formatting/bars.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav id="sidebar">
+        <div id="sidebar-content">
+          <div class="sidebar-header">
+            <h5>skyspace</h5>
+          </div>
+          <ul class="list-unstyled components">
+            <img style="width:100%; max-width:250px" src="../../images/cat.png" alt="cat"/>
+            <li> <a href="../../index.html">Home</a> </li>
+            <li> <a href="../../about.html">About</a> </li>
+            <li> <a href="../../topics.html">Topics</a> </li>
+            <hr>
+            <div id="toc">
+            <li> <a href="#" class="js-scroll-trigger"></a> </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="content"> 
+        <!-- ***DECRYPT 1443849234234*** -->
+        <div id="actual-content"><p>PROPERTY: If <span class="math inline">\(\exists f_1,\ldots, f_k\)</span> such that <span class="math display">\[ g(x_1,\ldots, x_k) = (f_1(x_1), \ldots, f_k(x_k)) \]</span> then we say that <span class="math inline">\(g\)</span> is a direct product. We want a test to distinguish between functions which are close to direct products and functions which are far from direct products.</p>
+<p>So here’s the test. I think it was originally introduced by Dinur.</p>
+<ol type="1">
+<li>Sample <span class="math inline">\(x\)</span> uniformly.</li>
+<li>Sample a set <span class="math inline">\(A\)</span> of coordinates by including each coordinate in <span class="math inline">\(A\)</span> with probability <span class="math inline">\(3/4\)</span>.</li>
+<li>Sample <span class="math inline">\(y\)</span> as follows: for <span class="math inline">\(i\in A\)</span>, just set <span class="math inline">\(y_i = x_i\)</span>. For <span class="math inline">\(i\notin A\)</span> sample <span class="math inline">\(y_i\)</span> uniformly.</li>
+<li>Accept iff <span class="math inline">\(g(y)_A = g(x)_A\)</span>.</li>
+</ol>
+Here is my attempt at analyzing this (I haven’t read the paper yet). I think if we can prove the following lemma, then it is gg:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math inline">\(\forall i\in[k],\)</span> <span class="math display">\[ \Pr_{x,y}[g_i(x)=g_i(y)\mid x_i = y_i] \ge 1-100\varepsilon. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(B_1,B_2,B_3,B_4\)</span> be a partition of <span class="math inline">\([k]\setminus\left\{ i\right\}\)</span>. Sample <span class="math inline">\(x^{(0)}\)</span> uniformly randomly. Sample <span class="math inline">\(x^{(1)}\)</span> by starting with <span class="math inline">\(x^{(0)}\)</span> and then resampling the coordinates from <span class="math inline">\(B_1\)</span>. Sample <span class="math inline">\(x^{(2)}\)</span> by starting from <span class="math inline">\(x^{(1)}\)</span> and then resampling the coordinates from <span class="math inline">\(B_2\)</span>. Similar for <span class="math inline">\(x^{(3)}, x^{(4)}\)</span>.</p>
+<p>Yay coupling. Why is this good? To be continued after dinner.</p>
+</div>
+</div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+    <script src="../../formatting/scrolling-nav.js"></script>
+    <script src="../../encryption_mwe/embeded-crypto.js"></script>
+
+    <script charset="utf-8">
+        var pres = document.querySelectorAll("pre>code");
+        for (var i = 0; i < pres.length; i++) {
+            hljs.highlightBlock(pres[i]);
+        }
+    </script>
+
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://awestovergithubioskyspace.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <script id="dsq-count-scr" src="//awestovergithubioskyspace.disqus.com/count.js" async></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P9YVJX8W9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9YVJX8W9R');
+</script>
+
+  </body>
+</html>

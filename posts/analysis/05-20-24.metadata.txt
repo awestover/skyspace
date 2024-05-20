@@ -1,0 +1,3 @@
+property testing: direct product
+
+Suppose you had a function that was a direct product. Could you tell? Yup.

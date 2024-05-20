@@ -1,0 +1,16 @@
+<p>PROPERTY: If <span class="math inline">\(\exists f_1,\ldots, f_k\)</span> such that <span class="math display">\[ g(x_1,\ldots, x_k) = (f_1(x_1), \ldots, f_k(x_k)) \]</span> then we say that <span class="math inline">\(g\)</span> is a direct product. We want a test to distinguish between functions which are close to direct products and functions which are far from direct products.</p>
+<p>So here’s the test. I think it was originally introduced by Dinur.</p>
+<ol type="1">
+<li>Sample <span class="math inline">\(x\)</span> uniformly.</li>
+<li>Sample a set <span class="math inline">\(A\)</span> of coordinates by including each coordinate in <span class="math inline">\(A\)</span> with probability <span class="math inline">\(3/4\)</span>.</li>
+<li>Sample <span class="math inline">\(y\)</span> as follows: for <span class="math inline">\(i\in A\)</span>, just set <span class="math inline">\(y_i = x_i\)</span>. For <span class="math inline">\(i\notin A\)</span> sample <span class="math inline">\(y_i\)</span> uniformly.</li>
+<li>Accept iff <span class="math inline">\(g(y)_A = g(x)_A\)</span>.</li>
+</ol>
+Here is my attempt at analyzing this (I haven’t read the paper yet). I think if we can prove the following lemma, then it is gg:
+<div class="lem envbox">
+<p><strong>Lemma.</strong> <span class="math inline">\(\forall i\in[k],\)</span> <span class="math display">\[ \Pr_{x,y}[g_i(x)=g_i(y)\mid x_i = y_i] \ge 1-100\varepsilon. \]</span></p>
+</div>
+<div class="pf envbox">
+<p><strong>Proof.</strong> Let <span class="math inline">\(B_1,B_2,B_3,B_4\)</span> be a partition of <span class="math inline">\([k]\setminus\left\{ i\right\}\)</span>. Sample <span class="math inline">\(x^{(0)}\)</span> uniformly randomly. Sample <span class="math inline">\(x^{(1)}\)</span> by starting with <span class="math inline">\(x^{(0)}\)</span> and then resampling the coordinates from <span class="math inline">\(B_1\)</span>. Sample <span class="math inline">\(x^{(2)}\)</span> by starting from <span class="math inline">\(x^{(1)}\)</span> and then resampling the coordinates from <span class="math inline">\(B_2\)</span>. Similar for <span class="math inline">\(x^{(3)}, x^{(4)}\)</span>.</p>
+<p>Yay coupling. Why is this good? To be continued after dinner.</p>
+</div>
