@@ -56,7 +56,10 @@ Here is my attempt at analyzing this (I haven’t read the paper yet). I think i
 </div>
 <div class="pf envbox">
 <p><strong>Proof.</strong> Let <span class="math inline">\(B_1,B_2,B_3,B_4\)</span> be a partition of <span class="math inline">\([k]\setminus\left\{ i\right\}\)</span>. Sample <span class="math inline">\(x^{(0)}\)</span> uniformly randomly. Sample <span class="math inline">\(x^{(1)}\)</span> by starting with <span class="math inline">\(x^{(0)}\)</span> and then resampling the coordinates from <span class="math inline">\(B_1\)</span>. Sample <span class="math inline">\(x^{(2)}\)</span> by starting from <span class="math inline">\(x^{(1)}\)</span> and then resampling the coordinates from <span class="math inline">\(B_2\)</span>. Similar for <span class="math inline">\(x^{(3)}, x^{(4)}\)</span>.</p>
-<p>Yay coupling. Why is this good? To be continued after dinner.</p>
+<p>Yay coupling.</p>
+<p>Ok so here’s the story.</p>
+<p>These <span class="math inline">\(x^{(i)}\)</span>’s are all marginally uniform random points. Hence, by union bound there is at most <span class="math inline">\(8\varepsilon\)</span> chance that any of them are bad. Assuming they are all good, my coupling thing makes it so that if we compare adjacent ones, i.e., <span class="math inline">\(x^{(i)}\)</span> and <span class="math inline">\(x^{(i+1)}\)</span> then they are very likely to agree.</p>
+<p>But at the end of the process we have <span class="math inline">\(x^{(0)}\)</span> and <span class="math inline">\(x^{(4)}\)</span> being completely unrelated things, except that they agree in bit <span class="math inline">\(i\)</span>. But by this chain of reasoning we see that <span class="math inline">\(g_i(x^{(0)})\)</span> and <span class="math inline">\(g_i(x^{(4)})\)</span> are actually quite likely to agree. In otherwords, we have shown that <span class="math inline">\(g\)</span> is pretty consistent in the value of <span class="math inline">\(g_i(x)\)</span> when <span class="math inline">\(x_i\)</span> is held constant. So there is a natural way to define the direct product and it should work.</p>
 </div>
 </div>
       </div>
