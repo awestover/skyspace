@@ -34,7 +34,10 @@
             <li> <a href="../../topics.html">Topics</a> </li>
             <hr>
             <div id="toc">
-            <li> <a href="#" class="js-scroll-trigger"></a> </li>
+            <li> <a href="#linearity-" class="js-scroll-trigger">linearity </a> </li>
+<li> <a href="#direct-product" class="js-scroll-trigger">direct product</a> </li>
+<li> <a href="#direct-sum" class="js-scroll-trigger">direct sum</a> </li>
+<li> <a href="#" class="js-scroll-trigger"></a> </li>
             </div>
           </ul>
         </div>
@@ -42,7 +45,12 @@
 
       <div id="content"> 
         <!-- ***DECRYPT 1443849234234*** -->
-        <div id="actual-content"><p>PROPERTY: If <span class="math inline">\(\exists f_1,\ldots, f_k\)</span> such that <span class="math display">\[ g(x_1,\ldots, x_k) = (f_1(x_1), \ldots, f_k(x_k)) \]</span> then we say that <span class="math inline">\(g\)</span> is a direct product. We want a test to distinguish between functions which are close to direct products and functions which are far from direct products.</p>
+        <div id="actual-content"><h1 id="linearity">linearity</h1>
+<p>Is it the case that <span class="math display">\[ f(x) = \chi_S(x)? \]</span></p>
+<p><span class="math display">\[ f(x)f(y)f(x\oplus y) = f(0)? \]</span></p>
+<p>Analysis: <span class="math inline">\(f(0)f*f*f(0) \ge 1-2\varepsilon.\)</span> Thus <span class="math display">\[ \max_S |\hat{f}(S)| \ge 1-2\varepsilon. \]</span> Which means that <span class="math inline">\(f\)</span> is close to some character.</p>
+<h1 id="direct-product">direct product</h1>
+<p>PROPERTY: If <span class="math inline">\(\exists f_1,\ldots, f_k\)</span> such that <span class="math display">\[ g(x_1,\ldots, x_k) = (f_1(x_1), \ldots, f_k(x_k)) \]</span> then we say that <span class="math inline">\(g\)</span> is a direct product. We want a test to distinguish between functions which are close to direct products and functions which are far from direct products.</p>
 <p>So here’s the test. I think it was originally introduced by Dinur.</p>
 <ol type="1">
 <li>Sample <span class="math inline">\(x\)</span> uniformly.</li>
@@ -61,6 +69,19 @@ Here is my attempt at analyzing this (I haven’t read the paper yet). I think i
 <p>These <span class="math inline">\(x^{(i)}\)</span>’s are all marginally uniform random points. Hence, by union bound there is at most <span class="math inline">\(8\varepsilon\)</span> chance that any of them are bad. Assuming they are all good, my coupling thing makes it so that if we compare adjacent ones, i.e., <span class="math inline">\(x^{(i)}\)</span> and <span class="math inline">\(x^{(i+1)}\)</span> then they are very likely to agree.</p>
 <p>But at the end of the process we have <span class="math inline">\(x^{(0)}\)</span> and <span class="math inline">\(x^{(4)}\)</span> being completely unrelated things, except that they agree in bit <span class="math inline">\(i\)</span>. But by this chain of reasoning we see that <span class="math inline">\(g_i(x^{(0)})\)</span> and <span class="math inline">\(g_i(x^{(4)})\)</span> are actually quite likely to agree. In otherwords, we have shown that <span class="math inline">\(g\)</span> is pretty consistent in the value of <span class="math inline">\(g_i(x)\)</span> when <span class="math inline">\(x_i\)</span> is held constant. So there is a natural way to define the direct product and it should work.</p>
 </div>
+<h1 id="direct-sum">direct sum</h1>
+<p>There are more efficient tests for direct sum: this one uses a large number of queries. But it’s quite simple to analyze, so that’s nice. It’s by Dinur et at.</p>
+<p>I don’t quite parse what they have written. But here’s something that makes sense.</p>
+<p>Let <span class="math inline">\(a^i_b\)</span> denote vector <span class="math inline">\(a\)</span> except with the <span class="math inline">\(i\)</span>-th coordinate replaced with <span class="math inline">\(b_i\)</span>.</p>
+<p>Define <span class="math display">\[ f^{a}_i(b) = f(a^{i}_b), \]</span> and then define <span class="math display">\[ f^a(b) = \bigoplus_i f(a^i_b). \]</span></p>
+<p>The test is as follows:</p>
+<ul>
+<li>Sample random <span class="math inline">\(a,b\)</span>.</li>
+<li>Test if <span class="math display">\[ f^a(b) = f(b). \]</span></li>
+</ul>
+<p>That is, test something like this:</p>
+<p><span class="math display">\[ f(b_1,b_2,b_3) = f(a_1,a_2,b_3) + f(a_1,b_2,a_3) + f(b_1,a_2,a_3).\]</span></p>
+<p>If the test passes with decent probability, then by choosing appropriate <span class="math inline">\(a\)</span> we find that <span class="math inline">\(f^{a}\)</span> is a good approximation for <span class="math inline">\(f\)</span>. But <span class="math inline">\(f^{a}\)</span> is of course a direct sum function, so we win: <span class="math inline">\(f\)</span> is close to a direct sum.</p>
 </div>
       </div>
     </div>
