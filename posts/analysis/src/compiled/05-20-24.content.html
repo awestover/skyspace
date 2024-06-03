@@ -22,7 +22,8 @@ Here is my attempt at analyzing this (I haven’t read the paper yet). I think i
 <p>These <span class="math inline">\(x^{(i)}\)</span>’s are all marginally uniform random points. Hence, by union bound there is at most <span class="math inline">\(8\varepsilon\)</span> chance that any of them are bad. Assuming they are all good, my coupling thing makes it so that if we compare adjacent ones, i.e., <span class="math inline">\(x^{(i)}\)</span> and <span class="math inline">\(x^{(i+1)}\)</span> then they are very likely to agree.</p>
 <p>But at the end of the process we have <span class="math inline">\(x^{(0)}\)</span> and <span class="math inline">\(x^{(4)}\)</span> being completely unrelated things, except that they agree in bit <span class="math inline">\(i\)</span>. But by this chain of reasoning we see that <span class="math inline">\(g_i(x^{(0)})\)</span> and <span class="math inline">\(g_i(x^{(4)})\)</span> are actually quite likely to agree. In otherwords, we have shown that <span class="math inline">\(g\)</span> is pretty consistent in the value of <span class="math inline">\(g_i(x)\)</span> when <span class="math inline">\(x_i\)</span> is held constant. So there is a natural way to define the direct product and it should work.</p>
 </div>
-<h1 id="direct-sum">direct sum</h1>
+<p><strong>ok so,</strong> upon further contemplation this lemma is not really what we wanted. Like this only gives that we are distance <span class="math inline">\(d\varepsilon\)</span> from linear I think. But Dinur claims <span class="math inline">\(O(\varepsilon)\)</span>. So maybe you need something fancier for that.</p>
+<h1 id="direct-sum-shapka-test">direct sum: Shapka test</h1>
 <p>There are more efficient tests for direct sum: this one uses a large number of queries. But it’s quite simple to analyze, so that’s nice. It’s by Dinur et at.</p>
 <p>I don’t quite parse what they have written. But here’s something that makes sense.</p>
 <p>Let <span class="math inline">\(a^i_b\)</span> denote vector <span class="math inline">\(a\)</span> except with the <span class="math inline">\(i\)</span>-th coordinate replaced with <span class="math inline">\(b_i\)</span>.</p>
@@ -35,3 +36,14 @@ Here is my attempt at analyzing this (I haven’t read the paper yet). I think i
 <p>That is, test something like this:</p>
 <p><span class="math display">\[ f(b_1,b_2,b_3) = f(a_1,a_2,b_3) + f(a_1,b_2,a_3) + f(b_1,a_2,a_3).\]</span></p>
 <p>If the test passes with decent probability, then by choosing appropriate <span class="math inline">\(a\)</span> we find that <span class="math inline">\(f^{a}\)</span> is a good approximation for <span class="math inline">\(f\)</span>. But <span class="math inline">\(f^{a}\)</span> is of course a direct sum function, so we win: <span class="math inline">\(f\)</span> is close to a direct sum.</p>
+<h1 id="direct-sum-square-in-cube-test">direct sum: Square in Cube Test</h1>
+<p>This test only uses four queries as opposed to the <span class="math inline">\(d+2\)</span> queries of the Shapka test. However the analysis is somewhat more involved. In particular I don’t understand it yet.</p>
+<p>Here’s the start. For <span class="math inline">\(a,b\in [n]^{d}, x\in \mathbb{F}_2^{d}\)</span>, define <span class="math inline">\(S_x(a,b)\)</span> to be a vector in <span class="math inline">\([n]^{d}\)</span> with <span class="math inline">\(i\)</span>-th coordinate being <span class="math inline">\(a_i\)</span> if <span class="math inline">\(x_i=0\)</span> and <span class="math inline">\(b_i\)</span> if <span class="math inline">\(x_i=1\)</span>. Let <span class="math inline">\(g\)</span> be the function that we are testing direct-sumness of. Define <span class="math inline">\(f_{ab}(x) = g(S_x(a,b))\)</span>. Then, the Square in Cube test is as follows:</p>
+<ul>
+<li>Sample <span class="math inline">\(a,b\gets [n]^{d},x,y\gets \mathbb{F}_2^{d}\)</span>.</li>
+<li>Check: <span class="math display">\[ f_{ab}(0)+f_{ab}(x)+f_{ab}(y) +f_{ab}(x+y) = 0.\]</span></li>
+</ul>
+<p>Now let’s analyze this. So, suppose that <span class="math inline">\(f\)</span> passes the test with good probability. First, this means that for most <span class="math inline">\(a,b\)</span> we have that <span class="math display">\[ \Pr_{x,y}[f_{ab}(0)+f_{ab}(x)+f_{ab}(y) +f_{ab}(x+y) = 0] &gt;
+1-\varepsilon.\]</span> By BLR this means that there exists <span class="math inline">\(S_{ab},c_{ab}\)</span> such that <span class="math display">\[\Pr_{x}[f_{ab}(x) = c_{ab}+\chi_{S_{ab}}(x)] &gt; 1-4\varepsilon.\]</span></p>
+<p>Then by some kind of coupling argument we can show that the <span class="math inline">\(S_{ab}\)</span>’s are in some sense a direct product function of <span class="math inline">\(b\)</span>.</p>
+<p>I don’t quite get the whole thing though.</p>
